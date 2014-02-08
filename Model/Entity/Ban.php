@@ -14,6 +14,13 @@ class Ban {
     /** @var string */
     protected $to;
 
+    function __construct($idBan, $userId, $from, $to) {
+        $this->idBan = $idBan;
+        $this->userId = $userId;
+        $this->from = $from;
+        $this->to = $to;
+    }
+
     public function getIdBan() {
         return $this->idBan;
     }

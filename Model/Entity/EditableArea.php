@@ -26,6 +26,17 @@ class EditableArea {
     /** @var boolean */
     protected $locked;
 
+    function __construct($idEditableArea, $AreaEditByUserId, $itemId, $archivedItemId, $date, $text, $title, $locked) {
+        $this->idEditableArea = $idEditableArea;
+        $this->AreaEditByUserId = $AreaEditByUserId;
+        $this->itemId = $itemId;
+        $this->archivedItemId = $archivedItemId;
+        $this->date = $date;
+        $this->text = $text;
+        $this->title = $title;
+        $this->locked = $locked;
+    }
+
     public function getIdEditableArea() {
         return $this->idEditableArea;
     }

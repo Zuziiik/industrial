@@ -17,6 +17,14 @@ class Recipe {
     /** @var string */
     protected $uotput;
 
+    function __construct($idRecipe, $itemId, $archivedItemId, $type, $uotput) {
+        $this->idRecipe = $idRecipe;
+        $this->itemId = $itemId;
+        $this->archivedItemId = $archivedItemId;
+        $this->type = $type;
+        $this->uotput = $uotput;
+    }
+
     public function getIdRecipe() {
         return $this->idRecipe;
     }

@@ -17,6 +17,14 @@ class AreaEditByUser {
     /** @var string */
     protected $timeOfStart;
 
+    function __construct($editableAreaId, $userId, $allowed, $editing, $timeOfStart) {
+        $this->editableAreaId = $editableAreaId;
+        $this->userId = $userId;
+        $this->allowed = $allowed;
+        $this->editing = $editing;
+        $this->timeOfStart = $timeOfStart;
+    }
+
     public function getEditableAreaId() {
         return $this->editableAreaId;
     }

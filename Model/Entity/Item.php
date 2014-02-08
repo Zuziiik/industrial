@@ -11,11 +11,15 @@ class Item {
     /** @var string */
     protected $name;
 
-    /** @var file */
-    protected $icon;
-
     /** @var string */
     protected $details;
+
+    function __construct($idItem, $categoryId, $name, $details) {
+        $this->idItem = $idItem;
+        $this->categoryId = $categoryId;
+        $this->name = $name;
+        $this->details = $details;
+    }
 
     public function getIdItem() {
         return $this->idItem;
@@ -29,20 +33,12 @@ class Item {
         return $this->name;
     }
 
-    public function getIcon() {
-        return $this->icon;
-    }
-
     public function getDetails() {
         return $this->details;
     }
 
     public function setName($name) {
         $this->name = $name;
-    }
-
-    public function setIcon(file $icon) {
-        $this->icon = $icon;
     }
 
     public function setDetails($details) {

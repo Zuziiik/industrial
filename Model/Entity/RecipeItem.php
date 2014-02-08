@@ -11,6 +11,12 @@ class RecipeItem {
     /** @var int */
     protected $tablePos;
 
+    function __construct($itemId, $recipeId, $tablePos) {
+        $this->itemId = $itemId;
+        $this->recipeId = $recipeId;
+        $this->tablePos = $tablePos;
+    }
+
     public function getItemId() {
         return $this->itemId;
     }

@@ -8,6 +8,11 @@ class EditableAreaType {
     /** @var string */
     protected $name;
 
+    function __construct($idEditableAreaType, $name) {
+        $this->idEditableAreaType = $idEditableAreaType;
+        $this->name = $name;
+    }
+
     public function getIdEditableAreaType() {
         return $this->idEditableAreaType;
     }

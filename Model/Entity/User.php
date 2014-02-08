@@ -26,14 +26,24 @@ class User {
     /** @var boolean */
     protected $confirmed;
 
-    /** @var file */
-    protected $icon;
-
     /** @var string */
     protected $lastLogin;
 
     /** @var string */
     protected $about;
+
+    function __construct($idUser, $username, $password, $salt, $email, $createTime, $admin, $confirmed, $lastLogin, $about) {
+        $this->idUser = $idUser;
+        $this->username = $username;
+        $this->password = $password;
+        $this->salt = $salt;
+        $this->email = $email;
+        $this->createTime = $createTime;
+        $this->admin = $admin;
+        $this->confirmed = $confirmed;
+        $this->lastLogin = $lastLogin;
+        $this->about = $about;
+    }
 
     public function getIdUser() {
         return $this->idUser;
@@ -65,10 +75,6 @@ class User {
 
     public function getConfirmed() {
         return $this->confirmed;
-    }
-
-    public function getIcon() {
-        return $this->icon;
     }
 
     public function getLastLogin() {
@@ -105,10 +111,6 @@ class User {
 
     public function setConfirmed($confirmed) {
         $this->confirmed = $confirmed;
-    }
-
-    public function setIcon(file $icon) {
-        $this->icon = $icon;
     }
 
     public function setLastLogin($lastLogin) {
