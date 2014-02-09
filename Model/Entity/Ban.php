@@ -9,16 +9,16 @@ class Ban {
     protected $userId;
 
     /** @var string */
-    protected $from;
+    protected $banStart;
 
     /** @var string */
-    protected $to;
+    protected $banEnd;
 
-    function __construct($idBan, $userId, $from, $to) {
+    function __construct($idBan, $userId, $banStart, $banEnd) {
         $this->idBan = $idBan;
         $this->userId = $userId;
-        $this->from = $from;
-        $this->to = $to;
+        $this->banStart = $banStart;
+        $this->banEnd = $banEnd;
     }
 
     public function setIdBan($idBan) {
@@ -37,20 +37,20 @@ class Ban {
         return $this->userId;
     }
 
-    public function getFrom() {
-        return $this->from;
+    public function getBanStart() {
+        return $this->banStart;
     }
 
-    public function getTo() {
-        return $this->to;
+    public function getBanEnd() {
+        return $this->banEnd;
     }
 
-    public function setFrom($from) {
-        $this->from = $from;
+    public function setBanStart($banStart) {
+        $this->banStart = $banStart;
     }
 
-    public function setTo($to) {
-        $this->to = $to;
+    public function setBanEnd($banEnd) {
+        $this->banEnd = $banEnd;
     }
 
 }

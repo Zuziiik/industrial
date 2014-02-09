@@ -37,7 +37,6 @@ class AreaEditByUserDAO {
             die('Argument passed isnt instance of int.');
         }
         $row = rowQueryMysql("SELECT * FROM edited WHERE id_edited='$id'");
-        var_dump($row);
         $areaEditByUser = new AreaEditByUser($row['0'], $row['4'], $row['5'], $row['1'], $row['2'], $row['3']);
         return $areaEditByUser;
     }
