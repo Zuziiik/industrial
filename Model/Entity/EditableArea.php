@@ -6,7 +6,7 @@ class EditableArea {
     protected $idEditableArea;
 
     /** @var int */
-    protected $AreaEditByUserId;
+    protected $editableAreaTypeId;
 
     /** @var int */
     protected $itemId;
@@ -26,9 +26,9 @@ class EditableArea {
     /** @var boolean */
     protected $locked;
 
-    function __construct($idEditableArea, $AreaEditByUserId, $itemId, $archivedItemId, $date, $text, $title, $locked) {
+    function __construct($idEditableArea, $editableAreaTypeId, $itemId, $archivedItemId, $date, $text, $title, $locked) {
         $this->idEditableArea = $idEditableArea;
-        $this->AreaEditByUserId = $AreaEditByUserId;
+        $this->editableAreaTypeId = $editableAreaTypeId;
         $this->itemId = $itemId;
         $this->archivedItemId = $archivedItemId;
         $this->date = $date;
@@ -41,8 +41,8 @@ class EditableArea {
         $this->idEditableArea = $idEditableArea;
     }
 
-    public function setAreaEditByUserId($AreaEditByUserId) {
-        $this->AreaEditByUserId = $AreaEditByUserId;
+    public function setAreaEditByUserId($editableAreaTypeId) {
+        $this->editableAreaTypeId = $editableAreaTypeId;
     }
 
     public function setItemId($itemId) {
@@ -57,8 +57,8 @@ class EditableArea {
         return $this->idEditableArea;
     }
 
-    public function getAreaEditByUserId() {
-        return $this->AreaEditByUserId;
+    public function getEditableAreaTypeId() {
+        return $this->editableAreaTypeId;
     }
 
     public function getItemId() {
