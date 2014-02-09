@@ -37,6 +37,22 @@ class EditableArea {
         $this->locked = $locked;
     }
 
+    public function setIdEditableArea($idEditableArea) {
+        $this->idEditableArea = $idEditableArea;
+    }
+
+    public function setAreaEditByUserId($AreaEditByUserId) {
+        $this->AreaEditByUserId = $AreaEditByUserId;
+    }
+
+    public function setItemId($itemId) {
+        $this->itemId = $itemId;
+    }
+
+    public function setArchivedItemId($archivedItemId) {
+        $this->archivedItemId = $archivedItemId;
+    }
+
     public function getIdEditableArea() {
         return $this->idEditableArea;
     }

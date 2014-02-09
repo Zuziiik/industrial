@@ -25,6 +25,18 @@ class Recipe {
         $this->uotput = $uotput;
     }
 
+    public function setIdRecipe($idRecipe) {
+        $this->idRecipe = $idRecipe;
+    }
+
+    public function setItemId($itemId) {
+        $this->itemId = $itemId;
+    }
+
+    public function setArchivedItemId($archivedItemId) {
+        $this->archivedItemId = $archivedItemId;
+    }
+
     public function getIdRecipe() {
         return $this->idRecipe;
     }

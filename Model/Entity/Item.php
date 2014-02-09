@@ -21,6 +21,14 @@ class Item {
         $this->details = $details;
     }
 
+    public function setIdItem($idItem) {
+        $this->idItem = $idItem;
+    }
+
+    public function setCategoryId($categoryId) {
+        $this->categoryId = $categoryId;
+    }
+
     public function getIdItem() {
         return $this->idItem;
     }

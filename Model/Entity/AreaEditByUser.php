@@ -3,6 +3,9 @@
 class AreaEditByUser {
 
     /** @var int */
+    protected $IdAreaEditByUser;
+
+    /** @var int */
     protected $editableAreaId;
 
     /** @var int */
@@ -16,8 +19,9 @@ class AreaEditByUser {
 
     /** @var string */
     protected $timeOfStart;
-
-    function __construct($editableAreaId, $userId, $allowed, $editing, $timeOfStart) {
+ 
+    function __construct($IdAreaEditByUser, $editableAreaId, $userId, $allowed, $editing, $timeOfStart) {
+        $this->IdAreaEditByUser = $IdAreaEditByUser;
         $this->editableAreaId = $editableAreaId;
         $this->userId = $userId;
         $this->allowed = $allowed;
@@ -25,7 +29,24 @@ class AreaEditByUser {
         $this->timeOfStart = $timeOfStart;
     }
 
+    public function getIdAreaEditByUser() {
+        return $this->IdAreaEditByUser;
+    }
+
+    public function setIdAreaEditByUser($IdAreaEditByUser) {
+        $this->IdAreaEditByUser = $IdAreaEditByUser;
+    }
+
+    public function setEditableAreaId($editableAreaId) {
+        $this->editableAreaId = $editableAreaId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = $userId;
+    }
+
     public function getEditableAreaId() {
+
         return $this->editableAreaId;
     }
 

@@ -21,6 +21,18 @@ class Comment {
         $this->text = $text;
     }
 
+    public function setIdComment($idComment) {
+        $this->idComment = $idComment;
+    }
+
+    public function setEditableAdeaId($editableAdeaId) {
+        $this->editableAdeaId = $editableAdeaId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = $userId;
+    }
+
     public function getIdComment() {
         return $this->idComment;
     }

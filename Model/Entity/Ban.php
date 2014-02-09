@@ -21,6 +21,14 @@ class Ban {
         $this->to = $to;
     }
 
+    public function setIdBan($idBan) {
+        $this->idBan = $idBan;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = $userId;
+    }
+
     public function getIdBan() {
         return $this->idBan;
     }

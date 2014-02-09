@@ -17,6 +17,14 @@ class RecipeItem {
         $this->tablePos = $tablePos;
     }
 
+    public function setItemId($itemId) {
+        $this->itemId = $itemId;
+    }
+
+    public function setRecipeId($recipeId) {
+        $this->recipeId = $recipeId;
+    }
+
     public function getItemId() {
         return $this->itemId;
     }

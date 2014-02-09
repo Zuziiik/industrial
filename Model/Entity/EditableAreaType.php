@@ -13,6 +13,10 @@ class EditableAreaType {
         $this->name = $name;
     }
 
+    public function setIdEditableAreaType($idEditableAreaType) {
+        $this->idEditableAreaType = $idEditableAreaType;
+    }
+
     public function getIdEditableAreaType() {
         return $this->idEditableAreaType;
     }

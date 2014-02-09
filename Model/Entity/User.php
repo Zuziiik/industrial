@@ -45,6 +45,10 @@ class User {
         $this->about = $about;
     }
 
+    public function setIdUser($idUser) {
+        $this->idUser = $idUser;
+    }
+
     public function getIdUser() {
         return $this->idUser;
     }

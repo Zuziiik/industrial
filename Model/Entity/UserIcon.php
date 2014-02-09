@@ -13,6 +13,10 @@ class UserIcon {
         $this->image = $image;
     }
 
+    public function setUserId($userId) {
+        $this->userId = $userId;
+    }
+
     public function getUserId() {
         return $this->userId;
     }

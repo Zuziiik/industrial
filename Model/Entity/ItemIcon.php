@@ -13,6 +13,10 @@ class ItemIcon {
         $this->image = $image;
     }
 
+    public function setItemId($itemId) {
+        $this->itemId = $itemId;
+    }
+
     public function getItemId() {
         return $this->itemId;
     }
