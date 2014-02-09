@@ -8,7 +8,7 @@ class ItemIcon {
     /** @var blog */
     protected $image;
 
-    function __construct($itemId, blog $image) {
+    function __construct($itemId, $image) {
         $this->itemId = $itemId;
         $this->image = $image;
     }
@@ -25,7 +25,7 @@ class ItemIcon {
         return $this->image;
     }
 
-    public function setImage(blog $image) {
+    public function setImage($image) {
         $this->image = $image;
     }
 
