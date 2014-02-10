@@ -14,6 +14,13 @@ class Item {
     /** @var string */
     protected $details;
 
+    /**
+     * 
+     * @param int $idItem
+     * @param int $categoryId
+     * @param string $name
+     * @param string $details
+     */
     function __construct($idItem, $categoryId, $name, $details) {
         $this->idItem = $idItem;
         $this->categoryId = $categoryId;

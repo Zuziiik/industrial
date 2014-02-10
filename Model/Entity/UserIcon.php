@@ -5,10 +5,15 @@ class UserIcon {
     /** @var int */
     protected $userId;
 
-    /** @var blog */
+    /** @var blob */
     protected $image;
 
-    function __construct($userId, blog $image) {
+    /**
+     * 
+     * @param int $userId
+     * @param blob $image
+     */
+    function __construct($userId, $image) {
         $this->userId = $userId;
         $this->image = $image;
     }
@@ -25,7 +30,7 @@ class UserIcon {
         return $this->image;
     }
 
-    public function setImage(blog $image) {
+    public function setImage($image) {
         $this->image = $image;
     }
 

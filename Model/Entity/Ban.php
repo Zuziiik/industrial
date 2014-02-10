@@ -14,6 +14,13 @@ class Ban {
     /** @var string */
     protected $banEnd;
 
+    /**
+     * 
+     * @param int $idBan
+     * @param int $userId
+     * @param string $banStart
+     * @param string $banEnd
+     */
     function __construct($idBan, $userId, $banStart, $banEnd) {
         $this->idBan = $idBan;
         $this->userId = $userId;

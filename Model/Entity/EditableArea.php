@@ -26,6 +26,17 @@ class EditableArea {
     /** @var boolean */
     protected $locked;
 
+    /**
+     * 
+     * @param int $idEditableArea
+     * @param int $editableAreaTypeId
+     * @param int $itemId
+     * @param int $archivedItemId
+     * @param string $date
+     * @param string $text
+     * @param string $title
+     * @param boolean $locked
+     */
     function __construct($idEditableArea, $editableAreaTypeId, $itemId, $archivedItemId, $date, $text, $title, $locked) {
         $this->idEditableArea = $idEditableArea;
         $this->editableAreaTypeId = $editableAreaTypeId;

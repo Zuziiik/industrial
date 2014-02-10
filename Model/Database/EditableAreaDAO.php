@@ -63,4 +63,16 @@ class EditableAreaDAO {
         return $editableArea;
     }
 
+    public static function selectAll() {
+        $result = queryMysql("SELECT * FROM editable_area");
+        $n = mysql_num_rows($result);
+        $editableAreas = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6']);
+            $editableAreas[$i] = $editableArea;
+        }
+        return $editableAreas;
+    }
+
 }

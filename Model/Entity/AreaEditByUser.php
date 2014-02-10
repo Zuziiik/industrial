@@ -20,6 +20,15 @@ class AreaEditByUser {
     /** @var string */
     protected $timeOfStart;
  
+    /**
+     * 
+     * @param int $IdAreaEditByUser
+     * @param int $editableAreaId
+     * @param int $userId
+     * @param boolean $allowed
+     * @param boolean $editing
+     * @param string $timeOfStart
+     */
     function __construct($IdAreaEditByUser, $editableAreaId, $userId, $allowed, $editing, $timeOfStart) {
         $this->IdAreaEditByUser = $IdAreaEditByUser;
         $this->editableAreaId = $editableAreaId;

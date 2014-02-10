@@ -5,9 +5,14 @@ class ItemIcon {
     /** @var int */
     protected $itemId;
 
-    /** @var blog */
+    /** @var blob */
     protected $image;
 
+    /**
+     * 
+     * @param int $itemId
+     * @param blob $image
+     */
     function __construct($itemId, $image) {
         $this->itemId = $itemId;
         $this->image = $image;

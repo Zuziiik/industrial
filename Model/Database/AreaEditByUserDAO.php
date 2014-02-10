@@ -49,5 +49,17 @@ class AreaEditByUserDAO {
         $areaEditByUser = new AreaEditByUser($row['0'], $row['4'], $row['5'], $row['1'], $row['2'], $row['3']);
         return $areaEditByUser;
     }
+    
+        public static function selectAll() {
+        $result = queryMysql("SELECT * FROM edited");
+        $n = mysql_num_rows($result);
+        $areaEditByUsers = array();
+        for($i=0;$i<$n;++$i){
+            $row = mysql_fetch_row($result);
+            $areaEditByUser = new AreaEditByUser($row['0'], $row['4'], $row['5'], $row['1'], $row['2'], $row['3']);
+            $areaEditByUsers[$i] = $areaEditByUser;
+        }
+        return $areaEditByUsers;
+    }
 
 }

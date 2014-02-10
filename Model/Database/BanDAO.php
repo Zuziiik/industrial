@@ -25,7 +25,7 @@ class BanDAO {
         $id = $ban->getIdBan();
         queryMysql("DELETE FROM ban WHERE id_ban='$id'");
     }
-    
+
     public static function selectById($id) {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
@@ -42,6 +42,18 @@ class BanDAO {
         $row = rowQueryMysql("SELECT * FROM ban WHERE user_id_user='$userId'");
         $ban = new Ban($row['0'], $row['3'], $row['1'], $row['2']);
         return $ban;
+    }
+
+    public static function selectAll() {
+        $result = queryMysql("SELECT * FROM ban");
+        $n = mysql_num_rows($result);
+        $bans = array();
+        for ($i = 0; $i < $n;  ++$i) {
+            $row = mysql_fetch_row($result);
+            $ban = new Ban($row['0'], $row['3'], $row['1'], $row['2']);
+            $bans[$i] = $ban;
+        }
+        return $bans;
     }
 
 }

@@ -33,4 +33,16 @@ class EditableAreaTypeDAO {
         return $editableAreatype;
     }
 
+    public static function selectAll() {
+        $result = queryMysql("SELECT * FROM editable_area_type");
+        $n = mysql_num_rows($result);
+        $editableAreatypes = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $editableAreatype = new EditableAreaType($row['0'], $row['1']);
+            $editableAreatypes[$i] = $editableAreatype;
+        }
+        return $editableAreatypes;
+    }
+
 }

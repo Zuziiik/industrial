@@ -17,6 +17,14 @@ class Recipe {
     /** @var string */
     protected $uotput;
 
+    /**
+     * 
+     * @param int $idRecipe
+     * @param int $itemId
+     * @param int $archivedItemId
+     * @param string $type
+     * @param string $uotput
+     */
     function __construct($idRecipe, $itemId, $archivedItemId, $type, $uotput) {
         $this->idRecipe = $idRecipe;
         $this->itemId = $itemId;

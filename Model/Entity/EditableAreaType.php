@@ -8,6 +8,11 @@ class EditableAreaType {
     /** @var string */
     protected $name;
 
+    /**
+     * 
+     * @param int $idEditableAreaType
+     * @param string $name
+     */
     function __construct($idEditableAreaType, $name) {
         $this->idEditableAreaType = $idEditableAreaType;
         $this->name = $name;

@@ -14,6 +14,13 @@ class Comment {
     /** @var string */
     protected $text;
 
+    /**
+     * 
+     * @param int $idComment
+     * @param int $editableAdeaId
+     * @param int $userId
+     * @param string $text
+     */
     function __construct($idComment, $editableAdeaId, $userId, $text) {
         $this->idComment = $idComment;
         $this->editableAdeaId = $editableAdeaId;

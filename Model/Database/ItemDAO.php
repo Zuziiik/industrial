@@ -46,4 +46,16 @@ class ItemDAO {
         return $item;
     }
 
+    public static function selectAll() {
+        $result = queryMysql("SELECT * FROM item");
+        $n = mysql_num_rows($result);
+        $items = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
+            $items[$i] = $item;
+        }
+        return $items;
+    }
+
 }

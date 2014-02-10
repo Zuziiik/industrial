@@ -32,6 +32,19 @@ class User {
     /** @var string */
     protected $about;
 
+    /**
+     * 
+     * @param int $idUser
+     * @param string $username
+     * @param string $password
+     * @param string $salt
+     * @param string $email
+     * @param string $createTime
+     * @param boolean $admin
+     * @param boolean $confirmed
+     * @param string $lastLogin
+     * @param string $about
+     */
     function __construct($idUser, $username, $password, $salt, $email, $createTime, $admin, $confirmed, $lastLogin, $about) {
         $this->idUser = $idUser;
         $this->username = $username;

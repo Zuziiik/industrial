@@ -46,4 +46,16 @@ class CommentDAO {
         return $comment;
     }
 
+    public static function selectAll() {
+        $result = queryMysql("SELECT * FROM comment");
+        $n = mysql_num_rows($result);
+        $comments = array();
+        for ($i = 0; $i < $n;  ++$i) {
+            $row = mysql_fetch_row($result);
+            $comment = new Comment($row['0'], $row['1'], $row['2'], $row['3']);
+            $comments[$i] = $comment;
+        }
+        return $comments;
+    }
+
 }
