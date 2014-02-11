@@ -47,6 +47,15 @@ class UserDAO {
         $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
         return $user;
     }
+    
+    public static function selectByName($username) {
+        if (!is_string($username)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $row = rowQueryMysql("SELECT * FROM user WHERE username='$username'");
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
+        return $user;
+    }
 
     public static function selectByAdmin($admin) {
         if (!is_bool($admin)) {
