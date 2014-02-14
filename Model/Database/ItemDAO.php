@@ -63,5 +63,17 @@ class ItemDAO {
         }
         return $items;
     }
+    
+        public static function exists($name){
+        if (!is_string($name)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $result = queryMysql("SELECT * FROM item WHERE name='$name'");
+        $n = mysql_num_rows($result);
+        if($n>0){
+            return TRUE;
+        }
+        return FALSE;
+    }
 
 }

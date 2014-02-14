@@ -14,7 +14,7 @@ if(isset($_SESSION['username'])){
     }else{
         $confirmed=FALSE;
     }
-    $_SESSION['username']=$username;
+    $username=$_SESSION['username'];
 }else{
     $loggedin=FALSE;
 }

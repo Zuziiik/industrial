@@ -14,6 +14,7 @@ class LoginView extends View {
 
     public function printBody() {
         global $loggedin;
+        echo("<div class='login'>");
         if (!$loggedin) {
 
             echo($this->model->error);
@@ -51,6 +52,7 @@ class LoginView extends View {
              echo("Please <a href='./index.php?page=login&action=logout'>click here</a> to logout.");
         }
         echo $this->model->msg;
+        echo("</div>");
     }
 
     public function printTitle() {

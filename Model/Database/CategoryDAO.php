@@ -7,7 +7,7 @@ class CategoryDAO {
 
     public static function insert(Category $category) {
         $a = $category->getName();
-        queryMysql("INSERT INTO category (name) VALUES ('$a'");
+        queryMysql("INSERT INTO category (name) VALUES ('$a')");
         $category->setIdCategory(lastId());
     }
 
@@ -41,7 +41,7 @@ class CategoryDAO {
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM category");
+        $result = queryMysql("SELECT * FROM category ORDER BY name ASC");
         $n = mysql_num_rows($result);
         $categories = array();
         for ($i = 0; $i < $n; ++$i) {
@@ -50,6 +50,18 @@ class CategoryDAO {
             $categories[$i] = $category;
         }
         return $categories;
+    }
+    
+    public static function exists($name){
+        if (!is_string($name)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $result = queryMysql("SELECT * FROM category WHERE name='$name'");
+        $n = mysql_num_rows($result);
+        if($n>0){
+            return TRUE;
+        }
+        return FALSE;
     }
 
 }

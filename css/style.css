@@ -35,6 +35,7 @@ header #topPanel #profile, header #login, header #logout, header #register, head
 #menu{
     float: left;
     position: fixed;
+    width: 30%;
 }
 #menu a {
     list-style: none;
@@ -54,6 +55,13 @@ section{
 
 section p {
     clear: right;
+}
+
+.login {
+     margin-left:15%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 70%; 
 }
 
 
