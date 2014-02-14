@@ -9,6 +9,12 @@ if(isset($_SESSION['username'])){
     }else{
         $admin=FALSE;   
     }
+    if($_SESSION['confirmed']){
+        $confirmed = TRUE;
+    }else{
+        $confirmed=FALSE;
+    }
+    $_SESSION['username']=$username;
 }else{
     $loggedin=FALSE;
 }

@@ -2,16 +2,21 @@
 
 include_once 'header.php';
 
+
 navigate();
 
 $control->initialize();
 $view->initialize();
 
 echo("<!DOCTYPE html>".
-     "<header><meta charset='UTF-8'></header>".
-     "<header><meta charset='UTF-8'><title>");
+     "<head><meta charset='UTF-8'>".
+     "<meta charset='UTF-8'>".
+     "<link rel='stylesheet' type='text/css' href='./css/style.css' title='default'>".
+     "</head><title>");
     $view->printTitle();
-    echo("</title></header><body><h1>");
+    echo ("</title><header>");
+    include_once 'menu.php';
+    echo("</header><body><h1>");
     $view->printPageHeader();
     echo("</h1>");
     $view->printBody();

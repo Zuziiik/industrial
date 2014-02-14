@@ -41,9 +41,15 @@ class ItemDAO {
         if (!is_int($categoryId)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM item WHERE category_id='$categoryId'");
-        $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
-        return $item;
+        $result = queryMysql("SELECT * FROM item WHERE category_id='$categoryId'");
+        $n = mysql_num_rows($result);
+        $items = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
+            $items[$i] = $item;
+        }
+        return $items;
     }
 
     public static function selectAll() {

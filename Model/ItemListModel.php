@@ -1,17 +1,15 @@
 <?php
 
-class LoginModel {
+class ItemListModel {
 
     public $error;
     public $msg;
-    public $user;
-
+    public $categories;
 
     function __construct() {
         $this->msg = '';
         $this->error = '';
-        $this->user = '';
-  
+        $this->categories = array();
     }
 
 }

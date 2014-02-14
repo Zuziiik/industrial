@@ -1,0 +1,113 @@
+html {
+    background-color: lightblue;
+    height: 100%;
+} 
+
+body{
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: white;
+    height: 100%;
+}
+
+header #login, header #logout, header #profile, header #edit , header #register, header #admin {
+    padding-left: 1%;
+    padding-right: 1%;
+    text-decoration:none; 
+    border:0.15em solid black;
+    -moz-box-shadow   :2px 2px 2px #888;
+    -webkit-box-shadow:2px 2px 2px #888;
+    box-shadow        :2px 2px 2px #888; 
+}
+
+header #topPanel {
+    margin-top: 1%;
+    float:right;
+    display: inline;
+    margin-right: 10%;
+    width: 35%;
+}
+
+header #topPanel #profile, header #login, header #logout, header #register, header #edit{
+    margin-right: 5%;
+}
+
+#menu{
+    float: left;
+    position: fixed;
+}
+#menu a {
+    list-style: none;
+    margin-bottom:0.5%;
+    padding: 0.5%;
+    text-decoration:none; 
+    display: block;
+}
+
+section{
+    margin-left:15%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 70%; 
+    height: 75%;
+}
+
+section p {
+    clear: right;
+}
+
+
+/*-----ItemList-----*/
+#itemList{
+   display: block;
+   width: 80%;
+   float: right;
+}
+
+.categoryName{
+    clear: left;
+    float: left;
+    width: 100%;
+}
+
+.category {
+    display: block;
+    margin-bottom: 2%;
+    width: 100%;
+}
+
+.item:first-child{
+    clear: left;
+    float: left;
+   
+}
+
+.item{
+   display: inline-block;
+    border: 0.1em solid black;
+    margin-bottom:1%;
+    margin-right: 1%;
+    width: 10em;
+    height: 10em;
+}
+
+.itemDetails {
+    clear: left;
+}
+
+.itemName {
+    width: 50%;
+    height: 50%;
+    float:left;
+}
+
+.picture {
+    float:left;
+    width: 50%;
+    height: 50%;
+}
+
+.picture img {
+     width: 70%;
+    height: 70%;
+}
