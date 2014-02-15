@@ -20,11 +20,12 @@ class ItemListView extends View {
             echo("<div class='category'>");
             echo("<span class='categoryName'>");
             $nameCategory = $category[0]->getName();
+            $id = $category[0]->getIdCategory();
             echo $nameCategory;
             if ($loggedin && $admin) {
                 echo<<<_END
                 <form name='deleteCategory' method='post' action='./index.php?page=recipes'>
-                <input type='hidden' name='categoryDelete' value='$nameCategory'/>
+                <input type='hidden' name='categoryDelete' value='$id'/>
                 <input type='submit' name='deleteCategory' value='Delete'/>
                 </form>
 _END;
@@ -36,9 +37,18 @@ _END;
                 $name = $item->getName();
                 $details = $item->getDetails();
                 echo("<div class='picture'><img src='image.php?type=item&id=$id'></div>");
-                echo("<div class='itemName'>$name</div>");
+                echo("<div class='itemName'><a href='./index.php?page=item&item=$name'>$name</a></div>");
                 echo("<div class='itemDetails'>$details</div>");
                 echo("</div>");
+                //TODO edit item
+            }
+            if ($loggedin && $admin) {
+                echo<<<_END
+            <form name='addItem' method='post' action='./index.php?page=item&action=add'>
+            <input type='hidden' name='categoryName' value='$nameCategory'/>    
+            <input type='submit' name='AddItem' value='Add item'/>
+            </form>
+_END;
             }
             echo("</div>");
         }
@@ -56,7 +66,7 @@ _END;
     }
 
     public function printPageHeader() {
-        
+        echo("Recipes & Resources");
     }
 
     public function printTitle() {

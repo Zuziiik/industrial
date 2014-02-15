@@ -36,6 +36,15 @@ class ItemDAO {
         $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
         return $item;
     }
+    
+        public static function selectByName($name) {
+        if (!is_string($name)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $row = rowQueryMysql("SELECT * FROM item WHERE name='$name'");
+        $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
+        return $item;
+    }
 
     public static function selectByCategoryId($categoryId) {
         if (!is_int($categoryId)) {

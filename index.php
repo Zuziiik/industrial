@@ -18,9 +18,9 @@ echo("<!DOCTYPE html>".
     include_once 'menu.php';
     echo("</header><body><h1>");
     $view->printPageHeader();
-    echo("</h1>");
+    echo("</h1><section>");
     $view->printBody();
-    echo("</body></html>");
+    echo("</section></body></html>");
 
 /*
 

@@ -10,6 +10,12 @@ body{
     height: 100%;
 }
 
+h1 {
+    // color: lightblue;
+    text-align: center;
+    clear: right;
+}
+
 header #login, header #logout, header #profile, header #edit , header #register, header #admin {
     padding-left: 1%;
     padding-right: 1%;
@@ -34,15 +40,20 @@ header #topPanel #profile, header #login, header #logout, header #register, head
 
 #menu{
     float: left;
-    position: fixed;
-    width: 30%;
+    width: 15%;
 }
-#menu a {
+
+#menu ol {
     list-style: none;
+    
+}
+
+#menu a {
     margin-bottom:0.5%;
     padding: 0.5%;
     text-decoration:none; 
     display: block;
+    border:0.15em solid black;
 }
 
 section{
@@ -50,7 +61,7 @@ section{
     padding-left: 5%;
     padding-right: 5%;
     width: 70%; 
-    height: 75%;
+    height: 100%;
 }
 
 section p {
@@ -68,7 +79,7 @@ section p {
 /*-----ItemList-----*/
 #itemList{
    display: block;
-   width: 80%;
+   width: 100%;
    float: right;
 }
 
@@ -118,4 +129,9 @@ section p {
 .picture img {
      width: 70%;
     height: 70%;
+}
+
+.itemDetails {
+   width: 80%;
+   float: left;
 }

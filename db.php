@@ -11,7 +11,7 @@ mysql_select_db($dbname) or die(mysql_error());
 
 function queryMysql($query) {
     global $conn;
-  //  echo "[".$query."]" . "</br>";
+   //echo "[".$query."]" . "</br>";
     $result = mysql_query($query, $conn) or die(mysql_error());
     return $result;
 }

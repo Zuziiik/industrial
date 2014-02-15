@@ -26,6 +26,9 @@ class EditableArea {
     /** @var boolean */
     protected $locked;
 
+    /** @var int */
+    protected $weight;
+
     /**
      * 
      * @param int $idEditableArea
@@ -36,8 +39,9 @@ class EditableArea {
      * @param string $text
      * @param string $title
      * @param boolean $locked
+     * @param int $weight
      */
-    function __construct($idEditableArea, $editableAreaTypeId, $itemId, $archivedItemId, $date, $text, $title, $locked) {
+    function __construct($idEditableArea, $editableAreaTypeId, $itemId, $archivedItemId, $date, $text, $title, $locked, $weight) {
         $this->idEditableArea = $idEditableArea;
         $this->editableAreaTypeId = $editableAreaTypeId;
         $this->itemId = $itemId;
@@ -46,6 +50,15 @@ class EditableArea {
         $this->text = $text;
         $this->title = $title;
         $this->locked = $locked;
+        $this->weight = $weight;
+    }
+
+    public function getWeight() {
+        return $this->weight;
+    }
+
+    public function setWeight($weight) {
+        $this->weight = $weight;
     }
 
     public function setIdEditableArea($idEditableArea) {

@@ -37,6 +37,7 @@ class CategoryDAO {
         }
         $row = rowQueryMysql("SELECT * FROM category WHERE name='$name'");
         $category = new Category($row['0'], $row['1']);
+        var_dump($category);
         return $category;
     }
 

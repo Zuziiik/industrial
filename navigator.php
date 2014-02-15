@@ -31,6 +31,11 @@ function navigate() {
             $control = new ItemListControl($model);
             $view = new ItemListView($model);
             break;
+        case 'item':
+            $model = new ItemModel();
+            $control = new ItemControl($model);
+            $view = new ItemView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

@@ -26,13 +26,12 @@ class ItemListControl extends Control {
                 $this->addCategory($categoryName);
             }
             if(isset($_POST['deleteCategory'])){
-                $delete=$_POST['categoryDelete'];
-                $category = CategoryDAO::selectByName($delete);
+                $delete=(int)$_POST['categoryDelete'];
+                $category = CategoryDAO::selectById($delete);
                 CategoryDAO::delete($category);
-            }
-            
+            }           
         } else {
-            header("Location: ./index.php?page=login");
+            $this->model->error = "You're not logged in.";
         }
         $this->loadCategories();
         $n = count($this->categories);

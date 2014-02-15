@@ -13,8 +13,9 @@ class EditableAreaDAO {
         $e = $editableArea->getTitle();
         $f = $editableArea->getLocked();
         $g = $editableArea->getText();
-        queryMysql("INSERT INTO editable_area (item_id, archived_item_id, editable_area_type_id, date, title, locked, text) "
-                . "VALUES ('$a', '$b', '$c', '$d', '$e', '$f', '$g')");
+        $h = $editableArea->getWeight();
+        queryMysql("INSERT INTO editable_area (item_id, archived_item_id, editable_area_type_id, date, title, locked, text, weight) "
+                . "VALUES ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h')");
         $editableArea->setIdEditableArea(lastId());
     }
 
@@ -26,8 +27,9 @@ class EditableAreaDAO {
         $e = $editableArea->getTitle();
         $f = $editableArea->getLocked();
         $g = $editableArea->getText();
+        $h = $editableArea->getWeight();
         $id = $editableArea->getIdEditableArea();
-        queryMysql("UPDATE editable_area SET item_id='$a', archived_item_id='$b', editable_area_type_id='$c', date='$d', title='$e', locked='$f', text='$g' "
+        queryMysql("UPDATE editable_area SET item_id='$a', archived_item_id='$b', editable_area_type_id='$c', date='$d', title='$e', locked='$f', text='$g' weight='$h' "
                 . "WHERE id_editable_area='$id'");
     }
 
@@ -41,7 +43,7 @@ class EditableAreaDAO {
             die('Argument passed isnt instance of int.');
         }
         $row = rowQueryMysql("SELECT * FROM editable_area WHERE id_editable_area='$id'");
-        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6']);
+        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
         return $editableArea;
     }
 
@@ -50,7 +52,7 @@ class EditableAreaDAO {
             die('Argument passed isnt instance of int.');
         }
         $row = rowQueryMysql("SELECT * FROM editable_area WHERE item_id='$itemId'");
-        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6']);
+        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
         return $editableArea;
     }
 
@@ -59,17 +61,17 @@ class EditableAreaDAO {
             die('Argument passed isnt instance of int.');
         }
         $row = rowQueryMysql("SELECT * FROM editable_area WHERE archived_item_id='$archivedItemId'");
-        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6']);
+        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
         return $editableArea;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM editable_area");
+        $result = queryMysql("SELECT * FROM editable_area ORDER BY weight");
         $n = mysql_num_rows($result);
         $editableAreas = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6']);
+            $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
             $editableAreas[$i] = $editableArea;
         }
         return $editableAreas;
