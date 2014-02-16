@@ -32,7 +32,7 @@ class ItemDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM item WHERE id_item='$id'");
+        $row = rowQueryMysql("SELECT id_item, category_id, name, details FROM item WHERE id_item='$id'");
         $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
         return $item;
     }
@@ -41,7 +41,7 @@ class ItemDAO {
         if (!is_string($name)) {
             die('Argument passed isnt instance of string.');
         }
-        $row = rowQueryMysql("SELECT * FROM item WHERE name='$name'");
+        $row = rowQueryMysql("SELECT id_item, category_id, name, details FROM item WHERE name='$name'");
         $item = new Item($row['0'], $row['1'], $row['2'], $row['3']);
         return $item;
     }
@@ -50,7 +50,7 @@ class ItemDAO {
         if (!is_int($categoryId)) {
             die('Argument passed isnt instance of int.');
         }
-        $result = queryMysql("SELECT * FROM item WHERE category_id='$categoryId'");
+        $result = queryMysql("SELECT id_item, category_id, name, details FROM item WHERE category_id='$categoryId'");
         $n = mysql_num_rows($result);
         $items = array();
         for ($i = 0; $i < $n; ++$i) {
@@ -62,7 +62,7 @@ class ItemDAO {
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM item");
+        $result = queryMysql("SELECT id_item, category_id, name, details FROM item");
         $n = mysql_num_rows($result);
         $items = array();
         for ($i = 0; $i < $n; ++$i) {
@@ -77,7 +77,7 @@ class ItemDAO {
         if (!is_string($name)) {
             die('Argument passed isnt instance of string.');
         }
-        $result = queryMysql("SELECT * FROM item WHERE name='$name'");
+        $result = queryMysql("SELECT id_item, category_id, name, details FROM item WHERE name='$name'");
         $n = mysql_num_rows($result);
         if($n>0){
             return TRUE;

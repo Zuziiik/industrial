@@ -14,11 +14,11 @@ CREATE TABLE IF NOT EXISTS `industrial`.`user` (
   `password` VARCHAR(64) NOT NULL,
   `salt` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `admin` TINYINT(1) NOT NULL DEFAULT 0,
   `confirmed` TINYINT(1) NOT NULL DEFAULT 0,
   `icon` BLOB NULL,
-  `last_login` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `about` TEXT NULL,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   PRIMARY KEY (`id_user`),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `industrial`.`category` (
   `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`category_id`),
   UNIQUE INDEX `category_id_UNIQUE` (`category_id` ASC))
-ENGINE = MyISAM;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -45,11 +45,16 @@ CREATE TABLE IF NOT EXISTS `industrial`.`item` (
   `id_item` INT NOT NULL AUTO_INCREMENT,
   `category_id` INT NOT NULL,
   `name` VARCHAR(16) NOT NULL,
-  `icon` BLOB NULL,
   `details` TEXT NULL,
+  `icon` BLOB NULL,
   PRIMARY KEY (`id_item`),
   INDEX `fk_item_category_idx` (`category_id` ASC),
-  UNIQUE INDEX `item_id_UNIQUE` (`id_item` ASC))
+  UNIQUE INDEX `item_id_UNIQUE` (`id_item` ASC),
+  CONSTRAINT `fk_item_category`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `industrial`.`category` (`category_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -69,17 +74,25 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `industrial`.`editable_area` (
   `id_editable_area` INT NOT NULL AUTO_INCREMENT,
-  `date` TIMESTAMP NOT NULL,
-  `title` VARCHAR(45) NOT NULL,
-  `locked` TINYINT(1) NOT NULL DEFAULT 1,
-  `text` TEXT NULL,
   `item_id` INT NULL,
-  `archived_item_id1` INT NULL,
-  `editable_area_type_id_editable_area_type` INT NOT NULL,
+  `editable_area_type_id` INT NOT NULL,
+  `date` DATETIME NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `text` TEXT NULL,
+  `weight` INT NOT NULL,
   PRIMARY KEY (`id_editable_area`),
   INDEX `fk_editable_area_item1_idx` (`item_id` ASC),
-  INDEX `fk_editable_area_item2_idx` (`archived_item_id1` ASC),
-  INDEX `fk_editable_area_editable_area_type1_idx` (`editable_area_type_id_editable_area_type` ASC))
+  INDEX `fk_editable_area_editable_area_type1_idx` (`editable_area_type_id` ASC),
+  CONSTRAINT `fk_editable_area_item1`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `industrial`.`item` (`id_item`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_editable_area_editable_area_type1`
+    FOREIGN KEY (`editable_area_type_id`)
+    REFERENCES `industrial`.`editable_area_type` (`id_editable_area_type`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -87,13 +100,25 @@ ENGINE = InnoDB;
 -- Table `industrial`.`edited`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `industrial`.`edited` (
-  `allowed` TINYINT(1) NOT NULL DEFAULT 0,
-  `editing` TINYINT(1) NOT NULL,
-  `time_of_start` TIMESTAMP NULL,
+  `id_edited` INT NOT NULL AUTO_INCREMENT,
   `id_editable_area` INT NOT NULL,
   `user_id_user` INT NOT NULL,
+  `editing` TINYINT(1) NOT NULL,
+  `time_of_start` DATETIME NOT NULL,
   INDEX `fk_edited_editable_area1_idx` (`id_editable_area` ASC),
-  INDEX `fk_edited_user1_idx` (`user_id_user` ASC))
+  INDEX `fk_edited_user1_idx` (`user_id_user` ASC),
+  PRIMARY KEY (`id_edited`),
+  UNIQUE INDEX `id_edited_UNIQUE` (`id_edited` ASC),
+  CONSTRAINT `fk_edited_editable_area1`
+    FOREIGN KEY (`id_editable_area`)
+    REFERENCES `industrial`.`editable_area` (`id_editable_area`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_edited_user1`
+    FOREIGN KEY (`user_id_user`)
+    REFERENCES `industrial`.`user` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -101,13 +126,23 @@ ENGINE = InnoDB;
 -- Table `industrial`.`comment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `industrial`.`comment` (
-  `text` TEXT NOT NULL,
   `id_comment` INT NOT NULL AUTO_INCREMENT,
   `id_editable_area` INT NOT NULL,
   `user_id_user` INT NOT NULL,
+  `text` TEXT NOT NULL,
   PRIMARY KEY (`id_comment`),
   INDEX `fk_comment_editable_area1_idx` (`id_editable_area` ASC),
-  INDEX `fk_comment_user1_idx` (`user_id_user` ASC))
+  INDEX `fk_comment_user1_idx` (`user_id_user` ASC),
+  CONSTRAINT `fk_comment_editable_area1`
+    FOREIGN KEY (`id_editable_area`)
+    REFERENCES `industrial`.`editable_area` (`id_editable_area`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id_user`)
+    REFERENCES `industrial`.`user` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -116,14 +151,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe` (
   `id_recipe` INT NOT NULL AUTO_INCREMENT,
+  `item_id` INT NULL,
   `type` VARCHAR(45) NOT NULL,
   `output` VARCHAR(45) NOT NULL,
-  `item_id` INT NULL,
-  `archived_item_id` INT NULL,
   PRIMARY KEY (`id_recipe`),
   INDEX `fk_recipe_item_id` (`item_id` ASC),
   UNIQUE INDEX `id_recipe_UNIQUE` (`id_recipe` ASC),
-  INDEX `fk_archived_item_id` (`archived_item_id` ASC))
+  CONSTRAINT `fk_recipe_item1`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `industrial`.`item` (`id_item`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -139,11 +177,21 @@ CREATE TABLE IF NOT EXISTS `industrial`.`timestamps` (
 -- Table `industrial`.`recipe_item`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe_item` (
-  `table_pos` INT NULL,
   `item_item_id` INT NOT NULL,
   `recipe_id_recipe` INT NOT NULL,
+  `table_pos` INT NULL,
   INDEX `fk_recipe_item_item1_idx` (`item_item_id` ASC),
-  INDEX `fk_recipe_item_recipe1_idx` (`recipe_id_recipe` ASC))
+  INDEX `fk_recipe_item_recipe1_idx` (`recipe_id_recipe` ASC),
+  CONSTRAINT `fk_recipe_item_item`
+    FOREIGN KEY (`item_item_id`)
+    REFERENCES `industrial`.`item` (`id_item`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recipe_item_recipe`
+    FOREIGN KEY (`recipe_id_recipe`)
+    REFERENCES `industrial`.`recipe` (`id_recipe`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -152,13 +200,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `industrial`.`ban` (
   `id_ban` INT NOT NULL AUTO_INCREMENT,
-  `from` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `to` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ban_start` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ban_end` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id_user` INT NOT NULL,
   PRIMARY KEY (`id_ban`),
   UNIQUE INDEX `id_ban_UNIQUE` (`id_ban` ASC),
-  INDEX `fk_ban_user1_idx` (`user_id_user` ASC))
-ENGINE = MyISAM;
+  INDEX `fk_ban_user1_idx` (`user_id_user` ASC),
+  CONSTRAINT `fk_ban_user1`
+    FOREIGN KEY (`user_id_user`)
+    REFERENCES `industrial`.`user` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

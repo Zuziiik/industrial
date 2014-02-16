@@ -32,7 +32,7 @@ class CommentDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM comment WHERE id_comment='$id'");
+        $row = rowQueryMysql("SELECT id_comment, id_editable_area, user_id_user, text FROM comment WHERE id_comment='$id'");
         $comment = new Comment($row['0'], $row['1'], $row['2'], $row['3']);
         return $comment;
     }
@@ -41,13 +41,13 @@ class CommentDAO {
         if (!is_int($userId)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM comment WHERE user_id_user='$userId'");
+        $row = rowQueryMysql("SELECT id_comment, id_editable_area, user_id_user, text FROM comment WHERE user_id_user='$userId'");
         $comment = new Comment($row['0'], $row['1'], $row['2'], $row['3']);
         return $comment;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM comment");
+        $result = queryMysql("SELECT id_comment, id_editable_area, user_id_user, text FROM comment");
         $n = mysql_num_rows($result);
         $comments = array();
         for ($i = 0; $i < $n;  ++$i) {

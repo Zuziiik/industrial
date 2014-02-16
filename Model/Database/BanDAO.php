@@ -30,8 +30,8 @@ class BanDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM ban WHERE id_ban='$id'");
-        $ban = new Ban($row['0'], $row['3'], $row['1'], $row['2']);
+        $row = rowQueryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban WHERE id_ban='$id'");
+        $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
         return $ban;
     }
 
@@ -39,18 +39,18 @@ class BanDAO {
         if (!is_int($userId)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM ban WHERE user_id_user='$userId'");
-        $ban = new Ban($row['0'], $row['3'], $row['1'], $row['2']);
+        $row = rowQueryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban WHERE user_id_user='$userId'");
+        $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
         return $ban;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM ban");
+        $result = queryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban");
         $n = mysql_num_rows($result);
         $bans = array();
         for ($i = 0; $i < $n;  ++$i) {
             $row = mysql_fetch_row($result);
-            $ban = new Ban($row['0'], $row['3'], $row['1'], $row['2']);
+            $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
             $bans[$i] = $ban;
         }
         return $bans;

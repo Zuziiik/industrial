@@ -8,9 +8,6 @@ class Recipe {
     /** @var int */
     protected $itemId;
 
-    /** @var int */
-    protected $archivedItemId;
-
     /** @var string */
     protected $type;
 
@@ -21,14 +18,12 @@ class Recipe {
      * 
      * @param int $idRecipe
      * @param int $itemId
-     * @param int $archivedItemId
      * @param string $type
      * @param string $uotput
      */
-    function __construct($idRecipe, $itemId, $archivedItemId, $type, $uotput) {
+    function __construct($idRecipe, $itemId, $type, $uotput) {
         $this->idRecipe = $idRecipe;
         $this->itemId = $itemId;
-        $this->archivedItemId = $archivedItemId;
         $this->type = $type;
         $this->uotput = $uotput;
     }
@@ -41,20 +36,12 @@ class Recipe {
         $this->itemId = $itemId;
     }
 
-    public function setArchivedItemId($archivedItemId) {
-        $this->archivedItemId = $archivedItemId;
-    }
-
     public function getIdRecipe() {
         return $this->idRecipe;
     }
 
     public function getItemId() {
         return $this->itemId;
-    }
-
-    public function getArchivedItemId() {
-        return $this->archivedItemId;
     }
 
     public function getType() {

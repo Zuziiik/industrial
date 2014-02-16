@@ -7,21 +7,19 @@ class RecipeDAO {
 
     public static function insert(Recipe $recipe) {
         $a = $recipe->getItemId();
-        $b = $recipe->getArchivedItemId();
-        $c = $recipe->getType();
-        $d = $recipe->getUotput();
-        queryMysql("INSERT INTO recipe (item_id, archived_item_id, type, output)"
-                . "VALUES ('$a', '$b', '$c', '$d')");
+        $b = $recipe->getType();
+        $c = $recipe->getUotput();
+        queryMysql("INSERT INTO recipe (item_id, type, output)"
+                . "VALUES ('$a', '$b', '$c')");
         $recipe->setIdRecipe(lastId());
     }
 
     public static function update(Recipe $recipe) {
-        $a = $recipe->getItemId();
-        $b = $recipe->getArchivedItemId();
-        $c = $recipe->getType();
-        $d = $recipe->getUotput();
+         $a = $recipe->getItemId();
+        $b = $recipe->getType();
+        $c = $recipe->getUotput();
         $id = $recipe->getIdRecipe();
-        queryMysql("UPDATE recipe SET item_id='$a', archived_item_id='$b', type='$c', output='$d'"
+        queryMysql("UPDATE recipe SET item_id='$a', type='$b', output='$c' "
                 . "WHERE id_recipe='$id'");
     }
 
@@ -34,18 +32,18 @@ class RecipeDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM recipe WHERE id_recipe='$id'");
-        $recipe = new Recipe($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+        $row = rowQueryMysql("SELECT id_recipe, item_id, type, output FROM recipe WHERE id_recipe='$id'");
+        $recipe = new Recipe($row['0'], $row['1'], $row['2'], $row['3']);
         return $recipe;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM recipe");
+        $result = queryMysql("SELECT id_recipe, item_id, type, output FROM recipe");
         $n = mysql_num_rows($result);
         $recipes = array();
         for($i=0;$i<$n;++$i){
             $row = mysql_fetch_row($result);
-            $recipe = new Recipe($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+            $recipe = new Recipe($row['0'], $row['1'], $row['2'], $row['3']);
             $recipes[$i] = $recipe;
         }
         return $recipes;

@@ -28,13 +28,13 @@ class EditableAreaTypeDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM editable_area_type WHERE id_editable_area_type='$id'");
+        $row = rowQueryMysql("SELECT id_editable_area_type, name FROM editable_area_type WHERE id_editable_area_type='$id'");
         $editableAreatype = new EditableAreaType($row['0'], $row['1']);
         return $editableAreatype;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM editable_area_type");
+        $result = queryMysql("SELECT id_editable_area_type, name FROM editable_area_type");
         $n = mysql_num_rows($result);
         $editableAreatypes = array();
         for ($i = 0; $i < $n; ++$i) {

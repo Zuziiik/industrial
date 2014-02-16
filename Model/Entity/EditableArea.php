@@ -11,8 +11,6 @@ class EditableArea {
     /** @var int */
     protected $itemId;
 
-    /** @var int */
-    protected $archivedItemId;
 
     /** @var string */
     protected $date;
@@ -23,9 +21,6 @@ class EditableArea {
     /** @var string */
     protected $title;
 
-    /** @var boolean */
-    protected $locked;
-
     /** @var int */
     protected $weight;
 
@@ -34,22 +29,18 @@ class EditableArea {
      * @param int $idEditableArea
      * @param int $editableAreaTypeId
      * @param int $itemId
-     * @param int $archivedItemId
-     * @param string $date
-     * @param string $text
+     * @param string $date     
      * @param string $title
-     * @param boolean $locked
+     * @param string $text
      * @param int $weight
      */
-    function __construct($idEditableArea, $editableAreaTypeId, $itemId, $archivedItemId, $date, $text, $title, $locked, $weight) {
+    function __construct($idEditableArea, $editableAreaTypeId, $itemId, $date, $title, $text, $weight) {
         $this->idEditableArea = $idEditableArea;
         $this->editableAreaTypeId = $editableAreaTypeId;
         $this->itemId = $itemId;
-        $this->archivedItemId = $archivedItemId;
         $this->date = $date;
         $this->text = $text;
         $this->title = $title;
-        $this->locked = $locked;
         $this->weight = $weight;
     }
 
@@ -73,10 +64,6 @@ class EditableArea {
         $this->itemId = $itemId;
     }
 
-    public function setArchivedItemId($archivedItemId) {
-        $this->archivedItemId = $archivedItemId;
-    }
-
     public function getIdEditableArea() {
         return $this->idEditableArea;
     }
@@ -87,10 +74,6 @@ class EditableArea {
 
     public function getItemId() {
         return $this->itemId;
-    }
-
-    public function getArchivedItemId() {
-        return $this->archivedItemId;
     }
 
     public function getDate() {
@@ -105,10 +88,6 @@ class EditableArea {
         return $this->title;
     }
 
-    public function getLocked() {
-        return $this->locked;
-    }
-
     public function setDate($date) {
         $this->date = $date;
     }
@@ -119,10 +98,6 @@ class EditableArea {
 
     public function setTitle($title) {
         $this->title = $title;
-    }
-
-    public function setLocked($locked) {
-        $this->locked = $locked;
     }
 
 }

@@ -32,13 +32,13 @@ class RecipeItemDAO {
         if ((!is_int($id1)) || (!is_int($id2))) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM recipe_item WHERE item_item_id='$id1' AND recipe_id_recipe='$id2'");
+        $row = rowQueryMysql("SELECT recipe_id_recipe, item_item_id, table_pos  FROM recipe_item WHERE item_item_id='$id1' AND recipe_id_recipe='$id2'");
         $recipeItem = new RecipeItem($row['0'], $row['1'], $row['2']);
         return $recipeItem;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM recipe_item");
+        $result = queryMysql("SELECT recipe_id_recipe, item_item_id, table_pos FROM recipe_item");
         $n = mysql_num_rows($result);
         $recipeItems = array();
         for ($i = 0; $i < $n;  ++$i) {

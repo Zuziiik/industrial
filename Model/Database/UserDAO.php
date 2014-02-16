@@ -43,8 +43,8 @@ class UserDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM user WHERE id_user='$id'");
-        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
+        $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about  FROM user WHERE id_user='$id'");
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
         return $user;
     }
     
@@ -52,8 +52,8 @@ class UserDAO {
         if (!is_string($username)) {
             die('Argument passed isnt instance of string.');
         }
-        $row = rowQueryMysql("SELECT * FROM user WHERE username='$username'");
-        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
+        $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE username='$username'");
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
         return $user;
     }
 
@@ -61,12 +61,12 @@ class UserDAO {
         if (!is_bool($admin)) {
             die('Argument passed isnt instance of boolean.');
         }
-        $result = queryMysql("SELECT * FROM user WHERE admin='$admin'");
+        $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE admin='$admin'");
         $n = mysql_num_rows($result);
         $users = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
+            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
             $users[$i] = $user;
         }
         return $users;
@@ -76,24 +76,24 @@ class UserDAO {
         if (!is_bool($confirmed)) {
             die('Argument passed isnt instance of boolean.');
         }
-        $result = queryMysql("SELECT * FROM user WHERE confirmed='$confirmed'");
+        $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE confirmed='$confirmed'");
         $n = mysql_num_rows($result);
         $users = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
+            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
             $users[$i] = $user;
         }
         return $users;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM user");
+        $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user");
         $n = mysql_num_rows($result);
         $users = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['9'], $row['10']);
+            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
             $users[$i] = $user;
         }
         return $users;

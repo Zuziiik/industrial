@@ -26,7 +26,7 @@ class CategoryDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM category WHERE id_category='$id'");
+        $row = rowQueryMysql("SELECT category_id, name FROM category WHERE id_category='$id'");
         $category = new Category($row['0'], $row['1']);
         return $category;
     }
@@ -35,14 +35,14 @@ class CategoryDAO {
         if (!is_string($name)) {
             die('Argument passed isnt instance of string.');
         }
-        $row = rowQueryMysql("SELECT * FROM category WHERE name='$name'");
+        $row = rowQueryMysql("SELECT category_id, name FROM category WHERE name='$name'");
         $category = new Category($row['0'], $row['1']);
         var_dump($category);
         return $category;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM category ORDER BY name ASC");
+        $result = queryMysql("SELECT category_id, name FROM category ORDER BY name ASC");
         $n = mysql_num_rows($result);
         $categories = array();
         for ($i = 0; $i < $n; ++$i) {
@@ -57,7 +57,7 @@ class CategoryDAO {
         if (!is_string($name)) {
             die('Argument passed isnt instance of string.');
         }
-        $result = queryMysql("SELECT * FROM category WHERE name='$name'");
+        $result = queryMysql("SELECT category_id, name FROM category WHERE name='$name'");
         $n = mysql_num_rows($result);
         if($n>0){
             return TRUE;

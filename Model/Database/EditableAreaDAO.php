@@ -6,30 +6,26 @@ include_once dirname(__FILE__) . '/../../db.php';
 class EditableAreaDAO {
 
     public static function insert(EditableArea $editableArea) {
-        $a = $editableArea->getItemId();
-        $b = $editableArea->getArchivedItemId();
-        $c = $editableArea->getEditableAreaTypeId();
-        $d = $editableArea->getDate();
-        $e = $editableArea->getTitle();
-        $f = $editableArea->getLocked();
-        $g = $editableArea->getText();
-        $h = $editableArea->getWeight();
-        queryMysql("INSERT INTO editable_area (item_id, archived_item_id, editable_area_type_id, date, title, locked, text, weight) "
-                . "VALUES ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h')");
+        $a = $editableArea->getEditableAreaTypeId();
+        $b = $editableArea->getItemId();
+        $c = $editableArea->getDate();
+        $d = $editableArea->getTitle();
+        $e = $editableArea->getText();
+        $f = $editableArea->getWeight();
+        queryMysql("INSERT INTO editable_area (editable_area_type_id, item_id, date, title, text, weight) "
+                . "VALUES ('$a', '$b', '$c', '$d', '$e', '$f')");
         $editableArea->setIdEditableArea(lastId());
     }
 
     public static function update(EditableArea $editableArea) {
-        $a = $editableArea->getItemId();
-        $b = $editableArea->getArchivedItemId();
-        $c = $editableArea->getEditableAreaTypeId();
-        $d = $editableArea->getDate();
-        $e = $editableArea->getTitle();
-        $f = $editableArea->getLocked();
-        $g = $editableArea->getText();
-        $h = $editableArea->getWeight();
+        $a = $editableArea->getEditableAreaTypeId();
+        $b = $editableArea->getItemId();
+        $c = $editableArea->getDate();
+        $d = $editableArea->getTitle();
+        $e = $editableArea->getText();
+        $f = $editableArea->getWeight();
         $id = $editableArea->getIdEditableArea();
-        queryMysql("UPDATE editable_area SET item_id='$a', archived_item_id='$b', editable_area_type_id='$c', date='$d', title='$e', locked='$f', text='$g' weight='$h' "
+        queryMysql("UPDATE editable_area SET editable_area_type_id='$a', item_id='$b', date='$c', title='$d', text='$e', weight='$f' "
                 . "WHERE id_editable_area='$id'");
     }
 
@@ -42,8 +38,8 @@ class EditableAreaDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM editable_area WHERE id_editable_area='$id'");
-        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
+        $row = rowQueryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area WHERE id_editable_area='$id'");
+        $editableArea = new EditableArea($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6']);
         return $editableArea;
     }
 
@@ -51,27 +47,18 @@ class EditableAreaDAO {
         if (!is_int($itemId)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT * FROM editable_area WHERE item_id='$itemId'");
-        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
-        return $editableArea;
-    }
-
-    public static function selectByArchivedItemId($archivedItemId) {
-        if (!is_int($archivedItemId)) {
-            die('Argument passed isnt instance of int.');
-        }
-        $row = rowQueryMysql("SELECT * FROM editable_area WHERE archived_item_id='$archivedItemId'");
-        $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
+        $row = rowQueryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area WHERE item_id='$itemId'");
+        $editableArea = new EditableArea($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6']);
         return $editableArea;
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT * FROM editable_area ORDER BY weight");
+        $result = queryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area ORDER BY weight");
         $n = mysql_num_rows($result);
         $editableAreas = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $editableArea = new EditableArea($row['0'], $row['5'], $row['1'], $row['2'], $row['4'], $row['7'], $row['5'], $row['6'], $row['8']);
+            $editableArea = new EditableArea($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6']);
             $editableAreas[$i] = $editableArea;
         }
         return $editableAreas;
