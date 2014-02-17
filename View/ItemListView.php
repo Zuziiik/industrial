@@ -37,7 +37,7 @@ _END;
                 $name = $item->getName();
                 $details = $item->getDetails();
                 echo("<div class='picture'><img src='image.php?type=item&id=$id'></div>");
-                echo("<div class='itemName'><a href='./index.php?page=item&item=$name'>$name</a></div>");
+                echo("<div class='itemName'><a href='./index.php?page=item&item=$id'>$name</a></div>");
                 echo("<div class='itemDetails'>$details</div>");
                 echo("</div>");
                 //TODO edit item

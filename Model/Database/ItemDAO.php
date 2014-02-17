@@ -73,11 +73,11 @@ class ItemDAO {
         return $items;
     }
     
-        public static function exists($name){
-        if (!is_string($name)) {
-            die('Argument passed isnt instance of string.');
+        public static function exists($id){
+        if (!is_int($id)) {
+            die('Argument passed isnt instance of int.');
         }
-        $result = queryMysql("SELECT id_item, category_id, name, details FROM item WHERE name='$name'");
+        $result = queryMysql("SELECT id_item, category_id, name, details FROM item WHERE category_id='$id'");
         $n = mysql_num_rows($result);
         if($n>0){
             return TRUE;

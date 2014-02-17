@@ -14,19 +14,19 @@ class CategoryDAO {
     public static function update(Category $category) {
         $a = $category->getName();
         $id = $category->getIdCategory();
-        queryMysql("UPDATE category SET name='$a' WHERE id_category='$id'");
+        queryMysql("UPDATE category SET name='$a' WHERE category_id='$id'");
     }
 
     public static function delete(Category $category) {
         $id = $category->getIdCategory();
-        queryMysql("DELETE FROM category WHERE id_category='$id'");
+        queryMysql("DELETE FROM category WHERE category_id='$id'");
     }
 
     public static function selectById($id) {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT category_id, name FROM category WHERE id_category='$id'");
+        $row = rowQueryMysql("SELECT category_id, name FROM category WHERE category_id='$id'");
         $category = new Category($row['0'], $row['1']);
         return $category;
     }

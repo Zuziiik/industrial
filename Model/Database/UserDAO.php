@@ -44,7 +44,7 @@ class UserDAO {
             die('Argument passed isnt instance of int.');
         }
         $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about  FROM user WHERE id_user='$id'");
-        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'],  $row['9']);
         return $user;
     }
     
@@ -53,7 +53,7 @@ class UserDAO {
             die('Argument passed isnt instance of string.');
         }
         $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE username='$username'");
-        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'],  $row['9']);
         return $user;
     }
 
@@ -66,7 +66,7 @@ class UserDAO {
         $users = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
+            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
             $users[$i] = $user;
         }
         return $users;
@@ -81,7 +81,7 @@ class UserDAO {
         $users = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
+            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
             $users[$i] = $user;
         }
         return $users;
@@ -93,7 +93,7 @@ class UserDAO {
         $users = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8']);
+            $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
             $users[$i] = $user;
         }
         return $users;

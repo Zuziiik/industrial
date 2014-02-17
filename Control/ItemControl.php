@@ -3,6 +3,7 @@
 include_once 'Control.php';
 include_once 'util.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
 
 class ItemControl extends Control {
 
@@ -12,14 +13,29 @@ class ItemControl extends Control {
 
     public function initialize() {
         if (isset($_GET['item'])) {
-            var_dump($_GET['item']);
-            $name=sanitizeString($_GET['item']);
-            if(ItemDAO::exists($name)){
-                $this->model->item = ItemDAO::selectByName($name);
-            }else{
-          //      header('Location: ./index.php?page=404');
+            $id = (int) sanitizeString($_GET['item']);
+            if (ItemDAO::exists($id)) {
+                $this->exists($id);
+            } else {
+                header('Location: ./index.php?page=404');
             }
-            
+        }
+    }
+
+    private function exists($id) {
+        if (isset($_POST['action'])) {
+            $this->delete();
+        }
+        $this->model->item = ItemDAO::selectById($id);
+        $this->model->editArea = EditableAreaDAO::selectByItemId($id);
+    }
+
+    private function delete() {
+        if(isset($_POST['areaId'])){
+            $areaId=  (int)sanitizeString($_POST['areaId']);
+            $area = EditableAreaDAO::selectById($areaId);
+            EditableAreaDAO::delete($area);
+            $this->model->msg = "Textarea deleted.";
         }
     }
 

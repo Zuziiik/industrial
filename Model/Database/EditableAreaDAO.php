@@ -47,9 +47,15 @@ class EditableAreaDAO {
         if (!is_int($itemId)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area WHERE item_id='$itemId'");
-        $editableArea = new EditableArea($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6']);
-        return $editableArea;
+        $result = queryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area WHERE item_id='$itemId'");
+        $n = mysql_num_rows($result);
+        $editableAreas = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $editableArea = new EditableArea($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6']);
+            $editableAreas[$i] = $editableArea;
+        }
+        return $editableAreas;
     }
 
     public static function selectAll() {

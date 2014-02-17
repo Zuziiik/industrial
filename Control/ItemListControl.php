@@ -20,7 +20,7 @@ class ItemListControl extends Control {
         global $loggedin;
         global $admin;
 
-        if ($loggedin) {
+        if ($loggedin && $admin) {
             if (isset($_POST['categoryName'])) {
                 $categoryName = sanitizeString($_POST['categoryName']);
                 $this->addCategory($categoryName);

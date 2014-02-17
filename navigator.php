@@ -41,6 +41,11 @@ function navigate() {
             $control = new ItemControl($model);
             $view = new ItemView($model);
             break;
+        case 'edit':
+            $model = new EditableAreaModel();
+            $control = new EditableAreaControl($model);
+            $view = new EditableAreaView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

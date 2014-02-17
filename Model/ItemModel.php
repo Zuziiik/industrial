@@ -5,7 +5,10 @@ class ItemModel {
     public $error;
     public $msg;
     public $item;
-                function __construct() {
+    /* @var array[EditableArea] $editArea */
+    public $editArea;
+
+    function __construct() {
         $this->error = '';
         $this->msg = '';
     }
