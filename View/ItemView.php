@@ -16,8 +16,12 @@ class ItemView extends View {
         global $loggedin;
         global $admin;
         $itemId = $this->model->item->getIdItem();
-
-        $details = $this->model->item->getDetails();
+        echo<<<_END
+                <form  name='editItem' method='post' action='./index.php?page=edit&item=$itemId'>
+                <input type='hidden' name='action' value='editItem'/>
+                <input type='submit' name='editItem' value='Edit Item'/>
+                </form>
+_END;
         foreach ($this->model->editArea as $area) {
             $title = $area->getTitle();
 
@@ -33,9 +37,9 @@ class ItemView extends View {
                 echo<<<_END
             <div class='buttonsItemEditArea'>
                 <form  name='editItem' method='post' action='./index.php?page=edit&item=$itemId'>
-                <input type='hidden' name='action' value='edit'/>
+                <input type='hidden' name='action' value='editArea'/>
                 <input type='hidden' name='areaId' value='$id'/>
-                <input type='submit' name='edit' value='Edit'/>
+                <input type='submit' name='editArea' value='Edit'/>
                 </form>
 
                 <form  name='deleteItemEdit' method='post' action='./index.php?page=item&item=$itemId'>

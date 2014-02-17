@@ -9,7 +9,7 @@ class ItemIconDAO {
         $a = $itemIcon->getImage();
         $id = $itemIcon->getItemId();
         queryMysql("UPDATE item SET icon='$a'"
-                . "WHERE id_item='$id'");
+                . " WHERE id_item='$id'");
     }
 
     public static function reset(ItemIcon $itemIcon) {
