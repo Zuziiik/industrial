@@ -14,9 +14,11 @@ class ItemControl extends Control {
     public function initialize() {
         if (isset($_GET['item'])) {
             $id = (int) sanitizeString($_GET['item']);
+            echo ("ID: ".$id);
             if (ItemDAO::exists($id)) {
                 $this->exists($id);
             } else {
+                die();
                 header('Location: ./index.php?page=404');
             }
         }

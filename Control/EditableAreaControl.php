@@ -5,6 +5,7 @@ include_once 'util.php';
 include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemIconDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/CategoryDAO.php';
 
 class EditableAreaControl extends Control {
 
@@ -14,6 +15,7 @@ class EditableAreaControl extends Control {
 
     public function initialize() {
         if (isset($_GET['item'])) {
+            $this->model->add = FALSE;
             $itemId = (int) sanitizeString($_GET['item']);
             $this->model->item = ItemDAO::selectById($itemId);
             if (isset($_POST['areaId'])) {
@@ -23,6 +25,16 @@ class EditableAreaControl extends Control {
             }
             if (isset($_POST['action']) && $_POST['action'] == 'editItem') {
                 $this->edit();
+            }
+            
+            
+        }else{
+            $this->model->add = TRUE;
+            if (isset($_POST['action']) && $_POST['action'] == 'addItem') {
+                if(isset($_POST['categoryName'])){
+                    $this->model->categoryName = sanitizeString($_POST['categoryName']);
+                }
+                $this->add();
             }
         }
     }
@@ -36,6 +48,27 @@ class EditableAreaControl extends Control {
             $area->setText($text);
             $this->model->msg = "Title updated to " . $title . "</br>Text updated to " . $text;
             EditableAreaDAO::update($area);
+        }
+    }
+
+    private function add() {
+        if (isset($_POST['save'])) {
+            $name = sanitizeString($_POST['name']);
+            $details = sanitizeString($_POST['details']);
+            $categoryName = sanitizeString($_POST['categoryName']);
+            var_dump($categoryName);
+            $category = CategoryDAO::selectByName($categoryName);
+            $categoryId = $category->getIdCategory();
+            ItemDAO::insert(new Item(666, $categoryId, $name, $details));
+            $item = ItemDAO::selectByName($name);
+            var_dump($item);
+            $itemId = $item->getIdItem();
+            if (isset($_FILES['image']['name'])) {
+                $saveto = "$itemId.png";
+                move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
+                $this->updateImage($saveto, $itemId);
+            } 
+            $this->model->msg = "Item " . $name . " saved.";
         }
     }
 
@@ -73,7 +106,7 @@ class EditableAreaControl extends Control {
             default: $typeok = FALSE;
                 break;
         }
-        
+
         if ($typeok) {
 
             $saveto = $this->resizeImage($saveto, $src);

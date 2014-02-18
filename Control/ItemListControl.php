@@ -26,10 +26,15 @@ class ItemListControl extends Control {
                 $this->addCategory($categoryName);
             }
             if(isset($_POST['deleteCategory'])){
-                $delete=(int)$_POST['categoryDelete'];
+                $delete=(int)sanitizeString($_POST['categoryDelete']);
                 $category = CategoryDAO::selectById($delete);
                 CategoryDAO::delete($category);
-            }           
+            }
+            if(isset($_POST['DeleteItem'])){
+                $itemDeleteId = (int)  sanitizeString($_POST['itemId']);
+                $item = ItemDAO::selectById($itemDeleteId);
+                ItemDAO::delete($item);
+            }
         } else {
             $this->model->error = "You're not logged in.";
         }

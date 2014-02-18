@@ -19,11 +19,19 @@ class EditableAreaView extends View {
             echo("<div class='error'>You're not logged in.</div>");
         } else {
             if (!$admin) {
-                echo("<div class='error'>You must be admin to edit.</div>");
+                echo("<div class='error'>You must be admin to add or edit.</div>");
             } else {
                 // loggedin and admin
-                $this->edit();
+                $this->addOrEdit();
             }
+        }
+    }
+
+    public function addOrEdit() {
+        if (!$this->model->add) {
+            $this->edit();
+        } else {
+            $this->add();
         }
     }
 
@@ -63,20 +71,48 @@ _END;
                 <input type='submit' name='save' value='Save'/>
                 </form>
 _END;
-                
             }
             echo $this->model->msg;
         }
     }
 
+    public function add() {
+        $nameCategory = $this->model->categoryName;
+        if ($this->model->msg === '') {
+            echo<<<_END
+                <form  name='edit' method='post' action='./index.php?page=edit' enctype='multipart/form-data'>
+                <input type='hidden' name='action' value='addItem'/>
+                <input type='hidden' name='categoryId' value='addItem'/>
+                <label for='name'>Name</label>
+                <input id='name' type='text' name='name' />
+                <label for='image'>Image</label>
+                <input type='file' id='image' name='image' size='14' maxlength='32' />
+                <input type='hidden' name='categoryName' value='$nameCategory'/> 
+                <label for='details'>Details</label>
+                <textarea name='details' id='details' rows="4" cols="50"></textarea>
+                <input type='submit' name='save' value='Save'/>
+                </form>
+_END;
+        }
+        echo $this->model->msg;
+    }
+
     public function printPageHeader() {
-        $itemName = $this->model->item->getName();
-        echo("Edit " . $itemName);
+        if ($this->model->add) {
+            echo("Add item");
+        } else {
+            $itemName = $this->model->item->getName();
+            echo("Edit " . $itemName);
+        }
     }
 
     public function printTitle() {
-        $itemName = $this->model->item->getName();
-        echo("Edit " . $itemName);
+        if ($this->model->add) {
+            echo("Add item");
+        } else {
+            $itemName = $this->model->item->getName();
+            echo("Edit " . $itemName);
+        }
     }
 
 }

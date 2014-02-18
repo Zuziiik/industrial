@@ -77,7 +77,7 @@ class ItemDAO {
         if (!is_int($id)) {
             die('Argument passed isnt instance of int.');
         }
-        $result = queryMysql("SELECT id_item, category_id, name, details FROM item WHERE category_id='$id'");
+        $result = queryMysql("SELECT id_item, category_id, name, details FROM item WHERE id_item='$id'");
         $n = mysql_num_rows($result);
         if($n>0){
             return TRUE;

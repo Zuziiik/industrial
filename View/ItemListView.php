@@ -13,6 +13,7 @@ class ItemListView extends View {
     }
 
     public function printBody() {
+
         global $admin;
         global $loggedin;
         echo("<div id='itemList'>");
@@ -26,7 +27,7 @@ class ItemListView extends View {
                 echo<<<_END
                 <form name='deleteCategory' method='post' action='./index.php?page=recipes'>
                 <input type='hidden' name='categoryDelete' value='$id'/>
-                <input type='submit' name='deleteCategory' value='Delete'/>
+                <input type='submit' name='deleteCategory' value='Delete category'/>
                 </form>
 _END;
             }
@@ -39,12 +40,22 @@ _END;
                 echo("<div class='picture'><img src='image.php?type=item&id=$id'></div>");
                 echo("<div class='itemName'><a href='./index.php?page=item&item=$id'>$name</a></div>");
                 echo("<div class='itemDetails'>$details</div>");
+                if ($loggedin && $admin) {
+                    echo<<<_END
+                    <form name='deleteItem' method='post' action='./index.php?page=recipes'>
+                    <input type='hidden' name='action' value='deleteItem'/>
+                    <input type='hidden' name='itemId' value='$id'/>    
+                    <input type='submit' name='DeleteItem' value='Delete item'/>
+                    </form>
+_END;
+                }
                 echo("</div>");
                 //TODO edit item
             }
             if ($loggedin && $admin) {
                 echo<<<_END
-            <form name='addItem' method='post' action='./index.php?page=item&action=add'>
+            <form name='addItem' method='post' action='./index.php?page=edit'>
+            <input type='hidden' name='action' value='addItem'/>
             <input type='hidden' name='categoryName' value='$nameCategory'/>    
             <input type='submit' name='AddItem' value='Add item'/>
             </form>
