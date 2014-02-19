@@ -47,7 +47,7 @@ class EditableAreaDAO {
         if (!is_int($itemId)) {
             die('Argument passed isnt instance of int.');
         }
-        $result = queryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area WHERE item_id='$itemId'");
+        $result = queryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area WHERE item_id='$itemId' ORDER BY weight ASC");
         $n = mysql_num_rows($result);
         $editableAreas = array();
         for ($i = 0; $i < $n; ++$i) {
@@ -59,7 +59,7 @@ class EditableAreaDAO {
     }
 
     public static function selectAll() {
-        $result = queryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area ORDER BY weight");
+        $result = queryMysql("SELECT id_editable_area, editable_area_type_id, item_id, date, title, text, weight FROM editable_area ORDER BY weight ASC");
         $n = mysql_num_rows($result);
         $editableAreas = array();
         for ($i = 0; $i < $n; ++$i) {

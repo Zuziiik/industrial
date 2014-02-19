@@ -47,6 +47,18 @@ _END;
                 <input type='hidden' name='areaId' value='$id'/>
                 <input type='submit' name='delete' value='Delete'/>
                 </form>
+                        
+                <form  name='changeWeight' method='post' action='./index.php?page=item&item=$itemId'>
+                <input type='hidden' name='action' value='moveUp'/>
+                <input type='hidden' name='areaId' value='$id'/>
+                <input class='imageButton' type='image' name='up' src='pictures/up.jpg' alt='move up'/>
+                </form>
+                        
+                <form  name='changeWeight' method='post' action='./index.php?page=item&item=$itemId'>
+                <input type='hidden' name='action' value='moveDown'/>
+                <input type='hidden' name='areaId' value='$id'/>
+                <input class='imageButton' type='image' name='down' src='pictures/down.jpg' alt='move down'/>
+                </form>
             </div>
 _END;
             }

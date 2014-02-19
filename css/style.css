@@ -150,3 +150,8 @@ section p {
     clear: both;
     display: inline;
 }
+
+imageButton{
+    width: 50px;
+    height: 50px;
+}
