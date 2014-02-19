@@ -32,6 +32,15 @@ class EditableAreaTypeDAO {
         $editableAreatype = new EditableAreaType($row['0'], $row['1']);
         return $editableAreatype;
     }
+    
+        public static function selectByName($name) {
+        if (!is_string($name)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $row = rowQueryMysql("SELECT id_editable_area_type, name FROM editable_area_type WHERE name='$name'");
+        $editableAreatype = new EditableAreaType($row['0'], $row['1']);
+        return $editableAreatype;
+    }
 
     public static function selectAll() {
         $result = queryMysql("SELECT id_editable_area_type, name FROM editable_area_type");

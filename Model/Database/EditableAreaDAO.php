@@ -69,5 +69,10 @@ class EditableAreaDAO {
         }
         return $editableAreas;
     }
-
+    
+    public static function selectHighestWeight(){
+        $row = rowQueryMysql("SELECT MAX(weight) FROM editable_area");
+        $weight = $row['0'];
+        return $weight;
+    }
 }

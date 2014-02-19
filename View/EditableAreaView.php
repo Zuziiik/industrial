@@ -28,10 +28,14 @@ class EditableAreaView extends View {
     }
 
     public function addOrEdit() {
-        if (!$this->model->add) {
+        if (!$this->model->addItem && !$this->model->addArea) {
             $this->edit();
         } else {
-            $this->add();
+            if ($this->model->addArea) {
+                $this->addArea();
+            } else {
+                $this->addItem();
+            }
         }
     }
 
@@ -76,7 +80,7 @@ _END;
         }
     }
 
-    public function add() {
+    public function addItem() {
         $nameCategory = $this->model->categoryName;
         if ($this->model->msg === '') {
             echo<<<_END
@@ -97,19 +101,41 @@ _END;
         echo $this->model->msg;
     }
 
+    public function addArea() {
+        if ($this->model->msg === '') {
+            $itemId = $this->model->item->getIdItem();
+            echo<<<_END
+                <form  name='addArea' method='post' action='./index.php?page=edit&item=$itemId'>
+                <input type='hidden' name='action' value='addArea'/>
+                <label for='title'>Title</label>
+                <input id='title' type='text' name='title'/>
+                <textarea name='text' rows="4" cols="50"></textarea>
+                <input type='submit' name='save' value='Save'/>
+                </form>
+_END;
+        }
+        echo $this->model->msg;
+    }
+
     public function printPageHeader() {
-        if ($this->model->add) {
+        if ($this->model->addItem) {
             echo("Add item");
         } else {
+            if ($this->model->addArea) {
+                echo("Add section");
+            }
             $itemName = $this->model->item->getName();
             echo("Edit " . $itemName);
         }
     }
 
     public function printTitle() {
-        if ($this->model->add) {
+        if ($this->model->addItem) {
             echo("Add item");
         } else {
+            if ($this->model->addArea) {
+                echo("Add section");
+            }
             $itemName = $this->model->item->getName();
             echo("Edit " . $itemName);
         }

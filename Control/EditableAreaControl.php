@@ -3,6 +3,7 @@
 include_once 'Control.php';
 include_once 'util.php';
 include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/EditableAreaTypeDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemIconDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/CategoryDAO.php';
@@ -15,27 +16,44 @@ class EditableAreaControl extends Control {
 
     public function initialize() {
         if (isset($_GET['item'])) {
-            $this->model->add = FALSE;
+            $this->model->addItem = FALSE;
+            $this->model->addArea = FALSE;
             $itemId = (int) sanitizeString($_GET['item']);
             $this->model->item = ItemDAO::selectById($itemId);
-            if (isset($_POST['areaId'])) {
+            if (isset($_POST['areaId']) && $_POST['action'] == 'editArea') {
                 $areaId = (int) sanitizeString($_POST['areaId']);
                 $this->model->area = EditableAreaDAO::selectById($areaId);
                 $this->editArea($areaId);
             }
+            if ($_POST['action'] == 'addArea') {
+                $this->model->addArea = TRUE;
+                $this->addArea($itemId);
+            }
             if (isset($_POST['action']) && $_POST['action'] == 'editItem') {
                 $this->edit();
             }
-            
-            
-        }else{
-            $this->model->add = TRUE;
+        } else {
             if (isset($_POST['action']) && $_POST['action'] == 'addItem') {
-                if(isset($_POST['categoryName'])){
-                    $this->model->categoryName = sanitizeString($_POST['categoryName']);
-                }
+                $this->model->addItem = TRUE;
+                $this->model->categoryName = sanitizeString($_POST['categoryName']);
                 $this->add();
             }
+        }
+    }
+
+    private function addArea($itemId) {
+        if (isset($_POST['save'])) {
+            $title = sanitizeString($_POST['title']);
+            $text = sanitizeString($_POST['text']);
+            $type = EditableAreaTypeDAO::selectByName("Item");
+            $idType = $type->getIdEditableAreaType();
+            $date = date('Y-m-d h:i:s', time());
+            $weight = EditableAreaDAO::selectHighestWeight();
+            $weight++;
+            var_dump($weight);
+            $area = new EditableArea(666, $idType, $itemId, $date, $title, $text, $weight);
+            EditableAreaDAO::insert($area);
+            $this->model->msg = "Section added.";
         }
     }
 
@@ -67,7 +85,7 @@ class EditableAreaControl extends Control {
                 $saveto = "$itemId.png";
                 move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
                 $this->updateImage($saveto, $itemId);
-            } 
+            }
             $this->model->msg = "Item " . $name . " saved.";
         }
     }
