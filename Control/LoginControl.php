@@ -92,11 +92,11 @@ class LoginControl extends Control {
     public function initialize() {
         $action = "";
         if (isset($_POST['action'])) {
-            $action = $_POST['action'];
+            $action = sanitizeString($_POST['action']);
         }
         if (isset($_GET['action'])) {
 
-            $action = $_GET['action'];
+            $action = sanitizeString($_GET['action']);
         }
         switch ($action) {
             case 'login':
