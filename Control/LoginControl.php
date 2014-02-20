@@ -33,10 +33,15 @@ class LoginControl extends Control {
         if ($hash != $user->getPassword()) {
             $this->model->error = "<span id='error'>Password invalid</span>";
         } else {
+            $date = date('Y-m-d h:i:s', time());
+            $user->setLastLogin($date);
+            UserDAO::update($user);
             $_SESSION['id_user'] = $user->getIdUser();
             $_SESSION['username'] = $user->getUsername();
             $_SESSION['admin'] = $user->getAdmin();
             $_SESSION['confirmed'] = $user->getConfirmed();
+            
+            
             global $loggedin;
             $loggedin = TRUE;
             $this->model->msg = "You are now logged in.  <a href='index.php'> click here </a>to continue.";

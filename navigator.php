@@ -46,6 +46,11 @@ function navigate() {
             $control = new EditableAreaControl($model);
             $view = new EditableAreaView($model);
             break;
+        case 'register':
+            $model = new RegisterModel();
+            $control = new RegisterControl($model);
+            $view = new RegisterView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

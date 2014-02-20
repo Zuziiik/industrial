@@ -44,16 +44,16 @@ class UserDAO {
             die('Argument passed isnt instance of int.');
         }
         $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about  FROM user WHERE id_user='$id'");
-        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'],  $row['9']);
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
         return $user;
     }
-    
+
     public static function selectByName($username) {
         if (!is_string($username)) {
             die('Argument passed isnt instance of string.');
         }
         $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE username='$username'");
-        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'],  $row['9']);
+        $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
         return $user;
     }
 
@@ -97,6 +97,30 @@ class UserDAO {
             $users[$i] = $user;
         }
         return $users;
+    }
+
+    public static function UsernameExists($name) {
+        if (!is_string($name)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE username='$name'");
+        $n = mysql_num_rows($result);
+        if ($n > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+        public static function EmailExists($email) {
+        if (!is_string($email)) {
+            die('Argument passed isnt instance of string.');
+        }
+        $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE email='$email'");
+        $n = mysql_num_rows($result);
+        if ($n > 0) {
+            return TRUE;
+        }
+        return FALSE;
     }
 
 }
