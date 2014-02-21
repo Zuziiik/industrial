@@ -11,8 +11,8 @@ class RegisterControl extends Control {
     }
 
     public function initialize() {
-        global $loggedin;
-        if ($loggedin) {
+        global $loggedIn;
+        if ($loggedIn) {
             $this->model->error = "<span class='error'>You cant register, because you're already logged in</span>";
         } else {
             if (isset($_POST['user']) || isset($_POST['pass1']) || isset($_POST['pass2']) || isset($_POST['email'])) {
