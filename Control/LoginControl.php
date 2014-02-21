@@ -40,10 +40,9 @@ class LoginControl extends Control {
             $_SESSION['username'] = $user->getUsername();
             $_SESSION['admin'] = $user->getAdmin();
             $_SESSION['confirmed'] = $user->getConfirmed();
-            
-            
-            global $loggedin;
-            $loggedin = TRUE;
+
+            global $loggedIn;
+            $loggedIn = TRUE;
             $this->model->msg = "You are now logged in.  <a href='index.php'> click here </a>to continue.";
         }
     }
@@ -60,9 +59,9 @@ class LoginControl extends Control {
     private function emptyFields($username, $pass) {
         if ($username == "" || $pass == "") {
             $this->model->error = "<span id='error'>Not all fields were entered</span>";
-            return true;
+            return TRUE;
         }
-        return false;
+        return FALSE;
     }
 
     private function userExists($user) {
@@ -80,17 +79,17 @@ class LoginControl extends Control {
             setcookie(session_name(), '', time() - 2592000, '/');
         }
         session_destroy();
-        global $loggedin;
-        $loggedin = FALSE;
+        global $loggedIn;
+        $loggedIn = FALSE;
     }
 
     private function logout() {
-        global $loggedin;
-        if ($loggedin) {
+        global $loggedIn;
+        if ($loggedIn) {
             $this->destroySession();
             $this->model->msg = "You have been logged out.";
         } else {
-            
+
         }
     }
 

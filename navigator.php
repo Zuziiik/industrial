@@ -51,6 +51,11 @@ function navigate() {
             $control = new RegisterControl($model);
             $view = new RegisterView($model);
             break;
+        case 'profile':
+            $model = new ProfileModel();
+            $control = new ProfileControl($model);
+            $view = new ProfileView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

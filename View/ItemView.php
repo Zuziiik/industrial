@@ -13,11 +13,11 @@ class ItemView extends View {
     }
 
     public function printBody() {
-        global $loggedin;
+        global $loggedIn;
         global $admin;
         $itemId = $this->model->item->getIdItem();
-        if($admin && $loggedin){
-        echo<<<_END
+        if ($admin && $loggedIn) {
+            echo <<<_END
                 <form  name='editItem' method='post' action='./index.php?page=edit&item=$itemId'>
                 <input type='hidden' name='action' value='editItem'/>
                 <input type='submit' name='editItem' value='Edit Item'/>
@@ -33,8 +33,7 @@ _END;
             $date = $area->getDate();
             $this->printTextArea($text, $date);
             $id = $area->getIdEditableArea();
-            if ($loggedin && $admin) {
-
+            if ($loggedIn && $admin) {
 
                 echo<<<_END
             <div class='buttonsItemEditArea'>
@@ -68,8 +67,8 @@ _END;
             
             echo ($this->model->msg);
         }
-        if($loggedin && $admin){
-                echo<<<_END
+        if ($loggedIn && $admin) {
+            echo <<<_END
                 <form  name='editItem' method='post' action='./index.php?page=edit&item=$itemId'>
                 <input type='hidden' name='action' value='addArea'/>
                 <input type='submit' name='addArea' value='Add section'/>

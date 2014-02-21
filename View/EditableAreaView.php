@@ -9,19 +9,19 @@ class EditableAreaView extends View {
     }
 
     public function initialize() {
-        
+
     }
 
     public function printBody() {
-        global $loggedin;
+        global $loggedIn;
         global $admin;
-        if (!$loggedin) {
+        if (!$loggedIn) {
             echo("<div class='error'>You're not logged in.</div>");
         } else {
             if (!$admin) {
                 echo("<div class='error'>You must be admin to add or edit.</div>");
             } else {
-                // loggedin and admin
+                // loggedIn and admin
                 $this->addOrEdit();
             }
         }
@@ -47,7 +47,7 @@ class EditableAreaView extends View {
             $id = $this->model->area->getIdEditableArea();
             $text = $this->model->area->getText();
             if ($this->model->msg === '') {
-                echo<<<_END
+                echo <<<_END
                 <form  name='editArea' method='post' action='./index.php?page=edit&item=$itemId'>
                 <label for='title'>Title</label>
                 <input id='title' type='text' name='title' value='$title'/>
@@ -63,7 +63,7 @@ _END;
             $itemName = $this->model->item->getName();
             $details = $this->model->item->getDetails();
             if ($this->model->msg === '') {
-                echo<<<_END
+                echo <<<_END
                 <form  name='edit' method='post' action='./index.php?page=edit&item=$itemId' enctype='multipart/form-data'>
                 <input type='hidden' name='action' value='editItem'/>
                 <label for='name'>Name</label>
@@ -83,7 +83,7 @@ _END;
     public function addItem() {
         $nameCategory = $this->model->categoryName;
         if ($this->model->msg === '') {
-            echo<<<_END
+            echo <<<_END
                 <form  name='edit' method='post' action='./index.php?page=edit' enctype='multipart/form-data'>
                 <input type='hidden' name='action' value='addItem'/>
                 <input type='hidden' name='categoryId' value='addItem'/>
@@ -104,7 +104,7 @@ _END;
     public function addArea() {
         if ($this->model->msg === '') {
             $itemId = $this->model->item->getIdItem();
-            echo<<<_END
+            echo <<<_END
                 <form  name='addArea' method='post' action='./index.php?page=edit&item=$itemId'>
                 <input type='hidden' name='action' value='addArea'/>
                 <label for='title'>Title</label>

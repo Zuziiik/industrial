@@ -9,13 +9,13 @@ class LoginView extends View {
     }
 
     public function initialize() {
-        
+
     }
 
     public function printBody() {
-        global $loggedin;
+        global $loggedIn;
         echo("<div class='login'>");
-        if (!$loggedin) {
+        if (!$loggedIn) {
 
             echo($this->model->error);
             echo("<form name='login' method='post' action='./index.php?page=login'>");
@@ -48,8 +48,8 @@ class LoginView extends View {
             echo("</tr>");
             echo("</table>");
             echo("</form>");
-        }else{
-             echo("Please <a href='./index.php?page=login&action=logout'>click here</a> to logout.");
+        } else {
+            echo("Please <a href='./index.php?page=login&action=logout'>click here</a> to logout.");
         }
         echo $this->model->msg;
         echo("</div>");

@@ -9,14 +9,14 @@ class RegisterView extends View {
     }
 
     public function initialize() {
-        
+
     }
 
     public function printBody() {
-        global $loggedin;
-        if (!$loggedin) {
+        global $loggedIn;
+        if (!$loggedIn) {
             echo($this->model->error);
-            echo<<<_END
+            echo <<<_END
            <form name='login' method='post' action='./index.php?page=register'>
                 <table>
                     <tr>
@@ -27,13 +27,13 @@ class RegisterView extends View {
                         <input id='name' name='user' value='
 _END;
             $this->model->user;
-            echo<<<_END
+            echo <<<_END
 ' type='text'/>
                         </td>
                         <td>
 _END;
             echo($this->model->errorUser);
-            echo<<<_END
+            echo <<<_END
                         </td>
                      </tr>
                         <tr>
@@ -44,13 +44,13 @@ _END;
                         <input id='email' name='email' value='
 _END;
             $this->model->email;
-            echo<<<_END
+            echo <<<_END
 ' type='text'/>
                         </td>
                         <td>
 _END;
             echo($this->model->errorEmail . "  " . $this->model->errorEmailFormat);
-            echo<<<_END
+            echo <<<_END
                         </td>
                         </tr>
                         <tr>
@@ -63,7 +63,7 @@ _END;
                         <td>
 _END;
             echo($this->model->errorPass);
-            echo<<<_END
+            echo <<<_END
                         </td>
                     </tr>
                     <tr>
@@ -92,11 +92,11 @@ _END;
     }
 
     public function printPageHeader() {
-        echo ("Register");
+        echo("Register");
     }
 
     public function printTitle() {
-        echo ("Register");
+        echo("Register");
     }
 
 }

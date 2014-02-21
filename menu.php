@@ -1,11 +1,11 @@
 <?php
-global $loggedin;
+global $loggedIn;
 global $admin;
 global $confirmed;
 global $username;
 
 echo("<div id=topPanel><ol>");
-if($loggedin){
+if ($loggedIn) {
     echo <<<_END
     <a id="profile" href='index.php?page=profile&name=$username'>Profile</a>
     <a id="logout" href='index.php?page=login&action=logout'>Logout</a>

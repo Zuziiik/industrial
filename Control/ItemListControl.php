@@ -17,21 +17,21 @@ class ItemListControl extends Control {
     }
 
     public function initialize() {
-        global $loggedin;
+        global $loggedIn;
         global $admin;
 
-        if ($loggedin && $admin) {
+        if ($loggedIn && $admin) {
             if (isset($_POST['categoryName'])) {
                 $categoryName = sanitizeString($_POST['categoryName']);
                 $this->addCategory($categoryName);
             }
-            if(isset($_POST['deleteCategory'])){
-                $delete=(int)sanitizeString($_POST['categoryDelete']);
+            if (isset($_POST['deleteCategory'])) {
+                $delete = (int)sanitizeString($_POST['categoryDelete']);
                 $category = CategoryDAO::selectById($delete);
                 CategoryDAO::delete($category);
             }
-            if(isset($_POST['DeleteItem'])){
-                $itemDeleteId = (int)  sanitizeString($_POST['itemId']);
+            if (isset($_POST['DeleteItem'])) {
+                $itemDeleteId = (int)sanitizeString($_POST['itemId']);
                 $item = ItemDAO::selectById($itemDeleteId);
                 ItemDAO::delete($item);
             }

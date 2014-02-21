@@ -15,8 +15,7 @@ class UserDAO {
         $g = $user->getConfirmed();
         $h = $user->getLastLogin();
         $i = $user->getAbout();
-        queryMysql("INSERT INTO user (username, password, salt, email, create_time, admin, confirmed, last_login, about)"
-                . "VALUES ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i')");
+        queryMysql("INSERT INTO user (username, password, salt, email, create_time, admin, confirmed, last_login, about)" . "VALUES ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i')");
         $user->setIdUser(lastId());
     }
 
@@ -30,8 +29,7 @@ class UserDAO {
         $h = $user->getLastLogin();
         $i = $user->getAbout();
         $id = $user->getIdUser();
-        queryMysql("UPDATE user SET username='$a', password='$b', salt='$c', email='$d', admin='$f', confirmed='$g', last_login='$h', about='$i'"
-                . "WHERE id_user='$id'");
+        queryMysql("UPDATE user SET username='$a', password='$b', salt='$c', email='$d', admin='$f', confirmed='$g', last_login='$h', about='$i'" . "WHERE id_user='$id'");
     }
 
     public static function delete(User $user) {
@@ -41,7 +39,7 @@ class UserDAO {
 
     public static function selectById($id) {
         if (!is_int($id)) {
-            die('Argument passed isnt instance of int.');
+            die('Argument passed isn`t instance of int.');
         }
         $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about  FROM user WHERE id_user='$id'");
         $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
@@ -50,7 +48,7 @@ class UserDAO {
 
     public static function selectByName($username) {
         if (!is_string($username)) {
-            die('Argument passed isnt instance of string.');
+            die('Argument passed isn`t instance of string.');
         }
         $row = rowQueryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE username='$username'");
         $user = new User($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5'], $row['6'], $row['7'], $row['8'], $row['9']);
@@ -59,7 +57,7 @@ class UserDAO {
 
     public static function selectByAdmin($admin) {
         if (!is_bool($admin)) {
-            die('Argument passed isnt instance of boolean.');
+            die('Argument passed isn`t instance of boolean.');
         }
         $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE admin='$admin'");
         $n = mysql_num_rows($result);
@@ -74,7 +72,7 @@ class UserDAO {
 
     public static function selectByConfirmed($confirmed) {
         if (!is_bool($confirmed)) {
-            die('Argument passed isnt instance of boolean.');
+            die('Argument passed isn`t instance of boolean.');
         }
         $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE confirmed='$confirmed'");
         $n = mysql_num_rows($result);
@@ -99,9 +97,21 @@ class UserDAO {
         return $users;
     }
 
+    public static function userExists($id) {
+        if (!is_string($id)) {
+            die('Argument passed isn`t instance of int.');
+        }
+        $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE id_user='$id'");
+        $n = mysql_num_rows($result);
+        if ($n > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
     public static function UsernameExists($name) {
         if (!is_string($name)) {
-            die('Argument passed isnt instance of string.');
+            die('Argument passed isn`t instance of string.');
         }
         $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE username='$name'");
         $n = mysql_num_rows($result);
@@ -110,10 +120,10 @@ class UserDAO {
         }
         return FALSE;
     }
-    
-        public static function EmailExists($email) {
+
+    public static function EmailExists($email) {
         if (!is_string($email)) {
-            die('Argument passed isnt instance of string.');
+            die('Argument passed isn`t instance of string.');
         }
         $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE email='$email'");
         $n = mysql_num_rows($result);
