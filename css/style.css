@@ -11,12 +11,12 @@ body{
 }
 
 h1 {
-    // color: lightblue;
+    /*color: lightblue;*/
     text-align: center;
     clear: right;
 }
 
-header #login, header #logout, header #profile, header #edit , header #register, header #admin {
+header #login, header #logout, header #profile, header #edit , header #register, header #admin, header #users{
     padding-left: 1%;
     padding-right: 1%;
     text-decoration:none; 
@@ -31,14 +31,14 @@ header #topPanel {
     float:right;
     display: inline;
     margin-right: 10%;
-    width: 35%;
+    width: 50%;
 }
 
 .error {
     color: red;
 }
 
-header #topPanel #profile, header #login, header #logout, header #register, header #edit{
+header #topPanel #profile, header #login, header #logout, header #register, header #edit, header #users{
     margin-right: 5%;
 }
 
@@ -151,7 +151,38 @@ section p {
     display: inline;
 }
 
-imageButton{
+.imageButton{
     width: 50px;
     height: 50px;
+}
+
+.picture {
+    width: 100px;
+    height: 100px;
+}
+
+.username {
+    margin-top: 2%;
+}
+
+.admin, .user {
+    color: green;
+}
+
+.email, .username, .admin, .user, .create, .confirmed, .unconfirmed {
+    clear: left;
+    float: left;
+}
+
+.confirmed{
+    color: green;
+}
+
+.unconfirmed{
+    color: red;
+}
+
+.confirm, .changeAdmin{
+    clear: left;
+    float: left;
 }

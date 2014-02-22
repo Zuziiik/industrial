@@ -1,13 +1,13 @@
 <?php
 
-class ItemListModel {
+class UsersModel {
 
+    public $users;
     public $error;
-    public $categories;
 
     function __construct() {
+        $this->users = NULL;
         $this->error = '';
-        $this->categories = array();
     }
 
 }

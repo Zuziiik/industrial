@@ -6,6 +6,9 @@ global $username;
 
 echo("<div id=topPanel><ol>");
 if ($loggedIn) {
+    if($admin){
+        echo("<a id='users' href='index.php?page=users'>List of Users</a>");
+    }
     echo <<<_END
     <a id="profile" href='index.php?page=profile&name=$username'>Profile</a>
     <a id="logout" href='index.php?page=login&action=logout'>Logout</a>

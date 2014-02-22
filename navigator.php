@@ -56,6 +56,11 @@ function navigate() {
             $control = new ProfileControl($model);
             $view = new ProfileView($model);
             break;
+        case 'users':
+            $model = new UsersModel();
+            $control = new UsersControl($model);
+            $view = new UsersView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

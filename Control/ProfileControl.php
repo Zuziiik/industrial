@@ -30,7 +30,7 @@ class ProfileControl extends Control {
     private function edit($userId, $user) {
         if (isset($_POST['save'])) {
 
-            $name = sanitizeString($_POST['name']);
+            $name = sanitizeString($_GET['name']);
             if (isset($_FILES['image']['name'])) {
                 $saveto = "$userId.png";
                 move_uploaded_file($_FILES['image']['tmp_name'], $saveto);

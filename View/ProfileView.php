@@ -25,9 +25,7 @@ class ProfileView extends View {
             echo("<div class='picture'><img src='image.php?type=user&id=$id'></div>");
             echo("<div class='about'>$about</div>");
             if ($username == $this->model->username) {
-                $this->printMyProfile($id);
-            } else {
-                $this->printProfile();
+                $this->printMyProfile();
             }
         } else {
             echo("You're not logged in.");
@@ -44,7 +42,7 @@ class ProfileView extends View {
 
     }
 
-    private function printMyProfile($id) {
+    private function printMyProfile() {
         global $username;
         if (!$this->model->edit) {
             echo <<<_END
@@ -61,16 +59,12 @@ _END;
                 <label for='image'>Image</label>
                 <input type='file' id='image' name='image' size='14' maxlength='32' />
                 <label for='about'>About</label>
-                <textarea name='about' id='about' rows="4" cols="50">$about</textarea>
+                <textarea name='about' id='about' rows="4" cols="50" wrap="soft">$about</textarea>
                 <input type='submit' name='save' value='Save Profile'/>
                 </form>
 _END;
         }
         echo $this->model->msg;
-    }
-
-    private function printProfile() {
-
     }
 
 }
