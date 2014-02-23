@@ -39,16 +39,43 @@ class BanDAO {
         if (!is_int($userId)) {
             die('Argument passed isnt instance of int.');
         }
-        $row = rowQueryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban WHERE user_id_user='$userId'");
+        $result = queryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban WHERE user_id_user='$userId'");
+        $n = mysql_num_rows($result);
+        $bans = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
+            $bans[$i] = $ban;
+        }
+        return $bans;
+    }
+
+    public static function selectCurrentByUserId($userId) {
+        if (!is_int($userId)) {
+            die('Argument passed isnt instance of int.');
+        }
+        $row = rowQueryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban WHERE user_id_user='$userId' AND (NOW() BETWEEN ban_start AND ban_end)");
         $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
         return $ban;
+    }
+
+    public static function selectAllCurrent() {
+        $result = queryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban WHERE NOW() BETWEEN ban_start AND ban_end");
+        $n = mysql_num_rows($result);
+        $bans = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
+            $bans[$i] = $ban;
+        }
+        return $bans;
     }
 
     public static function selectAll() {
         $result = queryMysql("SELECT id_ban, user_id_user, ban_start, ban_end FROM ban");
         $n = mysql_num_rows($result);
         $bans = array();
-        for ($i = 0; $i < $n;  ++$i) {
+        for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
             $ban = new Ban($row['0'], $row['1'], $row['2'], $row['3']);
             $bans[$i] = $ban;

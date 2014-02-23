@@ -9,7 +9,7 @@ class ProfileView extends View {
     }
 
     public function initialize() {
-        // TODO: Implement initialize() method.
+
     }
 
     public function printTitle() {

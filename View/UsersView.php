@@ -9,7 +9,7 @@ class UsersView extends View {
     }
 
     public function initialize() {
-        // TODO: Implement initialize() method.
+
     }
 
     public function printTitle() {
@@ -44,6 +44,24 @@ _END;
                     echo("<input type='submit' name='submit' value='Make Admin'/>");
                 }
                 echo("</form>");
+                if (!$user->getAdmin()) {
+                    echo <<<_END
+                    <form class='banUser'  name='banUser' method='post' action='./index.php?page=users'>
+                    <input type='hidden' name='action' value='banUser'/>
+                    <input type='hidden' name='id' value='$id'/>
+                    <label for='days'>Days:</label>
+                    <input type='text' id='days' name='days' value='3'/>
+                    <input type='submit' name='banUser' value='Ban User'/>
+
+_END;
+                    echo <<<_END
+                    <form class='unbanUser'  name='unbanUser' method='post' action='./index.php?page=users'>
+                    <input type='hidden' name='action' value='unbanUser'/>
+                    <input type='hidden' name='id' value='$id'/>
+                    <input type='submit' name='unbanUser' value='Unban User'/>
+
+_END;
+                }
                 if ($user->getConfirmed()) {
                     echo("<span class='confirmed'>confirmed</span>");
                 } else {
@@ -59,6 +77,12 @@ _END;
 
                 }
             }
+            echo("<span id='bans'>Bans:</span><div class='bans'>");
+
+            $this->printBans();
+            echo("</div>");
+            echo($this->model->error);
+            echo($this->model->msg);
         } else {
             echo($this->model->error);
         }
@@ -66,6 +90,23 @@ _END;
 
     public function printPageHeader() {
         echo("List Of Users");
+    }
+
+    private function printBans() {
+        foreach ($this->model->users as $user) {
+            foreach ($this->model->bans as $ban) {
+                $userId = $user->getIdUser();
+                $banUserId = $ban->getUserId();
+                if ($userId === $banUserId) {
+                    $name = $user->getUsername();
+                    $start = $ban->getBanStart();
+                    $end = $ban->getBanEnd();
+                    echo("<div class='ban'>Username: " . $name);
+                    echo("</br>Ban Start: " . $start);
+                    echo("</br>Ban End: " . $end . "</div>");
+                }
+            }
+        }
     }
 
 }

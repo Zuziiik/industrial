@@ -50,7 +50,7 @@ _END;
 _END;
                 }
                 echo("</div>");
-                //TODO edit item
+
             }
             if ($loggedIn && $admin) {
                 echo <<<_END

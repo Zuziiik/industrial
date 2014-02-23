@@ -169,7 +169,7 @@ section p {
     color: green;
 }
 
-.email, .username, .admin, .user, .create, .confirmed, .unconfirmed {
+.email, .username, .admin, .user, .create, .confirmed, .unconfirmed, .bans, .ban, .banUser {
     clear: left;
     float: left;
 }
@@ -185,4 +185,10 @@ section p {
 .confirm, .changeAdmin{
     clear: left;
     float: left;
+}
+
+#bans {
+    clear: left;
+    float: left;
+    margin-top: 2%;
 }
