@@ -90,6 +90,36 @@ class CommentDAO {
         return $comments;
     }
 
+    public static function selectByType($type) {
+        if (!is_int($type)) {
+            die('Argument passed isn`t instance of int.');
+        }
+        $result = queryMysql("SELECT id_comment, user_id_user, target_id, comment_type, title, message FROM comment WHERE comment_type='$type'");
+        $n = mysql_num_rows($result);
+        $comments = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $comment = new Comment($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
+            $comments[$i] = $comment;
+        }
+        return $comments;
+    }
+
+    public static function selectByTypeAndTarget($type, $targetId) {
+        if (!is_int($type) || !is_int($targetId)) {
+            die('Argument passed isn`t instance of int.');
+        }
+        $result = queryMysql("SELECT id_comment, user_id_user, target_id, comment_type, title, message FROM comment WHERE comment_type='$type' AND target_id='$targetId'");
+        $n = mysql_num_rows($result);
+        $comments = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $comment = new Comment($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
+            $comments[$i] = $comment;
+        }
+        return $comments;
+    }
+
     /**
      * @return array[Comment]
      */

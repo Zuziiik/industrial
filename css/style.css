@@ -197,7 +197,7 @@ span.message {
     padding: 0.5em;
 }
 
-span.title, span.message, span.date {
+span.title, span.message, span.date, .comment {
     clear: left;
     float: left;
 }

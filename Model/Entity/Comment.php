@@ -2,6 +2,9 @@
 
 class Comment {
 
+    const SERVER = 1;
+    const NEWS = 2;
+
     /** @var int */
     protected $idComment;
 

@@ -19,7 +19,7 @@ class ServersView extends View {
     public function printBody() {
         global $loggedIn;
         global $admin;
-
+        $i = 0;
         foreach ($this->model->servers as $server) {
             $title = $server->getTitle();
             $message = $server->getMessage();
@@ -27,7 +27,10 @@ class ServersView extends View {
             echo("<span class='title'>$title</span>");
             echo("<span class='date'>$date</span>");
             echo("<span class='message'>$message</span>");
-
+            echo("<div class='comment'>");
+            $this->model->commentViews[$i]->printBody();
+            echo("</div>");
+            $i++;
         }
         if ($loggedIn && $admin) {
             echo <<<_END
