@@ -34,7 +34,7 @@ class ItemControl extends Control {
             $this->move($id, "down");
         }
         $this->model->item = ItemDAO::selectById($id);
-        $this->model->editArea = EditableAreaDAO::selectByItemId($id);
+        $this->model->editArea = EditableAreaDAO::selectByTargetId($id);
     }
 
     private function delete() {
@@ -49,7 +49,7 @@ class ItemControl extends Control {
     private function move($itemId, $dir) {
         if (isset($_POST['areaId'])) {
             $areaId = (int) sanitizeString($_POST['areaId']);
-            $areas = EditableAreaDAO::selectByItemId($itemId);
+            $areas = EditableAreaDAO::selectByTargetId($itemId);
             $area = EditableAreaDAO::selectById($areaId);
             $weight = $area->getWeight();
             $pos = $this->getPosition($areas, $areaId);

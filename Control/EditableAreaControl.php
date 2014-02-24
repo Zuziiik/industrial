@@ -3,7 +3,6 @@
 include_once 'Control.php';
 include_once 'util.php';
 include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
-include_once dirname(__FILE__) . '/../Model/Database/EditableAreaTypeDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemIconDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/CategoryDAO.php';
@@ -18,10 +17,10 @@ class EditableAreaControl extends Control {
         if (isset($_GET['item'])) {
             $this->model->addItem = FALSE;
             $this->model->addArea = FALSE;
-            $itemId = (int) sanitizeString($_GET['item']);
+            $itemId = (int)sanitizeString($_GET['item']);
             $this->model->item = ItemDAO::selectById($itemId);
             if (isset($_POST['areaId']) && $_POST['action'] == 'editArea') {
-                $areaId = (int) sanitizeString($_POST['areaId']);
+                $areaId = (int)sanitizeString($_POST['areaId']);
                 $this->model->area = EditableAreaDAO::selectById($areaId);
                 $this->editArea($areaId);
             }
@@ -45,13 +44,11 @@ class EditableAreaControl extends Control {
         if (isset($_POST['save'])) {
             $title = sanitizeString($_POST['title']);
             $text = sanitizeString($_POST['text']);
-            $type = EditableAreaTypeDAO::selectByName("Item");
-            $idType = $type->getIdEditableAreaType();
+            $type = EditableArea::ITEM;
             $date = date('Y-m-d h:i:s', time());
             $weight = EditableAreaDAO::selectHighestWeight();
             $weight++;
-            var_dump($weight);
-            $area = new EditableArea(666, $idType, $itemId, $date, $title, $text, $weight);
+            $area = new EditableArea(666, $itemId, $type, $date, $title, $text, $weight);
             EditableAreaDAO::insert($area);
             $this->model->msg = "Section added.";
         }
@@ -94,7 +91,7 @@ class EditableAreaControl extends Control {
         if (isset($_POST['save'])) {
             $name = sanitizeString($_POST['name']);
             $details = sanitizeString($_POST['details']);
-            $itemId = (int) sanitizeString($_GET['item']);
+            $itemId = (int)sanitizeString($_GET['item']);
 
             if (isset($_FILES['image']['name'])) {
 
@@ -114,14 +111,18 @@ class EditableAreaControl extends Control {
         $typeok = TRUE;
 
         switch ($_FILES['image']['type']) {
-            case "image/gif": $src = imagecreatefromgif($saveto);
+            case "image/gif":
+                $src = imagecreatefromgif($saveto);
                 break;
-            case "image/jpeg":  // Both regular and progressive jpegs
-            case "image/pjpeg": $src = imagecreatefromjpeg($saveto);
+            case "image/jpeg": // Both regular and progressive jpegs
+            case "image/pjpeg":
+                $src = imagecreatefromjpeg($saveto);
                 break;
-            case "image/png": $src = imagecreatefrompng($saveto);
+            case "image/png":
+                $src = imagecreatefrompng($saveto);
                 break;
-            default: $typeok = FALSE;
+            default:
+                $typeok = FALSE;
                 break;
         }
 
@@ -156,11 +157,10 @@ class EditableAreaControl extends Control {
 
         $tmp = imagecreatetruecolor($tw, $th);
         imagecolortransparent($tmp, imagecolorallocatealpha($tmp, 0, 0, 0, 127));
-        imagealphablending($tmp, false);
-        imagesavealpha($tmp, true);
+        imagealphablending($tmp, FALSE);
+        imagesavealpha($tmp, TRUE);
         imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
-        imageconvolution($tmp, array(array(-1, -1, -1),
-            array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
+        imageconvolution($tmp, array(array(-1, -1, -1), array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
         imagepng($tmp, $saveto, 9);
         imagedestroy($tmp);
         imagedestroy($src);

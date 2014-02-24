@@ -61,6 +61,11 @@ function navigate() {
             $control = new UsersControl($model);
             $view = new UsersView($model);
             break;
+        case 'servers':
+            $model = new ServersModel();
+            $control = new ServersControl($model);
+            $view = new ServersView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

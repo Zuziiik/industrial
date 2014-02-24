@@ -2,102 +2,147 @@
 
 class EditableArea {
 
+    const ITEM = 1;
+    const NEWS = 2;
+    const SERVER = 3;
+    const TUTORIAL = 4;
+
     /** @var int */
     protected $idEditableArea;
 
     /** @var int */
-    protected $editableAreaTypeId;
+    protected $targetId;
 
     /** @var int */
-    protected $itemId;
-
+    protected $editableAreaType;
 
     /** @var string */
     protected $date;
 
     /** @var string */
-    protected $text;
+    protected $title;
 
     /** @var string */
-    protected $title;
+    protected $message;
 
     /** @var int */
     protected $weight;
 
     /**
-     * 
-     * @param int $idEditableArea
-     * @param int $editableAreaTypeId
-     * @param int $itemId
-     * @param string $date     
+     * @param int    $idEditableArea
+     * @param int    $targetId
+     * @param int    $editableAreaType
+     * @param string $date
      * @param string $title
-     * @param string $text
-     * @param int $weight
+     * @param string $message
+     * @param int    $weight
      */
-    function __construct($idEditableArea, $editableAreaTypeId, $itemId, $date, $title, $text, $weight) {
+    function __construct($idEditableArea, $targetId, $editableAreaType, $date, $title, $message, $weight) {
         $this->idEditableArea = $idEditableArea;
-        $this->editableAreaTypeId = $editableAreaTypeId;
-        $this->itemId = $itemId;
+        $this->targetId = $targetId;
+        $this->editableAreaType = $editableAreaType;
         $this->date = $date;
-        $this->text = $text;
+        $this->message = $message;
         $this->title = $title;
         $this->weight = $weight;
     }
 
-    public function getWeight() {
-        return $this->weight;
-    }
-
-    public function setWeight($weight) {
-        $this->weight = $weight;
-    }
-
-    public function setIdEditableArea($idEditableArea) {
-        $this->idEditableArea = $idEditableArea;
-    }
-
-    public function setAreaEditByUserId($editableAreaTypeId) {
-        $this->editableAreaTypeId = $editableAreaTypeId;
-    }
-
-    public function setItemId($itemId) {
-        $this->itemId = $itemId;
-    }
-
-    public function getIdEditableArea() {
-        return $this->idEditableArea;
-    }
-
-    public function getEditableAreaTypeId() {
-        return $this->editableAreaTypeId;
-    }
-
-    public function getItemId() {
-        return $this->itemId;
-    }
-
-    public function getDate() {
-        return $this->date;
-    }
-
-    public function getText() {
-        return $this->text;
-    }
-
-    public function getTitle() {
-        return $this->title;
-    }
-
+    /**
+     * @param string $date
+     */
     public function setDate($date) {
         $this->date = $date;
     }
 
-    public function setText($text) {
-        $this->text = $text;
+    /**
+     * @return string
+     */
+    public function getDate() {
+        return $this->date;
     }
 
+    /**
+     * @param int $editableAreaType
+     */
+    public function setEditableAreaType($editableAreaType) {
+        $this->editableAreaType = $editableAreaType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEditableAreaType() {
+        return $this->editableAreaType;
+    }
+
+    /**
+     * @param int $idEditableArea
+     */
+    public function setIdEditableArea($idEditableArea) {
+        $this->idEditableArea = $idEditableArea;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdEditableArea() {
+        return $this->idEditableArea;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage($message) {
+        $this->message = $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage() {
+        return $this->message;
+    }
+
+    /**
+     * @param int $targetId
+     */
+    public function setTargetId($targetId) {
+        $this->targetId = $targetId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTargetId() {
+        return $this->targetId;
+    }
+
+    /**
+     * @param string $title
+     */
     public function setTitle($title) {
         $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * @param int $weight
+     */
+    public function setWeight($weight) {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWeight() {
+        return $this->weight;
     }
 
 }

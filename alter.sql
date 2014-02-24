@@ -8,17 +8,19 @@ USE `industrial` ;
 -- -----------------------------------------------------
 -- Table `industrial`.`user`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`user` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`user` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
   `salt` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_time` DATETIME NOT NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT 0,
   `confirmed` TINYINT(1) NOT NULL DEFAULT 0,
   `icon` BLOB NULL,
-  `last_login` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` DATETIME NOT NULL,
   `about` TEXT NULL,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   PRIMARY KEY (`id_user`),
@@ -30,6 +32,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `industrial`.`category`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`category` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`category` (
   `category_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
@@ -41,6 +45,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `industrial`.`item`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`item` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`item` (
   `id_item` INT NOT NULL AUTO_INCREMENT,
   `category_id` INT NOT NULL,
@@ -59,46 +65,27 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `industrial`.`editable_area_type`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `industrial`.`editable_area_type` (
-  `id_editable_area_type` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_editable_area_type`),
-  UNIQUE INDEX `id_type_UNIQUE` (`id_editable_area_type` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `industrial`.`editable_area`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`editable_area` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`editable_area` (
   `id_editable_area` INT NOT NULL AUTO_INCREMENT,
-  `item_id` INT NULL,
-  `editable_area_type_id` INT NOT NULL,
-  `date` DATETIME NOT NULL,
+  `target_id` INT NULL,
+  `editable_area_type` INT NOT NULL,
+  `date_of_edit` DATETIME NOT NULL,
   `title` VARCHAR(45) NOT NULL,
-  `text` TEXT NULL,
+  `message` TEXT NULL,
   `weight` INT NOT NULL,
-  PRIMARY KEY (`id_editable_area`),
-  INDEX `fk_editable_area_item1_idx` (`item_id` ASC),
-  INDEX `fk_editable_area_editable_area_type1_idx` (`editable_area_type_id` ASC),
-  CONSTRAINT `fk_editable_area_item1`
-    FOREIGN KEY (`item_id`)
-    REFERENCES `industrial`.`item` (`id_item`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_editable_area_editable_area_type1`
-    FOREIGN KEY (`editable_area_type_id`)
-    REFERENCES `industrial`.`editable_area_type` (`id_editable_area_type`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id_editable_area`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `industrial`.`edited`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`edited` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`edited` (
   `id_edited` INT NOT NULL AUTO_INCREMENT,
   `id_editable_area` INT NOT NULL,
@@ -125,19 +112,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `industrial`.`comment`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`comment` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`comment` (
   `id_comment` INT NOT NULL AUTO_INCREMENT,
-  `id_editable_area` INT NOT NULL,
   `user_id_user` INT NOT NULL,
-  `text` TEXT NOT NULL,
+  `target_id` INT NOT NULL,
+  `comment_type` INT NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `message` TEXT NOT NULL,
   PRIMARY KEY (`id_comment`),
-  INDEX `fk_comment_editable_area1_idx` (`id_editable_area` ASC),
   INDEX `fk_comment_user1_idx` (`user_id_user` ASC),
-  CONSTRAINT `fk_comment_editable_area1`
-    FOREIGN KEY (`id_editable_area`)
-    REFERENCES `industrial`.`editable_area` (`id_editable_area`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_comment_user1`
     FOREIGN KEY (`user_id_user`)
     REFERENCES `industrial`.`user` (`id_user`)
@@ -149,9 +134,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `industrial`.`recipe`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`recipe` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe` (
   `id_recipe` INT NOT NULL AUTO_INCREMENT,
-  `item_id` INT NULL,
+  `item_id` INT NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   `output` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_recipe`),
@@ -168,6 +155,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `industrial`.`timestamps`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`timestamps` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`timestamps` (
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` TIMESTAMP NULL);
@@ -176,6 +165,8 @@ CREATE TABLE IF NOT EXISTS `industrial`.`timestamps` (
 -- -----------------------------------------------------
 -- Table `industrial`.`recipe_item`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`recipe_item` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe_item` (
   `item_item_id` INT NOT NULL,
   `recipe_id_recipe` INT NOT NULL,
@@ -198,11 +189,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `industrial`.`ban`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`ban` ;
+
 CREATE TABLE IF NOT EXISTS `industrial`.`ban` (
   `id_ban` INT NOT NULL AUTO_INCREMENT,
-  `ban_start` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ban_end` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id_user` INT NOT NULL,
+  `ban_start` DATETIME NOT NULL,
+  `ban_end` DATETIME NOT NULL,
   PRIMARY KEY (`id_ban`),
   UNIQUE INDEX `id_ban_UNIQUE` (`id_ban` ASC),
   INDEX `fk_ban_user1_idx` (`user_id_user` ASC),

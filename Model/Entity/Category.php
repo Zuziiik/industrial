@@ -18,18 +18,30 @@ class Category {
         $this->name = $name;
     }
 
+    /**
+     * @return int
+     */
     public function getIdCategory() {
         return (int)($this->idCategory);
     }
 
+    /**
+     * @return string
+     */
     public function getName() {
         return (string)($this->name);
     }
 
+    /**
+     * @param $idCategory
+     */
     public function setIdCategory($idCategory) {
         $this->idCategory = $idCategory;
     }
 
+    /**
+     * @param $name
+     */
     public function setName($name) {
         $this->name = $name;
     }

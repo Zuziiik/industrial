@@ -1,9 +1,9 @@
 html {
     background-color: lightblue;
     height: 100%;
-} 
+}
 
-body{
+body {
     margin-left: 20%;
     margin-right: 20%;
     background-color: white;
@@ -16,19 +16,19 @@ h1 {
     clear: right;
 }
 
-header #login, header #logout, header #profile, header #edit , header #register, header #admin, header #users{
+header #login, header #logout, header #profile, header #edit, header #register, header #admin, header #users {
     padding-left: 1%;
     padding-right: 1%;
-    text-decoration:none; 
-    border:0.15em solid black;
-    -moz-box-shadow   :2px 2px 2px #888;
-    -webkit-box-shadow:2px 2px 2px #888;
-    box-shadow        :2px 2px 2px #888; 
+    text-decoration: none;
+    border: 0.15em solid black;
+    -moz-box-shadow: 2px 2px 2px #888;
+    -webkit-box-shadow: 2px 2px 2px #888;
+    box-shadow: 2px 2px 2px #888;
 }
 
 header #topPanel {
     margin-top: 1%;
-    float:right;
+    float: right;
     display: inline;
     margin-right: 10%;
     width: 50%;
@@ -38,33 +38,33 @@ header #topPanel {
     color: red;
 }
 
-header #topPanel #profile, header #login, header #logout, header #register, header #edit, header #users{
+header #topPanel #profile, header #login, header #logout, header #register, header #edit, header #users {
     margin-right: 5%;
 }
 
-#menu{
+#menu {
     float: left;
     width: 15%;
 }
 
 #menu ol {
     list-style: none;
-    
+
 }
 
 #menu a {
-    margin-bottom:0.5%;
+    margin-bottom: 0.5%;
     padding: 0.5%;
-    text-decoration:none; 
+    text-decoration: none;
     display: block;
-    border:0.15em solid black;
+    border: 0.15em solid black;
 }
 
-section{
-    margin-left:15%;
+section {
+    margin-left: 15%;
     padding-left: 5%;
     padding-right: 5%;
-    width: 70%; 
+    width: 70%;
     height: 100%;
 }
 
@@ -73,21 +73,20 @@ section p {
 }
 
 .login {
-     margin-left:15%;
+    margin-left: 15%;
     padding-left: 5%;
     padding-right: 5%;
-    width: 70%; 
+    width: 70%;
 }
-
 
 /*-----ItemList-----*/
-#itemList{
-   display: block;
-   width: 100%;
-   float: right;
+#itemList {
+    display: block;
+    width: 100%;
+    float: right;
 }
 
-.categoryName{
+.categoryName {
     clear: left;
     float: left;
     width: 100%;
@@ -99,16 +98,16 @@ section p {
     width: 100%;
 }
 
-.item:first-child{
+.item:first-child {
     clear: left;
     float: left;
-   
+
 }
 
-.item{
-   display: inline-block;
+.item {
+    display: inline-block;
     border: 0.1em solid black;
-    margin-bottom:1%;
+    margin-bottom: 1%;
     margin-right: 1%;
     width: 10em;
     height: 10em;
@@ -121,24 +120,24 @@ section p {
 .itemName {
     width: 50%;
     height: 50%;
-    float:left;
+    float: left;
 }
 
 .picture {
-    float:left;
+    float: left;
     width: 50%;
     height: 50%;
 }
 
 .picture img {
-     width: 70%;
+    width: 70%;
     height: 70%;
 }
 
 .itemDetails {
-   width: 80%;
-   float: left;
-   margin-bottom: 1%;
+    width: 80%;
+    float: left;
+    margin-bottom: 1%;
 }
 
 .itemTextArea {
@@ -151,7 +150,7 @@ section p {
     display: inline;
 }
 
-.imageButton{
+.imageButton {
     width: 50px;
     height: 50px;
 }
@@ -174,15 +173,15 @@ section p {
     float: left;
 }
 
-.confirmed{
+.confirmed {
     color: green;
 }
 
-.unconfirmed{
+.unconfirmed {
     color: red;
 }
 
-.confirm, .changeAdmin{
+.confirm, .changeAdmin {
     clear: left;
     float: left;
 }
@@ -191,4 +190,19 @@ section p {
     clear: left;
     float: left;
     margin-top: 2%;
+}
+
+span.message {
+    border: 0.1em solid black;
+    padding: 0.5em;
+}
+
+span.title, span.message, span.date {
+    clear: left;
+    float: left;
+}
+
+#title, #submit, #Ltitle, #message {
+    clear: left;
+    float: left;
 }

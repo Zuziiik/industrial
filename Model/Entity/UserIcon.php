@@ -9,8 +9,7 @@ class UserIcon {
     protected $image;
 
     /**
-     * 
-     * @param int $userId
+     * @param int  $userId
      * @param blob $image
      */
     function __construct($userId, $image) {
@@ -18,18 +17,30 @@ class UserIcon {
         $this->image = $image;
     }
 
+    /**
+     * @param $userId
+     */
     public function setUserId($userId) {
         $this->userId = $userId;
     }
 
+    /**
+     * @return int
+     */
     public function getUserId() {
         return $this->userId;
     }
 
+    /**
+     * @return blob
+     */
     public function getImage() {
         return $this->image;
     }
 
+    /**
+     * @param $image
+     */
     public function setImage($image) {
         $this->image = $image;
     }

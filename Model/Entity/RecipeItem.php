@@ -12,7 +12,6 @@ class RecipeItem {
     protected $tablePos;
 
     /**
-     * 
      * @param int $itemId
      * @param int $recipeId
      * @param int $tablePos
@@ -23,26 +22,44 @@ class RecipeItem {
         $this->tablePos = $tablePos;
     }
 
+    /**
+     * @param $itemId
+     */
     public function setItemId($itemId) {
         $this->itemId = $itemId;
     }
 
+    /**
+     * @param $recipeId
+     */
     public function setRecipeId($recipeId) {
         $this->recipeId = $recipeId;
     }
 
+    /**
+     * @return int
+     */
     public function getItemId() {
         return $this->itemId;
     }
 
+    /**
+     * @return int
+     */
     public function getRecipeId() {
         return $this->recipeId;
     }
 
+    /**
+     * @return int
+     */
     public function getTablePos() {
         return $this->tablePos;
     }
 
+    /**
+     * @param $tablePos
+     */
     public function setTablePos($tablePos) {
         $this->tablePos = $tablePos;
     }

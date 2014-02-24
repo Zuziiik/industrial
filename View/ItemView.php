@@ -29,7 +29,7 @@ _END;
 
             echo("<div class='itemTextArea'>");
             $this->printSubsectionHeader($title);
-            $text = $area->getText();
+            $text = $area->getMessage();
             $date = $area->getDate();
             $this->printTextArea($text, $date);
             $id = $area->getIdEditableArea();
