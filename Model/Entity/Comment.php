@@ -4,6 +4,7 @@ class Comment {
 
     const SERVER = 1;
     const NEWS = 2;
+    const RE = 3;
 
     /** @var int */
     protected $idComment;
@@ -23,6 +24,9 @@ class Comment {
     /** @var string */
     protected $message;
 
+    /** @var array[Comment] */
+    public $comments;
+
     /**
      * @param int    $idComment
      * @param int    $userId
@@ -38,6 +42,21 @@ class Comment {
         $this->type = $type;
         $this->title = $title;
         $this->message = $message;
+        $this->comments = NULL;
+    }
+
+    /**
+     * @param array[Comment] $comments
+     */
+    public function setComments($comments) {
+        $this->comments = $comments;
+    }
+
+    /**
+     * @return array[Comment]
+     */
+    public function getComments() {
+        return $this->comments;
     }
 
     /**

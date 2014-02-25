@@ -135,4 +135,12 @@ class CommentDAO {
         return $comments;
     }
 
+    public static function loadComments($type, $targetId) {
+        $comments = self::selectByTypeAndTarget($type, $targetId);
+        foreach ($comments as $comment) {
+            $id = (int) $comment->getIdComment();
+            $comment->comments = self::loadComments(Comment::RE, $id);
+        }
+        return $comments;
+    }
 }

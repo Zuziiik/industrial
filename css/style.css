@@ -197,12 +197,21 @@ span.message {
     padding: 0.5em;
 }
 
-span.title, span.message, span.date, .comment {
+span.title, span.message {
     clear: left;
     float: left;
 }
 
-#title, #submit, #Ltitle, #message {
+#title, #submit, #Ltitle, #message, .comments, #Lmessage {
     clear: left;
     float: left;
+}
+
+div.comment:first-child, div.comment {
+    margin-left: 0;
+}
+
+div.reComment {
+    float: left;
+    margin-left: 10%;
 }

@@ -4,6 +4,7 @@ include_once 'Control.php';
 include_once 'util.php';
 include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/CommentDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/UserDAO.php';
 include_once dirname(__FILE__) . '/../Model/CommentModel.php';
 include_once dirname(__FILE__) . '/CommentControl.php';
 include_once dirname(__FILE__) . '/../View/CommentView.php';
@@ -21,6 +22,15 @@ class ServersControl extends Control {
         if ($loggedIn && $admin) {
             if (isset($_POST['addServer'])) {
                 $this->add($type);
+            }
+            if (isset($_POST['deleteServer'])) {
+                $this->deleteServer();
+            }
+            if (isset($_POST['addComment'])) {
+                $this->comment();
+            }
+            if (isset($_POST['deleteComment'])) {
+                $this->deleteComment();
             }
         }
         $this->model->servers = EditableAreaDAO::selectByEditableAreaType($type);
@@ -43,6 +53,34 @@ class ServersControl extends Control {
         $weight = EditableAreaDAO::selectHighestWeight() + 1;
         $server = new EditableArea(666, NULL, $type, $date, $title, $message, $weight);
         EditableAreaDAO::insert($server);
+    }
+
+    private function deleteServer() {
+        $id = (int)sanitizeString($_POST['ServerId']);
+        $server = EditableAreaDAO::selectById($id);
+        EditableAreaDAO::delete($server);
+    }
+
+    private function comment() {
+        global $username;
+        $user = UserDAO::selectByName($username);
+        $userId = $user->getIdUser();
+        $type = (int)sanitizeString($_POST['type']);
+        $title = sanitizeString($_POST['title']);
+        $message = sanitizeString($_POST['message']);
+        $targetId = sanitizeString($_POST['targetId']);
+        $comment = new Comment(666, $userId, $targetId, $type, $title, $message);
+        CommentDAO::insert($comment);
+    }
+
+    private function deleteComment() {
+        $id = (int)sanitizeString($_POST['commentId']);
+        $comments = CommentDAO::selectByTypeAndTarget(Comment::RE, $id);
+        foreach ($comments as $comment) {
+            CommentDAO::delete($comment);
+        }
+        $server = CommentDAO::selectById($id);
+        CommentDAO::delete($server);
     }
 
 }

@@ -19,7 +19,7 @@ class CommentControl extends Control {
     }
 
     public function initialize() {
-        $this->model->comments = CommentDAO::selectByTypeAndTarget($this->model->type, $this->model->targetId);
+        $this->model->comments = CommentDAO::loadComments($this->model->type, $this->model->targetId);
     }
 
 }
