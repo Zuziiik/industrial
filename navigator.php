@@ -66,6 +66,11 @@ function navigate() {
             $control = new ServersControl($model);
             $view = new ServersView($model);
             break;
+        case 'comment':
+            $model = new CommentFormModel();
+            $control = new CommentFormControl($model);
+            $view = new CommentFormView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

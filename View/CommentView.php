@@ -43,18 +43,32 @@ class CommentView extends View {
             } else {
                 echo("<div class='comment'>");
             }
-            echo("<span class = 'commentTitle'>Title: $title</span>");
+            echo("<h3>$title</h3>");
             echo("<span class='commentUser'> User: $commentUsername</span>");
             echo("<span class='commentMessage'> Message: $message</span>");
+
             if ($loggedIn && ($admin || $commentUsername == $username)) {
                 echo <<<_END
                 <form class='deleteComment' name='deleteComment' method='post' action='./index.php?page=servers'>
                 <input type='hidden' name='action' value='deleteComment'/>
                 <input type='hidden' name='commentId' value='$id'/>
-                <input id='submit' type='submit' name='deleteComment' value='Delete Comment'/>
+                <input class='deleteComment' type='submit' name='deleteComment' value='Delete Comment'/>
                 </form>
 _END;
             }
+
+            if ($loggedIn) {
+                $commentType = Comment::RE;
+                echo <<<_END
+                <form class='replyComment' name='replyComment' method='post' action='./index.php?page=comment'>
+                <input type='hidden' name='type' value='$commentType'/>
+                <input type='hidden' name='action' value='replyComment'/>
+                <input type='hidden' name='commentId' value='$id'/>
+                <input class='replyComment' type='submit' name='replyComment' value='Reply'/>
+                </form>
+_END;
+            }
+
             $reComments = $comment->getComments();
             echo("<span class='reComment'>" . $this->printComment($reComments) . "</span>");
             echo("</div>");

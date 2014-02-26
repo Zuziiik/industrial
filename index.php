@@ -17,13 +17,15 @@ echo("</title><header>");
 include_once 'menu.php';
 echo("</header><body><h1>");
 $view->printPageHeader();
-echo("</h1><section>");
-echo "get: ";
-var_dump($_GET);
-echo "</br>post: ";
-var_dump($_POST);
+echo("</h1><section><div id='content'>");
+//echo "get: ";
+//var_dump($_GET);
+//echo "</br>post: ";
+//var_dump($_POST);
 $view->printBody();
-echo("</section></body></html>");
+echo("</div></section><footer>");
+$view->printFooter();
+echo("</footer><br class='clear' /></body></html>");
 
 /*
 

@@ -37,15 +37,15 @@ _END;
                 $id = $item->getIdItem();
                 $name = $item->getName();
                 $details = $item->getDetails();
-                echo("<div class='picture'><img src='image.php?type=item&id=$id'></div>");
-                echo("<div class='itemName'><a href='./index.php?page=item&item=$id'>$name</a></div>");
+                echo("<img class='itemIcon' src='image.php?type=item&id=$id'>");
+                echo("<a class='itemName' href='./index.php?page=item&item=$id'>$name</a>");
                 echo("<div class='itemDetails'>$details</div>");
                 if ($loggedIn && $admin) {
                     echo <<<_END
-                    <form name='deleteItem' method='post' action='./index.php?page=recipes'>
+                    <form class='DeleteItem' name='deleteItem' method='post' action='./index.php?page=recipes'>
                     <input type='hidden' name='action' value='deleteItem'/>
                     <input type='hidden' name='itemId' value='$id'/>    
-                    <input type='submit' name='DeleteItem' value='Delete item'/>
+                    <input  type='submit' name='DeleteItem' value='Delete item'/>
                     </form>
 _END;
                 }

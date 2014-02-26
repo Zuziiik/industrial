@@ -13,6 +13,20 @@ abstract class View {
     public abstract function printTitle();
 
     public abstract function printBody();
-    
+
     public abstract function printPageHeader();
+
+    public function printFooter() {
+//        echo <<<_END
+//        <ul>
+//            <li>
+//              <address>
+//                Contact:
+//              </address>
+//            </li>
+//            <li>Last actualization: 5. 5. 2013, 21:00</li>
+//        </ul>
+//
+//_END;
+    }
 }

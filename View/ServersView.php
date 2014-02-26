@@ -24,6 +24,7 @@ class ServersView extends View {
             $title = $server->getTitle();
             $message = $server->getMessage();
             $id = $server->getIdEditableArea();
+            echo("<div class='server'>");
             echo("<span class='title'><h2>$title</h2></span>");
             echo("<span class='message'>$message</span>");
             if ($loggedIn && $admin) {
@@ -31,7 +32,7 @@ class ServersView extends View {
                 <form id='deleteServer' name='deleteServer' method='post' action='./index.php?page=servers'>
                 <input type='hidden' name='action' value='deleteServer'/>
                 <input type='hidden' name='ServerId' value='$id'/>
-                <input id='submit' type='submit' name='deleteServer' value='Delete Server'/>
+                <input class='submit' type='submit' name='deleteServer' value='Delete Server'/>
                 </form>
 _END;
             }
@@ -40,20 +41,20 @@ _END;
 
             if ($loggedIn) {
                 $type = Comment::SERVER;
-                var_dump($id);
-            echo <<<_END
+                echo <<<_END
                 <form id='addComment' name='addComment' method='post' action='./index.php?page=servers'>
                 <input type='hidden' name='action' value='addComment'/>
                 <input type='hidden' name='targetId' value='$id'/>
                 <input type='hidden' name='type' value='$type'/>
                 <label id='Ltitle' for='title'>Title:</label>
-                <input type='text' id='title' name='title' />
+                <input type='text'  id='title' name='title' />
                 <label id='Lmessage' for='message'>Message:</label>
-                <textarea id='message' name='message'></textarea>
-                <input id='submit' type='submit' name='addComment' value='Comment'/>
+                <textarea id='message' cols='45' rows='4' name='message'></textarea>
+                <input class='submit' type='submit' name='addComment' value='Comment'/>
                 </form>
 _END;
-        }
+            }
+            echo("</div>");
         }
 
         if ($loggedIn && $admin) {
@@ -62,8 +63,8 @@ _END;
                 <input type='hidden' name='action' value='addServer'/>
                 <label id='Ltitle' for='title'>Title:</label>
                 <input type='text' id='title' name='title' />
-                <textarea id='message' name='message'></textarea>
-                <input id='submit' type='submit' name='addServer' value='Add Server'/>
+                <textarea id='message' cols='100' rows='6' name='message'></textarea>
+                <input class='submit' type='submit' name='addServer' value='Add Server'/>
                 </form>
 _END;
         }
