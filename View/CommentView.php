@@ -56,6 +56,17 @@ class CommentView extends View {
                 </form>
 _END;
             }
+            if ($loggedIn && $commentUsername == $username) {
+                echo <<<_END
+                <form class='editComment' name='editComment' method='post' action='./index.php?page=comment'>
+                <input type='hidden' name='action' value='editComment'/>
+                <input type='hidden' name='title' value='$title'/>
+                <input type='hidden' name='message' value='$message'/>
+                <input type='hidden' name='commentId' value='$id'/>
+                <input class='editComment' type='submit' name='editComment' value='Edit Comment'/>
+                </form>
+_END;
+            }
 
             if ($loggedIn) {
                 $commentType = Comment::RE;
@@ -63,6 +74,7 @@ _END;
                 <form class='replyComment' name='replyComment' method='post' action='./index.php?page=comment'>
                 <input type='hidden' name='type' value='$commentType'/>
                 <input type='hidden' name='action' value='replyComment'/>
+                <input type='hidden' name='title' value='$title'/>
                 <input type='hidden' name='commentId' value='$id'/>
                 <input class='replyComment' type='submit' name='replyComment' value='Reply'/>
                 </form>

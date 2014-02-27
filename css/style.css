@@ -37,6 +37,12 @@ h1 {
     clear: both;
 }
 
+h2, h3 {
+    clear: both;
+    float: left;
+
+}
+
 header {
     width: 100%;
 
@@ -285,7 +291,12 @@ span.title, span.message {
 
 .replyComment {
     float: left;
-    width: 5em;
+    width: 4em;
+}
+
+.editComment {
+    float: left;
+    width: 7.5em;
 }
 
 #replyComment {

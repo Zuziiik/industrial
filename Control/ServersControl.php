@@ -30,7 +30,8 @@ class ServersControl extends Control {
                 $this->comment();
             }
             if (isset($_POST['deleteComment'])) {
-                $this->deleteComment();
+                $id = (int)sanitizeString($_POST['commentId']);
+                $this->deleteComment($id);
             }
         }
         $this->model->servers = EditableAreaDAO::selectByEditableAreaType($type);
@@ -58,6 +59,12 @@ class ServersControl extends Control {
     private function deleteServer() {
         $id = (int)sanitizeString($_POST['ServerId']);
         $server = EditableAreaDAO::selectById($id);
+        $comments = CommentDAO::selectByTypeAndTarget(Comment::SERVER, $id);
+        foreach($comments as $comment){
+            $commentId = (int)$comment->getIdComment();
+            $this->deleteComment($commentId);
+        }
+
         EditableAreaDAO::delete($server);
     }
 
@@ -73,8 +80,8 @@ class ServersControl extends Control {
         CommentDAO::insert($comment);
     }
 
-    private function deleteComment() {
-        $id = (int)sanitizeString($_POST['commentId']);
+    private function deleteComment($id) {
+
         $comments = CommentDAO::selectByTypeAndTarget(Comment::RE, $id);
         foreach ($comments as $comment) {
             CommentDAO::delete($comment);
