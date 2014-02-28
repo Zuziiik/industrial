@@ -9,18 +9,22 @@ class ServerFormView extends View {
     }
 
     public function initialize() {
-        // TODO: Implement initialize() method.
+        
     }
 
     public function printTitle() {
-        // TODO: Implement printTitle() method.
+        if ($this->model->edit) {
+            echo("Edit Server");
+        } else {
+            echo("Add Server");
+        }
     }
 
     public function printBody() {
         global $loggedIn;
         global $admin;
         if ($loggedIn && $admin) {
-            if($this->model->add){
+            if ($this->model->add) {
                 echo <<<_END
                 <form id='addServer' name='addServer' method='post' action='./index.php?page=editServer'>
                 <input type='hidden' name='action' value='addServer'/>
@@ -31,7 +35,7 @@ class ServerFormView extends View {
                 </form>
 _END;
             }
-            if($this->model->edit){
+            if ($this->model->edit) {
                 $message = $this->model->server->getMessage();
                 $title = $this->model->server->getTitle();
                 $id = $this->model->server->getIdEditableArea();
@@ -50,7 +54,11 @@ _END;
     }
 
     public function printPageHeader() {
-        // TODO: Implement printPageHeader() method.
+        if ($this->model->edit) {
+            echo("Edit Server");
+        } else {
+            echo("Add Server");
+        }
     }
 
 }
