@@ -98,7 +98,7 @@ class UserDAO {
     }
 
     public static function userExists($id) {
-        if (!is_string($id)) {
+        if (!is_int($id)) {
             die('Argument passed isn`t instance of int.');
         }
         $result = queryMysql("SELECT id_user, username, password, salt, email, create_time, admin, confirmed, last_login, about FROM user WHERE id_user='$id'");

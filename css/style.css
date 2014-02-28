@@ -1,5 +1,7 @@
 html {
     position: relative;
+    height: 100%;
+    top: 0;
     background-image: url(./../pictures/radioactive.jpg);
     background-size: 20%;
     color: black;
@@ -8,6 +10,7 @@ html {
     padding: 0;
     font-size: 100%;
     width: 100%;
+
 }
 
 textarea {
@@ -18,7 +21,7 @@ body {
     margin-left: 20%;
     margin-right: 20%;
     background-color: white;
-
+    min-height: 100%;
 }
 
 .clear {
@@ -326,8 +329,8 @@ div.reComment {
     width: 100%;
 }
 
-#addComment, #deleteServer, #addServer, #addCategory {
-    clear: left;
+#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle {
+    clear: both;
     float: left;
 }
 

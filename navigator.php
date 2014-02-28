@@ -76,6 +76,16 @@ function navigate() {
             $control = new ServerFormControl($model);
             $view = new ServerFormView($model);
             break;
+        case 'tutorialList':
+            $model = new TutorialListModel();
+            $control = new TutorialListControl($model);
+            $view = new TutorialListView($model);
+            break;
+        case 'tutorial':
+            $model = new TutorialModel();
+            $control = new TutorialControl($model);
+            $view = new TutorialView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

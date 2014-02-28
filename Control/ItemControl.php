@@ -17,7 +17,6 @@ class ItemControl extends Control {
             if (ItemDAO::exists($id)) {
                 $this->exists($id);
             } else {
-                die();
                 header('Location: ./index.php?page=404');
             }
         }

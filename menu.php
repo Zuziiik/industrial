@@ -28,9 +28,9 @@ echo <<<_END
     <ol>
         <li><a href='index.php?page=home'>Home</a></li>
         <li><a href='index.php?page=recipes'>Recipes & Resources</a></li>
-        <li><a href='index.php?page=tutorials'>Tutorials</a></li>
+        <li><a href='index.php?page=tutorialList'>Tutorials</a></li>
         <li><a href='index.php?page=servers'>Servers</a></li>
-        <li><a href='index.php?page=tutorials'>Links</a></li>
+        <li><a href='index.php?page=links'>Links</a></li>
     </ol>
 </div>
 _END;

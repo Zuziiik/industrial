@@ -88,4 +88,16 @@ class EditableAreaDAO {
         $weight = $row['0'];
         return $weight;
     }
+
+    public static function editableAreaExists($id) {
+        if (!is_int($id)) {
+            die('Argument passed isn`t instance of int.');
+        }
+        $result = queryMysql("SELECT id_editable_area, target_id, editable_area_type, date_of_edit, title, message, weight FROM editable_area WHERE id_editable_area='$id'");
+        $n = mysql_num_rows($result);
+        if ($n > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
 }
