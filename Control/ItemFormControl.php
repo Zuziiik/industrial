@@ -7,7 +7,7 @@ include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemIconDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/CategoryDAO.php';
 
-class EditableAreaControl extends Control {
+class ItemFormControl extends Control {
 
     function __construct($model) {
         parent::__construct($model);

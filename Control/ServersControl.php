@@ -20,9 +20,6 @@ class ServersControl extends Control {
         global $admin;
         $type = EditableArea::SERVER;
         if ($loggedIn && $admin) {
-            if (isset($_POST['addServer'])) {
-                $this->add($type);
-            }
             if (isset($_POST['deleteServer'])) {
                 $this->deleteServer();
             }
@@ -45,15 +42,6 @@ class ServersControl extends Control {
             $this->model->commentControls[$i]->initialize();
             $i++;
         }
-    }
-
-    private function add($type) {
-        $title = sanitizeString($_POST['title']);
-        $message = sanitizeString($_POST['message']);
-        $date = date("Y-m-d H:i:s", time());
-        $weight = EditableAreaDAO::selectHighestWeight() + 1;
-        $server = new EditableArea(666, NULL, $type, $date, $title, $message, $weight);
-        EditableAreaDAO::insert($server);
     }
 
     private function deleteServer() {

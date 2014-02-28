@@ -326,16 +326,13 @@ div.reComment {
     width: 100%;
 }
 
-#addComment, #deleteServer, #addServer {
+#addComment, #deleteServer, #addServer, #addCategory {
     clear: left;
     float: left;
 }
 
-#addServer {
-    margin-left: 1em;
-    background-color: #ffbb19;
-    border-radius: 1em;
-    padding: 2em;
+#editServer {
+    float: left;
 }
 
 footer {

@@ -16,6 +16,16 @@ class ItemListView extends View {
 
         global $admin;
         global $loggedIn;
+        if ($loggedIn && $admin) {
+            echo($this->model->error);
+            echo <<<_END
+            <form id='addCategory' name='addCategory' method='post' action='./index.php?page=recipes'>
+            <label for='category'>Add category</label>
+            <input id='category' type='text' name='categoryName'/>
+            <input type='submit' value='Add'/>
+            </form>
+_END;
+        }
         echo("<div id='itemList'>");
         foreach ($this->model->categories as $category) {
             echo("<div class='category'>");
@@ -63,16 +73,7 @@ _END;
             }
             echo("</div>");
         }
-        if ($loggedIn && $admin) {
-            echo($this->model->error);
-            echo <<<_END
-            <form name='addCategory' method='post' action='./index.php?page=recipes'>
-            <label for='category'>Add category</label>
-            <input id='category' type='text' name='categoryName'/>
-            <input type='submit' value='Add'/>
-            </form>
-_END;
-        }
+
         echo("</div>");
     }
 

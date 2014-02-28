@@ -42,9 +42,9 @@ function navigate() {
             $view = new ItemView($model);
             break;
         case 'edit':
-            $model = new EditableAreaModel();
-            $control = new EditableAreaControl($model);
-            $view = new EditableAreaView($model);
+            $model = new ItemFormModel();
+            $control = new ItemFormControl($model);
+            $view = new ItemFormView($model);
             break;
         case 'register':
             $model = new RegisterModel();
@@ -70,6 +70,11 @@ function navigate() {
             $model = new CommentFormModel();
             $control = new CommentFormControl($model);
             $view = new CommentFormView($model);
+            break;
+        case 'editServer':
+            $model = new ServerFormModel();
+            $control = new ServerFormControl($model);
+            $view = new ServerFormView($model);
             break;
         default :
             $model = new NotFoundModel();

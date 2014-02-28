@@ -1,6 +1,6 @@
 <?php
 
-class EditableAreaModel {
+class ItemFormModel {
 
     public $item;
     public $area;

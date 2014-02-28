@@ -2,7 +2,7 @@
 
 include_once 'View.php';
 
-class EditableAreaView extends View {
+class ItemFormView extends View {
 
     function __construct($model) {
         parent::__construct($model);
