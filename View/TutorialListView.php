@@ -17,14 +17,34 @@ class TutorialListView extends View {
     }
 
     public function printBody() {
+        global $admin;
+        global $loggedIn;
+        if ($admin && $loggedIn) {
+            echo <<<_END
+                <form id='addTutorial'  name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
+                <input type='hidden' name='action' value='addTutorial'/>
+                <input type='submit' name='addTutorial' value='Add Tutorial'/>
+                </form>
+_END;
+        }
         foreach ($this->model->tutorials as $tutorial) {
+            $id = (int)$tutorial->getIdEditableArea();
             $title = $tutorial->getTitle();
             $message = $tutorial->getMessage();
             $message = substr($message, 0, 300);
-            $id = (int)$tutorial->getIdEditableArea();
+
             echo("<span class='tutorialTitle'><h2>$title</h2></span>");
             echo("<span class='tutorialMessage'>$message");
             echo(" <a href='./index.php?page=tutorial&id=$id'>More...</a> </span>");
+            if ($admin && $loggedIn) {
+                echo <<<_END
+                <form class='deleteButton'  name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
+                <input type='hidden' name='action' value='deleteTutorial'/>
+                <input type='hidden' name='id' value='$id'/>
+                <input  type='submit' name='deleteTutorial' value='Delete'/>
+                </form>
+_END;
+            }
         }
     }
 

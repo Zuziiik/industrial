@@ -6,3 +6,9 @@ function sanitizeString($var) {
     $var = stripslashes($var);
     return mysql_real_escape_string($var);
 }
+
+
+function sanitizeTextArea($var) {
+    $var = stripslashes($var);
+    return mysql_real_escape_string($var);
+}

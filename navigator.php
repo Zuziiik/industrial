@@ -86,6 +86,11 @@ function navigate() {
             $control = new TutorialControl($model);
             $view = new TutorialView($model);
             break;
+        case 'tutorialEdit':
+            $model = new TutorialFormModel();
+            $control = new TutorialFormControl($model);
+            $view = new TutorialFormView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

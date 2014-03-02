@@ -329,9 +329,19 @@ div.reComment {
     width: 100%;
 }
 
-#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle {
+#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton {
     clear: both;
     float: left;
+}
+
+#tutorialText, .tutorialMessage{
+    width: 90%;
+}
+
+.save {
+    clear: both;
+    float: right;
+    margin-right: 6.8em;
 }
 
 #editServer {

@@ -28,6 +28,7 @@ class TutorialControl extends Control {
 
     private function exists($id){
         $this->model->tutorial = EditableAreaDAO::selectById($id);
+
     }
 
 }

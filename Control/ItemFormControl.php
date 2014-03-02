@@ -43,7 +43,7 @@ class ItemFormControl extends Control {
     private function addArea($itemId) {
         if (isset($_POST['save'])) {
             $title = sanitizeString($_POST['title']);
-            $text = sanitizeString($_POST['text']);
+            $text = sanitizeTextArea($_POST['text']);
             $type = EditableArea::ITEM;
             $date = date('Y-m-d h:i:s', time());
             $weight = EditableAreaDAO::selectHighestWeight();
@@ -57,10 +57,10 @@ class ItemFormControl extends Control {
     private function editArea($areaId) {
         if (isset($_POST['save'])) {
             $title = sanitizeString($_POST['title']);
-            $text = sanitizeString($_POST['text']);
+            $text = sanitizeTextArea($_POST['text']);
             $area = EditableAreaDAO::selectById($areaId);
             $area->setTitle($title);
-            $area->setText($text);
+            $area->setMessage($text);
             $this->model->msg = "Title updated to " . $title . "</br>Text updated to " . $text;
             EditableAreaDAO::update($area);
         }

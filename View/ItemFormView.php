@@ -45,16 +45,18 @@ class ItemFormView extends View {
             $itemId = $this->model->item->getIdItem();
             $title = $this->model->area->getTitle();
             $id = $this->model->area->getIdEditableArea();
-            $text = $this->model->area->getText();
+            $text = $this->model->area->getMessage();
             if ($this->model->msg === '') {
                 echo <<<_END
                 <form  name='editArea' method='post' action='./index.php?page=edit&item=$itemId'>
+                <input type='hidden' name='action' value='editArea'/>
                 <label for='title'>Title</label>
                 <input id='title' type='text' name='title' value='$title'/>
                 <input type='hidden' name='areaId' value='$id'/>
-                <textarea name=text rows="4" cols="50">$text</textarea>
+                <textarea name=text rows="4" cols="50" wrap='hard'>$text</textarea>
                 <input type='submit' name='save' value='Save'/>
                 </form>
+
 _END;
             }
             echo $this->model->msg;
@@ -71,9 +73,10 @@ _END;
                 <label for='image'>Image</label>
                 <input type='file' id='image' name='image' size='14' maxlength='32' />
                 <label for='details'>Details</label>
-                <textarea name='details' id='details' rows="4" cols="50">$details</textarea>
+                <textarea name='details' id='details' wrap="hard" rows="4" cols="50">$details</textarea>
                 <input type='submit' name='save' value='Save'/>
                 </form>
+
 _END;
             }
             echo $this->model->msg;
