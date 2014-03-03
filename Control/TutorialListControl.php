@@ -14,12 +14,30 @@ class TutorialListControl extends Control {
         $type = EditableArea::TUTORIAL;
         if(isset($_POST['deleteTutorial'])){
             $id = (int)sanitizeString($_POST['id']);
-            if(EditableAreaDAO::editableAreaExists($id)){
-                $tutorial = EditableAreaDAO::selectById($id);
-                EditableAreaDAO::delete($tutorial);
-            }
+            $this->delete($id);
         }
         $this->model->tutorials = EditableAreaDAO::selectByEditableAreaType($type);
+    }
+
+    private function delete($id){
+        if(EditableAreaDAO::editableAreaExists($id)){
+        $tutorial = EditableAreaDAO::selectById($id);
+        $comments = CommentDAO::selectByTypeAndTarget(Comment::TUTORIAL, $id);
+        foreach($comments as $comment){
+            $commentId = (int)$comment->getIdComment();
+            $this->deleteComment($commentId);
+        }
+        EditableAreaDAO::delete($tutorial);
+        }
+    }
+
+    private function deleteComment($id) {
+        $comments = CommentDAO::selectByTypeAndTarget(Comment::RE, $id);
+        foreach ($comments as $comment) {
+            CommentDAO::delete($comment);
+        }
+        $tutorial = CommentDAO::selectById($id);
+        CommentDAO::delete($tutorial);
     }
 
 }
