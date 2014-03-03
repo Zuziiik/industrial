@@ -56,14 +56,10 @@ _END;
             if ($loggedIn) {
                 $type = Comment::SERVER;
                 echo <<<_END
-                <form id='addComment' name='addComment' method='post' action='./index.php?page=servers'>
+                <form id='addComment' name='addComment' method='post' action='./index.php?page=comment'>
                 <input type='hidden' name='action' value='addComment'/>
                 <input type='hidden' name='targetId' value='$id'/>
                 <input type='hidden' name='type' value='$type'/>
-                <label id='Ltitle' for='title'>Title:</label>
-                <input type='text'  id='title' name='title' />
-                <label id='Lmessage' for='message'>Message:</label>
-                <textarea id='message' cols='45' rows='4' name='message'></textarea>
                 <input class='submit' type='submit' name='addComment' value='Comment'/>
                 </form>
 _END;

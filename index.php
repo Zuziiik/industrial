@@ -31,8 +31,8 @@ echo <<<_END
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
          "save table contextmenu directionality emoticons template paste textcolor jbimages"
    ],
-   templates: [
-        {title: 'Details', description: 'Details', content: '<h3>Details<h3>'}
+templates: [
+        {title: 'Article', description: 'Article with header h3', url: './tinymce/templates/test.html'}
     ]
     });
     </script>
@@ -52,6 +52,7 @@ echo("</h1><section><div id='content'>");
 //var_dump($_GET);
 //echo "</br>post: ";
 //var_dump($_POST);
+
 $view->printBody();
 echo("</div></section><footer>");
 $view->printFooter();

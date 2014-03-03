@@ -34,8 +34,8 @@ _END;
             $message = substr($message, 0, 300);
 
             echo("<span class='tutorialTitle'><h2>$title</h2></span>");
-            echo("<span class='tutorialMessage'>$message");
-            echo(" <a href='./index.php?page=tutorial&id=$id'>More...</a> </span>");
+            echo("<span class='tutorialMessage'>$message</span>");
+            echo(" <a class='more' href='./index.php?page=tutorial&id=$id'>More...</a> ");
             if ($admin && $loggedIn) {
                 echo <<<_END
                 <form class='deleteButton'  name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>

@@ -10,7 +10,6 @@ class CommentView extends View {
     }
 
     public function initialize() {
-
     }
 
     public function printTitle() {

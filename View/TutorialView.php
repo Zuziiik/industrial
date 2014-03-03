@@ -20,9 +20,8 @@ class TutorialView extends View {
     public function printBody() {
         global $admin;
         global $loggedIn;
-
+        $id = (int)$this->model->tutorial->getIdEditableArea();
         if ($admin && $loggedIn) {
-            $id = (int)$this->model->tutorial->getIdEditableArea();
             echo <<<_END
                 <form id='editTutorial'  name='edit' method='post' action='./index.php?page=tutorialEdit&id=$id'>
                 <input type='hidden' name='action' value='editTutorial'/>
@@ -36,6 +35,19 @@ _END;
         echo("<span class='tutorialTitle'><h2>$title</h2></span>");
         echo("<span class='tutorialMessage'>$message</span>");
 
+        $this->model->commentView->printBody();
+
+        if ($loggedIn) {
+            $type = Comment::TUTORIAL;
+            echo <<<_END
+                <form id='addComment' name='addComment' method='post' action='./index.php?page=comment'>
+                <input type='hidden' name='action' value='addComment'/>
+                <input type='hidden' name='targetId' value='$id'/>
+                <input type='hidden' name='type' value='$type'/>
+                <input class='submit' type='submit' name='addComment' value='Comment'/>
+                </form>
+_END;
+        }
     }
 
     public function printPageHeader() {

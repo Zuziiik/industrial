@@ -22,7 +22,7 @@ class ItemFormControl extends Control {
             if (isset($_POST['areaId']) && $_POST['action'] == 'editArea') {
                 $areaId = (int)sanitizeString($_POST['areaId']);
                 $this->model->area = EditableAreaDAO::selectById($areaId);
-                $this->editArea($areaId);
+                $this->editArea($areaId, $itemId);
             }
             if ($_POST['action'] == 'addArea') {
                 $this->model->addArea = TRUE;
@@ -50,18 +50,19 @@ class ItemFormControl extends Control {
             $weight++;
             $area = new EditableArea(666, $itemId, $type, $date, $title, $text, $weight);
             EditableAreaDAO::insert($area);
-            $this->model->msg = "Section added.";
+            $this->model->msg = "<span class='msg'> Section added.</span>" . " <a class='back' href='./index.php?page=item&item=$itemId'>Go Back</a>";
+
         }
     }
 
-    private function editArea($areaId) {
+    private function editArea($areaId, $itemId) {
         if (isset($_POST['save'])) {
             $title = sanitizeString($_POST['title']);
             $text = sanitizeTextArea($_POST['text']);
             $area = EditableAreaDAO::selectById($areaId);
             $area->setTitle($title);
             $area->setMessage($text);
-            $this->model->msg = "Title updated to " . $title . "</br>Text updated to " . $text;
+            $this->model->msg = "<span class='msg'>Section updated.</span> <a class='back' href='./index.php?page=item&item=$itemId'>Go Back</a>";
             EditableAreaDAO::update($area);
         }
     }
@@ -71,19 +72,17 @@ class ItemFormControl extends Control {
             $name = sanitizeString($_POST['name']);
             $details = sanitizeString($_POST['details']);
             $categoryName = sanitizeString($_POST['categoryName']);
-            var_dump($categoryName);
             $category = CategoryDAO::selectByName($categoryName);
             $categoryId = $category->getIdCategory();
             ItemDAO::insert(new Item(666, $categoryId, $name, $details));
             $item = ItemDAO::selectByName($name);
-            var_dump($item);
             $itemId = $item->getIdItem();
             if (isset($_FILES['image']['name'])) {
                 $saveto = "$itemId.png";
                 move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
                 $this->updateImage($saveto, $itemId);
             }
-            $this->model->msg = "Item " . $name . " saved.";
+            $this->model->msg = "<span class='msg'>Item " . $name . " saved.</span> <a class='back' href='./index.php?page=item&item=$itemId'>Go Back</a>";
         }
     }
 
@@ -103,7 +102,7 @@ class ItemFormControl extends Control {
             $item->setName($name);
             $item->setDetails($details);
             ItemDAO::update($item);
-            $this->model->msg = "Item " . $name . " saved.";
+            $this->model->msg = "<span class='msg'>Item " . $name . " saved.</span> <a class='back' href='./index.php?page=item&item=$itemId'>Go Back</a>";
         }
     }
 

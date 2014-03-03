@@ -5,6 +5,7 @@ class Comment {
     const SERVER = 1;
     const NEWS = 2;
     const RE = 3;
+    const TUTORIAL = 4;
 
     /** @var int */
     protected $idComment;

@@ -24,7 +24,7 @@ class ItemControl extends Control {
 
     private function exists($id) {
         if (isset($_POST['action']) && $_POST['action'] == 'delete') {
-            $this->delete();
+            $this->delete($id);
         }
         if (isset($_POST['action']) && $_POST['action'] == 'moveUp') {
             $this->move($id, "up");
@@ -41,7 +41,6 @@ class ItemControl extends Control {
             $areaId = (int) sanitizeString($_POST['areaId']);
             $area = EditableAreaDAO::selectById($areaId);
             EditableAreaDAO::delete($area);
-            $this->model->msg = "Textarea deleted.";
         }
     }
 

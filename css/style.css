@@ -118,6 +118,11 @@ section p {
     clear: right;
 }
 
+article p {
+    clear: both;
+    float: left;
+}
+
 .login {
     margin-left: 15%;
     padding-left: 5%;
@@ -136,6 +141,12 @@ section p {
     width: 7em;
     clear: both;
     float: left;
+    height: 1.5em;
+}
+
+.AddItem {
+    clear: both;
+    float: left;
 }
 
 .categoryName {
@@ -146,6 +157,7 @@ section p {
 
 .category {
     display: block;
+    float: left;
     margin-bottom: 2%;
     width: 100%;
 }
@@ -194,19 +206,49 @@ img.picture {
     margin-bottom: 1%;
 }
 
+.back {
+    float: left;
+}
+
 .itemTextArea {
     clear: both;
+    float: left;
     margin-bottom: 2%;
 }
 
-.buttonsItemEditArea form {
+.itemTextArea article {
     clear: both;
+    margin: 0;
+}
+
+.itemTextArea article h3, .itemTextArea article p {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.itemTextArea span.date {
+    clear: left;
+    float: left;
+    margin-bottom: 0.5em;
+}
+
+.buttonsItemEditArea {
+    clear: both;
+    float: left;
+}
+
+.buttonsItemEditArea form {
     display: inline;
 }
 
+#addSection {
+    clear: left;
+    float: left;
+}
+
 .imageButton {
-    width: 5%;
-    height: 5%;
+    width: 15%;
+    height: 15%;
 }
 
 .picture {
@@ -230,6 +272,16 @@ img.itemIcon {
 .email, .username, .admin, .user, .create, .confirmed, .unconfirmed, .bans, .ban, .banUser {
     clear: left;
     float: left;
+}
+
+.more {
+
+}
+
+span.msg {
+    color: green;
+    float: left;
+    padding-right: 2em;
 }
 
 .confirmed {
@@ -282,7 +334,7 @@ span.title, span.message {
 }
 
 #title, #Ltitle, #message, .comments, #Lmessage, .submit {
-    clear: left;
+    clear: both;
     float: left;
 
 }
@@ -290,16 +342,19 @@ span.title, span.message {
 .deleteComment {
     float: left;
     width: 9em;
+    height: 1.5em;
 }
 
 .replyComment {
     float: left;
     width: 4em;
+    height: 1.5em;
 }
 
 .editComment {
     float: left;
     width: 7.5em;
+    height: 1.5em;
 }
 
 #replyComment {
@@ -332,16 +387,34 @@ div.reComment {
 #addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton {
     clear: both;
     float: left;
+
 }
 
-#tutorialText, .tutorialMessage{
+#addComment {
+    height: 1.5em;
+}
+
+.more {
+    clear: left;
+    float: left;
+}
+
+
+
+#tutorialText, .tutorialMessage, .addForm, .editForm{
+    clear: both;
+    float: left;
     width: 90%;
 }
 
 .save {
     clear: both;
     float: right;
-    margin-right: 6.8em;
+    margin-top: 1em;
+}
+
+#editTutorial {
+    height: 1.5em;
 }
 
 #editServer {

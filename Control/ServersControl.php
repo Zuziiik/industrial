@@ -23,9 +23,7 @@ class ServersControl extends Control {
             if (isset($_POST['deleteServer'])) {
                 $this->deleteServer();
             }
-            if (isset($_POST['addComment'])) {
-                $this->comment();
-            }
+
             if (isset($_POST['deleteComment'])) {
                 $id = (int)sanitizeString($_POST['commentId']);
                 $this->deleteComment($id);
@@ -56,17 +54,7 @@ class ServersControl extends Control {
         EditableAreaDAO::delete($server);
     }
 
-    private function comment() {
-        global $username;
-        $user = UserDAO::selectByName($username);
-        $userId = $user->getIdUser();
-        $type = (int)sanitizeString($_POST['type']);
-        $title = sanitizeString($_POST['title']);
-        $message = sanitizeString($_POST['message']);
-        $targetId = sanitizeString($_POST['targetId']);
-        $comment = new Comment(666, $userId, $targetId, $type, $title, $message);
-        CommentDAO::insert($comment);
-    }
+
 
     private function deleteComment($id) {
 

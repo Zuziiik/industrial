@@ -16,19 +16,20 @@ class TutorialControl extends Control {
     }
 
     public function initialize() {
-        if(isset($_GET['id'])){
-            $id =(int) sanitizeString($_GET['id']);
-            if(EditableAreaDAO::editableAreaExists($id)){
-                $this->exists($id);
-            }else{
+        if (isset($_GET['id'])) {
+            $id = (int)sanitizeString($_GET['id']);
+            if (EditableAreaDAO::editableAreaExists($id)) {
+                $this->model->tutorial = EditableAreaDAO::selectById($id);
+                $this->model->commentModel = new CommentModel();
+                $this->model->commentControl = new CommentControl($this->model->commentModel);
+                $this->model->commentView = new CommentView($this->model->commentModel);
+                $this->model->commentControl->setType(Comment::TUTORIAL);
+                $this->model->commentControl->setTargetId($id);
+                $this->model->commentControl->initialize();
+            } else {
                 header('Location: ./index.php?page=404');
             }
         }
-    }
-
-    private function exists($id){
-        $this->model->tutorial = EditableAreaDAO::selectById($id);
-
     }
 
 }

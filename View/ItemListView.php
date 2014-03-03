@@ -62,16 +62,17 @@ _END;
                 echo("</div>");
 
             }
+            echo("</div>");
             if ($loggedIn && $admin) {
                 echo <<<_END
-            <form name='addItem' method='post' action='./index.php?page=edit'>
+            <form class='AddItem' name='addItem' method='post' action='./index.php?page=edit'>
             <input type='hidden' name='action' value='addItem'/>
             <input type='hidden' name='categoryName' value='$nameCategory'/>    
             <input type='submit' name='AddItem' value='Add item'/>
             </form>
 _END;
             }
-            echo("</div>");
+
         }
 
         echo("</div>");

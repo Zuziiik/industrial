@@ -7,7 +7,7 @@ class TutorialFormView extends View {
     }
 
     public function initialize() {
-        // TODO: Implement initialize() method.
+
     }
 
     public function printTitle() {
@@ -28,10 +28,10 @@ class TutorialFormView extends View {
                 $message = $this->model->tutorial->getMessage();
 
                 echo <<<_END
-                <form id='editTutorial'  name='edit' method='post' action='./index.php?page=tutorialEdit&id=$id'>
+                <form class='editTutorial'  name='edit' method='post' action='./index.php?page=tutorialEdit&id=$id'>
                 <input type='hidden' name='action' value='editTutorial'/>
                 <label>Title:<input type='text' name='title' value='$title'/></label>
-                <textarea name='text' id='tutorialText' rows="50" cols="30">$message</textarea>
+                <textarea class='EditForm' name='text' id='tutorialText' rows="50" cols="30">$message</textarea>
                 <input type='submit' class='save' name='save' value='Save'/>
                 </form>
 
@@ -42,7 +42,7 @@ _END;
                 <form id='addTutorial'  name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
                 <input type='hidden' name='action' value='addTutorial'/>
                 <label>Title:<input type='text' name='title' /></label>
-                <textarea name='text' id='tutorialText' rows="50" cols="30"></textarea>
+                <textarea class='addForm' name='text' id='tutorialText' rows="50" cols="30"></textarea>
                 <input type='submit' class='save' name='save' value='Save'/>
                 </form>
 

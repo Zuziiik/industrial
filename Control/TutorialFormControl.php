@@ -39,9 +39,6 @@ class TutorialFormControl extends Control {
         if (isset($_POST['save'])) {
             $title = sanitizeString($_POST['title']);
             $message = sanitizeTextArea($_POST['text']);
-            var_dump($message);
-            $text = $_POST['text'];
-            var_dump($text);
             $date = date("Y-m-d H:i:s", time());
             $this->model->tutorial->setDate($date);
             $this->model->tutorial->setMessage($message);

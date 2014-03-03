@@ -69,7 +69,7 @@ _END;
         }
         if ($loggedIn && $admin) {
             echo <<<_END
-                <form  name='editItem' method='post' action='./index.php?page=edit&item=$itemId'>
+                <form id='addSection' name='addSection' method='post' action='./index.php?page=edit&item=$itemId'>
                 <input type='hidden' name='action' value='addArea'/>
                 <input type='submit' name='addArea' value='Add section'/>
                 </form>
@@ -87,7 +87,7 @@ _END;
     }
 
     public function printTextArea($text, $date) {
-        echo ($text . "</br>" . $date);
+        echo ("<article>" . $text . "</article>" . "<span class='date'>" . $date . "</span>");
     }
 
     public function printSubsectionHeader($name) {
