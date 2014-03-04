@@ -22,12 +22,13 @@ class TutorialView extends View {
         global $loggedIn;
         $id = (int)$this->model->tutorial->getIdEditableArea();
         if ($admin && $loggedIn) {
-            echo <<<_END
-                <form id='editTutorial'  name='edit' method='post' action='./index.php?page=tutorialEdit&id=$id'>
-                <input type='hidden' name='action' value='editTutorial'/>
-                <input type='submit' name='editTutorial' value='Edit'/>
-                </form>
-_END;
+            ?>
+            <form id='editTutorial' name='edit' method='post'
+                  action='./index.php?page=tutorialEdit&id=<?php echo $id; ?>'>
+                <input type='hidden' name='action' value='editTutorial' />
+                <input type='submit' name='editTutorial' value='Edit' />
+            </form>
+        <?php
         }
         $title = $this->model->tutorial->getTitle();
         $message = $this->model->tutorial->getMessage();
@@ -39,14 +40,14 @@ _END;
 
         if ($loggedIn) {
             $type = Comment::TUTORIAL;
-            echo <<<_END
-                <form id='addComment' name='addComment' method='post' action='./index.php?page=comment'>
-                <input type='hidden' name='action' value='addComment'/>
-                <input type='hidden' name='targetId' value='$id'/>
-                <input type='hidden' name='type' value='$type'/>
-                <input class='submit' type='submit' name='addComment' value='Comment'/>
-                </form>
-_END;
+            ?>
+            <form id='addComment' name='addComment' method='post' action='./index.php?page=comment'>
+                <input type='hidden' name='action' value='addComment' />
+                <input type='hidden' name='targetId' value='<?php echo $id; ?>' />
+                <input type='hidden' name='type' value='<?php echo $type; ?>' />
+                <input class='submit' type='submit' name='addComment' value='Comment' />
+            </form>
+        <?php
         }
     }
 

@@ -27,27 +27,30 @@ class TutorialFormView extends View {
                 $title = $this->model->tutorial->getTitle();
                 $message = $this->model->tutorial->getMessage();
 
-                echo <<<_END
-                <form class='editTutorial'  name='edit' method='post' action='./index.php?page=tutorialEdit&id=$id'>
-                <input type='hidden' name='action' value='editTutorial'/>
-                <label>Title:<input type='text' name='title' value='$title'/></label>
-                <textarea class='EditForm' name='text' id='tutorialText' rows="50" cols="30">$message</textarea>
-                <input type='submit' class='save' name='save' value='Save'/>
+                ?>
+                <form class='editTutorial' name='edit' method='post'
+                      action='./index.php?page=tutorialEdit&id=<?php echo $id; ?>'>
+                    <input type='hidden' name='action' value='editTutorial' />
+                    <input id='title' type='text' placeholder="Title" name='title' autofocus
+                           value='<?php echo $title; ?>' />
+                    <textarea class='EditForm' name='text' id='tutorialText' rows="50"
+                              cols="30"><?php echo $message; ?></textarea>
+                    <input type='submit' class='save' name='save' value='Save' />
                 </form>
 
-_END;
+            <?php
             } else {
-                echo <<<_END
+                ?>
 
-                <form id='addTutorial'  name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
-                <input type='hidden' name='action' value='addTutorial'/>
-                <label>Title:<input type='text' name='title' /></label>
-                <textarea class='addForm' name='text' id='tutorialText' rows="50" cols="30"></textarea>
-                <input type='submit' class='save' name='save' value='Save'/>
+                <form id='addTutorial' name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
+                    <input type='hidden' name='action' value='addTutorial' />
+                    <input id='title' type='text' placeholder="Title" name='title' autofocus />
+                    <textarea class='addForm' name='text' id='tutorialText' rows="50" cols="30"></textarea>
+                    <input type='submit' class='save' name='save' value='Save' />
                 </form>
 
 
-_END;
+            <?php
             }
         } else {
             echo($this->model->error);

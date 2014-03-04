@@ -18,36 +18,37 @@ class LoginView extends View {
         if (!$loggedIn) {
 
             echo($this->model->error);
-            echo("<form name='login' method='post' action='./index.php?page=login'>");
-            echo("<table>");
-            echo("<tr>");
-            echo("<td>");
-            echo("<label for='name'>Username</label>");
-            echo("</td>");
-            echo("<td>");
-            echo("<input id='name' name='user' value='");
-            $this->model->user;
-            echo("' type='text'/>");
-            echo("</td>");
-            echo("</tr>");
-            echo("<tr>");
-            echo("<td>");
-            echo("<label for='pass'>Password</label>");
-            echo("</td>");
-            echo("<td>");
-            echo("<input id='pass' name='pass' type='password'/>");
-            echo("</td>");
-            echo("</tr>");
-            echo("<tr>");
-            echo("<td>");
-            echo("<input type='hidden' name='action' value='login'/>");
-            echo("</td>");
-            echo("<td>");
-            echo("<input type='submit' name='submit'/>");
-            echo("</td>");
-            echo("</tr>");
-            echo("</table>");
-            echo("</form>");
+            ?>
+            <form name='login' method='post' action='./index.php?page=login'>
+                <table>
+                    <tr>
+                        <td>
+                            <label for='name'>Username</label>
+                        </td>
+                        <td>
+                            <input autofocus id='name' name='user' value='<?php echo $this->model->user; ?>' type='text' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for='pass'>Password</label>
+                        </td>
+                        <td>
+                            <input id='pass' name='pass' type='password' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type='hidden' name='action' value='login' />
+                        </td>
+                        <td>
+                            <input type='submit' name='submit' />
+                        </td>
+                    </tr>
+                </table>
+                echo("
+            </form>
+        <?php
         } else {
             echo("Please <a href='./index.php?page=login&action=logout'>click here</a> to logout.");
         }

@@ -47,17 +47,17 @@ class ItemFormView extends View {
             $id = $this->model->area->getIdEditableArea();
             $text = $this->model->area->getMessage();
             if ($this->model->msg === '') {
-                echo <<<_END
-                <form  name='editArea' method='post' action='./index.php?page=edit&item=$itemId'>
-                <input type='hidden' name='action' value='editArea'/>
-                <label for='title'>Title</label>
-                <input id='title' type='text' name='title' value='$title'/>
-                <input type='hidden' name='areaId' value='$id'/>
-                <textarea name=text rows="4" cols="50" wrap='hard'>$text</textarea>
-                <input type='submit' name='save' value='Save'/>
+                ?>
+                <form name='editArea' method='post' action='./index.php?page=edit&item=<?php echo $itemId; ?>'>
+                    <input type='hidden' name='action' value='editArea' />
+                    <input id='title' type='text' placeholder="Title" name='title' autofocus
+                           value='<?php echo $title; ?>' />
+                    <input type='hidden' name='areaId' value='<?php echo $id; ?>' />
+                    <textarea class='editForm' name=text rows="4" cols="50" wrap='hard'><?php echo $text; ?></textarea>
+                    <input class='save' type='submit' name='save' value='Save' />
                 </form>
 
-_END;
+            <?php
             }
             echo $this->model->msg;
         } else {
@@ -65,19 +65,20 @@ _END;
             $itemName = $this->model->item->getName();
             $details = $this->model->item->getDetails();
             if ($this->model->msg === '') {
-                echo <<<_END
-                <form  name='edit' method='post' action='./index.php?page=edit&item=$itemId' enctype='multipart/form-data'>
-                <input type='hidden' name='action' value='editItem'/>
-                <label for='name'>Name</label>
-                <input id='name' type='text' name='name' value='$itemName'/>
-                <label for='image'>Image</label>
-                <input type='file' id='image' name='image' size='14' maxlength='32' />
-                <label for='details'>Details</label>
-                <textarea name='details' id='details' wrap="hard" rows="4" cols="50">$details</textarea>
-                <input type='submit' name='save' value='Save'/>
+                ?>
+                <form name='edit' method='post' action='./index.php?page=edit&item=<?php echo $itemId; ?>'
+                      enctype='multipart/form-data'>
+                    <input type='hidden' name='action' value='editItem' />
+                    <input id='name' type='text' name='name' placeholder="Name" autofocus
+                           value='<?php echo $itemName; ?>' />
+                    <label for='image'>Icon</label>
+                    <input type='file' id='image' name='image' size='14' maxlength='32' />
+                    <textarea class='editForm' name='details' id='details' wrap="hard" placeholder="Details" rows="4"
+                              cols="50"><?php echo $details; ?></textarea>
+                    <input class='save' type='submit' name='save' value='Save' />
                 </form>
 
-_END;
+            <?php
             }
             echo $this->model->msg;
         }
@@ -86,20 +87,18 @@ _END;
     public function addItem() {
         $nameCategory = $this->model->categoryName;
         if ($this->model->msg === '') {
-            echo <<<_END
-                <form  name='edit' method='post' action='./index.php?page=edit' enctype='multipart/form-data'>
-                <input type='hidden' name='action' value='addItem'/>
-                <input type='hidden' name='categoryId' value='addItem'/>
-                <label for='name'>Name</label>
-                <input id='name' type='text' name='name' />
-                <label for='image'>Image</label>
+            ?>
+            <form name='add' method='post' action='./index.php?page=edit' enctype='multipart/form-data'>
+                <input type='hidden' name='action' value='addItem' />
+                <input type='hidden' name='categoryId' value='addItem' />
+                <input id='name' type='text' name='name' placeholder="Name" />
+                <label for='image'>Icon</label>
                 <input type='file' id='image' name='image' size='14' maxlength='32' />
-                <input type='hidden' name='categoryName' value='$nameCategory'/> 
-                <label for='details'>Details</label>
-                <textarea name='details' id='details' rows="4" cols="50"></textarea>
-                <input type='submit' name='save' value='Save'/>
-                </form>
-_END;
+                <input type='hidden' name='categoryName' value='<?php echo $nameCategory; ?>' />
+                <textarea class='addForm' name='details' id='details' rows="4" cols="50">Add details.</textarea>
+                <input class='save' type='submit' name='save' value='Save' />
+            </form>
+        <?php
         }
         echo $this->model->msg;
     }
@@ -107,15 +106,14 @@ _END;
     public function addArea() {
         if ($this->model->msg === '') {
             $itemId = $this->model->item->getIdItem();
-            echo <<<_END
-                <form  name='addArea' method='post' action='./index.php?page=edit&item=$itemId'>
-                <input type='hidden' name='action' value='addArea'/>
-                <label for='title'>Title</label>
-                <input id='title' type='text' name='title'/>
-                <textarea name='text' rows="4" cols="50"></textarea>
-                <input type='submit' name='save' value='Save'/>
-                </form>
-_END;
+            ?>
+            <form name='addArea' method='post' action='./index.php?page=edit&item=<?php echo $itemId; ?>'>
+                <input type='hidden' name='action' value='addArea' />
+                <input id='title' type='text' placeholder="Title" name='title' autofocus />
+                <textarea class='addForm' name='text' rows="4" cols="50"></textarea>
+                <input class='save' type='submit' name='save' value='Save' />
+            </form>
+        <?php
         }
         echo $this->model->msg;
     }

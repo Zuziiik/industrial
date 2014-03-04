@@ -333,10 +333,32 @@ span.title, span.message {
     float: left;
 }
 
-#title, #Ltitle, #message, .comments, #Lmessage, .submit {
+#Ltitle, #message, .comments, #Lmessage, .submit {
     clear: both;
     float: left;
 
+}
+
+#title, #name {
+    height:2em;
+    clear: both;
+    border: dashed lightgrey 0.1em;
+
+}
+
+input::-webkit-input-placeholder {
+    font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+    font-style: italic;
+    padding-left: 1em;
+}
+input::-moz-placeholder {
+    padding-left: 1em;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+    padding-left: 1em;
+}
+input:-ms-input-placeholder {
+    padding-left: 1em;
 }
 
 .deleteComment {

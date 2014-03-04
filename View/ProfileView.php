@@ -45,24 +45,25 @@ class ProfileView extends View {
     private function printMyProfile() {
         global $username;
         if (!$this->model->edit) {
-            echo <<<_END
-                <form name='editProfile' method='post' action='./index.php?page=profile&name=$username'>
-                <input type='hidden' name='action' value='editProfile'/>
-                <input type='submit' name='edit' value='Edit Profile'/>
-                </form>
-_END;
+            ?>
+            <form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo $username; ?>'>
+                <input type='hidden' name='action' value='editProfile' />
+                <input type='submit' name='edit' value='Edit Profile' />
+            </form>
+        <?php
         } else {
             $about = $this->model->user->getAbout();
-            echo <<<_END
-                <form  name='editProfile' method='post' action='./index.php?page=profile&name=$username' enctype='multipart/form-data'>
-                <input type='hidden' name='action' value='editProfile'/>
+            ?>
+            <form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo $username; ?>'
+                  enctype='multipart/form-data'>
+                <input type='hidden' name='action' value='editProfile' />
                 <label for='image'>Image</label>
                 <input type='file' id='image' name='image' size='14' maxlength='32' />
                 <label for='about'>About</label>
-                <textarea name='about' id='about' rows="4" cols="50" wrap="soft">$about</textarea>
-                <input type='submit' name='save' value='Save Profile'/>
-                </form>
-_END;
+                <textarea name='about' id='about' rows="4" cols="50" wrap="soft"><?php echo $about; ?></textarea>
+                <input type='submit' name='save' value='Save Profile' />
+            </form>
+        <?php
         }
         echo $this->model->msg;
     }

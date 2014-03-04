@@ -9,7 +9,7 @@ class NotFoundView extends View {
     }
 
     public function initialize() {
-        
+
     }
 
     public function printBody() {

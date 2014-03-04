@@ -30,11 +30,11 @@ class UsersView extends View {
                 echo("<span class='email'>Email: " . $email . "</span>");
                 echo("<span class='create'>Create Time: " . $create . "</span>");
                 echo("<span class='create'>Last Login: " . $login . "</span>");
-                echo <<<_END
-                    <form class='changeAdmin'  name='changeAdmin' method='post' action='./index.php?page=users'>
-                    <input type='hidden' name='action' value='changeAdmin'/>
-                    <input type='hidden' name='id' value='$id'/>
-_END;
+                ?>
+                <form class='changeAdmin' name='changeAdmin' method='post' action='./index.php?page=users'>
+                <input type='hidden' name='action' value='changeAdmin' />
+                <input type='hidden' name='id' value='<?php echo $id; ?>' />
+                <?php
                 if ($user->getAdmin()) {
                     echo("<span class='admin'>admin</span>");
                     echo("<input type='submit' name='submit' value='Make User'/>");
@@ -44,36 +44,36 @@ _END;
                     echo("<input type='submit' name='submit' value='Make Admin'/>");
                 }
                 echo("</form>");
-                if (!$user->getAdmin()) {
-                    echo <<<_END
-                    <form class='banUser'  name='banUser' method='post' action='./index.php?page=users'>
-                    <input type='hidden' name='action' value='banUser'/>
-                    <input type='hidden' name='id' value='$id'/>
-                    <label for='days'>Days:</label>
-                    <input type='text' id='days' name='days' value='3'/>
-                    <input type='submit' name='banUser' value='Ban User'/>
+            if (!$user->getAdmin()) {
+                ?>
+                <form class='banUser' name='banUser' method='post' action='./index.php?page=users'>
+                <input type='hidden' name='action' value='banUser' />
+                <input type='hidden' name='id' value='<?php echo $id; ?>' />
+                <label for='days'>Days:</label>
+                <input type='text' id='days' name='days' value='3' />
+                <input type='submit' name='banUser' value='Ban User' />
 
-_END;
-                    echo <<<_END
-                    <form class='unbanUser'  name='unbanUser' method='post' action='./index.php?page=users'>
-                    <input type='hidden' name='action' value='unbanUser'/>
-                    <input type='hidden' name='id' value='$id'/>
-                    <input type='submit' name='unbanUser' value='Unban User'/>
+                <?php
+                ?>
+                <form class='unbanUser' name='unbanUser' method='post' action='./index.php?page=users'>
+                <input type='hidden' name='action' value='unbanUser' />
+                <input type='hidden' name='id' value='<?php echo $id; ?>' />
+                <input type='submit' name='unbanUser' value='Unban User' />
 
-_END;
-                }
+            <?php
+            }
                 if ($user->getConfirmed()) {
                     echo("<span class='confirmed'>confirmed</span>");
                 } else {
                     echo("<span class='unconfirmed'>confirmed</span>");
                     $id = $user->getIdUser();
-                    echo <<<_END
-                    <form class='confirm'  name='confirm' method='post' action='./index.php?page=users'>
-                    <input type='hidden' name='action' value='confirm'/>
-                    <input type='hidden' name='id' value='$id'/>
-                    <input type='submit' name='confirm' value='Confirm'/>
+                    ?>
+                    <form class='confirm' name='confirm' method='post' action='./index.php?page=users'>
+                        <input type='hidden' name='action' value='confirm' />
+                        <input type='hidden' name='id' value='<?php echo $id; ?>' />
+                        <input type='submit' name='confirm' value='Confirm' />
                     </form>
-_END;
+                <?php
 
                 }
             }

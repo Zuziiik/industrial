@@ -20,12 +20,12 @@ class TutorialListView extends View {
         global $admin;
         global $loggedIn;
         if ($admin && $loggedIn) {
-            echo <<<_END
-                <form id='addTutorial'  name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
-                <input type='hidden' name='action' value='addTutorial'/>
-                <input type='submit' name='addTutorial' value='Add Tutorial'/>
-                </form>
-_END;
+            ?>
+            <form id='addTutorial' name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
+                <input type='hidden' name='action' value='addTutorial' />
+                <input type='submit' name='addTutorial' value='Add Tutorial' />
+            </form>
+        <?php
         }
         foreach ($this->model->tutorials as $tutorial) {
             $id = (int)$tutorial->getIdEditableArea();
@@ -37,13 +37,13 @@ _END;
             echo("<span class='tutorialMessage'>$message</span>");
             echo(" <a class='more' href='./index.php?page=tutorial&id=$id'>More...</a> ");
             if ($admin && $loggedIn) {
-                echo <<<_END
-                <form class='deleteButton'  name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
-                <input type='hidden' name='action' value='deleteTutorial'/>
-                <input type='hidden' name='id' value='$id'/>
-                <input  type='submit' name='deleteTutorial' value='Delete'/>
+                ?>
+                <form class='deleteButton' name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
+                    <input type='hidden' name='action' value='deleteTutorial' />
+                    <input type='hidden' name='id' value='<?php echo $id; ?>' />
+                    <input type='submit' name='deleteTutorial' value='Delete' />
                 </form>
-_END;
+            <?php
             }
         }
     }
