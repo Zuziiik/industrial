@@ -51,7 +51,7 @@ header {
 
 }
 
-header #login, header #logout, header #profile, header #edit, header #register, header #admin, header #users {
+header #login, header #logout, header #profile, header #edit, header #register, header #admin, header #users, header #recipeTemplates {
     padding-left: 1%;
     padding-right: 1%;
     text-decoration: none;
@@ -73,7 +73,7 @@ header #topPanel {
     color: red;
 }
 
-header #topPanel #profile, header #login, header #logout, header #register, header #edit, header #users {
+header #topPanel #profile, header #login, header #logout, header #register, header #edit, header #users, header #recipeTemplates {
     margin-right: 5%;
 }
 
@@ -241,6 +241,15 @@ img.picture {
     display: inline;
 }
 
+.buttonsItem, .messageTemplate {
+    clear: both;
+    float: left;
+}
+
+.buttonsItem form {
+    display: inline;
+}
+
 #addSection {
     clear: left;
     float: left;
@@ -340,7 +349,7 @@ span.title, span.message {
 }
 
 #title, #name {
-    height:2em;
+    height: 2em;
     clear: both;
     border: dashed lightgrey 0.1em;
 
@@ -351,12 +360,16 @@ input::-webkit-input-placeholder {
     font-style: italic;
     padding-left: 1em;
 }
+
 input::-moz-placeholder {
     padding-left: 1em;
 }
-input:-moz-placeholder {   /* Older versions of Firefox */
+
+input:-moz-placeholder {
+    /* Older versions of Firefox */
     padding-left: 1em;
 }
+
 input:-ms-input-placeholder {
     padding-left: 1em;
 }
@@ -421,9 +434,7 @@ div.reComment {
     float: left;
 }
 
-
-
-#tutorialText, .tutorialMessage, .addForm, .editForm{
+#tutorialText, .tutorialMessage, .addForm, .editForm {
     clear: both;
     float: left;
     width: 90%;

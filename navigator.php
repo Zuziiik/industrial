@@ -91,6 +91,21 @@ function navigate() {
             $control = new TutorialFormControl($model);
             $view = new TutorialFormView($model);
             break;
+        case 'recipeTemplates' :
+            $model = new RecipeTemplatesModel();
+            $control = new RecipeTemplatesControl($model);
+            $view = new RecipeTemplatesView($model);
+            break;
+        case 'templateForm' :
+            $model = new TemplateFormModel();
+            $control = new TemplateFormControl($model);
+            $view = new TemplateFormView($model);
+            break;
+        case 'recipe':
+            $model = new RecipeFormModel();
+            $control = new RecipeFormControl($model);
+            $view = new RecipeFormView($model);
+            break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

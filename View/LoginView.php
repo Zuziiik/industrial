@@ -23,10 +23,11 @@ class LoginView extends View {
                 <table>
                     <tr>
                         <td>
-                            <label for='name'>Username</label>
+                            <label for='username'>Username</label>
                         </td>
                         <td>
-                            <input autofocus id='name' name='user' value='<?php echo $this->model->user; ?>' type='text' />
+                            <input autofocus id='username' name='user' value='<?php echo $this->model->user; ?>'
+                                   type='text' />
                         </td>
                     </tr>
                     <tr>
@@ -46,11 +47,10 @@ class LoginView extends View {
                         </td>
                     </tr>
                 </table>
-                echo("
             </form>
         <?php
         } else {
-            echo("Please <a href='./index.php?page=login&action=logout'>click here</a> to logout.");
+
         }
         echo $this->model->msg;
         echo("</div>");

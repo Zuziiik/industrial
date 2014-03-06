@@ -132,6 +132,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `industrial`.`recipe_template`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `industrial`.`recipe_template` ;
+
+CREATE TABLE IF NOT EXISTS `industrial`.`recipe_template` (
+  `id_recipe_template` INT NOT NULL AUTO_INCREMENT,
+  `recipe_name` VARCHAR(45) NOT NULL,
+  `positions` TEXT NOT NULL,
+  PRIMARY KEY (`id_recipe_template`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `industrial`.`recipe`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `industrial`.`recipe` ;
@@ -139,14 +152,20 @@ DROP TABLE IF EXISTS `industrial`.`recipe` ;
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe` (
   `id_recipe` INT NOT NULL AUTO_INCREMENT,
   `item_id` INT NOT NULL,
-  `type` VARCHAR(45) NOT NULL,
-  `output` VARCHAR(45) NOT NULL,
+  `recipe_template_id` INT NOT NULL,
+  `output_item` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_recipe`),
   INDEX `fk_recipe_item_id` (`item_id` ASC),
   UNIQUE INDEX `id_recipe_UNIQUE` (`id_recipe` ASC),
+  INDEX `fk_recipe_recipe_template1_idx` (`recipe_template_id` ASC),
   CONSTRAINT `fk_recipe_item1`
     FOREIGN KEY (`item_id`)
     REFERENCES `industrial`.`item` (`id_item`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recipe_recipe_template1`
+    FOREIGN KEY (`recipe_template_id`)
+    REFERENCES `industrial`.`recipe_template` (`id_recipe_template`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

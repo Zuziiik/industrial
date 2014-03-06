@@ -18,10 +18,17 @@ class ItemView extends View {
         $itemId = $this->model->item->getIdItem();
         if ($admin && $loggedIn) {
             ?>
-            <form name='editItem' method='post' action='./index.php?page=edit&item=<?php echo $itemId; ?>'>
-                <input type='hidden' name='action' value='editItem' />
-                <input type='submit' name='editItem' value='Edit Item' />
-            </form>
+            <div class='buttonsItem'>
+                <form name='editItem' method='post' action='./index.php?page=edit&item=<?php echo $itemId; ?>'>
+                    <input type='hidden' name='action' value='editItem' />
+                    <input type='submit' name='editItem' value='Edit Item' />
+                </form>
+
+                <form name='addRecipe' method='post' action='./index.php?page=recipe&item=<?php echo $itemId; ?>'>
+                    <input type='hidden' name='action' value='addRecipe' />
+                    <input type='submit' name='addRecipe' value='Add Recipe' />
+                </form>
+            </div>
         <?php
         }
         foreach ($this->model->editArea as $area) {
