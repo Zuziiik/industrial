@@ -287,6 +287,32 @@ img.itemIcon {
 
 }
 
+div.divImageTemplate {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+img.imageTemplate, div.divImageTemplate {
+    clear: left;
+    float: left;
+}
+
+div.templateIconDiv {
+    clear: left;
+    float: left;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 1px dashed red;
+}
+
+.deleteTemplate, .template {
+    position: relative;
+    clear: both;
+    float: left;
+}
+
 span.msg {
     color: green;
     float: left;

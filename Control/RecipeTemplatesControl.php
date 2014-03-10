@@ -14,9 +14,20 @@ class RecipeTemplatesControl extends Control {
         global $loggedIn;
         global $admin;
         if ($loggedIn && $admin) {
-
+            if (isset($_POST['action']) && $_POST['action'] == 'deleteTemplate') {
+                $this->delete();
+            }
+            $this->model->templates = RecipeTemplateDAO::selectAll();
         } else {
             $this->model->error = "<span class='error'>You're not logged in, or don`t have permissions for this.</span>";
+        }
+    }
+
+    private function delete() {
+        if (isset($_POST['deleteTemplate'])) {
+            $id = (int)sanitizeString($_POST['id']);
+            $template = RecipeTemplateDAO::selectById($id);
+            RecipeTemplateDAO::delete($template);
         }
     }
 
