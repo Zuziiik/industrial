@@ -1,6 +1,7 @@
 <?php
 
 include_once 'View.php';
+include_once dirname(__FILE__) . '/../Model/Database/RecipeDAO.php';
 
 class ItemView extends View {
 
@@ -15,7 +16,29 @@ class ItemView extends View {
     public function printBody() {
         global $loggedIn;
         global $admin;
-        $itemId = $this->model->item->getIdItem();
+        $itemId = (int) $this->model->item->getIdItem();
+        $recipes = RecipeDAO::selectByItemId($itemId);
+        $itemName = $this->model->item->getName();
+        ?>
+        <h2>Recipe</h2>
+        <?php
+        foreach ($recipes as $recipe) {
+            $outputName = $recipe->getOutput();
+            if ($outputName == $itemName) {
+                //TODO print recipe
+            }
+        }
+        ?>
+        <h2>Usage</h2>
+        <?php
+        foreach ($recipes as $recipe) {
+            $outputName = $recipe->getOutput();
+            if ($outputName != $itemName) {
+                //TODO print recipe
+            }
+        }
+        ?>
+        <?php
         if ($admin && $loggedIn) {
             ?>
             <div class='buttonsItem'>

@@ -43,7 +43,7 @@ class LoginControl extends Control {
 
             global $loggedIn;
             $loggedIn = TRUE;
-            $this->model->msg = "You are now logged in.  <a href='index.php'> click here </a>to continue.";
+            echo("<script>window.history.go(-2);</script>");
         }
     }
 

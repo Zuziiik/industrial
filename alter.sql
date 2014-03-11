@@ -82,34 +82,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `industrial`.`edited`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `industrial`.`edited` ;
-
-CREATE TABLE IF NOT EXISTS `industrial`.`edited` (
-  `id_edited` INT NOT NULL AUTO_INCREMENT,
-  `id_editable_area` INT NOT NULL,
-  `user_id_user` INT NOT NULL,
-  `editing` TINYINT(1) NOT NULL,
-  `time_of_start` DATETIME NOT NULL,
-  INDEX `fk_edited_editable_area1_idx` (`id_editable_area` ASC),
-  INDEX `fk_edited_user1_idx` (`user_id_user` ASC),
-  PRIMARY KEY (`id_edited`),
-  UNIQUE INDEX `id_edited_UNIQUE` (`id_edited` ASC),
-  CONSTRAINT `fk_edited_editable_area1`
-    FOREIGN KEY (`id_editable_area`)
-    REFERENCES `industrial`.`editable_area` (`id_editable_area`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_edited_user1`
-    FOREIGN KEY (`user_id_user`)
-    REFERENCES `industrial`.`user` (`id_user`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `industrial`.`comment`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `industrial`.`comment` ;

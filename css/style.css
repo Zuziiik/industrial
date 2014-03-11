@@ -455,12 +455,23 @@ div.reComment {
     height: 1.5em;
 }
 
-.more {
+.more, .newsMessage, #addNews {
     clear: left;
     float: left;
 }
 
-#tutorialText, .tutorialMessage, .addForm, .editForm {
+.editNews {
+    float: left;
+}
+
+.addForm, .editForm{
+    clear: both;
+    float: left;
+    height: 50em;
+    width: 90%;
+}
+
+#tutorialText, .tutorialMessage {
     clear: both;
     float: left;
     width: 90%;

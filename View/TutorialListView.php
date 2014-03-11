@@ -32,10 +32,9 @@ class TutorialListView extends View {
             $title = $tutorial->getTitle();
             $message = $tutorial->getMessage();
             $message = substr($message, 0, 300);
-
-            echo("<span class='tutorialTitle'><h2>$title</h2></span>");
-            echo("<span class='tutorialMessage'>$message</span>");
-            echo(" <a class='more' href='./index.php?page=tutorial&id=$id'>More...</a> ");
+            ?><span class='tutorialTitle'><h2><?php echo $title; ?></h2></span><?php
+            ?><span class='tutorialMessage'><?php echo $message; ?></span><?php
+            ?><a class='more' href='./index.php?page=tutorial&id=<?php echo $id; ?>'>More...</a><?php
             if ($admin && $loggedIn) {
                 ?>
                 <form class='deleteButton' name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>

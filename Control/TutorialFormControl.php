@@ -56,8 +56,7 @@ class TutorialFormControl extends Control {
             $title = sanitizeString($_POST['title']);
             $message = sanitizeTextArea($_POST['text']);
             $date = date("Y-m-d H:i:s", time());
-            $weight = EditableAreaDAO::selectHighestWeight() + 1;
-            $tutorial = new EditableArea(666, NULL, $type, $date, $title, $message, $weight);
+            $tutorial = new EditableArea(666, NULL, $type, $date, $title, $message, NULL);
             EditableAreaDAO::insert($tutorial);
             $this->model->add = FALSE;
             echo("<script>window.location = './index.php?page=tutorialList';</script>");

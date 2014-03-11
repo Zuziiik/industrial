@@ -31,6 +31,16 @@ function navigate() {
             $control = new HomeControl($model);
             $view = new HomeView($model);
             break;
+        case 'news':
+            $model = new NewsModel();
+            $control = new NewsControl($model);
+            $view = new NewsView($model);
+            break;
+        case 'newsEdit':
+            $model = new NewsFormModel();
+            $control = new NewsFormControl($model);
+            $view = new NewsFormView($model);
+            break;
         case 'recipes':
             $model = new ItemListModel();
             $control = new ItemListControl($model);

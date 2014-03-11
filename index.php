@@ -66,10 +66,10 @@ include_once 'menu.php';
 echo("</header><body><h1>");
 $view->printPageHeader();
 echo("</h1><section><div id='content'>");
-//echo "get: ";
-//var_dump($_GET);
-//echo "</br>post: ";
-//var_dump($_POST);
+echo "get: ";
+var_dump($_GET);
+echo "</br>post: ";
+var_dump($_POST);
 
 $view->printBody();
 echo("</div></section><footer>");

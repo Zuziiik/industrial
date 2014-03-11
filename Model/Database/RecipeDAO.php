@@ -28,11 +28,26 @@ class RecipeDAO {
 
     public static function selectById($id) {
         if (!is_int($id)) {
-            die('Argument passed isnt instance of int.');
+            die('Argument passed isn`t instance of int.');
         }
         $row = rowQueryMysql("SELECT id_recipe, item_id, recipe_template_id, output_item FROM recipe WHERE id_recipe='$id'");
         $recipe = new Recipe($row['0'], $row['1'], $row['2'], $row['3']);
         return $recipe;
+    }
+
+    public static function selectByItemId($id) {
+        if (!is_int($id)) {
+            die('Argument passed isn`t instance of int.');
+        }
+        $result = queryMysql("SELECT id_recipe, item_id, recipe_template_id, output_item FROM recipe WHERE item_id='$id'");
+        $n = mysql_num_rows($result);
+        $recipes = array();
+        for ($i = 0; $i < $n; ++$i) {
+            $row = mysql_fetch_row($result);
+            $recipe = new Recipe($row['0'], $row['1'], $row['2'], $row['3']);
+            $recipes[$i] = $recipe;
+        }
+        return $recipes;
     }
 
     public static function selectAll() {

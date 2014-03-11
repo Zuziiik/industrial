@@ -16,7 +16,7 @@ class ProfileControl extends Control {
             $this->model->edit = FALSE;
             $this->model->username = sanitizeString($_GET['name']);
             $user = UserDAO::selectByName($this->model->username);
-            $id = $user->getIdUser();
+            $id = (int)$user->getIdUser();
             if (UserDAO::userExists($id)) {
                 $this->model->user = $user;
                 if (isset($_POST['action']) == 'editProfile') {
