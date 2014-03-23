@@ -9,7 +9,7 @@ $view->initialize();
 ?>
     <!DOCTYPE html>
     <head>
-        <meta charset='UTF-8' />
+        <meta charset='UTF-8'/>
         <script type="text/javascript" src="./tinymce/tinymce.min.js"></script>
         <script type="text/javascript">
             tinymce.init({
@@ -54,10 +54,10 @@ $view->initialize();
             });
 
         </script>
-        <link rel='stylesheet' type='text/css' href='css/style.css' title='default' />
+        <link rel='stylesheet' type='text/css' href='css/style.css' title='default'/>
 
     </head>
-    <title>
+<title>
 <?php
 
 $view->printTitle();
@@ -66,16 +66,20 @@ include_once 'menu.php';
 echo("</header><body><h1>");
 $view->printPageHeader();
 echo("</h1><section><div id='content'>");
-echo "get: ";
-var_dump($_GET);
-echo "</br>post: ";
-var_dump($_POST);
-
+//?>
+<!--    <pre>-->
+<!--            --><?php
+//            echo "get: ";
+//            var_dump($_GET);
+//            echo "</br>post: ";
+//            var_dump($_POST);
+//            ?>
+<!--    </pre>-->
+<?php
 $view->printBody();
 echo("</div></section><footer>");
 $view->printFooter();
 echo("</footer><br class='clear' /></body></html>");
-
 
 
 /*

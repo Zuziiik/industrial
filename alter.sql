@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `industrial`.`recipe_template` (
   `id_recipe_template` INT NOT NULL AUTO_INCREMENT,
   `recipe_name` VARCHAR(45) NOT NULL,
   `positions` TEXT NOT NULL,
+  `image_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_recipe_template`))
 ENGINE = InnoDB;
 
@@ -160,7 +161,7 @@ DROP TABLE IF EXISTS `industrial`.`recipe_item` ;
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe_item` (
   `item_item_id` INT NOT NULL,
   `recipe_id_recipe` INT NOT NULL,
-  `table_pos` INT NOT NULL,
+  `table_pos` VARCHAR(45) NOT NULL,
   INDEX `fk_recipe_item_item1_idx` (`item_item_id` ASC),
   INDEX `fk_recipe_item_recipe1_idx` (`recipe_id_recipe` ASC),
   CONSTRAINT `fk_recipe_item_item`

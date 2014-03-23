@@ -7,6 +7,7 @@ class RecipeFormModel {
     public $add;
     public $edit;
     public $error;
+	public $recipeId;
 
     function __construct() {
 
