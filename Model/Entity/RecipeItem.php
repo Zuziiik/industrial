@@ -8,13 +8,13 @@ class RecipeItem {
     /** @var int */
     protected $recipeId;
 
-    /** @var int */
+    /** @var string */
     protected $tablePos;
 
     /**
      * @param int $itemId
      * @param int $recipeId
-     * @param int $tablePos
+     * @param string $tablePos
      */
     function __construct($itemId, $recipeId, $tablePos) {
         $this->itemId = $itemId;
@@ -51,7 +51,7 @@ class RecipeItem {
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getTablePos() {
         return $this->tablePos;

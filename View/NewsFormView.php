@@ -29,7 +29,7 @@ class NewsFormView extends View {
                 <form name='addNews' method='post' action='./index.php?page=newsEdit'>
                     <input type='hidden' name='action' value='addNews' />
                     <input id='title' type='text' placeholder="Title" name='title' autofocus />
-                    <textarea class='addForm' id='message' cols='30' rows='6' name='message'></textarea>
+                    <textarea class='addForm' id='editable' cols='30' rows='6' name='message'></textarea>
                     <input class='save' type='submit' name='save' value='Save' />
                 </form>
             <?php
@@ -43,7 +43,7 @@ class NewsFormView extends View {
                     <input type='hidden' name='action' value='editNews' />
                     <input type='hidden' name='id' value='<?php echo $id; ?>' />
                     <input id='title' type='text' placeholder="Title" name='title' value="<?php echo $title; ?>" />
-                    <textarea class='editForm' id='message' cols='30' rows='6' name='message' autofocus><?php echo $message; ?> </textarea>
+                    <textarea class='editForm' id='editable' cols='30' rows='6' name='message' autofocus><?php echo $message; ?> </textarea>
                     <input class='save' type='submit' name='save' value='Save' />
                 </form>
             <?php

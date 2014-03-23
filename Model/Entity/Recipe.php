@@ -11,20 +11,15 @@ class Recipe {
     /** @var string */
     protected $recipeTemplateId;
 
-    /** @var string */
-    protected $uotput;
-
     /**
      * @param int    $idRecipe
      * @param int    $itemId
      * @param string $type
-     * @param string $uotput
      */
-    function __construct($idRecipe, $itemId, $recipeTemplateId, $uotput) {
+    function __construct($idRecipe, $itemId, $recipeTemplateId) {
         $this->idRecipe = $idRecipe;
         $this->itemId = $itemId;
         $this->recipeTemplateId = $recipeTemplateId;
-        $this->uotput = $uotput;
     }
 
     /**
@@ -63,24 +58,10 @@ class Recipe {
     }
 
     /**
-     * @return string
-     */
-    public function getUotput() {
-        return $this->uotput;
-    }
-
-    /**
      * @param $type
      */
     public function setRecipeTemplateId($recipeTemplateId) {
         $this->recipeTemplateId = $recipeTemplateId;
-    }
-
-    /**
-     * @param $uotput
-     */
-    public function setUotput($uotput) {
-        $this->uotput = $uotput;
     }
 
 }

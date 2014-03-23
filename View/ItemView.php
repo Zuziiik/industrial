@@ -2,6 +2,10 @@
 
 include_once 'View.php';
 include_once dirname(__FILE__) . '/../Model/Database/RecipeDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/RecipeTemplateDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/RecipeItemDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/ItemIconDAO.php';
 
 class ItemView extends View {
 
@@ -16,30 +20,48 @@ class ItemView extends View {
     public function printBody() {
         global $loggedIn;
         global $admin;
-        $itemId = (int) $this->model->item->getIdItem();
+        $itemId = (int)$this->model->item->getIdItem();
         $recipes = RecipeDAO::selectByItemId($itemId);
         $itemName = $this->model->item->getName();
         ?>
         <h2>Recipe</h2>
+
         <?php
         foreach ($recipes as $recipe) {
-            $outputName = $recipe->getOutput();
+            $outputId = (int)$recipe->getItemId();
+            $recipeId = (int)$recipe->getIdRecipe();
+            $recipeItems = RecipeItemDAO::selectByRecipeId($recipeId);
+            $item = ItemDAO::selectById($outputId);
+            $outputName = $item->getName();
             if ($outputName == $itemName) {
-                //TODO print recipe
+                $this->printRecipe($recipe, $recipeItems, $item, $outputName);
             }
+
         }
         ?>
         <h2>Usage</h2>
         <?php
         foreach ($recipes as $recipe) {
-            $outputName = $recipe->getOutput();
-            if ($outputName != $itemName) {
-                //TODO print recipe
-            }
+//            $recipeItems = array();
+//            $outputId = (int)$recipe->getItemId();
+//            $recipeId = (int)$recipe->getIdRecipe();
+//            $tempRecipeItems = RecipeItemDAO::selectByRecipeId($recipeId);
+//            foreach ($tempRecipeItems as $recipeItem) {
+//                $recipeItemId = (int)$recipeItem->getItemId();
+//                if($recipeItemId === $itemId){
+//                    array_push($recipeItems, $recipeItem);
+//                }
+//            }
+//            $item = ItemDAO::selectById($outputId);
+//            $outputName = $item->getName();
+//            if ($outputName != $itemName) {
+//                $this->printRecipe($recipe, $recipeItems, $item);
+//            }
         }
         ?>
         <?php
         if ($admin && $loggedIn) {
+            $templates = RecipeTemplateDAO::selectAll();
             ?>
             <div class='buttonsItem'>
                 <form name='editItem' method='post' action='./index.php?page=edit&item=<?php echo $itemId; ?>'>
@@ -47,10 +69,20 @@ class ItemView extends View {
                     <input type='submit' name='editItem' value='Edit Item' />
                 </form>
 
-                <form name='addRecipe' method='post' action='./index.php?page=recipe&item=<?php echo $itemId; ?>'>
+                <form id="addRecipe" name='addRecipe' method='post'
+                      action='./index.php?page=recipe&item=<?php echo $itemId; ?>'>
                     <input type='hidden' name='action' value='addRecipe' />
                     <input type='submit' name='addRecipe' value='Add Recipe' />
                 </form>
+
+                <select name="templateList" form="addRecipe">
+                    <?php foreach ($templates as $template) {
+                        $templateId = $template->getIdRecipeTemplate();
+                        $templateName = $template->getName();
+                        ?>
+                        <option value="<?php echo $templateId; ?>"><?php echo $templateName; ?></option> <?php
+                    } ?>
+                </select>
             </div>
         <?php
         }
@@ -135,6 +167,68 @@ class ItemView extends View {
         } else {
             echo("Add Item");
         }
+    }
+
+    private function printRecipe($recipe, $recipeItems, $outputItem, $outputName) {
+        $templateId = (int)$recipe->getRecipeTemplateId();
+        $template = RecipeTemplateDAO::selectById($templateId);
+        $templateImageName = $template->getImageName();
+        ?>
+        <div class="template">  <?php
+            $size = getimagesize("./pictures/templates/" . $templateImageName);
+            $recipeId = (int)$recipe->getIdRecipe();
+            $positions = $template->getPositions();
+            $positions = explode(' | ', $positions);
+            ?>
+            <div class="divImageTemplate" <?php echo $size[3]; ?>>
+                <img class="imageTemplate" src="./pictures/templates/<?php echo $templateImageName; ?>">
+                <?php
+                foreach ($recipeItems as $recipeItem) {
+                    $position = $this->findPosition($positions, $recipeItem);
+                    $xy = explode(' , ', $position);
+                    $x = $xy[0] - 16;
+                    $y = $xy[1] - 16;
+                    $recipeItemId = (int)$recipeItem->getItemId();
+                    $item = ItemDAO::selectById($recipeItemId);
+                    $recipeItemName = $item->getName();
+                    ?>
+                    <a href='./index.php?page=item&item=<?php echo $recipeItemId; ?>'> <img class='itemIcon'
+                                                                                            alt='<?php echo $recipeItemName; ?>'
+                                                                                            src='image.php?type=item&id=<?php echo $recipeItemId; ?>'
+                                                                                            style="position: absolute; top:<?php echo $y ?>px; left:<?php echo $x ?>px; width: 25px; height: 25px;">
+                    </a>
+                <?php
+                }
+                $length = count($positions) - 1;
+                $xy = explode(' , ', $positions[$length]);
+                $x = $xy[0] - 16;
+                $y = $xy[1] - 16;
+                $outputItemId = $outputItem->getIdItem();
+                ?>
+                <a href='./index.php?page=item&item=<?php echo $outputItemId; ?>'> <img class='itemIcon'
+                                                                                        alt='<?php echo $outputName; ?>'
+                                                                                        src='image.php?type=item&id=<?php echo $outputItemId; ?>'
+                                                                                        style="position: absolute; top:<?php echo $y ?>px; left:<?php echo $x ?>px; width: 25px; height: 25px;">
+                </a>
+            </div>
+            <form class="deleteRecipe" name='deleteRecipe' method='post'
+                  action='./index.php?page=item&item=<?php echo (int)$this->model->item->getIdItem(); ?>'>
+                <input type='hidden' name='action' value='deleteRecipe' />
+                <input type='hidden' name='id' value='<?php echo $recipeId; ?>' />
+                <input type='submit' name='deleteRecipe' value='Delete' />
+            </form>
+        </div>
+    <?php
+    }
+
+    private function findPosition($positions, $recipeItem) {
+        foreach ($positions as $position) {
+            $itemPos = $recipeItem->getTablePos();
+            if ($itemPos == $position) {
+                return $position;
+            }
+        }
+        return NULL;
     }
 
 }

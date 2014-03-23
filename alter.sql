@@ -125,7 +125,6 @@ CREATE TABLE IF NOT EXISTS `industrial`.`recipe` (
   `id_recipe` INT NOT NULL AUTO_INCREMENT,
   `item_id` INT NOT NULL,
   `recipe_template_id` INT NOT NULL,
-  `output_item` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_recipe`),
   INDEX `fk_recipe_item_id` (`item_id` ASC),
   UNIQUE INDEX `id_recipe_UNIQUE` (`id_recipe` ASC),
@@ -161,7 +160,7 @@ DROP TABLE IF EXISTS `industrial`.`recipe_item` ;
 CREATE TABLE IF NOT EXISTS `industrial`.`recipe_item` (
   `item_item_id` INT NOT NULL,
   `recipe_id_recipe` INT NOT NULL,
-  `table_pos` INT NULL,
+  `table_pos` INT NOT NULL,
   INDEX `fk_recipe_item_item1_idx` (`item_item_id` ASC),
   INDEX `fk_recipe_item_recipe1_idx` (`recipe_id_recipe` ASC),
   CONSTRAINT `fk_recipe_item_item`

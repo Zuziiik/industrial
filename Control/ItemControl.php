@@ -3,6 +3,8 @@
 include_once 'Control.php';
 include_once 'util.php';
 include_once dirname(__FILE__) . '/../Model/Database/ItemDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/RecipeDAO.php';
+include_once dirname(__FILE__) . '/../Model/Database/RecipeItemDAO.php';
 include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
 
 class ItemControl extends Control {
@@ -24,7 +26,10 @@ class ItemControl extends Control {
 
     private function exists($id) {
         if (isset($_POST['action']) && $_POST['action'] == 'delete') {
-            $this->delete($id);
+            $this->delete();
+        }
+        if (isset($_POST['action']) && $_POST['action'] == 'deleteRecipe') {
+            $this->deleteRecipe();
         }
         if (isset($_POST['action']) && $_POST['action'] == 'moveUp') {
             $this->move($id, "up");
@@ -43,6 +48,20 @@ class ItemControl extends Control {
             EditableAreaDAO::delete($area);
         }
     }
+
+    private function deleteRecipe() {
+        if (isset($_POST['id'])) {
+            $recipeId = (int) sanitizeString($_POST['id']);
+            $recipeItems = RecipeItemDAO::selectByRecipeId($recipeId);
+            foreach($recipeItems as $recipeItem){
+                RecipeItemDAO::delete($recipeItem);
+            }
+            $recipe = RecipeDAO::selectById($recipeId);
+            RecipeDAO::delete($recipe);
+        }
+    }
+
+
 
     private function move($itemId, $dir) {
         if (isset($_POST['areaId'])) {

@@ -43,7 +43,7 @@ class LoginControl extends Control {
 
             global $loggedIn;
             $loggedIn = TRUE;
-            echo("<script>window.history.go(-2);</script>");
+            echo("<script>window.location = './index.php?page=home';</script>");
         }
     }
 
