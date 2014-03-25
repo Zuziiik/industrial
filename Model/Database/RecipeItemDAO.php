@@ -19,11 +19,8 @@ class RecipeItemDAO {
 		queryMysql("UPDATE recipe_item SET table_pos='$c'" . "WHERE recipe_id_recipe='$a' AND item_item_id='$b'");
 	}
 
-	public static function delete(RecipeItem $recipeItem) {
-		$id1 = $recipeItem->getRecipeId();
-		$id2 = $recipeItem->getItemId();
-		$c = $recipeItem->getTablePos();
-		queryMysql("DELETE FROM recipe_item WHERE recipe_id_recipe='$id1' AND item_item_id='$id2' AND table_pos='$c'");
+	public static function delete($recipeId) {
+		queryMysql("DELETE FROM recipe_item WHERE recipe_id_recipe='$recipeId'");
 	}
 
 	public static function selectByIds($itemId, $recipeId) {

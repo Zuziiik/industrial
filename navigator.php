@@ -116,6 +116,16 @@ function navigate() {
             $control = new RecipeFormControl($model);
             $view = new RecipeFormView($model);
             break;
+		case 'links':
+			$model = new LinksModel();
+			$control = new LinksControl($model);
+			$view = new LinksView($model);
+			break;
+		case 'linksForm':
+			$model = new LinksFormModel();
+			$control = new LinksFormControl($model);
+			$view = new LinksFormView($model);
+			break;
         default :
             $model = new NotFoundModel();
             $control = new NotFoundControl($model);

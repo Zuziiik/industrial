@@ -78,10 +78,7 @@ class RecipeFormControl extends Control {
 				array_push($recipeItems, (int)sanitizeString($recipeItem));
 			}
 			$oldRecipe = RecipeDAO::selectById($this->model->recipeId);
-			$oldRecipeItems = RecipeItemDAO::selectByRecipeId($this->model->recipeId);
-			foreach ($oldRecipeItems as $oldRecipeItem) {
-				RecipeItemDAO::delete($oldRecipeItem);
-			}
+			RecipeItemDAO::delete($this->model->recipeId);
 			RecipeDAO::delete($oldRecipe);
 			end($recipeItems);
 			$index = key($recipeItems);

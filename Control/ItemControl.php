@@ -9,94 +9,89 @@ include_once dirname(__FILE__) . '/../Model/Database/EditableAreaDAO.php';
 
 class ItemControl extends Control {
 
-    function __construct($model) {
-        parent::__construct($model);
-    }
+	function __construct($model) {
+		parent::__construct($model);
+	}
 
-    public function initialize() {
-        if (isset($_GET['item'])) {
-            $id = (int) sanitizeString($_GET['item']);
-            if (ItemDAO::exists($id)) {
-                $this->exists($id);
-            } else {
-                header('Location: ./index.php?page=404');
-            }
-        }
-    }
+	public function initialize() {
+		if(isset($_GET['item'])) {
+			$id = (int)sanitizeString($_GET['item']);
+			if(ItemDAO::exists($id)) {
+				$this->exists($id);
+			} else {
+				header('Location: ./index.php?page=404');
+			}
+		}
+	}
 
-    private function exists($id) {
-        if (isset($_POST['action']) && $_POST['action'] == 'delete') {
-            $this->delete();
-        }
-        if (isset($_POST['action']) && $_POST['action'] == 'deleteRecipe') {
-            $this->deleteRecipe();
-        }
-        if (isset($_POST['action']) && $_POST['action'] == 'moveUp') {
-            $this->move($id, "up");
-        }
-        if (isset($_POST['action']) && $_POST['action'] == 'moveDown') {
-            $this->move($id, "down");
-        }
-        $this->model->item = ItemDAO::selectById($id);
-        $this->model->editArea = EditableAreaDAO::selectByTargetId($id);
-    }
+	private function exists($id) {
+		if(isset($_POST['action']) && $_POST['action'] == 'delete') {
+			$this->delete();
+		}
+		if(isset($_POST['action']) && $_POST['action'] == 'deleteRecipe') {
+			$this->deleteRecipe();
+		}
+		if(isset($_POST['action']) && $_POST['action'] == 'moveUp') {
+			$this->move($id, "up");
+		}
+		if(isset($_POST['action']) && $_POST['action'] == 'moveDown') {
+			$this->move($id, "down");
+		}
+		$this->model->item = ItemDAO::selectById($id);
+		$this->model->editArea = EditableAreaDAO::selectByTargetId($id);
+	}
 
-    private function delete() {
-        if (isset($_POST['areaId'])) {
-            $areaId = (int) sanitizeString($_POST['areaId']);
-            $area = EditableAreaDAO::selectById($areaId);
-            EditableAreaDAO::delete($area);
-        }
-    }
+	private function delete() {
+		if(isset($_POST['areaId'])) {
+			$areaId = (int)sanitizeString($_POST['areaId']);
+			$area = EditableAreaDAO::selectById($areaId);
+			EditableAreaDAO::delete($area);
+		}
+	}
 
-    private function deleteRecipe() {
-        if (isset($_POST['id'])) {
-            $recipeId = (int) sanitizeString($_POST['id']);
-            $recipeItems = RecipeItemDAO::selectByRecipeId($recipeId);
-            foreach($recipeItems as $recipeItem){
-                RecipeItemDAO::delete($recipeItem);
-            }
-            $recipe = RecipeDAO::selectById($recipeId);
-            RecipeDAO::delete($recipe);
-        }
-    }
+	private function deleteRecipe() {
+		if(isset($_POST['id'])) {
+			$recipeId = (int)sanitizeString($_POST['id']);
+			RecipeItemDAO::delete($recipeId);
+			$recipe = RecipeDAO::selectById($recipeId);
+			RecipeDAO::delete($recipe);
+		}
+	}
 
+	private function move($itemId, $dir) {
+		if(isset($_POST['areaId'])) {
+			$areaId = (int)sanitizeString($_POST['areaId']);
+			$areas = EditableAreaDAO::selectByTargetId($itemId);
+			$area = EditableAreaDAO::selectById($areaId);
+			$weight = $area->getWeight();
+			$pos = $this->getPosition($areas, $areaId);
+			$n = count($areas);
+			if($dir === "up" && $pos > 0) {
+				$temp = $areas[$pos - 1]->getWeight();
+				$areas[$pos - 1]->setWeight($weight);
+				$areas[$pos]->setWeight($temp);
+				EditableAreaDAO::update($areas[$pos - 1]);
+				EditableAreaDAO::update($areas[$pos]);
+			}
+			if($dir === "down" && $pos < $n - 1) {
+				$temp = $areas[$pos + 1]->getWeight();
+				$areas[$pos + 1]->setWeight($weight);
+				$areas[$pos]->setWeight($temp);
+				EditableAreaDAO::update($areas[$pos + 1]);
+				EditableAreaDAO::update($areas[$pos]);
+			}
+		}
+	}
 
-
-    private function move($itemId, $dir) {
-        if (isset($_POST['areaId'])) {
-            $areaId = (int) sanitizeString($_POST['areaId']);
-            $areas = EditableAreaDAO::selectByTargetId($itemId);
-            $area = EditableAreaDAO::selectById($areaId);
-            $weight = $area->getWeight();
-            $pos = $this->getPosition($areas, $areaId);
-            $n = count($areas);
-            if ($dir === "up" && $pos > 0) {
-                $temp = $areas[$pos - 1]->getWeight();
-                $areas[$pos - 1]->setWeight($weight);
-                $areas[$pos]->setWeight($temp);
-                EditableAreaDAO::update($areas[$pos - 1]);
-                EditableAreaDAO::update($areas[$pos]);
-            }
-            if ($dir === "down" && $pos < $n - 1) {
-                $temp = $areas[$pos + 1]->getWeight();
-                $areas[$pos + 1]->setWeight($weight);
-                $areas[$pos]->setWeight($temp);
-                EditableAreaDAO::update($areas[$pos + 1]);
-                EditableAreaDAO::update($areas[$pos]);
-            }
-        }
-    }
-
-    private function getPosition($areas, $areaId) {
-        $i = 0;
-        foreach ($areas as $a) {
-            if ($a->getIdEditableArea() == $areaId) {
-                break;
-            }
-            $i++;
-        }
-        return $i;
-    }
+	private function getPosition($areas, $areaId) {
+		$i = 0;
+		foreach ($areas as $a) {
+			if($a->getIdEditableArea() == $areaId) {
+				break;
+			}
+			$i++;
+		}
+		return $i;
+	}
 
 }

@@ -374,11 +374,16 @@ span.title, span.message {
 
 }
 
-#title, #name {
+#title, #name, #linkTitle, #linkMessage {
     height: 2em;
     clear: both;
     border: dashed lightgrey 0.1em;
 
+}
+
+#linkTitle, #linkMessage {
+    float: left;
+    margin-top: 0.5em;
 }
 
 input::-webkit-input-placeholder {
@@ -445,10 +450,18 @@ div.reComment {
     width: 100%;
 }
 
-#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton {
+#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton, #addResourcePack, #addLink, .link, .deleteLink, #editResourcePack, #editLink {
     clear: both;
     float: left;
 
+}
+
+.editLink {
+    float: left;
+}
+
+.deleteLink {
+    margin-bottom: 1em;
 }
 
 #addComment {
@@ -464,7 +477,7 @@ div.reComment {
     float: left;
 }
 
-.addForm, .editForm{
+.addForm, .editForm {
     clear: both;
     float: left;
     height: 50em;

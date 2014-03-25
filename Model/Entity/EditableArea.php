@@ -6,6 +6,8 @@ class EditableArea {
     const NEWS = 2;
     const SERVER = 3;
     const TUTORIAL = 4;
+	const LINK = 5;
+	const RESOURCE_PACK = 6;
 
     /** @var int */
     protected $idEditableArea;
