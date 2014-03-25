@@ -54,7 +54,7 @@ class RegisterControl extends Control {
         }
 
         if ($pass1 !== $pass2) {
-            $this->model->errorPass = "<span class='error'>Passwords doesnt match.</span>";
+            $this->model->errorPass = "<span class='error'>Passwords don`t match.</span>";
             $error = TRUE;
         }
 

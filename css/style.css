@@ -450,7 +450,8 @@ div.reComment {
     width: 100%;
 }
 
-#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton, #addResourcePack, #addLink, .link, .deleteLink, #editResourcePack, #editLink {
+#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton,
+#addResourcePack, #addLink, .link, .deleteLink, #editResourcePack, #editLink, #changePassword {
     clear: both;
     float: left;
 

@@ -7,101 +7,149 @@ include_once dirname(__FILE__) . '/../Model/Database/UserIconDAO.php';
 
 class ProfileControl extends Control {
 
-    function __construct($model) {
-        parent::__construct($model);
-    }
+	function __construct($model) {
+		parent::__construct($model);
+	}
 
-    public function initialize() {
-        if (isset($_GET['name'])) {
-            $this->model->edit = FALSE;
-            $this->model->username = sanitizeString($_GET['name']);
-            $user = UserDAO::selectByName($this->model->username);
-            $id = (int)$user->getIdUser();
-            if (UserDAO::userExists($id)) {
-                $this->model->user = $user;
-                if (isset($_POST['action']) == 'editProfile') {
-                    $this->model->edit = TRUE;
-                    $this->edit($id, $user);
-                }
-            }
-        }
-    }
+	public function initialize() {
+		global $loggedIn;
+		global $username;
+		if($loggedIn) {
+			if(isset($_GET['name'])) {
+				$this->model->edit = FALSE;
+				$this->model->username = sanitizeString($_GET['name']);
+				$user = UserDAO::selectByName($this->model->username);
+				$id = (int)$user->getIdUser();
+				if(UserDAO::userExists($id)) {
+					$this->model->user = $user;
+					if(isset($_POST['action']) == 'editProfile') {
+						$this->model->edit = TRUE;
+						$this->edit($id, $user);
+					}
+					if(isset($_POST['changePassword']) && ($username == $this->model->username)) {
+						$this->changePassword($user);
+					}
+				}
+			}
+		} else {
+			$this->model->error = "<span class='error'>You`re not logged in.</span>";
+		}
+	}
 
-    private function edit($userId, $user) {
-        if (isset($_POST['save'])) {
+	private function changePassword($user) {
+		$oldPassword = sanitizeString($_POST['oldPassword']);
+		$newPassword = sanitizeString($_POST['newPassword']);
+		$repeatPassword = sanitizeString($_POST['repeatPassword']);
+		if($this->checkPasswords($user, $oldPassword, $newPassword, $repeatPassword)) {
+			$hash = hash('sha256', $newPassword);
+			$salt = $this->createSalt();
+			$password = hash('sha256', $salt . $hash);
+			$user->setSalt($salt);
+			$user->setPassword($password);
+			UserDAO::update($user);
+			$this->model->msg = "<span class='msg'>Password Changed.</span>";
+		}
 
-            $name = sanitizeString($_GET['name']);
-            if (isset($_FILES['image']['name'])) {
-                $saveto = "$userId.png";
-                move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
-                $this->updateImage($saveto, $userId);
-            }
-            $about = sanitizeString($_POST['about']);
-            $user->setAbout($about);
-            UserDAO::update($user);
-            $this->model->msg = "User " . $name . " saved.";
-            $this->model->edit = FALSE;
-        }
-    }
+	}
 
-    private function updateImage($saveto, $userId) {
-        $typeok = TRUE;
+	private function createSalt() {
+		$text = md5(uniqid(rand(), TRUE));
+		return substr($text, 0, 3);
+	}
 
-        switch ($_FILES['image']['type']) {
-            case "image/gif":
-                $src = imagecreatefromgif($saveto);
-                break;
-            case "image/jpeg": // Both regular and progressive jpegs
-            case "image/pjpeg":
-                $src = imagecreatefromjpeg($saveto);
-                break;
-            case "image/png":
-                $src = imagecreatefrompng($saveto);
-                break;
-            default:
-                $typeok = FALSE;
-                break;
-        }
+	private function checkPasswords($user, $oldPassword, $newPassword, $repeatPassword) {
+		$pass = TRUE;
+		$hash = hash('sha256', $user->getSalt() . hash('sha256', $oldPassword));
+		if($hash != $user->getPassword()) {
+			$pass = FALSE;
+			$this->model->OldPasswordError = "<span class='error'>Password invalid</span>";
+		}
+		if($newPassword != $repeatPassword) {
+			$pass = FALSE;
+			$this->model->PasswordsMatchError = "<span class='error'>Passwords don`t match.</span>";
+		}
+		if($newPassword == '' || $oldPassword == '' || $repeatPassword == '') {
+			$pass = FALSE;
+			$this->model->EmptyFieldsError = "<span class='error'>Not all fields were entered</span>";
+		}
+		return $pass;
+	}
 
-        if ($typeok) {
+	private function edit($userId, $user) {
+		if(isset($_POST['save'])) {
 
-            $saveto = $this->resizeImage($saveto, $src);
+			$name = sanitizeString($_GET['name']);
+			if(isset($_FILES['image']['name'])) {
+				$saveto = "$userId.png";
+				move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
+				$this->updateImage($saveto, $userId);
+			}
+			$about = sanitizeString($_POST['about']);
+			$user->setAbout($about);
+			UserDAO::update($user);
+			$this->model->msg = "User " . $name . " saved.";
+			$this->model->edit = FALSE;
+		}
+	}
 
-            $content = addslashes(file_get_contents($saveto));
+	private function updateImage($saveto, $userId) {
+		$typeok = TRUE;
 
-            UserIconDAO::set(new UserIcon($userId, $content));
+		switch ($_FILES['image']['type']) {
+			case "image/gif":
+				$src = imagecreatefromgif($saveto);
+				break;
+			case "image/jpeg": // Both regular and progressive jpegs
+			case "image/pjpeg":
+				$src = imagecreatefromjpeg($saveto);
+				break;
+			case "image/png":
+				$src = imagecreatefrompng($saveto);
+				break;
+			default:
+				$typeok = FALSE;
+				break;
+		}
 
-            unlink($saveto);
-        }
-    }
+		if($typeok) {
 
-    private function resizeImage($saveto, $src) {
-        list($w, $h) = getimagesize($saveto);
+			$saveto = $this->resizeImage($saveto, $src);
 
-        $max = 100;
-        $tw = $w;
-        $th = $h;
+			$content = addslashes(file_get_contents($saveto));
 
-        if ($w > $h && $max < $w) {
-            $th = $max / $w * $h;
-            $tw = $max;
-        } elseif ($h > $w && $max < $h) {
-            $tw = $max / $h * $w;
-            $th = $max;
-        } elseif ($max < $w) {
-            $tw = $th = $max;
-        }
+			UserIconDAO::set(new UserIcon($userId, $content));
 
-        $tmp = imagecreatetruecolor($tw, $th);
-        imagecolortransparent($tmp, imagecolorallocatealpha($tmp, 0, 0, 0, 127));
-        imagealphablending($tmp, FALSE);
-        imagesavealpha($tmp, TRUE);
-        imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
-        imageconvolution($tmp, array(array(-1, -1, -1), array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
-        imagepng($tmp, $saveto, 9);
-        imagedestroy($tmp);
-        imagedestroy($src);
-        return $saveto;
-    }
+			unlink($saveto);
+		}
+	}
+
+	private function resizeImage($saveto, $src) {
+		list($w, $h) = getimagesize($saveto);
+
+		$max = 100;
+		$tw = $w;
+		$th = $h;
+
+		if($w > $h && $max < $w) {
+			$th = $max / $w * $h;
+			$tw = $max;
+		} elseif($h > $w && $max < $h) {
+			$tw = $max / $h * $w;
+			$th = $max;
+		} elseif($max < $w) {
+			$tw = $th = $max;
+		}
+
+		$tmp = imagecreatetruecolor($tw, $th);
+		imagecolortransparent($tmp, imagecolorallocatealpha($tmp, 0, 0, 0, 127));
+		imagealphablending($tmp, FALSE);
+		imagesavealpha($tmp, TRUE);
+		imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
+		imageconvolution($tmp, array(array(-1, -1, -1), array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
+		imagepng($tmp, $saveto, 9);
+		imagedestroy($tmp);
+		imagedestroy($src);
+		return $saveto;
+	}
 
 }
