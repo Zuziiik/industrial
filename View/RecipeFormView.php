@@ -13,6 +13,18 @@ class RecipeFormView extends View {
 
 	}
 
+	public function printNavigation() {
+		$itemName = $this->model->item->getName();
+		$itemId = $this->model->item->getIdItem();
+		if($this->model->add) {
+			?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  <a
+				href='index.php?page=item&item=<?php echo($itemId); ?>'><?php echo($itemName); ?></a> | add Recipe<?php
+		} else {
+			?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  <a
+				href='index.php?page=item&item=<?php echo($itemId); ?>'><?php echo($itemName); ?></a> | edit Recipe<?php
+		}
+	}
+
 	public function printTitle() {
 		if($this->model->add) {
 			echo("Add Recipe");

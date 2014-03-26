@@ -17,6 +17,11 @@ class ItemView extends View {
 
 	}
 
+	public function printNavigation() {
+		$itemName = $this->model->item->getName();
+		?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  <?php echo($itemName);
+	}
+
 	public function printBody() {
 		global $loggedIn;
 		global $admin;

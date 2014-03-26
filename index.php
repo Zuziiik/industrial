@@ -54,7 +54,7 @@ $view->initialize();
             });
 
         </script>
-        <link rel='stylesheet' type='text/css' href='css/style.css' title='default'/>
+        <link rel='stylesheet' type='text/css' href='css/oldStyle.css' title='default'/>
 
     </head>
 <title>
@@ -63,6 +63,7 @@ $view->initialize();
 $view->printTitle();
 echo("</title><header>");
 include_once 'menu.php';
+echo("<nav>".$view->printNavigation()."</nav>");
 echo("</header><body><h1>");
 $view->printPageHeader();
 echo("</h1><section><div id='content'>");

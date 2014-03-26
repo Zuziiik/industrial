@@ -16,6 +16,10 @@ class ServersView extends View {
         echo("Servers");
     }
 
+	public function printNavigation() {
+		echo("Servers");
+	}
+
     public function printBody() {
         global $loggedIn;
         global $admin;
@@ -50,6 +54,8 @@ class ServersView extends View {
                 </form>
             <?php
             }
+			$path = base64_encode("<a href='index.php?page=servers'>Servers</a>");
+			$this->model->commentViews[$i]->setPath($path);
             $this->model->commentViews[$i]->printBody();
             $i++;
 
@@ -58,8 +64,9 @@ class ServersView extends View {
                 ?>
                 <form id='addComment' name='addComment' method='post' action='./index.php?page=comment'>
                     <input type='hidden' name='action' value='addComment' />
-                    <input type='hidden' name='targetId' value='<?php echo $id; ?>' />
-                    <input type='hidden' name='type' value='<?php echo $type; ?>' />
+					<input type='hidden' name='path' value='<?php echo ($path); ?>' />
+                    <input type='hidden' name='targetId' value='<?php echo ($id); ?>' />
+                    <input type='hidden' name='type' value='<?php echo ($type); ?>' />
                     <input class='submit' type='submit' name='addComment' value='Comment' />
                 </form>
             <?php

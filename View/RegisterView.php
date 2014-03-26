@@ -12,6 +12,10 @@ class RegisterView extends View {
 
     }
 
+	public function printNavigation() {
+		?> <a href='.'>Home</a> | Register <?php
+	}
+
     public function printBody() {
         global $loggedIn;
         if (!$loggedIn) {

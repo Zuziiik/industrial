@@ -16,6 +16,10 @@ class LinksView extends View {
 		echo("Links");
 	}
 
+	public function printNavigation() {
+		echo("Links");
+	}
+
 	public function printBody() {
 		global $admin;
 		global $loggedIn;

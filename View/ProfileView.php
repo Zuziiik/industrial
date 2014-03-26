@@ -13,7 +13,23 @@ class ProfileView extends View {
 	}
 
 	public function printTitle() {
-		echo("Your Profile");
+		global $loggedIn;
+		global $username;
+		if($loggedIn && $username == $this->model->username) {
+			echo("Your Profile");
+		}else{
+			echo($this->model->username." Profile");
+		}
+	}
+
+	public function printNavigation() {
+		global $loggedIn;
+		global $username;
+		if($loggedIn && $username == $this->model->username) {
+			?> <a href='.'>Home</a> | Your Profile <?php
+		}else{
+			?> <a href='.'>Home</a> | <a href='index.php?page=users'>List Of Users</a> | <?php echo($this->model->username." Profile");
+		}
 	}
 
 	public function printBody() {
@@ -38,6 +54,8 @@ class ProfileView extends View {
 		global $username;
 		if($loggedIn && $username == $this->model->username) {
 			echo("Your Profile");
+		}else{
+			echo($this->model->username." Profile");
 		}
 
 	}

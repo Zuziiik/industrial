@@ -12,6 +12,10 @@ class ItemListView extends View {
 
     }
 
+	public function printNavigation() {
+		echo("Recipes & Resources");
+	}
+
     public function printBody() {
 
         global $admin;
@@ -32,7 +36,9 @@ class ItemListView extends View {
             echo("<span class='categoryName'>");
             $nameCategory = $category[0]->getName();
             $id = $category[0]->getIdCategory();
-            echo $nameCategory;
+            ?>
+			<h2><?php echo($nameCategory); ?></h2>
+			<?php
             if ($loggedIn && $admin) {
                 ?>
                 <form name='deleteCategory' method='post' action='./index.php?page=recipes'>

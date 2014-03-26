@@ -54,6 +54,22 @@ class LinksFormView extends View {
 		}
 	}
 
+	public function printNavigation() {
+		if($this->model->type == EditableArea::LINK) {
+			$type = 'Link';
+		} else {
+			$type = 'Resource Pack';
+		}
+
+		if($this->model->add) {
+			?> <a href='index.php?page=links'>Links</a> | Add <?php echo($type);
+		} else {
+			$title = $this->model->link->getTitle();
+			?> <a href='index.php?page=links'>Links</a> | Edit <?php echo($type." - ".$title);
+
+		}
+	}
+
 	private function add() {
 		if($this->model->type == EditableArea::LINK) {
 			?>

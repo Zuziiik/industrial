@@ -14,6 +14,8 @@ abstract class View {
 
     public abstract function printBody();
 
+	public abstract function printNavigation();
+
     public abstract function printPageHeader();
 
     public function printFooter() {

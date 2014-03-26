@@ -16,9 +16,17 @@ class TemplateFormView extends View {
         if ($this->model->add) {
             echo("Add Template");
         } else {
-            echo("EditTemplate");
+            echo("Edit Template");
         }
     }
+
+	public function printNavigation() {
+		if ($this->model->add) {
+			?> <a href='.'>Home</a> | <a href='index.php?page=recipeTemplates'>Recipe Templates</a> | Add Template <?php
+		} else {
+			//TODO
+		}
+	}
 
     public function printBody() {
         global $loggedIn;
@@ -54,7 +62,7 @@ class TemplateFormView extends View {
         if ($this->model->add) {
             echo("Add Template");
         } else {
-            echo("EditTemplate");
+            echo("Edit Template");
         }
     }
 

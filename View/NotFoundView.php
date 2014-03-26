@@ -12,6 +12,10 @@ class NotFoundView extends View {
 
     }
 
+	public function printNavigation() {
+
+	}
+
     public function printBody() {
         echo("Page not found.");
     }

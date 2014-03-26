@@ -1,0 +1,534 @@
+html {
+    position: relative;
+    height: 100%;
+    top: 0;
+    background-image: url(./../pictures/radioactive.jpg);
+    background-size: 20%;
+    color: black;
+    font-family: Arial, Tahoma;
+    margin: auto;
+    padding: 0;
+    font-size: 100%;
+    width: 100%;
+
+}
+
+textarea {
+    resize: none;
+}
+
+body {
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: white;
+    min-height: 100%;
+}
+
+.clear {
+    clear: both;
+    line-height: 0;
+}
+
+form {
+    height: 100%;
+    overflow: hidden;
+}
+
+h1 {
+    /*color: lightblue;*/
+    text-align: center;
+    clear: both;
+}
+
+h2, h3 {
+    clear: both;
+    float: left;
+
+}
+
+header {
+    width: 100%;
+
+}
+
+header #login, header #logout, header #profile, header #edit, header #register, header #admin, header #users, header #recipeTemplates {
+    padding-left: 1%;
+    padding-right: 1%;
+    text-decoration: none;
+    border: 0.15em solid black;
+    -moz-box-shadow: 0.1em 0.1em 0.1em #888;
+    -webkit-box-shadow: 0.1em 0.1em 0.1em #888;
+    box-shadow: 0.1em 0.1em 0.1em #888;
+}
+
+header #topPanel {
+    margin-top: 1%;
+    float: right;
+    display: inline;
+    margin-right: 5%;
+    width: 50%;
+}
+
+.error {
+    color: red;
+}
+
+header #topPanel #profile, header #login, header #logout, header #register, header #edit, header #users, header #recipeTemplates {
+    margin-right: 5%;
+}
+
+#menu {
+    clear: both;
+    width: 100%;
+}
+
+#menu ol {
+    list-style: none;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#menu li {
+    display: inline;
+}
+
+#menu a {
+    margin-bottom: 0.5%;
+    padding: 0.5%;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-decoration: none;
+    display: inline;
+    border: 0.15em solid black;
+}
+
+section {
+    width: 100%;
+    padding-bottom: 20%;
+    background-color: white;
+}
+
+#content {
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+section p {
+    clear: right;
+}
+
+article p {
+    clear: both;
+    float: left;
+}
+
+.login {
+    margin-left: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 70%;
+}
+
+/*-----ItemList-----*/
+#itemList {
+    display: block;
+    width: 100%;
+    float: right;
+}
+
+.DeleteItem {
+    width: 7em;
+    clear: both;
+    float: left;
+    height: 1.5em;
+}
+
+.AddItem {
+    clear: both;
+    float: left;
+}
+
+.categoryName {
+    clear: left;
+    float: left;
+    width: 100%;
+}
+
+.category {
+    display: block;
+    float: left;
+    margin-bottom: 2%;
+    width: 100%;
+}
+
+.item:first-child {
+    clear: left;
+    float: left;
+
+}
+
+.item {
+    display: inline-block;
+    background-color: #ffbb19;
+    border-radius: 1em;
+    margin-bottom: 1%;
+    margin-right: 1%;
+    padding: 1em;
+    width: 10em;
+    height: 10em;
+}
+
+.itemDetails {
+    clear: left;
+}
+
+.itemName {
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+
+.picture {
+    float: left;
+    width: 50%;
+    height: 50%;
+}
+
+img.picture {
+    width: 70%;
+    height: 70%;
+}
+
+.itemDetails {
+    width: 80%;
+    float: left;
+    margin-bottom: 1%;
+}
+
+.back {
+    float: left;
+}
+
+.itemTextArea {
+    clear: both;
+    float: left;
+    margin-bottom: 2%;
+}
+
+.itemTextArea article {
+    clear: both;
+    margin: 0;
+}
+
+.itemTextArea article h3, .itemTextArea article p {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.itemTextArea span.date {
+    clear: left;
+    float: left;
+    margin-bottom: 0.5em;
+}
+
+.buttonsItemEditArea {
+    clear: both;
+    float: left;
+}
+
+.buttonsItemEditArea form {
+    display: inline;
+}
+
+.buttonsItem, .messageTemplate {
+    clear: both;
+    float: left;
+}
+
+.buttonsItem form {
+    display: inline;
+}
+
+#addSection {
+    clear: left;
+    float: left;
+}
+
+.imageButton {
+    width: 15%;
+    height: 15%;
+}
+
+.picture {
+    width: 15em;
+    height: 15em;
+}
+
+img.itemIcon {
+    width: 4em;
+    height: 4em;
+}
+
+.username {
+    margin-top: 2%;
+}
+
+.admin, .user {
+    color: green;
+}
+
+.email, .username, .admin, .user, .create, .confirmed, .unconfirmed, .bans, .ban, .banUser {
+    clear: left;
+    float: left;
+}
+
+.more {
+
+}
+
+div.divImageTemplate {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+img.imageTemplate, div.divImageTemplate {
+    clear: left;
+    float: left;
+}
+
+div.templateIconDiv {
+    clear: left;
+    float: left;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 1px dashed red;
+}
+
+.deleteTemplate, .template {
+    position: relative;
+    clear: both;
+    float: left;
+}
+
+span.msg {
+    color: green;
+    float: left;
+    padding-right: 2em;
+}
+
+.confirmed {
+    color: green;
+}
+
+.unconfirmed {
+    color: red;
+}
+
+.confirm, .changeAdmin {
+    clear: left;
+    float: left;
+}
+
+#bans {
+    clear: left;
+    float: left;
+    margin-top: 2%;
+}
+
+div.server {
+    width: 44%;
+    margin: 1em;
+    padding: 0.5em;
+    background-color: #ffbb19;
+    border-radius: 1em;
+}
+
+div.server:nth-child(odd) {
+    clear: left;
+    float: left;
+}
+
+div.server:nth-child(even) {
+    clear: right;
+    float: right;
+}
+
+span.message {
+    border: 0.1em solid black;
+    padding: 0.5em;
+    background-color: white;
+    border-radius: 1em;
+}
+
+span.title, span.message {
+    clear: left;
+    float: left;
+}
+
+#Ltitle, #message, .comments, #Lmessage, .submit {
+    clear: both;
+    float: left;
+
+}
+
+#title, #name, #linkTitle, #linkMessage {
+    height: 2em;
+    clear: both;
+    border: dashed lightgrey 0.1em;
+
+}
+
+#linkTitle, #linkMessage {
+    float: left;
+    margin-top: 0.5em;
+}
+
+input::-webkit-input-placeholder {
+    font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+    font-style: italic;
+    padding-left: 1em;
+}
+
+input::-moz-placeholder {
+    padding-left: 1em;
+}
+
+input:-moz-placeholder {
+    /* Older versions of Firefox */
+    padding-left: 1em;
+}
+
+input:-ms-input-placeholder {
+    padding-left: 1em;
+}
+
+.deleteComment {
+    float: left;
+    width: 9em;
+    height: 1.5em;
+}
+
+.replyComment {
+    float: left;
+    width: 4em;
+    height: 1.5em;
+}
+
+.editComment {
+    float: left;
+    width: 7.5em;
+    height: 1.5em;
+}
+
+#replyComment {
+    float: left;
+    width: 80%;
+}
+
+div.comment:first-child, div.comment {
+    margin-left: 0;
+    width: 100%;
+}
+
+div.reComment {
+    clear: left;
+    margin-left: 10%;
+    width: 100%;
+}
+
+.commentMessage {
+    clear: left;
+    float: left;
+    width: 100%;
+}
+
+.commentUser {
+    float: left;
+    width: 100%;
+}
+
+#addComment, #deleteServer, #addServer, #addCategory, .tutorialMessage, .tutorialTitle, #tutorialText, .deleteButton,
+#addResourcePack, #addLink, .link, .deleteLink, #editResourcePack, #editLink, #changePassword {
+    clear: both;
+    float: left;
+
+}
+
+.editLink {
+    float: left;
+}
+
+.deleteLink {
+    margin-bottom: 1em;
+}
+
+#addComment {
+    height: 1.5em;
+}
+
+.more, .newsMessage, #addNews {
+    clear: left;
+    float: left;
+}
+
+.editNews {
+    float: left;
+}
+
+.addForm, .editForm {
+    clear: both;
+    float: left;
+    height: 50em;
+    width: 90%;
+}
+
+#tutorialText, .tutorialMessage {
+    clear: both;
+    float: left;
+    width: 90%;
+}
+
+.save {
+    clear: both;
+    float: right;
+    margin-top: 1em;
+}
+
+#editTutorial {
+    height: 1.5em;
+}
+
+#editServer {
+    float: left;
+}
+
+footer {
+    list-style-type: none;
+    width: auto;
+    font-size: 60%;
+    clear: left;
+
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.footer li {
+    display: inline-table;
+}
+
+.footer li:first-child address:after {
+    content: " Â· ";
+}
+
+.footer li:first-child + li:after {
+    content: " Â· ";
+}
+
+.footer li:first-child + li + li:after {
+    content: " Â· ";
+}

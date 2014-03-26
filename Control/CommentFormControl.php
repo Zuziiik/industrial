@@ -26,6 +26,7 @@ class CommentFormControl extends Control {
         if ($loggedIn && !$this->model->banned) {
             if (isset($_POST['action']) && $_POST['action'] == 'replyComment') {
                 $this->model->reply = TRUE;
+				$this->model->path = sanitizeString($_POST['path']);
                 $this->model->title = sanitizeString($_POST['title']);
                 $this->model->commentType = sanitizeString($_POST['type']);
                 $this->model->commentId = sanitizeString($_POST['commentId']);
@@ -33,6 +34,7 @@ class CommentFormControl extends Control {
             }
             if (isset($_POST['action']) && $_POST['action'] == 'editComment') {
                 $this->model->edit = TRUE;
+				$this->model->path = sanitizeString($_POST['path']);
                 $this->model->title = sanitizeString($_POST['title']);
                 $this->model->commentId = (int)sanitizeString($_POST['commentId']);
                 $this->model->message = sanitizeString($_POST['message']);
@@ -40,6 +42,7 @@ class CommentFormControl extends Control {
             }
             if (isset($_POST['action']) && $_POST['action'] == 'addComment') {
                 $this->model->add = TRUE;
+				$this->model->path = sanitizeString($_POST['path']);
                 $this->model->commentType = (int)sanitizeString($_POST['type']);
                 $this->model->targetId = (int)sanitizeString($_POST['targetId']);
                 $this->comment();
@@ -59,6 +62,7 @@ class CommentFormControl extends Control {
             $comment = new Comment(666, $userId, $targetId, $type, $title, $message);
             CommentDAO::insert($comment);
             $this->model->add = FALSE;
+			echo("<script>window.history.go(-2);</script>");
         }
     }
 
@@ -72,6 +76,7 @@ class CommentFormControl extends Control {
             $comment = new Comment(666, $userId, $targetId, $type, $title, $message);
             CommentDAO::insert($comment);
             $this->model->reply = FALSE;
+			echo("<script>window.history.go(-2);</script>");
         }
     }
 
@@ -84,6 +89,7 @@ class CommentFormControl extends Control {
             $comment->setMessage($message);
             CommentDAO::update($comment);
             $this->model->edit = FALSE;
+			echo("<script>window.history.go(-2);</script>");
         }
     }
 

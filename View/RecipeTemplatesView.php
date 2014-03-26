@@ -16,6 +16,10 @@ class RecipeTemplatesView extends View {
         echo("Recipe Templates");
     }
 
+	public function printNavigation() {
+		?> <a href='.'>Home</a> | Recipe Templates <?php
+	}
+
     public function printBody() {
         global $loggedIn;
         global $admin;

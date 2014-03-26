@@ -12,6 +12,15 @@ class ServerFormView extends View {
 
     }
 
+	public function printNavigation() {
+		if ($this->model->edit) {
+			$title = $this->model->server->getTitle();
+			?> <a href='index.php?page=servers'>Servers</a> | Edit <?php echo($title);
+		} else {
+			?> <a href='index.php?page=servers'>Servers</a> | Add Server <?php
+		}
+	}
+
     public function printTitle() {
         if ($this->model->edit) {
             echo("Edit Server");

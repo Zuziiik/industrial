@@ -12,6 +12,10 @@ class LoginView extends View {
 
     }
 
+	public function printNavigation() {
+		?> <a href='.'>Home</a> | Login <?php
+	}
+
     public function printBody() {
         global $loggedIn;
         echo("<div class='login'>");
