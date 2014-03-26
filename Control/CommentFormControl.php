@@ -47,7 +47,9 @@ class CommentFormControl extends Control {
                 $this->model->targetId = (int)sanitizeString($_POST['targetId']);
                 $this->comment();
             }
-        }
+        }else{
+			$this->model->error = "<span class='error'>You're banned or not logged in.</span>";
+		}
     }
 
     private function comment() {
