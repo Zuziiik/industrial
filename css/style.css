@@ -48,15 +48,7 @@ h2:after {
     background: #ff1600;
 }
 
-h3:after {
-    background: #ff1600;
-}
-
-h4:after {
-    background: #ff1600;
-}
-
-h1 {
+h1, .banner {
     font-size: 36px;
     line-height: 40px;
     margin: 1em 0 .6em 0;
@@ -79,19 +71,8 @@ h2 {
 
 h3 {
     margin: 1em 0 .6em 0;
-    padding: 0 0 0 20px;
+    text-decoration: underline;
     font-weight: bold;
-    color: #ffab00;
-    position: relative;
-    font-size: 24px;
-    line-height: 40px;
-}
-
-h4 {
-    margin: 1em 0 .6em 0;
-    padding: 0 0 0 20px;
-    font-weight: bold;
-    background-color: #ffab00;
     position: relative;
     font-size: 18px;
     line-height: 20px;
@@ -105,7 +86,7 @@ img {
 
 /*----------------Form Buttons----------------*/
 
-.addButton, .deleteButton {
+.addButton, .deleteButton, .editButton {
     margin-top: 0.5em;
     color: #990000;
     background-color: #ffab00;
@@ -113,7 +94,7 @@ img {
     padding: 0.1em;
 }
 
-.addButton:hover, .deleteButton:hover {
+.addButton:hover, .deleteButton:hover, .editButton:hover {
     background-color: #ff9000;
 }
 
@@ -125,11 +106,36 @@ img {
 
 /*-------------Top Panel---------------*/
 
+.banner{
+    width: 100%;
+}
+
+.wikiName {
+    margin-left: 4%;
+    clear: both;
+    float: left;
+}
+
+.bannerImage{
+    clear: left;
+    float: left;
+    margin: 1% 2%;
+    width: 80%;
+    height:80%;
+}
+
+/*-------------Top Panel---------------*/
+
 header #topPanel {
     margin-top: 0;
     float: right;
     display: inline;
     margin-right: 11%;
+    width: 100%;
+}
+
+header #topPanel ol {
+    margin-left: 43%;
 }
 
 header .modern {
@@ -166,13 +172,22 @@ header .embossed-link {
 
 #menu {
     clear: both;
-    width: 100%;
+    width: 86%;
+    margin: 10px 10px;
+}
+
+#menu.modern.embossed-link {
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+#menu.modern:hover {
+    background: #ffab00;
 }
 
 #menu ol {
     list-style: none;
-    margin-left: 6%;
-    margin-right: 6%;
+    margin: 0;
 }
 
 #menu li {
@@ -183,6 +198,40 @@ header .embossed-link {
     font-size: 150%;
     margin-right: 0.3%;
     padding: 10px 20px;
+}
+
+/*------------Navigation---------------*/
+
+nav {
+    clear: both;
+    margin-top: 0.5%;
+    margin-left: 4%;
+}
+
+nav a {
+    display: inline-block;
+    position: relative;
+    padding-left: 6px;
+    /* Font styles */
+    text-decoration: none;
+    color: #6AB3EC;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.9);
+}
+
+nav a:hover{
+    color: #3C9CE7;
+}
+
+nav a:before{
+    content: "\25BA";
+    font-size: 80%;
+    display: inline-block;
+    padding-right: 3px;
+    pointer-events: none;
+}
+
+nav a:hover:before {
+    color: #F2BF97;
 }
 
 /*-------------Homepage---------------*/
@@ -211,5 +260,18 @@ header .embossed-link {
 
 .more:hover:before {
     color: #F2BF97;
+}
+
+.newsMessage {
+    border: 0.1em dashed white;
+    padding: 0 1em;
+    border-radius: 0.5em;
+    width: 80%;
+}
+
+.newsMessage img {
+    width: 50%;
+    height: 50%;
+    margin: 1%;
 }
 

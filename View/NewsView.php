@@ -40,7 +40,7 @@ class NewsView extends View {
 		?>
 
 		<h2><?php echo ($title); ?></h2>
-		<span class='newsMessage'><?php echo ($message); ?></span>
+		<div class='newsMessage'><?php echo ($message); ?></div>
 	<?php
 	}
 

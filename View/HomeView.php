@@ -29,7 +29,7 @@ class HomeView extends View {
 			$title = $singleNews->getTitle();
 			$message = $singleNews->getMessage();
 			?><h3><?php echo $title; ?></h3><?php
-			?><span class='newsMessage'><?php echo $message; ?></span><?php
+			?><div class='newsMessage'><?php echo $message; ?></div><?php
 			?><a class='more' href='./index.php?page=news&id=<?php echo $id; ?>'>More...</a><?php
 			if($admin && $loggedIn) {
 				?>
@@ -48,7 +48,6 @@ class HomeView extends View {
 	}
 
 	public function printPageHeader() {
-		echo("Industrial Craft - Wiki");
 	}
 
 	public function printTitle() {

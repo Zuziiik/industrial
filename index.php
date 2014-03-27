@@ -9,7 +9,7 @@ $view->initialize();
 ?>
     <!DOCTYPE html>
     <head>
-        <meta charset='UTF-8'/>
+        <meta charset='UTF-8' />
         <script type="text/javascript" src="./tinymce/tinymce.min.js"></script>
         <script type="text/javascript">
             tinymce.init({
@@ -54,34 +54,55 @@ $view->initialize();
             });
 
         </script>
-        <link rel='stylesheet' type='text/css' href='css/oldStyle.css' title='default'/>
+        <link rel='stylesheet' type='text/css' href='css/style.css' title='default' />
 
     </head>
-<title>
-<?php
+    <title>
+        <?php
 
-$view->printTitle();
-echo("</title><header>");
-include_once 'menu.php';
-echo("<nav>".$view->printNavigation()."</nav>");
-echo("</header><body><h1>");
-$view->printPageHeader();
-echo("</h1><section><div id='content'>");
-//?>
-<!--    <pre>-->
-<!--            --><?php
-//            echo "get: ";
-//            var_dump($_GET);
-//            echo "</br>post: ";
-//            var_dump($_POST);
-//            ?>
-<!--    </pre>-->
-<?php
-$view->printBody();
-echo("</div></section><footer>");
-$view->printFooter();
-echo("</footer><br class='clear' /></body></html>");
+        $view->printTitle();
+        ?>
+    </title>
+    <header>
+        <?php
+        include_once 'menu.php';
+        ?>
+        <nav>
+            <?php
+            $view->printNavigation()
+            ?>
+        </nav>
+    </header>
+    <body><h1>
+        <?php
 
+        $view->printPageHeader();
+        ?>
+    </h1>
+    <section>
+        <div id='content'>
+            <!--    <pre>-->
+            <!--            --><?php
+            //            echo "get: ";
+            //            var_dump($_GET);
+            //            echo "</br>post: ";
+            //            var_dump($_POST);
+            //
+            ?>
+            <!--    </pre>-->
+            <?php
+            $view->printBody();
+            ?>
+        </div>
+    </section>
+    <footer>
+        <?php
+        $view->printFooter();
+        ?>
+    </footer>
+    <br class='clear' /></body>
+    </html>
+<?php
 
 /*
 
