@@ -27,7 +27,7 @@ class ServersView extends View {
             ?>
             <form id='addServer' name='addServer' method='post' action='./index.php?page=editServer'>
                 <input type='hidden' name='action' value='addServer' />
-                <input class='submit' type='submit' name='addServer' value='Add Server' />
+                <button class="addButton" type='submit' name='addServer'>Add Server</button>
             </form>
         <?php
         }
@@ -44,13 +44,13 @@ class ServersView extends View {
                 <form id='deleteServer' name='deleteServer' method='post' action='./index.php?page=servers'>
                     <input type='hidden' name='action' value='deleteServer' />
                     <input type='hidden' name='ServerId' value='<?php echo $id; ?>' />
-                    <input class='submit' type='submit' name='deleteServer' value='Delete Server' />
+                    <button class='deleteButton' type='submit' name='deleteServer'>Delete</button>
                 </form>
 
                 <form id='editServer' name='editServer' method='post' action='./index.php?page=editServer'>
                     <input type='hidden' name='action' value='editServer' />
                     <input type='hidden' name='ServerId' value='<?php echo $id; ?>' />
-                    <input class='submit' type='submit' name='editServer' value='Edit Server' />
+                    <button class='editButton' type='submit' name='editServer'>Edit</button>
                 </form>
             <?php
             }
@@ -67,7 +67,7 @@ class ServersView extends View {
 					<input type='hidden' name='path' value='<?php echo ($path); ?>' />
                     <input type='hidden' name='targetId' value='<?php echo ($id); ?>' />
                     <input type='hidden' name='type' value='<?php echo ($type); ?>' />
-                    <input class='submit' type='submit' name='addComment' value='Comment' />
+                    <button class='commentButton' type='submit' name='addComment'>Comment</button>
                 </form>
             <?php
             }

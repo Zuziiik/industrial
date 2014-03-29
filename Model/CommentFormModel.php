@@ -13,6 +13,7 @@ class CommentFormModel {
 	public $message;
 	public $path;
 	public $error;
+	public $confirmed;
 
 	function __construct() {
 		$this->banned = FALSE;

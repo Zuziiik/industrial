@@ -27,7 +27,7 @@ class TutorialListView extends View {
 			?>
 			<form id='addTutorial' name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
 				<input type='hidden' name='action' value='addTutorial'/>
-				<input type='submit' name='addTutorial' value='Add Tutorial'/>
+				<button class="addButton" type='submit' name='addTutorial'>Add Tutorial</button>
 			</form>
 		<?php
 		}
@@ -41,10 +41,10 @@ class TutorialListView extends View {
 			?><a class='more' href='./index.php?page=tutorial&id=<?php echo($id); ?>'>More...</a><?php
 			if($admin && $loggedIn) {
 				?>
-				<form class='deleteButton' name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
+				<form name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
 					<input type='hidden' name='action' value='deleteTutorial'/>
 					<input type='hidden' name='id' value='<?php echo($id); ?>'/>
-					<input type='submit' name='deleteTutorial' value='Delete'/>
+					<button class="deleteButton" type='submit' name='deleteTutorial'>Delete</button>
 				</form>
 			<?php
 			}

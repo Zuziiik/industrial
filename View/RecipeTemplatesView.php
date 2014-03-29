@@ -39,15 +39,15 @@ class RecipeTemplatesView extends View {
                     $id = $template->getIdRecipeTemplate();
                     $name = $template->getName();
                     $positions = $template->getPositions();
-                    $cords = explode(' | ', $positions);
+					$positions = explode(' | ', $positions);
                     ?> <h2><?php echo $name; ?></h2>
 
                     <div class="divImageTemplate" <?php echo $size[3]; ?>>
-                        <img class="imageTemplate" src="./pictures/templates/<?php echo $imageName; ?>">
+                        <img class="imageTemplate" src="./pictures/templates/<?php echo ($imageName); ?>">
                         <?php
-                        foreach ($cords as $cord) {
-                            if ($cord != '') {
-                                $xy = explode(' , ', $cord);
+                        foreach ($positions as $position) {
+                            if ($position != '') {
+                                $xy = explode(' , ', $position);
                                 $x = $xy[0] - 16;
                                 $y = $xy[1] - 16;
                                 ?>

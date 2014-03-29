@@ -70,7 +70,7 @@ class TemplateFormView extends View {
         $imageName = $this->model->imageName;
         $name = $this->model->name;
         $positions = $this->model->positions;
-        $cords = explode(' | ', $positions);
+		$positions = explode(' | ', $positions);
         ?>
         <span class="messageTemplate">Confirm cord's of <?php echo $name ?>`s Template</span>
         <form class="addForm" name='confirm' method='post' action='./index.php?page=templateForm'>
@@ -78,10 +78,10 @@ class TemplateFormView extends View {
             <input type="hidden" name="imageName" value="<?php echo $imageName ?>" />
             <input type='hidden' name='action' value='submitPositions' />
             <?php
-            foreach ($cords as $cord) {
-                if ($cord != '') {
+            foreach ($positions as $position) {
+                if ($position != '') {
                     ?>
-                    <input type="checkbox" name='cords[]' value="<?php echo $cord ?>" checked /><?php echo $cord ?></br>
+                    <input type="checkbox" name='cords[]' value="<?php echo ($position); ?>" checked /><?php echo ($position); ?></br>
                 <?php
                 }
             }
@@ -95,7 +95,7 @@ class TemplateFormView extends View {
         $imageName = $this->model->imageName;
         ?>
         <span class="messageTemplate">Select middle cords for items.</span>
-        <img id="imgid" src='./pictures/templates/<?php echo $this->model->imageName ?>' />
+        <img id="imgId" src='./pictures/templates/<?php echo $this->model->imageName ?>' />
         <form class="addForm" name='addTemplatePic' method='post' action='./index.php?page=templateForm'>
             <input type='hidden' name='action' value='submitPositions' />
             <input type="hidden" name="imageName" value="<?php echo $imageName ?>" />
@@ -103,7 +103,7 @@ class TemplateFormView extends View {
             <input type="text" size="100" maxlength="300" name="positions" id="positions" />
             <input type="submit" name="submitPositions" value="Submit">
         </form>
-        <div id="coords">Coords</div>
+        <div id="coords">Positions</div>
 
 
         <script type="text/javascript">

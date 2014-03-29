@@ -37,13 +37,13 @@ class LinksView extends View {
 			if($admin && $loggedIn) {
 				?>
 				<form class='deleteLink' name='delete' method='post' action='./index.php?page=links'>
-					<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-					<input class='submit' type='submit' name='delete' value='Delete'/>
+					<input type='hidden' name='LinkId' value='<?php echo ($id); ?>'/>
+					<button class='deleteButton' type='submit' name='delete'>Delete</button>
 				</form>
 				<form class='editLink' name='editResourcePack' method='post' action='./index.php?page=linksForm'>
 					<input type='hidden' name='action' value='editResourcePack'/>
-					<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-					<input class='submit' type='submit' name='editResourcePack' value='Edit'/>
+					<input type='hidden' name='LinkId' value='<?php echo ($id); ?>'/>
+					<button class='editButton' type='submit' name='editResourcePack'>Edit</button>
 				</form>
 			<?php
 
@@ -54,7 +54,7 @@ class LinksView extends View {
 			?>
 			<form id='addResourcePack' name='addResourcePack' method='post' action='./index.php?page=linksForm'>
 				<input type='hidden' name='action' value='addResourcePack'/>
-				<input class='submit' type='submit' name='addResourcePack' value='Add Resource Pack'/>
+				<button class='addButton' type='submit' name='addResourcePack'>Add Resource Pack</button>
 			</form>
 		<?php
 
@@ -74,12 +74,12 @@ class LinksView extends View {
 				?>
 				<form class='deleteLink' name='delete' method='post' action='./index.php?page=links'>
 					<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-					<input class='submit' type='submit' name='delete' value='Delete'/>
+					<button class='deleteButton' type='submit' name='delete'>Delete</button>
 				</form>
 				<form class='editLink' name='editLink' method='post' action='./index.php?page=linksForm'>
 					<input type='hidden' name='action' value='editLink'/>
 					<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-					<input class='submit' type='submit' name='editLink' value='Edit'/>
+					<button class='editButton' type='submit' name='editLink'>Edit</button>
 				</form>
 			<?php
 			}
@@ -89,7 +89,7 @@ class LinksView extends View {
 			?>
 			<form id='addLink' name='addLink' method='post' action='./index.php?page=linksForm'>
 				<input type='hidden' name='action' value='addLink'/>
-				<input class='submit' type='submit' name='addLink' value='Add Link'/>
+				<button class='addButton' type='submit' name='addLink'>Add Link</button>
 			</form>
 		<?php
 		}

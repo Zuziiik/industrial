@@ -14,7 +14,7 @@ class NewsView extends View {
 
 	public function printNavigation() {
 		$title = $this->model->news->getTitle();
-		?><a href='.'>Home</a> | News - <?php echo ($title);
+		?><a href='.'>Home</a> | News - <?php echo($title);
 	}
 
 	public function printTitle() {
@@ -27,26 +27,30 @@ class NewsView extends View {
 		global $loggedIn;
 		$title = $this->model->news->getTitle();
 		$message = $this->model->news->getMessage();
-		if($admin && $loggedIn) {
-			$id = (int)$this->model->news->getIdEditableArea();
-			?>
-			<form class='editNews' name='editNews' method='post' action='./index.php?page=newsEdit'>
-				<input type='hidden' name='action' value='editNews'/>
-				<input type='hidden' name='id' value='<?php echo ($id); ?>'/>
-				<button class="editButton" type='submit' name='editNews'>Edit</button>
-			</form>
-		<?php
-		}
+
 		?>
 
-		<h2><?php echo ($title); ?></h2>
-		<div class='newsMessage'><?php echo ($message); ?></div>
+		<h2><?php echo($title); ?></h2>
+
+		<div class='newsMessage'><?php echo($message); ?>
+			<?php
+			if($admin && $loggedIn) {
+				$id = (int)$this->model->news->getIdEditableArea();
+				?>
+				<form class='editNews' name='editNews' method='post' action='./index.php?page=newsEdit'>
+					<input type='hidden' name='action' value='editNews'/>
+					<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+					<button class="editButton" type='submit' name='editNews'>Edit</button>
+				</form>
+			<?php
+			}
+			?>
+		</div>
 	<?php
 	}
 
 	public function printPageHeader() {
-		$title = $this->model->news->getTitle();
-		echo ($title);
+
 	}
 
 }

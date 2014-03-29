@@ -1,11 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=Simonetta|Balthazar);
+
 html {
     position: relative;
     height: 100%;
     top: 0;
-    background-image: url(./../pictures/radioactive.jpg);
+    background-color: black;
+    /*background-image: url(./../pictures/radioactive.jpg);*/
     background-size: 20%;
     color: white;
-    font-family: Courier New, Courier, monotype;
+    font-family: 'Balthazar', serif;
     font-size: 100%;
     width: 100%;
 }
@@ -18,6 +21,13 @@ body {
 }
 
 #content {
+    background-color: #0b0b0b;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
+
+#sectionContent {
     width: 80%;
     margin-right: 10%;
     margin-left: 10%;
@@ -28,8 +38,14 @@ header {
 }
 
 section {
+    position: relative;
     width: 100%;
     padding-bottom: 20%;
+}
+
+header, h1, h2, h3 {
+    clear: both;
+    font-family: 'Simonetta', cursive;
 }
 
 h2:after,
@@ -41,11 +57,11 @@ h4:after {
     top: 0;
     bottom: 0;
     width: 5px;
-    border-radius: 2px;
+    /*border-radius: 0.5em;*/
 }
 
 h2:after {
-    background: #ff1600;
+    background: #484848;
 }
 
 h1, .banner {
@@ -78,24 +94,75 @@ h3 {
     line-height: 20px;
 }
 
-img {
-    border: 0.1em solid white;
-    padding: 0.3%;
-    border-radius: 1em;
+/*-------------------Footer-------------------*/
+
+footer {
+    color: #c8c8c8;
+
+    background-image: url("../pictures/panel.jpg");
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+footer ul {
+    background-color: #202020;
+    padding: 1%;
+    width: 20%;
+    position: relative;
+    list-style: none;
+    margin-bottom: -2%;
+}
+
+footer li {
+
 }
 
 /*----------------Form Buttons----------------*/
 
-.addButton, .deleteButton, .editButton {
-    margin-top: 0.5em;
-    color: #990000;
+.addButton, .deleteButton, .editButton, .commentButton, .replyButton {
+    clear: both;
+    font-family: 'Simonetta', cursive;
+    margin: 0.5em 0;
+    color: #000000;
     background-color: #ffab00;
     font-size: 110%;
     padding: 0.1em;
 }
 
-.addButton:hover, .deleteButton:hover, .editButton:hover {
+.addButton:hover, .deleteButton:hover, .editButton:hover, .commentButton:hover, .replyButton:hover {
     background-color: #ff9000;
+}
+
+#topPanelButtons a:link, #menu a:link, #topPanelButtons a:visited, #menu a:visited, #topPanelButtons a:hover,
+#menu a:hover, #topPanelButtons a:active, #menu a:active {
+    color: black;
+}
+
+/*----------------Links----------------*/
+
+.link {
+    display: inline-block;
+    position: relative;
+    padding-left: 6px;
+    /* Font styles */
+    text-decoration: none;
+    color: #6AB3EC;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.link:hover {
+    color: #3C9CE7;
+}
+
+.link:before {
+    content: "\25BA";
+    font-size: 80%;
+    display: inline-block;
+    padding-right: 3px;
+    pointer-events: none;
+}
+
+.link:hover:before {
+    color: #F2BF97;
 }
 
 /*----------------Error----------------*/
@@ -104,52 +171,70 @@ img {
     color: red;
 }
 
-/*-------------Top Panel---------------*/
+/*-------------Banner---------------*/
 
-.banner{
+.banner {
+    position: relative;
+    clear: both;
     width: 100%;
 }
 
 .wikiName {
-    margin-left: 4%;
     clear: both;
     float: left;
+    margin-left: 10%;
 }
 
-.bannerImage{
+.bannerImage {
     clear: left;
     float: left;
-    margin: 1% 2%;
+    margin: 1% 10%;
     width: 80%;
-    height:80%;
+    height: 80%;
 }
 
 /*-------------Top Panel---------------*/
 
-header #topPanel {
-    margin-top: 0;
+header #topPanelButtons {
+    margin-top: -0.5%;
+    margin-bottom: 1%;
     float: right;
     display: inline;
-    margin-right: 11%;
     width: 100%;
+    background-image: url("../pictures/panel.jpg");
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
-header #topPanel ol {
-    margin-left: 43%;
+header #topPanelButtons ol {
+    float: right;
+    width: 48%;
+}
+
+header #topPanelButtons div.loggedOut {
+    clear: both;
+    float: right;
+    width: 48%;
+    margin: 1% 0;
+}
+
+header #topPanelButtons div.loggedIn {
+    margin: 1% 0;
+    clear: both;
+    float: right;
+    width: 97%;
 }
 
 header .modern {
     display: inline-block;
     margin: 5px;
-    padding: 3px 5px;
+    padding: 0.5em 0.6em;
     background: #ffab00;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
+    border: 0.1em solid #616161;
+    /*border-radius: 0.5em;*/
     transition: all 0.3s ease-out;
 
     /* Font styles */
     text-decoration: none;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.7);
 }
 
 header .modern:hover {
@@ -157,37 +242,41 @@ header .modern:hover {
 }
 
 header .modern.embossed-link {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px 1px rgba(0, 0, 0, 0.2), inset 0 3px 2px rgba(255, 255, 255, .22), inset 0 -3px 2px rgba(0, 0, 0, .15), inset 0 20px 10px rgba(255, 255, 255, .12), 0 0 4px 1px rgba(0, 0, 0, .1), 0 3px 2px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 header .modern.embossed-link:active {
-    box-shadow: inset 0 -2px 1px rgba(255, 255, 255, 0.2), inset 0 3px 2px rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 header .embossed-link {
-    ox-shadow: inset 0 3px 2px rgba(255, 255, 255, .22), inset 0 -3px 2px rgba(0, 0, 0, .17), inset 0 20px 10px rgba(255, 255, 255, .12), 0 0 4px 1px rgba(0, 0, 0, .1), 0 3px 2px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 /*-------------Menu---------------*/
 
 #menu {
     clear: both;
-    width: 86%;
-    margin: 10px 10px;
+    width: 100%;
+    background-image: url("../pictures/panel.jpg");
 }
 
 #menu.modern.embossed-link {
+    width: 80%;
     padding: 5px 0;
-    margin: 5px 0;
+    margin: 1% 10%;
 }
 
-#menu.modern:hover {
-    background: #ffab00;
+#menu.modern.embossed-link:hover {
+    background: #ff9000;
+    background-image: url("../pictures/panel.jpg");
+
 }
 
 #menu ol {
     list-style: none;
-    margin: 0;
+    width: 100%;
+    margin: 0 5%;
 }
 
 #menu li {
@@ -205,7 +294,7 @@ header .embossed-link {
 nav {
     clear: both;
     margin-top: 0.5%;
-    margin-left: 4%;
+    margin-left: 10%;
 }
 
 nav a {
@@ -215,14 +304,13 @@ nav a {
     /* Font styles */
     text-decoration: none;
     color: #6AB3EC;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.9);
 }
 
-nav a:hover{
+nav a:hover {
     color: #3C9CE7;
 }
 
-nav a:before{
+nav a:before {
     content: "\25BA";
     font-size: 80%;
     display: inline-block;
@@ -262,11 +350,22 @@ nav a:hover:before {
     color: #F2BF97;
 }
 
+.news {
+    margin-bottom: 1em;
+    background-color: #0c0c0c;
+    padding: 1em;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
+
 .newsMessage {
-    border: 0.1em dashed white;
-    padding: 0 1em;
-    border-radius: 0.5em;
+    clear: both;
+    /*border-radius: 0.5em;*/
     width: 80%;
+    margin-left: 5%;
+    margin-right: 15%;
+
 }
 
 .newsMessage img {
@@ -275,3 +374,16 @@ nav a:hover:before {
     margin: 1%;
 }
 
+/*-------------Recipe---------------*/
+
+.ImageIconDiv {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+}
+
+.divImageTemplate {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}

@@ -27,7 +27,7 @@ class CommentFormView extends View {
 		$title = $this->model->title;
 		$commentType = $this->model->commentType;
 		if($loggedIn && !$this->model->banned) {
-			if($this->model->reply) {
+			if($this->model->reply && $this->model->confirmed) {
 				?>
 				<form id='editForm' name='replyComment' method='post' action='./index.php?page=comment'>
 					<input type='hidden' name='type' value='<?php echo($commentType); ?>'/>
@@ -52,7 +52,7 @@ class CommentFormView extends View {
 				</form>
 			<?php
 			}
-			if($this->model->add) {
+			if($this->model->add && $this->model->confirmed) {
 				$type = $this->model->commentType;
 				$targetId = $this->model->targetId;
 				?>
