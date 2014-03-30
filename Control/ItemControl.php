@@ -14,6 +14,7 @@ class ItemControl extends Control {
 	}
 
 	public function initialize() {
+		$this->model->fail = FALSE;
 		if(isset($_GET['item'])) {
 			$id = (int)sanitizeString($_GET['item']);
 			if(ItemDAO::exists($id)) {
@@ -25,17 +26,40 @@ class ItemControl extends Control {
 	}
 
 	private function exists($id) {
+		global $loggedIn;
+		global $admin;
+
 		if(isset($_POST['action']) && $_POST['action'] == 'delete') {
-			$this->delete();
+			if($loggedIn && $admin) {
+				$this->delete();
+			} else {
+				$this->model->fail = TRUE;
+				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+			}
 		}
 		if(isset($_POST['action']) && $_POST['action'] == 'deleteRecipe') {
-			$this->deleteRecipe();
+			if($loggedIn && $admin) {
+				$this->deleteRecipe();
+			} else {
+				$this->model->fail = TRUE;
+				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+			}
 		}
 		if(isset($_POST['action']) && $_POST['action'] == 'moveUp') {
-			$this->move($id, "up");
+			if($loggedIn && $admin) {
+				$this->move($id, "up");
+			} else {
+				$this->model->fail = TRUE;
+				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+			}
 		}
 		if(isset($_POST['action']) && $_POST['action'] == 'moveDown') {
-			$this->move($id, "down");
+			if($loggedIn && $admin) {
+				$this->move($id, "down");
+			} else {
+				$this->model->fail = TRUE;
+				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+			}
 		}
 		$this->model->item = ItemDAO::selectById($id);
 		$this->model->editArea = EditableAreaDAO::selectByTargetId($id);

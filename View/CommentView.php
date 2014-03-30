@@ -56,7 +56,7 @@ class CommentView extends View {
 
 			if($loggedIn && ($admin || $commentUsername == $username)) {
 				?>
-				<form class='deleteComment' name='deleteComment' method='post' action='./index.php?page=servers'>
+				<form name='deleteComment' method='post' action='./index.php?page=servers'>
 					<input type='hidden' name='action' value='deleteComment'/>
 					<input type='hidden' name='commentId' value='<?php echo ($id); ?>'/>
 					<button class='deleteButton' type='submit' name='deleteComment' >Delete Comment</button>

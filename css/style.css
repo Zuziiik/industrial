@@ -137,6 +137,43 @@ footer li {
     color: black;
 }
 
+.buttonsItemEditArea form {
+    margin-right: 1em;
+    float: left;
+}
+
+.buttonsRecipe form{
+    margin-right: 1em;
+    float: left;
+}
+
+#addSection {
+    clear: left;
+}
+
+/*----------------Form Select----------------*/
+
+.styled-select select {
+    font-family: 'Simonetta', cursive;
+    background: transparent;
+    width: 200px;
+    padding: 5px;
+    font-size: 110%;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+.styled-select {
+    width: 200px;
+    height: 34px;
+    overflow: hidden;
+    background: url(../pictures/arrow.png)  right no-repeat #ffab00;
+    border: 1px solid #ccc;
+}
+
 /*----------------Links----------------*/
 
 .link {
@@ -258,7 +295,7 @@ header .embossed-link {
 #menu {
     clear: both;
     width: 100%;
-    background-image: url("../pictures/panel.jpg");
+    background-image: url("../pictures/panel.jpg") ;
 }
 
 #menu.modern.embossed-link {
@@ -268,8 +305,7 @@ header .embossed-link {
 }
 
 #menu.modern.embossed-link:hover {
-    background: #ff9000;
-    background-image: url("../pictures/panel.jpg");
+    background: url("../pictures/panel.jpg");
 
 }
 
