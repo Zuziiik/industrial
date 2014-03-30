@@ -116,9 +116,26 @@ footer li {
 
 }
 
-/*----------------Form Buttons----------------*/
+/*---------------Add/Edit Forms---------------*/
 
-.addButton, .deleteButton, .editButton, .commentButton, .replyButton {
+#title {
+    display: block;
+    padding: 5px;
+    border: 4px solid #ffab00;
+    color: #333;
+    transition: all 0.3s ease-out;
+}
+
+#title:focus {
+    outline: none;
+    border-color: #ffd84e;
+}
+
+.editForm, .addForm {
+    height: 40em;
+}
+
+.custom-file-input::-webkit-file-upload-button {
     clear: both;
     font-family: 'Simonetta', cursive;
     margin: 0.5em 0;
@@ -128,7 +145,23 @@ footer li {
     padding: 0.1em;
 }
 
-.addButton:hover, .deleteButton:hover, .editButton:hover, .commentButton:hover, .replyButton:hover {
+.custom-file-input::-webkit-file-upload-button:hover {
+    background-color: #ff9000;
+}
+
+/*----------------Form Buttons----------------*/
+
+.addButton, .deleteButton, .editButton, .commentButton, .replyButton, .saveButton {
+    clear: both;
+    font-family: 'Simonetta', cursive;
+    margin: 0.5em 0;
+    color: #000000;
+    background-color: #ffab00;
+    font-size: 110%;
+    padding: 0.1em;
+}
+
+.addButton:hover, .deleteButton:hover, .editButton:hover, .commentButton:hover, .replyButton:hover, .saveButton:hover {
     background-color: #ff9000;
 }
 
@@ -142,7 +175,7 @@ footer li {
     float: left;
 }
 
-.buttonsRecipe form{
+.buttonsRecipe form {
     margin-right: 1em;
     float: left;
 }
@@ -170,7 +203,7 @@ footer li {
     width: 200px;
     height: 34px;
     overflow: hidden;
-    background: url(../pictures/arrow.png)  right no-repeat #ffab00;
+    background: url(../pictures/arrow.png) right no-repeat #ffab00;
     border: 1px solid #ccc;
 }
 
@@ -295,7 +328,7 @@ header .embossed-link {
 #menu {
     clear: both;
     width: 100%;
-    background-image: url("../pictures/panel.jpg") ;
+    background-image: url("../pictures/panel.jpg");
 }
 
 #menu.modern.embossed-link {

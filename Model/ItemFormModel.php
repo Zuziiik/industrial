@@ -4,7 +4,7 @@ class ItemFormModel {
 
     public $item;
     public $area;
-    public $msg;
+    public $error;
     public $addItem;
     public $addArea;
     public $categoryName;
@@ -12,7 +12,7 @@ class ItemFormModel {
     function __construct() {
         $this->area = NULL;
         $this->item = NULL;
-        $this->msg = '';
+        $this->error = '';
     }
 
 }

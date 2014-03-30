@@ -17,7 +17,7 @@ $view->initialize();
 				selector: "textarea",
 				theme: "modern",
 				schema: "html5",
-				skin: "tundora",
+				skin: "custom",
 				add_unload_trigger: false,
 				relative_urls: "false",
 				style_formats: [
