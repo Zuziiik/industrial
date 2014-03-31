@@ -75,18 +75,18 @@ class LinksFormView extends View {
 			?>
 			<form id='addLink' name='addLink' method='post' action='./index.php?page=linksForm'>
 				<input type='hidden' name='action' value='addLink'/>
-				<input type='text' name='title' id="linkTitle" placeholder="title"/>
+				<input type='text' name='title' id="title" placeholder="title"/>
 				<input type='text' name='message' id="linkMessage" placeholder="link"/>
-				<input class='save' type='submit' name='save' value='Save'/>
+				<button class='saveButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		} else {
 			?>
 			<form id='addResourcePack' name='addResourcePack' method='post' action='./index.php?page=linksForm'>
 				<input type='hidden' name='action' value='addResourcePack'/>
-				<input type='text' name='title' id="linkTitle" placeholder="title"/>
+				<input type='text' name='title' id="title" placeholder="title"/>
 				<input type='text' name='message' id="linkMessage" placeholder="link"/>
-				<input class='save' type='submit' name='save' value='Save'/>
+				<button class='saveButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		}
@@ -101,9 +101,9 @@ class LinksFormView extends View {
 			<form id='editLink' name='addLink' method='post' action='./index.php?page=linksForm'>
 				<input type='hidden' name='action' value='editLink'/>
 				<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-				<input type='text' name='title' id="linkTitle" value='<?php echo $title; ?>'/>
+				<input type='text' name='title' id="title" value='<?php echo $title; ?>'/>
 				<input type='text' name='message' id="linkMessage" value='<?php echo $message; ?>'/>
-				<input class='save' type='submit' name='save' value='Save'/>
+				<button class='saveButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		} else {
@@ -111,9 +111,9 @@ class LinksFormView extends View {
 			<form id='editResourcePack' name='addResourcePack' method='post' action='./index.php?page=linksForm'>
 				<input type='hidden' name='action' value='editResourcePack'/>
 				<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-				<input type='text' name='title' id="linkTitle" value='<?php echo $title; ?>'/>
+				<input type='text' name='title' id="title" value='<?php echo $title; ?>'/>
 				<input type='text' name='message' id="linkMessage" value='<?php echo $message; ?>'/>
-				<input class='save' type='submit' name='save' value='Save'/>
+				<button class='saveButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		}
