@@ -31,7 +31,7 @@ class LoginControl extends Control {
     private function loginUser($user, $pass) {
         $hash = hash('sha256', $user->getSalt() . hash('sha256', $pass));
         if ($hash != $user->getPassword()) {
-            $this->model->error = "<span id='error'>Password invalid</span>";
+            $this->model->error = "<span id='error'>&#10007; Password invalid</span>";
         } else {
             $date = date('Y-m-d h:i:s', time());
             $user->setLastLogin($date);
@@ -58,7 +58,7 @@ class LoginControl extends Control {
 
     private function emptyFields($username, $pass) {
         if ($username == "" || $pass == "") {
-            $this->model->error = "<span id='error'>Not all fields were entered</span>";
+            $this->model->error = "<span id='error'>&#10007; Not all fields were entered</span>";
             return TRUE;
         }
         return FALSE;
@@ -66,7 +66,7 @@ class LoginControl extends Control {
 
     private function userExists($user) {
         if (!$user) {
-            $this->model->error = "<span id='error'>Username invalid</span>";
+            $this->model->error = "<span id='error'>&#10007; Username invalid</span>";
             return FALSE;
         }
         return TRUE;

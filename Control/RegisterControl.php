@@ -54,12 +54,12 @@ class RegisterControl extends Control {
         }
 
         if ($pass1 !== $pass2) {
-            $this->model->errorPass = "<span class='error'>Passwords don`t match.</span>";
+            $this->model->errorPass = "<span class='error'>&#10007; Passwords don`t match.</span>";
             $error = TRUE;
         }
 
         if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email)) {
-            $this->model->errorEmailFormat = "<span class='error'>Invalid email format!</span><br />";
+            $this->model->errorEmailFormat = "<span class='error'>&#10007; Invalid email format!</span><br />";
             $error = TRUE;
         }
         return !$error;
@@ -67,7 +67,7 @@ class RegisterControl extends Control {
 
     private function emptyFields($username, $email, $pass1, $pass2) {
         if ($username == "" || $pass1 == "" || $pass2 == "" || $email == "") {
-            $this->model->error = "<span class='error'>Not all fields were entered</span>";
+            $this->model->error = "<span class='error'>&#10007; Not all fields were entered</span>";
             return true;
         }
         return false;
@@ -76,11 +76,11 @@ class RegisterControl extends Control {
     private function userExists($username, $email) {
         $error = FALSE;
         if (UserDAO::UsernameExists($username)) {
-            $this->model->errorUser = "<span class='error'>Username already exists.</span>";
+            $this->model->errorUser = "<span class='error'>&#10007; Username already exists.</span>";
             $error = TRUE;
         }
         if (UserDAO::EmailExists($email)) {
-            $this->model->errorEmail = "<span class='error'>Email already exists.</span>";
+            $this->model->errorEmail = "<span class='error'>&#10007; Email already exists.</span>";
             $error = TRUE;
         }
         return $error;
