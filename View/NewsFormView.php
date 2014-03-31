@@ -41,7 +41,7 @@ class NewsFormView extends View {
 					<input type='hidden' name='action' value='addNews'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus/>
 					<textarea class='addForm' id='editable' cols='30' rows='6' name='message'></textarea>
-					<input class='save' type='submit' name='save' value='Save'/>
+					<button class='saveButton' type='submit' name='save'>Save</button>
 				</form>
 			<?php
 			}
@@ -56,10 +56,12 @@ class NewsFormView extends View {
 					<input id='title' type='text' placeholder="Title" name='title' value="<?php echo($title); ?>"/>
 					<textarea class='editForm' id='editable' cols='30' rows='6' name='message'
 							  autofocus><?php echo($message); ?> </textarea>
-					<input class='save' type='submit' name='save' value='Save'/>
+					<button class='saveButton' type='submit' name='save'>Save</button>
 				</form>
 			<?php
 			}
+		} else {
+			echo($this->model->error);
 		}
 	}
 
