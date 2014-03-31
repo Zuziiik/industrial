@@ -23,6 +23,9 @@ class LinksView extends View {
 	public function printBody() {
 		global $admin;
 		global $loggedIn;
+		if($this->model->fail) {
+			echo($this->model->error);
+		}
 		?>
 		<h2>Resource Packs</h2>
 		<?php
@@ -31,24 +34,31 @@ class LinksView extends View {
 			$message = $resourcePack->getMessage();
 			$id = $resourcePack->getIdEditableArea();
 			?>
-			<h3><?php echo($title); ?></h3>
-			<a class="link" href='<?php echo($message); ?>'><?php echo($message); ?></a>
-			<?php
-			if($admin && $loggedIn) {
+			<div class="linkDiv">
+				<h3><?php echo($title); ?></h3>
+				<a class="link" href='<?php echo($message); ?>'><?php echo($message); ?></a>
+				<?php
+				if($admin && $loggedIn) {
+					?>
+					<div class="linkButtons">
+						<form class='deleteLink' name='delete' method='post' action='./index.php?page=links'>
+							<input type='hidden' name='LinkId' value='<?php echo($id); ?>'/>
+							<button class='deleteButton' type='submit' name='delete'>Delete</button>
+						</form>
+						<form class='editLink' name='editResourcePack' method='post'
+							  action='./index.php?page=linksForm'>
+							<input type='hidden' name='action' value='editResourcePack'/>
+							<input type='hidden' name='LinkId' value='<?php echo($id); ?>'/>
+							<button class='editButton' type='submit' name='editResourcePack'>Edit</button>
+						</form>
+					</div>
+
+				<?php
+
+				}
 				?>
-				<form class='deleteLink' name='delete' method='post' action='./index.php?page=links'>
-					<input type='hidden' name='LinkId' value='<?php echo ($id); ?>'/>
-					<button class='deleteButton' type='submit' name='delete'>Delete</button>
-				</form>
-				<form class='editLink' name='editResourcePack' method='post' action='./index.php?page=linksForm'>
-					<input type='hidden' name='action' value='editResourcePack'/>
-					<input type='hidden' name='LinkId' value='<?php echo ($id); ?>'/>
-					<button class='editButton' type='submit' name='editResourcePack'>Edit</button>
-				</form>
-			<?php
-
-			}
-
+			</div>
+		<?php
 		}
 		if($admin && $loggedIn) {
 			?>
@@ -60,6 +70,7 @@ class LinksView extends View {
 
 		}
 		?>
+
 		<h2>Other Links</h2>
 		<?php
 		foreach ($this->model->links as $link) {
@@ -67,23 +78,28 @@ class LinksView extends View {
 			$message = $link->getMessage();
 			$id = $link->getIdEditableArea();
 			?>
-			<h3><?php echo($title); ?></h3>
-			<a class="link" href='<?php echo($message); ?>'><?php echo($message); ?></a>
-			<?php
-			if($admin && $loggedIn) {
+			<div class="linkDiv">
+				<h3><?php echo($title); ?></h3>
+				<a class="link" href='<?php echo($message); ?>'><?php echo($message); ?></a>
+				<?php
+				if($admin && $loggedIn) {
+					?>
+					<div class="linkButtons">
+						<form class='deleteLink' name='delete' method='post' action='./index.php?page=links'>
+							<input type='hidden' name='LinkId' value='<?php echo($id); ?>'/>
+							<button class='deleteButton' type='submit' name='delete'>Delete</button>
+						</form>
+						<form class='editLink' name='editLink' method='post' action='./index.php?page=linksForm'>
+							<input type='hidden' name='action' value='editLink'/>
+							<input type='hidden' name='LinkId' value='<?php echo($id); ?>'/>
+							<button class='editButton' type='submit' name='editLink'>Edit</button>
+						</form>
+					</div>
+				<?php
+				}
 				?>
-				<form class='deleteLink' name='delete' method='post' action='./index.php?page=links'>
-					<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-					<button class='deleteButton' type='submit' name='delete'>Delete</button>
-				</form>
-				<form class='editLink' name='editLink' method='post' action='./index.php?page=linksForm'>
-					<input type='hidden' name='action' value='editLink'/>
-					<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
-					<button class='editButton' type='submit' name='editLink'>Edit</button>
-				</form>
-			<?php
-			}
-
+			</div>
+		<?php
 		}
 		if($admin && $loggedIn) {
 			?>

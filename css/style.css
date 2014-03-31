@@ -193,6 +193,11 @@ footer li {
     margin-right: 1em;
 }
 
+.linkButtons form {
+    display: inline;
+    margin-right: 1em;
+}
+
 /*----------------Form Select----------------*/
 
 .styled-select select {
@@ -250,11 +255,8 @@ footer li {
     padding: 3px;
     background: #ff8c00;
     transition: all 0.3s ease-out;
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow:
-        inset 0 2px 3px rgba(255,255,255,0.3),
-        inset 0 -2px 3px rgba(0,0,0,0.3),
-        0 1px 1px rgba(255,255,255,0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(255, 255, 255, 0.9);
     /* Font styles */
     text-decoration: none;
     font-weight: bold;
@@ -267,8 +269,8 @@ footer li {
 
 .itemName:active {
     background: #ff4b00;
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .itemName:visited {
@@ -534,3 +536,13 @@ nav a:hover:before {
     width: 5em;
 }
 
+/*----------Links List------------*/
+
+.linkDiv {
+    margin-bottom: 1em;
+    background-color: #0c0c0c;
+    padding: 1em;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
