@@ -42,6 +42,7 @@ class ItemListView extends View {
 				<h2><?php echo($nameCategory); ?></h2>
 				<?php
 				if($loggedIn && $admin) {
+
 					?>
 					<div class="categoryButtons">
 						<form name='deleteCategory' method='post' action='./index.php?page=recipes'>
@@ -67,9 +68,8 @@ class ItemListView extends View {
 							$details = $item->getDetails();
 							?>
 							<img class='itemIcon' src='image.php?type=item&id=<?php echo($id); ?>'>
-							<a class='itemName'
-							   href='./index.php?page=item&item=<?php echo($id); ?>'><?php echo($name); ?></a>
-
+							<h3><a class='itemName'
+								   href='./index.php?page=item&item=<?php echo($id); ?>'><?php echo($name); ?></a></h3>
 							<div class='itemDetails'><?php echo($details); ?></div>
 							<?php
 							if($loggedIn && $admin) {

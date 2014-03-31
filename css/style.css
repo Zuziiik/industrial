@@ -152,16 +152,21 @@ footer li {
 /*----------------Form Buttons----------------*/
 
 .addButton, .deleteButton, .editButton, .commentButton, .replyButton, .saveButton {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(6, 6, 6, 0.74);
     font-family: 'Simonetta', cursive;
     margin: 0.5em 0;
-    color: #000000;
-    background-color: #ffab00;
+    color: #c3c3c3;
+    background-color: #444444;
     font-size: 110%;
-    padding: 0.1em;
+    padding: 0.1em 0.3em;
 }
 
-.addButton:hover, .deleteButton:hover, .editButton:hover, .commentButton:hover, .replyButton:hover, .saveButton:hover {
-    background-color: #ff9000;
+.addButton:active, .deleteButton:active, .editButton:active, .commentButton:active, .replyButton:active, .saveButton:active {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    outline: none;
 }
 
 #topPanelButtons a:link, #menu a:link, #topPanelButtons a:visited, #menu a:visited, #topPanelButtons a:hover,
@@ -187,8 +192,6 @@ footer li {
     display: inline;
     margin-right: 1em;
 }
-
-
 
 /*----------------Form Select----------------*/
 
@@ -239,6 +242,37 @@ footer li {
 
 .link:hover:before {
     color: #F2BF97;
+}
+
+.itemName {
+    display: inline-block;
+    margin: 0 0.2em;
+    padding: 3px;
+    background: #ff8c00;
+    transition: all 0.3s ease-out;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow:
+        inset 0 2px 3px rgba(255,255,255,0.3),
+        inset 0 -2px 3px rgba(0,0,0,0.3),
+        0 1px 1px rgba(255,255,255,0.9);
+    /* Font styles */
+    text-decoration: none;
+    font-weight: bold;
+    color: #272727;
+}
+
+.itemName:hover {
+    background: #ff6c02;
+}
+
+.itemName:active {
+    background: #ff4b00;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.itemName:visited {
+    background: #ffb100;
 }
 
 /*----------------Error----------------*/
@@ -476,7 +510,6 @@ nav a:hover:before {
     box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
 }
 
-
 .itemContainer {
     float: left;
     position: relative;
@@ -491,8 +524,13 @@ nav a:hover:before {
     box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
 }
 
-.itemWrap {
-    position: relative;
+.item {
     overflow: hidden;
+    width: 100%;
+}
+
+.itemIcon {
+    height: 5em;
+    width: 5em;
 }
 

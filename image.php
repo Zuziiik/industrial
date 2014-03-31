@@ -28,7 +28,7 @@ $result = $icon->getImage();
 if($result){
     echo "$result";
 }else{
-    $img = file_get_contents("./pictures/noImage.jpg");
+    $img = file_get_contents("./pictures/noImage.png");
     echo "$img";
 }
 
