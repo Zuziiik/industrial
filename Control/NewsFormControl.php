@@ -11,17 +11,27 @@ class NewsFormControl extends Control {
     }
 
     public function initialize() {
+		global $loggedIn;
+		global $admin;
         $this->model->edit = FALSE;
         $this->model->add = FALSE;
         if(isset($_POST['action']) && $_POST['action']=='addNews'){
+			if($admin && $loggedIn){
             $this->model->add = TRUE;
             $this->add();
+			}else{
+				$this->model->error = "<span class='error'>You're not logged in, or must be admin to add/edit.</span>";
+			}
         }
         if(isset($_POST['action']) && $_POST['action']=='editNews'){
+			if($admin && $loggedIn){
             $this->model->edit = TRUE;
             $id = (int)sanitizeString($_POST['id']);
             $this->model->news = EditableAreaDAO::selectById($id);
             $this->edit($this->model->news, $id);
+			}else{
+				$this->model->error = "<span class='error'>You're not logged in, or must be admin to add/edit.</span>";
+			}
         }
     }
 
