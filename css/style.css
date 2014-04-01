@@ -124,7 +124,7 @@ footer li {
 
 /*---------------Add/Edit Forms---------------*/
 
-#title, #linkMessage, #username, #password, #oldPassword, #repeatPassword {
+#title, #linkMessage, #username, #password, #oldPassword, #repeatPassword, #mail {
     background: #111111;
     display: inline;
     padding: 0.3em;
@@ -133,7 +133,8 @@ footer li {
     transition: all 0.3s ease-out;
 }
 
-#title:focus, #linkMessage:focus, #username:focus, #password:focus, #oldPassword:focus, #repeatPassword:focus {
+#title:focus, #linkMessage:focus, #username:focus, #password:focus, #oldPassword:focus, #repeatPassword:focus,
+#mail:focus {
     outline: none;
     border-color: #808080;
 }
@@ -239,15 +240,15 @@ select {
     margin: 0.5em 0;
     box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(6, 6, 6, 0.74);
     background: #444444;
-    color:#c3c3c3;
-    border:none;
+    color: #c3c3c3;
+    border: none;
     font-size: 110%;
     font-family: 'Simonetta', cursive;
-    outline:none;
+    outline: none;
     display: inline-block;
-    -webkit-appearance:normal;
-    -moz-appearance:normal;
-    appearance:normal;
+    -webkit-appearance: normal;
+    -moz-appearance: normal;
+    appearance: normal;
 }
 
 select.recipeItemSelect {
