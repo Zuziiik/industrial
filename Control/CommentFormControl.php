@@ -44,7 +44,7 @@ class CommentFormControl extends Control {
 				$this->model->path = sanitizeString($_POST['path']);
 				$this->model->title = sanitizeString($_POST['title']);
 				$this->model->commentId = (int)sanitizeString($_POST['commentId']);
-				$this->model->message = sanitizeString($_POST['message']);
+				$this->model->message = sanitizeTextArea($_POST['message']);
 				$this->edit($this->model->commentId);
 			}
 			if(isset($_POST['action']) && $_POST['action'] == 'addComment') {
@@ -71,7 +71,7 @@ class CommentFormControl extends Control {
 			$userId = $user->getIdUser();
 			$type = (int)sanitizeString($_POST['type']);
 			$title = sanitizeString($_POST['title']);
-			$message = sanitizeString($_POST['message']);
+			$message = sanitizeTextArea($_POST['message']);
 			$targetId = (int)sanitizeString($_POST['targetId']);
 			$comment = new Comment(666, $userId, $targetId, $type, $title, $message);
 			CommentDAO::insert($comment);
@@ -86,7 +86,7 @@ class CommentFormControl extends Control {
 			$targetId = sanitizeString($_POST['commentId']);
 			$title = sanitizeString($_POST['title']);
 			$title = "RE:" . $title;
-			$message = sanitizeString($_POST['message']);
+			$message = sanitizeTextArea($_POST['message']);
 			$comment = new Comment(666, $userId, $targetId, $type, $title, $message);
 			CommentDAO::insert($comment);
 			$this->model->reply = FALSE;
@@ -97,7 +97,7 @@ class CommentFormControl extends Control {
 	private function edit($commentId) {
 		if(isset($_POST['save'])) {
 			$title = sanitizeString($_POST['title']);
-			$message = sanitizeString($_POST['message']);
+			$message = sanitizeTextArea($_POST['message']);
 			$comment = CommentDAO::selectById($commentId);
 			$comment->setTitle($title);
 			$comment->setMessage($message);

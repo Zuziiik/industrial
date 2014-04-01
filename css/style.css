@@ -186,6 +186,7 @@ input::-ms-input-placeholder {
 /*----------------Form Buttons----------------*/
 
 .addButton, .deleteButton, .editButton, .commentButton, .replyButton, .saveButton, .submitButton {
+    clear: both;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(6, 6, 6, 0.74);
@@ -229,6 +230,17 @@ input::-ms-input-placeholder {
 }
 
 .linkButtons form {
+    display: inline;
+    margin-right: 1em;
+}
+
+.serverButtons form {
+    display: inline;
+    margin-right: 1em;
+}
+
+.commentButtons form {
+    clear: both;
     display: inline;
     margin-right: 1em;
 }
@@ -584,3 +596,40 @@ nav a:hover:before {
     -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
     box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
 }
+
+/*---------Servers List-----------*/
+
+.server, .message {
+    margin-bottom: 1em;
+    background-color: #0c0c0c;
+    padding: 1em;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
+
+/*-----------Comments-------------*/
+
+div.comment:first-child, div.comment {
+    margin-left: 1%;
+    width: 95%;
+}
+
+div.reComment {
+    overflow: hidden;
+    clear: left;
+    margin-left: 2%;
+    width: 93%;
+}
+
+.comment, .reComment {
+    margin-bottom: 1em;
+    background-color: #0c0c0c;
+    padding: 1em;
+    width: 100%;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
+
+

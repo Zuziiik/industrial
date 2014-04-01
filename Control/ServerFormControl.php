@@ -36,7 +36,7 @@ class ServerFormControl extends Control {
 		if(isset($_POST['save'])) {
 			$type = EditableArea::SERVER;
 			$title = sanitizeString($_POST['title']);
-			$message = sanitizeString($_POST['message']);
+			$message = sanitizeTextArea($_POST['message']);
 			$date = date("Y-m-d H:i:s", time());
 			$weight = EditableAreaDAO::selectHighestWeight() + 1;
 			$server = new EditableArea(666, NULL, $type, $date, $title, $message, $weight);
@@ -50,7 +50,7 @@ class ServerFormControl extends Control {
 	private function edit($server) {
 		if(isset($_POST['save'])) {
 			$title = sanitizeString($_POST['title']);
-			$message = sanitizeString($_POST['message']);
+			$message = sanitizeTextArea($_POST['message']);
 			$date = date("Y-m-d H:i:s", time());
 			$server->setTitle($title);
 			$server->setMessage($message);

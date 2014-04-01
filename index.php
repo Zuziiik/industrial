@@ -1,6 +1,7 @@
 <?php
 
 include_once 'header.php';
+include_once 'htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 
 navigate();
 

@@ -50,29 +50,34 @@ class CommentView extends View {
 			} else {
 				echo("<div class='comment'>");
 			}
-			echo("<h3>$title</h3>");
-			echo("<span class='commentUser'> User: $commentUsername</span>");
-			echo("<span class='commentMessage'> Message: $message</span>");
-
-			if($loggedIn && ($admin || $commentUsername == $username)) {
-				?>
-				<form name='deleteComment' method='post' action='./index.php?page=servers'>
-					<input type='hidden' name='action' value='deleteComment'/>
-					<input type='hidden' name='commentId' value='<?php echo ($id); ?>'/>
-					<button class='deleteButton' type='submit' name='deleteComment' >Delete Comment</button>
-				</form>
+			?>
+			<h3><?php echo($title); ?></h3>
+			User: <?php echo($commentUsername); ?></br>
+			Message: <?php echo($message); ?>
 			<?php
-			}
 			if($loggedIn && $commentUsername == $username) {
 				?>
-				<form class='editComment' name='editComment' method='post' action='./index.php?page=comment'>
-					<input type='hidden' name='action' value='editComment'/>
-					<input type='hidden' name='path' value='<?php echo ($this->model->path); ?>'/>
-					<input type='hidden' name='title' value='<?php echo ($title); ?>'/>
-					<input type='hidden' name='message' value='<?php echo ($message); ?>'/>
-					<input type='hidden' name='commentId' value='<?php echo ($id); ?>'/>
-					<button class='editButton' type='submit' name='editComment' >Edit Comment</button>
-				</form>
+				<div class="commentButtons">
+					<?php
+					if($admin || $commentUsername == $username) {
+						?>
+						<form name='deleteComment' method='post' action='./index.php?page=servers'>
+							<input type='hidden' name='action' value='deleteComment'/>
+							<input type='hidden' name='commentId' value='<?php echo($id); ?>'/>
+							<button class='deleteButton' type='submit' name='deleteComment'>Delete Comment</button>
+						</form>
+					<?php
+					}
+					?>
+					<form class='editComment' name='editComment' method='post' action='./index.php?page=comment'>
+						<input type='hidden' name='action' value='editComment'/>
+						<input type='hidden' name='path' value='<?php echo($this->model->path); ?>'/>
+						<input type='hidden' name='title' value='<?php echo($title); ?>'/>
+						<input type='hidden' name='message' value='<?php echo($message); ?>'/>
+						<input type='hidden' name='commentId' value='<?php echo($id); ?>'/>
+						<button class='editButton' type='submit' name='editComment'>Edit Comment</button>
+					</form>
+				</div>
 			<?php
 			}
 
@@ -80,18 +85,18 @@ class CommentView extends View {
 				$commentType = Comment::RE;
 				?>
 				<form class='replyComment' name='replyComment' method='post' action='./index.php?page=comment'>
-					<input type='hidden' name='type' value='<?php echo ($commentType); ?>'/>
-					<input type='hidden' name='path' value='<?php echo ($this->model->path); ?>'/>
+					<input type='hidden' name='type' value='<?php echo($commentType); ?>'/>
+					<input type='hidden' name='path' value='<?php echo($this->model->path); ?>'/>
 					<input type='hidden' name='action' value='replyComment'/>
-					<input type='hidden' name='title' value='<?php echo ($title); ?>'/>
+					<input type='hidden' name='title' value='<?php echo($title); ?>'/>
 					<input type='hidden' name='commentId' value='<?php echo $id; ?>'/>
-					<button class='replyButton' type='submit' name='replyComment' >Reply</button>
+					<button class='replyButton' type='submit' name='replyComment'>Reply</button>
 				</form>
 			<?php
 			}
 
 			$reComments = $comment->getComments();
-			echo("<span class='reComment'>" . $this->printComment($reComments) . "</span>");
+			$this->printComment($reComments);
 			echo("</div>");
 		}
 
