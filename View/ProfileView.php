@@ -17,8 +17,8 @@ class ProfileView extends View {
 		global $username;
 		if($loggedIn && $username == $this->model->username) {
 			echo("Your Profile");
-		}else{
-			echo($this->model->username." Profile");
+		} else {
+			echo($this->model->username . " Profile");
 		}
 	}
 
@@ -27,8 +27,9 @@ class ProfileView extends View {
 		global $username;
 		if($loggedIn && $username == $this->model->username) {
 			?> <a href='.'>Home</a> | Your Profile <?php
-		}else{
-			?> <a href='.'>Home</a> | <a href='index.php?page=users'>List Of Users</a> | <?php echo($this->model->username." Profile");
+		} else {
+			?> <a href='.'>Home</a> | <a href='index.php?page=users'>List Of
+				Users</a> | <?php echo($this->model->username . " Profile");
 		}
 	}
 
@@ -38,8 +39,11 @@ class ProfileView extends View {
 		if($loggedIn) {
 			$id = $this->model->user->getIdUser();
 			$about = $this->model->user->getAbout();
-			echo("<div class='picture'><img src='image.php?type=user&id=$id'></div>");
-			echo("<div class='about'>$about</div>");
+			?>
+			<div class='picture'><img src='image.php?type=user&id=<?php echo($id); ?>'></div>
+			<h2>About</h2>
+			<div class='about'><?php echo($about); ?></div>
+			<?php
 			if($username == $this->model->username) {
 				$this->printMyProfile();
 			}
@@ -54,8 +58,8 @@ class ProfileView extends View {
 		global $username;
 		if($loggedIn && $username == $this->model->username) {
 			echo("Your Profile");
-		}else{
-			echo($this->model->username." Profile");
+		} else {
+			echo($this->model->username . " Profile");
 		}
 
 	}
@@ -64,22 +68,20 @@ class ProfileView extends View {
 		global $username;
 		if(!$this->model->edit) {
 			?>
-			<form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo $username; ?>'>
+			<form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo($username); ?>'>
 				<input type='hidden' name='action' value='editProfile'/>
-				<input type='submit' name='edit' value='Edit Profile'/>
+				<button class="editButton" type='submit' name='edit'>Edit Profile</button>
 			</form>
 		<?php
 		} else {
 			$about = $this->model->user->getAbout();
 			?>
-			<form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo $username; ?>'
+			<form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo($username); ?>'
 				  enctype='multipart/form-data'>
 				<input type='hidden' name='action' value='editProfile'/>
-				<label for='image'>Image</label>
-				<input type='file' id='image' name='image' size='14' maxlength='32'/>
-				<label for='about'>About</label>
-				<textarea name='about' id='about' rows="4" cols="50" wrap="soft"><?php echo $about; ?></textarea>
-				<input type='submit' name='save' value='Save Profile'/>
+				<label>Image<input class="custom-file-input" type='file' name='image' size='14' maxlength='32'/></label>
+				<textarea class="editForm" name='about' rows="4" cols="50" wrap="soft" placeholder="about"><?php echo($about); ?></textarea>
+				<button class="saveButton" type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		}
@@ -91,12 +93,12 @@ class ProfileView extends View {
 				<table>
 					<tr>
 						<td><label for='oldPassword'>Old Password</label></td>
-						<td><input type='password' id='oldPassword' name='oldPassword'/></td>
+						<td><input  type='password' id='oldPassword' name='oldPassword'/></td>
 						<td><?php echo($this->model->OldPasswordError); ?></td>
 					</tr>
 					<tr>
-						<td><label for='newPassword'>New Password</label></td>
-						<td><input type='password' id='newPassword' name='newPassword'/></td>
+						<td><label for='password'>New Password</label></td>
+						<td><input type='password' id='password' name='newPassword'/></td>
 						<td><?php echo($this->model->PasswordsMatchError); ?></td>
 					</tr>
 					<tr>
@@ -105,7 +107,7 @@ class ProfileView extends View {
 						<td></td>
 					</tr>
 					<tr>
-						<td><input type='submit' name='changePassword' value='save'/></td>
+						<td><button class="saveButton" type='submit' name='changePassword'>Save</button></td>
 						<td></td>
 						<td><?php echo($this->model->EmptyFieldsError); ?></td>
 					</tr>
@@ -114,7 +116,6 @@ class ProfileView extends View {
 			</form>
 		<?php
 		}
-		echo $this->model->msg;
 	}
 
 }

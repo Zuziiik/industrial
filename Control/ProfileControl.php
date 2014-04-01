@@ -47,7 +47,6 @@ class ProfileControl extends Control {
 			$user->setSalt($salt);
 			$user->setPassword($password);
 			UserDAO::update($user);
-			$this->model->msg = "<span class='msg'>Password Changed.</span>";
 		}
 
 	}
@@ -77,17 +76,19 @@ class ProfileControl extends Control {
 
 	private function edit($userId, $user) {
 		if(isset($_POST['save'])) {
-
-			$name = sanitizeString($_GET['name']);
-			if(isset($_FILES['image']['name'])) {
-				$saveto = "$userId.png";
-				move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
-				$this->updateImage($saveto, $userId);
+			global $username;
+			if($username == $this->model->username) {
+				if(isset($_FILES['image']['name'])) {
+					$saveto = "$userId.png";
+					move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
+					$this->updateImage($saveto, $userId);
+				}
+				$about = sanitizeString($_POST['about']);
+				$user->setAbout($about);
+				UserDAO::update($user);
+			} else {
+				$this->model->error = "<span class='error'>You don`t have permissions to do that.</span>";
 			}
-			$about = sanitizeString($_POST['about']);
-			$user->setAbout($about);
-			UserDAO::update($user);
-			$this->model->msg = "User " . $name . " saved.";
 			$this->model->edit = FALSE;
 		}
 	}

@@ -94,6 +94,12 @@ h3 {
     line-height: 20px;
 }
 
+.error404 {
+    width: 70%;
+    height: 70%;
+    margin: 0 15%;
+}
+
 /*-------------------Footer-------------------*/
 
 footer {
@@ -118,17 +124,18 @@ footer li {
 
 /*---------------Add/Edit Forms---------------*/
 
-#title, #linkMessage, #username, #password {
+#title, #linkMessage, #username, #password, #oldPassword, #repeatPassword {
+    background: #111111;
     display: inline;
-    padding: 5px;
-    border: 4px solid #ffab00;
-    color: #333;
+    padding: 0.3em;
+    border: 0.2em solid #444444;
+    color: #c8c8c8;
     transition: all 0.3s ease-out;
 }
 
-#title:focus, #linkMessage:focus, #username:focus, #password:focus {
+#title:focus, #linkMessage:focus, #username:focus, #password:focus, #oldPassword:focus, #repeatPassword:focus {
     outline: none;
-    border-color: #ffd84e;
+    border-color: #808080;
 }
 
 .editForm, .addForm {
@@ -155,13 +162,15 @@ input::-webkit-input-placeholder {
     color: #444444;
 }
 
-input::-moz-placeholder { /* Firefox 18- */
+input::-moz-placeholder {
+    /* Firefox 18- */
     font-family: 'Simonetta', cursive;
     font-weight: bold;
     color: #444444;
 }
 
-input::-moz-placeholder {  /* Firefox 19+ */
+input::-moz-placeholder {
+    /* Firefox 19+ */
     font-family: 'Simonetta', cursive;
     font-weight: bold;
     color: #444444;
