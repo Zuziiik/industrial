@@ -44,7 +44,7 @@ class ItemListView extends View {
 				if($loggedIn && $admin) {
 
 					?>
-					<div class="categoryButtons">
+					<div class="categoryButtons buttonsGroup">
 						<form name='deleteCategory' method='post' action='./index.php?page=recipes'>
 							<input type='hidden' name='categoryDelete' value='<?php echo($id); ?>'/>
 							<button class="deleteButton" type='submit' name='deleteCategory'>Delete Category</button>

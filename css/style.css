@@ -210,7 +210,7 @@ input::-ms-input-placeholder {
 
 .buttonsItemEditArea form {
     margin-right: 1em;
-    float: left;
+    display: inline;
 }
 
 .buttonsRecipe form {
@@ -234,25 +234,24 @@ input::-ms-input-placeholder {
 
 /*----------------Form Select----------------*/
 
-.styled-select select {
-    font-family: 'Simonetta', cursive;
-    background: transparent;
-    width: 200px;
-    padding: 5px;
+select {
+    padding: 0.1em 0.3em;
+    margin: 0.5em 0;
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(6, 6, 6, 0.74);
+    background: #444444;
+    color:#c3c3c3;
+    border:none;
     font-size: 110%;
-    line-height: 1;
-    border: 0;
-    border-radius: 0;
-    height: 34px;
-    -webkit-appearance: none;
+    font-family: 'Simonetta', cursive;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:normal;
+    -moz-appearance:normal;
+    appearance:normal;
 }
 
-.styled-select {
-    width: 200px;
-    height: 34px;
-    overflow: hidden;
-    background: url(../pictures/arrow.png) right no-repeat #ffab00;
-    border: 1px solid #ccc;
+select.recipeItemSelect {
+    margin: 0;
 }
 
 /*----------------Links----------------*/
@@ -531,6 +530,10 @@ nav a:hover:before {
     position: relative;
     top: 0px;
     left: 0px;
+}
+
+.template {
+    clear: both;
 }
 
 /*----------Items List------------*/

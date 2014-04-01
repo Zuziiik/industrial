@@ -69,31 +69,30 @@ class RecipeFormView extends View {
 
 		<div class="template">  <?php
 		$imageName = $this->model->template->getImageName();
-		echo("./pictures/templates/" . $imageName);
 		$size = getimagesize("./pictures/templates/" . $imageName);
 		$width = $size[0] * 2;
 		$height = $size[1] * 2;
 		$positions = $this->model->template->getPositions();
-		$cords = explode(' | ', $positions);
+		$positions = explode(' | ', $positions);
 		?>
 		<div class="divImageTemplate">
-			<img class="imageTemplate" src="./pictures/templates/<?php echo $imageName; ?>"
-				 style="width: <?php echo $width; ?>px; height: <?php echo $height; ?>px;">
+			<img class="imageTemplate" src="./pictures/templates/<?php echo($imageName); ?>"
+				 style="width: <?php echo($width); ?>px; height: <?php echo($height); ?>px;">
 			<?php
-			foreach ($cords as $cord) {
-				if($cord != '') {
-					$xy = explode(' , ', $cord);
+			foreach ($positions as $position) {
+				if($position != '') {
+					$xy = explode(' , ', $position);
 					$x = ($xy[0] - 14) * 2;
 					$y = ($xy[1] - 14) * 2;
 					?>
 					<select form="addRecipe" name="recipeItems[]" class="recipeItemSelect"
-							style="position: absolute; top:<?php echo $y; ?>px; left:<?php echo $x; ?>px; width: 50px; height: 50px;">
+							style="position: absolute; top:<?php echo($y); ?>px; left:<?php echo($x); ?>px; width: 50px; height: 50px;">
 						<?php
 						foreach ($items as $item) {
 							$name = $item->getName();
 							$id = $item->getIdItem();
 							?>
-							<option value="<?php echo $id; ?>"><?php echo $name; ?></option>
+							<option value="<?php echo($id); ?>"><?php echo($name); ?></option>
 						<?php
 						}
 						?>
@@ -106,10 +105,10 @@ class RecipeFormView extends View {
 
 
 		<form id="addRecipe" name='addRecipe' method='post'
-			  action='./index.php?page=recipe&item=<?php echo $itemId; ?>'>
+			  action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
 			<input type='hidden' name='action' value='addRecipe'/>
-			<input type='hidden' name='templateList' value='<?php echo $templateId; ?>'/>
-			<input type='submit' name='save' value='save'/>
+			<input type='hidden' name='templateList' value='<?php echo($templateId); ?>'/>
+			<button class="saveButton" type='submit' name='save'>Save</button>
 		</form>
 	<?php
 	}
@@ -128,7 +127,6 @@ class RecipeFormView extends View {
 		<h3><?php echo $templateName; ?></h3>
 		<div class="template">  <?php
 		$imageName = $this->model->template->getImageName();
-		echo("./pictures/templates/" . $imageName);
 		$size = getimagesize("./pictures/templates/" . $imageName);
 		$width = $size[0] * 2;
 		$height = $size[1] * 2;
@@ -137,8 +135,8 @@ class RecipeFormView extends View {
 		$length = count($positions) - 1;
 		?>
 		<div class="divImageTemplate">
-			<img class="imageTemplate" src="./pictures/templates/<?php echo $imageName; ?>"
-				 style="width: <?php echo $width; ?>px; height: <?php echo $height; ?>px;">
+			<img class="imageTemplate" src="./pictures/templates/<?php echo($imageName); ?>"
+				 style="width: <?php echo($width); ?>px; height: <?php echo($height); ?>px;">
 			<?php
 			foreach ($items as $item) {
 				$position = $this->findPosition($positions, $item);
@@ -148,7 +146,7 @@ class RecipeFormView extends View {
 				$recipeItemId = (int)$item->getItemId();
 				?>
 				<select form="editRecipe" name="recipeItems[]" class="recipeItemSelect"
-						style="position: absolute; top:<?php echo $y; ?>px; left:<?php echo $x; ?>px; width: 50px; height: 50px;">
+						style="position: absolute; top:<?php echo($y); ?>px; left:<?php echo($x); ?>px; width: 50px; height: 50px;">
 					<?php
 					foreach ($allItems as $allItem) {
 
@@ -156,11 +154,11 @@ class RecipeFormView extends View {
 						$id = $allItem->getIdItem();
 						if($recipeItemId == $id) {
 							?>
-							<option value="<?php echo $id; ?>" selected><?php echo $name; ?></option>
+							<option value="<?php echo($id); ?>" selected><?php echo($name); ?></option>
 						<?php
 						} else {
 							?>
-							<option value="<?php echo $id; ?>"><?php echo $name; ?></option>
+							<option value="<?php echo($id); ?>"><?php echo($name); ?></option>
 						<?php
 						}
 					}
@@ -175,7 +173,7 @@ class RecipeFormView extends View {
 			$y = ($xy[1] - 14) * 2;
 			?>
 			<select form="editRecipe" name="recipeItems[]" class="recipeItemSelect"
-					style="position: absolute; top:<?php echo $y; ?>px; left:<?php echo $x; ?>px; width: 50px; height: 50px;">
+					style="position: absolute; top:<?php echo($y); ?>px; left:<?php echo($x); ?>px; width: 50px; height: 50px;">
 				<?php
 				foreach ($allItems as $allItem) {
 
@@ -183,11 +181,11 @@ class RecipeFormView extends View {
 					$id = $allItem->getIdItem();
 					if($outputItemId == $id) {
 						?>
-						<option value="<?php echo $id; ?>" selected><?php echo $name; ?></option>
+						<option value="<?php echo($id); ?>" selected><?php echo($name); ?></option>
 					<?php
 					} else {
 						?>
-						<option value="<?php echo $id; ?>"><?php echo $name; ?></option>
+						<option value="<?php echo($id); ?>"><?php echo($name); ?></option>
 					<?php
 					}
 				}
@@ -195,11 +193,11 @@ class RecipeFormView extends View {
 			</select>
 		</div>
 		<form id="editRecipe" name='editRecipe' method='post'
-			  action='./index.php?page=recipe&item=<?php echo $itemId; ?>'>
+			  action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
 			<input type='hidden' name='action' value='editRecipe'/>
-			<input type='hidden' name='id' value='<?php echo $this->model->recipeId; ?>'/>
-			<input type='hidden' name='templateId' value='<?php echo $templateId; ?>'/>
-			<input type='submit' name='save' value='save'/>
+			<input type='hidden' name='id' value='<?php echo($this->model->recipeId); ?>'/>
+			<input type='hidden' name='templateId' value='<?php echo($templateId); ?>'/>
+			<button class="saveButton" type='submit' name='save'>Save</button>
 		</form>
 
 	<?php
