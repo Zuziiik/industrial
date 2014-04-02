@@ -143,18 +143,22 @@ footer li {
     height: 40em;
 }
 
-.custom-file-input::-webkit-file-upload-button {
-    clear: both;
+.custom-file-input::-webkit-file-upload-button{
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 3px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(6, 6, 6, 0.74);
     font-family: 'Simonetta', cursive;
     margin: 0.5em 0;
-    color: #000000;
-    background-color: #ffab00;
+    color: #c3c3c3;
+    background-color: #444444;
     font-size: 110%;
-    padding: 0.1em;
+    padding: 0.1em 0.3em;
 }
 
-.custom-file-input::-webkit-file-upload-button:hover {
-    background-color: #ff9000;
+.custom-file-input::-webkit-file-upload-button:active {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    outline: none;
 }
 
 input::-webkit-input-placeholder {

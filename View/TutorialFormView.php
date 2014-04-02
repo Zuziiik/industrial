@@ -40,7 +40,7 @@ class TutorialFormView extends View {
 
 				?>
 				<form class='editTutorial' name='edit' method='post'
-					  action='./index.php?page=tutorialEdit&id=<?php echo $id; ?>'>
+					  action='./index.php?page=tutorialEdit&id=<?php echo ($id); ?>'>
 					<input type='hidden' name='action' value='editTutorial'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus
 						   value='<?php echo $title; ?>'/>

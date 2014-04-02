@@ -35,12 +35,11 @@ class TemplateFormView extends View {
             if ($this->model->add && !$this->model->selectedImage) {
                 ?>
                 <span class="messageTemplate">Upload template picture</span>
-                <form class="addForm" name='addTemplatePic' method='post' action='./index.php?page=templateForm'
+                <form 	name='addTemplatePic' method='post' action='./index.php?page=templateForm'
                       enctype='multipart/form-data'>
                     <input type='hidden' name='action' value='addTemplate' />
-                    <label for='image'>Image</label>
-                    <input type='file' id='image' name='image' size='14' maxlength='32' />
-                    <input type='submit' name='submitPicture' value='Submit' />
+                    <input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32' />
+                    <button class="submitButton" type='submit' name='submitPicture'>Submit</button>
                 </form>
                 <?php
 
@@ -73,7 +72,7 @@ class TemplateFormView extends View {
 		$positions = explode(' | ', $positions);
         ?>
         <span class="messageTemplate">Confirm cord's of <?php echo $name ?>`s Template</span>
-        <form class="addForm" name='confirm' method='post' action='./index.php?page=templateForm'>
+        <form  name='confirm' method='post' action='./index.php?page=templateForm'>
             <input type="hidden" name="name" value="<?php echo $name ?>" />
             <input type="hidden" name="imageName" value="<?php echo $imageName ?>" />
             <input type='hidden' name='action' value='submitPositions' />
@@ -95,10 +94,10 @@ class TemplateFormView extends View {
         $imageName = $this->model->imageName;
         ?>
         <span class="messageTemplate">Select middle cords for items.</span>
-        <img id="imgId" src='./pictures/templates/<?php echo $this->model->imageName ?>' />
-        <form class="addForm" name='addTemplatePic' method='post' action='./index.php?page=templateForm'>
+        <img id="imgId" src='./pictures/templates/<?php echo ($this->model->imageName); ?>' />
+        <form name='addTemplatePic' method='post' action='./index.php?page=templateForm'>
             <input type='hidden' name='action' value='submitPositions' />
-            <input type="hidden" name="imageName" value="<?php echo $imageName ?>" />
+            <input type="hidden" name="imageName" value="<?php echo ($imageName); ?>" />
             <input type="text" name="name" id="name" placeholder="Template Name" />
             <input type="text" size="100" maxlength="300" name="positions" id="positions" />
             <input type="submit" name="submitPositions" value="Submit">
