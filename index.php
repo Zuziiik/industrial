@@ -55,6 +55,8 @@ $view->initialize();
 				]
 			});
 
+
+
 		</script>
 		<link rel='stylesheet' type='text/css' href='css/style.css' title='default'/>
 
