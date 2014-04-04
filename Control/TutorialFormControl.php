@@ -45,7 +45,7 @@ class TutorialFormControl extends Control {
             $this->model->tutorial->setTitle($title);
             EditableAreaDAO::update($this->model->tutorial);
             $this->model->edit = FALSE;
-            echo("<script>window.location = './index.php?page=tutorialList';</script>");
+            echo("<script>window.location = './index.php?page=tutorial&id=$id';</script>");
         }
     }
 

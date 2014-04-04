@@ -40,7 +40,7 @@ class NewsView extends View {
 				<form class='editNews' name='editNews' method='post' action='./index.php?page=newsEdit'>
 					<input type='hidden' name='action' value='editNews'/>
 					<input type='hidden' name='id' value='<?php echo($id); ?>'/>
-					<button class="editButton" type='submit' name='editNews'>Edit</button>
+					<button class="submitButton" type='submit' name='editNews'>Edit</button>
 				</form>
 			<?php
 			}

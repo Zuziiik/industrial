@@ -64,7 +64,7 @@ class CommentView extends View {
 						<form name='deleteComment' method='post' action='./index.php?page=servers'>
 							<input type='hidden' name='action' value='deleteComment'/>
 							<input type='hidden' name='commentId' value='<?php echo($id); ?>'/>
-							<button class='deleteButton' type='submit' name='deleteComment'>Delete Comment</button>
+							<button class='submitButton' type='submit' name='deleteComment'>Delete Comment</button>
 						</form>
 					<?php
 					}
@@ -75,7 +75,7 @@ class CommentView extends View {
 						<input type='hidden' name='title' value='<?php echo($title); ?>'/>
 						<input type='hidden' name='message' value='<?php echo($message); ?>'/>
 						<input type='hidden' name='commentId' value='<?php echo($id); ?>'/>
-						<button class='editButton' type='submit' name='editComment'>Edit Comment</button>
+						<button class='submitButton' type='submit' name='editComment'>Edit Comment</button>
 					</form>
 				</div>
 			<?php
@@ -90,7 +90,7 @@ class CommentView extends View {
 					<input type='hidden' name='action' value='replyComment'/>
 					<input type='hidden' name='title' value='<?php echo($title); ?>'/>
 					<input type='hidden' name='commentId' value='<?php echo $id; ?>'/>
-					<button class='replyButton' type='submit' name='replyComment'>Reply</button>
+					<button class='submitButton' type='submit' name='replyComment'>Reply</button>
 				</form>
 			<?php
 			}

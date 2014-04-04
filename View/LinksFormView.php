@@ -77,7 +77,7 @@ class LinksFormView extends View {
 				<input type='hidden' name='action' value='addLink'/>
 				<input type='text' name='title' id="title" placeholder="title"/>
 				<input type='text' name='message' id="linkMessage" placeholder="link"/>
-				<button class='saveButton' type='submit' name='save'>Save</button>
+				<button class='submitButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		} else {
@@ -86,7 +86,7 @@ class LinksFormView extends View {
 				<input type='hidden' name='action' value='addResourcePack'/>
 				<input type='text' name='title' id="title" placeholder="title"/>
 				<input type='text' name='message' id="linkMessage" placeholder="link"/>
-				<button class='saveButton' type='submit' name='save'>Save</button>
+				<button class='submitButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		}
@@ -103,7 +103,7 @@ class LinksFormView extends View {
 				<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
 				<input type='text' name='title' id="title" value='<?php echo $title; ?>'/>
 				<input type='text' name='message' id="linkMessage" value='<?php echo $message; ?>'/>
-				<button class='saveButton' type='submit' name='save'>Save</button>
+				<button class='submitButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		} else {
@@ -113,7 +113,7 @@ class LinksFormView extends View {
 				<input type='hidden' name='LinkId' value='<?php echo $id; ?>'/>
 				<input type='text' name='title' id="title" value='<?php echo $title; ?>'/>
 				<input type='text' name='message' id="linkMessage" value='<?php echo $message; ?>'/>
-				<button class='saveButton' type='submit' name='save'>Save</button>
+				<button class='submitButton' type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		}

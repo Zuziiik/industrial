@@ -27,7 +27,7 @@ class ServersView extends View {
 			?>
 			<form name='addServer' method='post' action='./index.php?page=editServer'>
 				<input type='hidden' name='action' value='addServer'/>
-				<button class="addButton" type='submit' name='addServer'>Add Server</button>
+				<button class="submitButton" type='submit' name='addServer'>Add Server</button>
 			</form>
 		<?php
 		}
@@ -47,13 +47,13 @@ class ServersView extends View {
 						<form name='deleteServer' method='post' action='./index.php?page=servers'>
 							<input type='hidden' name='action' value='deleteServer'/>
 							<input type='hidden' name='ServerId' value='<?php echo($id); ?>'/>
-							<button class='deleteButton' type='submit' name='deleteServer'>Delete</button>
+							<button class='submitButton' type='submit' name='deleteServer'>Delete</button>
 						</form>
 
 						<form name='editServer' method='post' action='./index.php?page=editServer'>
 							<input type='hidden' name='action' value='editServer'/>
 							<input type='hidden' name='ServerId' value='<?php echo($id); ?>'/>
-							<button class='editButton' type='submit' name='editServer'>Edit</button>
+							<button class='submitButton' type='submit' name='editServer'>Edit</button>
 						</form>
 					</div>
 
@@ -75,7 +75,7 @@ class ServersView extends View {
 					<input type='hidden' name='path' value='<?php echo($path); ?>'/>
 					<input type='hidden' name='targetId' value='<?php echo($id); ?>'/>
 					<input type='hidden' name='type' value='<?php echo($type); ?>'/>
-					<button class='commentButton' type='submit' name='addComment'>Comment</button>
+					<button class='submitButton' type='submit' name='addComment'>Comment</button>
 				</form>
 			<?php
 			}

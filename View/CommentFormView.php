@@ -34,8 +34,8 @@ class CommentFormView extends View {
 					<input type='hidden' name='action' value='replyComment'/>
 					<input type='hidden' name='commentId' value='<?php echo($commentId); ?>'/>
 					<input type='hidden' name='title' value='<?php echo($title); ?>'/>
-					<textarea name='message' rows="6" cols="85"></textarea>
-					<button class='replyButton' type='submit' name='save'>Reply</button>
+					<textarea class="editForm" name='message' rows="6" cols="85"></textarea>
+					<button class='submitButton' type='submit' name='save'>Reply</button>
 				</form>
 			<?php
 			}
@@ -47,8 +47,8 @@ class CommentFormView extends View {
 					<input type='hidden' name='commentId' value='<?php echo($commentId); ?>'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus
 						   value='<?php echo($title); ?>'/>
-					<textarea name='message' rows="6" cols="85"><?php echo($message); ?></textarea>
-					<button class='editButton' type='submit' name='save'>Save</button>
+					<textarea class="editForm" name='message' rows="6" cols="85"><?php echo($message); ?></textarea>
+					<button class='submitButton' type='submit' name='save'>Save</button>
 				</form>
 			<?php
 			}
@@ -61,8 +61,8 @@ class CommentFormView extends View {
 					<input type='hidden' name='targetId' value='<?php echo($targetId); ?>'/>
 					<input type='hidden' name='type' value='<?php echo($type); ?>'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus/>
-					<textarea class="AddForm" name='message' rows="6" cols="85"></textarea>
-					<button class='addButton' type='submit' name='save'>Comment</button>
+					<textarea class="editForm" name='message' rows="6" cols="85"></textarea>
+					<button class='submitButton' type='submit' name='save'>Comment</button>
 				</form>
 			<?php
 			}

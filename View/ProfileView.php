@@ -70,7 +70,7 @@ class ProfileView extends View {
 			?>
 			<form name='editProfile' method='post' action='./index.php?page=profile&name=<?php echo($username); ?>'>
 				<input type='hidden' name='action' value='editProfile'/>
-				<button class="editButton" type='submit' name='edit'>Edit Profile</button>
+				<button class="submitButton" type='submit' name='edit'>Edit Profile</button>
 			</form>
 		<?php
 		} else {
@@ -81,7 +81,7 @@ class ProfileView extends View {
 				<input type='hidden' name='action' value='editProfile'/>
 				<label>Image<input class="custom-file-input" type='file' name='image' size='14' maxlength='32'/></label>
 				<textarea class="editForm" name='about' rows="4" cols="50" wrap="soft" placeholder="about"><?php echo($about); ?></textarea>
-				<button class="saveButton" type='submit' name='save'>Save</button>
+				<button class="submitButton" type='submit' name='save'>Save</button>
 			</form>
 		<?php
 		}
@@ -107,7 +107,7 @@ class ProfileView extends View {
 						<td></td>
 					</tr>
 					<tr>
-						<td><button class="saveButton" type='submit' name='changePassword'>Save</button></td>
+						<td><button class="submitButton" type='submit' name='changePassword'>Save</button></td>
 						<td></td>
 						<td><?php echo($this->model->EmptyFieldsError); ?></td>
 					</tr>

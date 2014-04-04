@@ -34,7 +34,7 @@ class ItemView extends View {
 			?>
 			<form name='editItem' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
 				<input type='hidden' name='action' value='editItem'/>
-				<button class="editButton" type='submit' name='editItem'>Edit</button>
+				<button class="submitButton" type='submit' name='editItem'>Edit</button>
 			</form>
 		<?php
 		}
@@ -89,7 +89,7 @@ class ItemView extends View {
 					<form id="addRecipe" name='addRecipe' method='post'
 						  action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
 						<input type='hidden' name='action' value='addRecipe'/>
-						<button class="addButton" type='submit' name='addRecipe'>Add Recipe</button>
+						<button class="submitButton" type='submit' name='addRecipe'>Add Recipe</button>
 					</form>
 					<div class="styled-select">
 						<select name="templateList" form="addRecipe">
@@ -121,28 +121,28 @@ class ItemView extends View {
 					<form name='editItem' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
 						<input type='hidden' name='action' value='editArea'/>
 						<input type='hidden' name='areaId' value='<?php echo($id); ?>'/>
-						<button class="deleteButton" type='submit' name='editArea'>Edit</button>
+						<button class="submitButton" type='submit' name='editArea'>Edit</button>
 					</form>
 
 					<form name='deleteItemEdit' method='post'
 						  action='./index.php?page=item&item=<?php echo($itemId); ?>'>
 						<input type='hidden' name='action' value='delete'/>
 						<input type='hidden' name='areaId' value='<?php echo($id); ?>'/>
-						<input class="deleteButton" type='submit' name='delete' value='Delete'/>
+						<input class="submitButton" type='submit' name='delete' value='Delete'/>
 					</form>
 
 					<form name='changeWeight' method='post'
 						  action='./index.php?page=item&item=<?php echo($itemId); ?>'>
 						<input type='hidden' name='action' value='moveUp'/>
 						<input type='hidden' name='areaId' value='<?php echo($id); ?>'/>
-						<input class='imageButton' type='image' name='up' src='pictures/up.png' alt='move up'/>
+						<input type='image' name='up' src='pictures/up.png' alt='move up'/>
 					</form>
 
 					<form name='changeWeight' method='post'
 						  action='./index.php?page=item&item=<?php echo($itemId); ?>'>
 						<input type='hidden' name='action' value='moveDown'/>
 						<input type='hidden' name='areaId' value='<?php echo($id); ?>'/>
-						<input class='imageButton' type='image' name='down' src='pictures/down.png'
+						<input type='image' name='down' src='pictures/down.png'
 							   alt='move down'/>
 					</form>
 				</div>
@@ -155,7 +155,7 @@ class ItemView extends View {
 			<form id='addSection' name='addSection' method='post'
 				  action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
 				<input type='hidden' name='action' value='addArea'/>
-				<button class="addButton" type='submit' name='addArea'>Add Section</button>
+				<button class="submitButton" type='submit' name='addArea'>Add Section</button>
 			</form>
 		<?php
 		}

@@ -26,7 +26,7 @@ class ItemListView extends View {
 			?>
 			<form name='addCategory' method='post' action='./index.php?page=recipes'>
 				<label>Add Category<input id='title' type='text' name='categoryName'/></label>
-				<button class="addButton" type='submit'>Add</button>
+				<button class="submitButton" type='submit'>Add</button>
 			</form>
 		<?php
 		}
@@ -47,12 +47,12 @@ class ItemListView extends View {
 					<div class="categoryButtons buttonsGroup">
 						<form name='deleteCategory' method='post' action='./index.php?page=recipes'>
 							<input type='hidden' name='categoryDelete' value='<?php echo($id); ?>'/>
-							<button class="deleteButton" type='submit' name='deleteCategory'>Delete Category</button>
+							<button class="submitButton" type='submit' name='deleteCategory'>Delete Category</button>
 						</form>
 						<form class="addItem" name='addItem' method='post' action='./index.php?page=edit'>
 							<input type='hidden' name='action' value='addItem'/>
 							<input type='hidden' name='categoryName' value='<?php echo($nameCategory); ?>'/>
-							<button class="addButton" type='submit' name='AddItem'>Add Item</button>
+							<button class="submitButton" type='submit' name='AddItem'>Add Item</button>
 						</form>
 					</div>
 				<?php
@@ -77,7 +77,7 @@ class ItemListView extends View {
 								<form name='deleteItem' method='post' action='./index.php?page=recipes'>
 									<input type='hidden' name='action' value='deleteItem'/>
 									<input type='hidden' name='itemId' value='<?php echo($id); ?>'/>
-									<button class="deleteButton" type='submit' name='DeleteItem'>Delete</button>
+									<button class="submitButton" type='submit' name='DeleteItem'>Delete</button>
 								</form>
 							<?php
 							}

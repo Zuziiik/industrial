@@ -65,7 +65,7 @@ class ItemFormView extends View {
 					   value='<?php echo $title; ?>'/>
 				<input type='hidden' name='areaId' value='<?php echo $id; ?>'/>
 				<textarea class='editForm' name=text rows="4" cols="50" wrap='hard'><?php echo($text); ?> </textarea>
-				<button class='saveButton' type='submit' name='save'>Save</button>
+				<button class='submitButton' type='submit' name='save'>Save</button>
 			</form>
 
 		<?php
@@ -83,7 +83,7 @@ class ItemFormView extends View {
 				<input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32'/>
 				<textarea class='editForm' name='details' id='details' wrap="hard" placeholder="Details" rows="4"
 						  cols="50"><?php echo($details); ?></textarea>
-				<button class='saveButton' type='submit' name='save'>Save</button>
+				<button class='submitButton' type='submit' name='save'>Save</button>
 			</form>
 
 		<?php
@@ -100,8 +100,8 @@ class ItemFormView extends View {
 			<label for='image'>Icon</label>
 			<input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32'/>
 			<input type='hidden' name='categoryName' value='<?php echo($nameCategory); ?>'/>
-			<textarea class='addForm' name='details' id='details' rows="4" cols="50">Add details.</textarea>
-			<button class='saveButton' type='submit' name='save'>Save</button>
+			<textarea class='editForm' name='details' id='details' rows="4" cols="50">Add details.</textarea>
+			<button class='submitButton' type='submit' name='save'>Save</button>
 		</form>
 	<?php
 	}
@@ -112,8 +112,8 @@ class ItemFormView extends View {
 		<form name='addArea' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
 			<input type='hidden' name='action' value='addArea'/>
 			<input id='title' type='text' placeholder="Title" name='title' autofocus/>
-			<textarea class='addForm' name='text' rows="4" cols="50"></textarea>
-			<button class='saveButton' type='submit' name='save'>Save</button>
+			<textarea class='editForm' name='text' rows="4" cols="50"></textarea>
+			<button class='submitButton' type='submit' name='save'>Save</button>
 		</form>
 	<?php
 	}

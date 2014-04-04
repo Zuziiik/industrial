@@ -108,7 +108,7 @@ class RecipeFormView extends View {
 			  action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
 			<input type='hidden' name='action' value='addRecipe'/>
 			<input type='hidden' name='templateList' value='<?php echo($templateId); ?>'/>
-			<button class="saveButton" type='submit' name='save'>Save</button>
+			<button class="submitButton" type='submit' name='save'>Save</button>
 		</form>
 	<?php
 	}
@@ -197,7 +197,7 @@ class RecipeFormView extends View {
 			<input type='hidden' name='action' value='editRecipe'/>
 			<input type='hidden' name='id' value='<?php echo($this->model->recipeId); ?>'/>
 			<input type='hidden' name='templateId' value='<?php echo($templateId); ?>'/>
-			<button class="saveButton" type='submit' name='save'>Save</button>
+			<button class="submitButton" type='submit' name='save'>Save</button>
 		</form>
 
 	<?php

@@ -27,7 +27,7 @@ class TutorialListView extends View {
 			?>
 			<form id='addTutorial' name='addTutorial' method='post' action='./index.php?page=tutorialEdit'>
 				<input type='hidden' name='action' value='addTutorial'/>
-				<button class="addButton" type='submit' name='addTutorial'>Add Tutorial</button>
+				<button class="submitButton" type='submit' name='addTutorial'>Add Tutorial</button>
 			</form>
 		<?php
 		}
@@ -36,18 +36,25 @@ class TutorialListView extends View {
 			$title = $tutorial->getTitle();
 			$message = $tutorial->getMessage();
 			$message = substr($message, 0, 300);
-			?><span class='tutorialTitle'><h2><?php echo($title); ?></h2></span><?php
-			?><span class='tutorialMessage'><?php echo($message); ?></span><?php
-			?><a class='more' href='./index.php?page=tutorial&id=<?php echo($id); ?>'>More...</a><?php
-			if($admin && $loggedIn) {
-				?>
-				<form name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
-					<input type='hidden' name='action' value='deleteTutorial'/>
-					<input type='hidden' name='id' value='<?php echo($id); ?>'/>
-					<button class="deleteButton" type='submit' name='deleteTutorial'>Delete</button>
-				</form>
-			<?php
-			}
+			?>
+			<div class="tutorial">
+				<h2><?php echo($title); ?></h2>
+
+				<div class='tutorialMessage'><?php echo($message); ?>
+					<a class='more' href='./index.php?page=tutorial&id=<?php echo($id); ?>'>More...</a><?php
+					if($admin && $loggedIn) {
+						?>
+						<form name='deleteTutorial' method='post' action='./index.php?page=tutorialList'>
+							<input type='hidden' name='action' value='deleteTutorial'/>
+							<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+							<button class="submitButton" type='submit' name='deleteTutorial'>Delete</button>
+						</form>
+					<?php
+					}
+					?>
+				</div>
+			</div>
+		<?php
 		}
 	}
 

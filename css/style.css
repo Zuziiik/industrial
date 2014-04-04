@@ -140,7 +140,7 @@ footer li {
     border-color: #808080;
 }
 
-.editForm, .addForm {
+.editForm {
     height: 40em;
 }
 
@@ -183,35 +183,24 @@ footer li {
     opacity: 0;
 }
 
-input::-webkit-input-placeholder {
+input[placeholder] {
     font-family: 'Simonetta', cursive;
     font-weight: bold;
     color: #444444;
 }
 
-input::-moz-placeholder {
-    /* Firefox 18- */
-    font-family: 'Simonetta', cursive;
-    font-weight: bold;
-    color: #444444;
-}
-
-input::-moz-placeholder {
-    /* Firefox 19+ */
-    font-family: 'Simonetta', cursive;
-    font-weight: bold;
-    color: #444444;
-}
-
-input::-ms-input-placeholder {
-    font-family: 'Simonetta', cursive;
-    font-weight: bold;
-    color: #444444;
+input[type=text]{
+    background: #111111;
+    display: inline;
+    padding: 0.3em;
+    border: 0.2em solid #444444;
+    color: #c8c8c8;
+    transition: all 0.3s ease-out;
 }
 
 /*----------------Form Buttons----------------*/
 
-.addButton, .deleteButton, .editButton, .commentButton, .replyButton, .saveButton, .submitButton {
+.submitButton {
     clear: both;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -224,8 +213,7 @@ input::-ms-input-placeholder {
     padding: 0.1em 0.3em;
 }
 
-.addButton:active, .deleteButton:active, .editButton:active, .commentButton:active, .replyButton:active,
-.saveButton:active, .submitButton:active {
+.submitButton:active {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
     outline: none;
@@ -505,7 +493,7 @@ nav a:hover:before {
     color: #F2BF97;
 }
 
-/*-------------Homepage---------------*/
+/*-------------Homepage/Tutorials---------------*/
 
 .more {
     display: inline-block;
@@ -533,7 +521,7 @@ nav a:hover:before {
     color: #F2BF97;
 }
 
-.news {
+.news, .tutorial {
     margin-bottom: 1em;
     background-color: #0c0c0c;
     padding: 1em;
@@ -542,7 +530,7 @@ nav a:hover:before {
     box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
 }
 
-.newsMessage {
+.newsMessage, .tutorialMessage {
     clear: both;
     /*border-radius: 0.5em;*/
     width: 80%;
@@ -658,4 +646,22 @@ div.reComment {
     box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
 }
 
+/*--------List of Users----------*/
 
+.user {
+    margin-bottom: 1em;
+    background-color: #0c0c0c;
+    padding: 1em;
+    width: 100%;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
+
+.userStatus, .confirmed {
+    color: greenyellow;
+}
+
+.adminStatus, .unconfirmed {
+    color: orangered;
+}

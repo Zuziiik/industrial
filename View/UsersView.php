@@ -30,61 +30,80 @@ class UsersView extends View {
 				$create = $user->getCreateTime();
 				$login = $user->getlastLogin();
 				$id = $user->getIdUser();
-				echo("<span class='username'>Username: " . $username . "</span>");
-				echo("<span class='email'>Email: " . $email . "</span>");
-				echo("<span class='create'>Create Time: " . $create . "</span>");
-				echo("<span class='create'>Last Login: " . $login . "</span>");
 				?>
-				<form class='changeAdmin' name='changeAdmin' method='post' action='./index.php?page=users'>
-				<input type='hidden' name='action' value='changeAdmin'/>
-				<input type='hidden' name='id' value='<?php echo $id; ?>'/>
-				<?php
-				if($user->getAdmin()) {
-					echo("<span class='admin'>admin</span>");
-					echo("<input type='submit' name='submit' value='Make User'/>");
-				} else {
-					echo("<span class='user'>user</span>");
+				<div class="user">
+					<div class='userInfo'>Username: <?php echo($username); ?> </br>
+						Email: <?php echo($email); ?>  </br>
+						Create Time:  <?php echo($create); ?> </br>
+						Last Login:  <?php echo($login); ?> </br></div>
+					<form class='changeAdmin' name='changeAdmin' method='post' action='./index.php?page=users'>
+						<input type='hidden' name='action' value='changeAdmin'/>
+						<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+						<?php
+						if($user->getAdmin()) {
+							?>
+							<span class='adminStatus'>admin</span>
+							<button class='submitButton' type='submit' name='submit'>Make User</button>
+						<?php
+						} else {
+							?>
+							<span class='userStatus'>user</span>
 
-					echo("<input type='submit' name='submit' value='Make Admin'/>");
-				}
-				echo("</form>");
-			if(!$user->getAdmin()) {
-				?>
-				<form class='banUser' name='banUser' method='post' action='./index.php?page=users'>
-				<input type='hidden' name='action' value='banUser'/>
-				<input type='hidden' name='id' value='<?php echo $id; ?>'/>
-				<label for='days'>Days:</label>
-				<input type='text' id='days' name='days' value='3'/>
-				<input type='submit' name='banUser' value='Ban User'/>
+							<button class='submitButton' type='submit' name='submit'>Make Admin</button>
+						<?php
+						}
+						?>
+					</form>
+					</br>
+					<?php
+					if(!$user->getAdmin()) {
+						?>
+						<form class='banUser' name='banUser' method='post' action='./index.php?page=users'>
+							<input type='hidden' name='action' value='banUser'/>
+							<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+							<label for='days'>Days:</label>
+							<input type='text' id='days' name='days' value='3'/>
+							<button class='submitButton' type='submit' name='submit'>Ban User</button>
+						</form>
+						<?php
+						?>
+						<form class='unbanUser' name='unbanUser' method='post' action='./index.php?page=users'>
+							<input type='hidden' name='action' value='unbanUser'/>
+							<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+							<button class='submitButton' type='submit' name='submit'>Unban User</button>
+						</form>
+					<?php
+					}
+					if($user->getConfirmed()) {
+						?>
+						<span class='confirmed'>confirmed</span>
+					<?php
+					} else {
+						?>
+						<span class='unconfirmed'>confirmed</span>
+						<?php
+						$id = $user->getIdUser();
+						?>
+						<form class='confirm' name='confirm' method='post' action='./index.php?page=users'>
+							<input type='hidden' name='action' value='confirm'/>
+							<input type='hidden' name='id' value='<?php echo $id; ?>'/>
+							<button class="submitButton" type='submit' name='confirm'>Confirm</button>
+						</form>
+					<?php
 
-				<?php
-				?>
-				<form class='unbanUser' name='unbanUser' method='post' action='./index.php?page=users'>
-				<input type='hidden' name='action' value='unbanUser'/>
-				<input type='hidden' name='id' value='<?php echo $id; ?>'/>
-				<input type='submit' name='unbanUser' value='Unban User'/>
-
+					}
+					?>
+				</div>
 			<?php
 			}
-				if($user->getConfirmed()) {
-					echo("<span class='confirmed'>confirmed</span>");
-				} else {
-					echo("<span class='unconfirmed'>confirmed</span>");
-					$id = $user->getIdUser();
-					?>
-					<form class='confirm' name='confirm' method='post' action='./index.php?page=users'>
-						<input type='hidden' name='action' value='confirm'/>
-						<input type='hidden' name='id' value='<?php echo $id; ?>'/>
-						<input type='submit' name='confirm' value='Confirm'/>
-					</form>
+			?>
+			<span id='bans'>Bans:</span>
+			<div class='bans'>
 				<?php
-
-				}
-			}
-			echo("<span id='bans'>Bans:</span><div class='bans'>");
-
-			$this->printBans();
-			echo("</div>");
+				$this->printBans();
+				?>
+			</div>
+			<?php
 			echo($this->model->error);
 			echo($this->model->msg);
 		} else {
@@ -105,9 +124,12 @@ class UsersView extends View {
 					$name = $user->getUsername();
 					$start = $ban->getBanStart();
 					$end = $ban->getBanEnd();
-					echo("<div class='ban'>Username: " . $name);
-					echo("</br>Ban Start: " . $start);
-					echo("</br>Ban End: " . $end . "</div>");
+					?>
+					<div class='ban'>Username:  <?php echo($name); ?>
+						</br>Ban Start:  <?php echo($start); ?>
+						</br>Ban End:  <?php echo($end); ?>
+					</div>");
+				<?php
 				}
 			}
 		}

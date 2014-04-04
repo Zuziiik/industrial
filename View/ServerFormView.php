@@ -38,8 +38,8 @@ class ServerFormView extends View {
 				<form name='addServer' method='post' action='./index.php?page=editServer'>
 					<input type='hidden' name='action' value='addServer'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus/>
-					<textarea class='addForm' id='message' cols='30' rows='6' name='message'></textarea>
-					<button class='saveButton' type='submit' name='save'>Save</button>
+					<textarea class='editForm' id='message' cols='30' rows='6' name='message'></textarea>
+					<button class='submitButton' type='submit' name='save'>Save</button>
 				</form>
 			<?php
 			}
@@ -55,7 +55,7 @@ class ServerFormView extends View {
 						   value=' <?php echo($title); ?>'/>
 					<textarea class='editForm' id='message' cols='30' rows='6'
 							  name='message'><?php echo($message); ?></textarea>
-					<button class='saveButton' type='submit' name='save'>Save</button>
+					<button class='submitButton' type='submit' name='save'>Save</button>
 				</form>
 			<?php
 			}

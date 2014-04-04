@@ -28,7 +28,7 @@ class RecipeTemplatesView extends View {
 			?>
 			<form name='addTemplate' method='post' action='./index.php?page=templateForm'>
 				<input type='hidden' name='action' value='addTemplate'/>
-				<button class="addButton" type='submit' name='addTemplate'>Add Template</button>
+				<button class="submitButton" type='submit' name='addTemplate'>Add Template</button>
 			</form>
 
 			<?php
@@ -63,7 +63,7 @@ class RecipeTemplatesView extends View {
 						  action='./index.php?page=recipeTemplates'>
 						<input type='hidden' name='action' value='deleteTemplate'/>
 						<input type='hidden' name='id' value='<?php echo($id); ?>'/>
-						<button class="deleteButton" type='submit' name='deleteTemplate'>Delete</button>
+						<button class="submitButton" type='submit' name='deleteTemplate'>Delete</button>
 					</form>
 				</div>
 			<?php

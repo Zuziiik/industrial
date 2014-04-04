@@ -43,10 +43,10 @@ class TutorialFormView extends View {
 					  action='./index.php?page=tutorialEdit&id=<?php echo ($id); ?>'>
 					<input type='hidden' name='action' value='editTutorial'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus
-						   value='<?php echo $title; ?>'/>
+						   value='<?php echo ($title); ?>'/>
 					<textarea class='EditForm' name='text' id='tutorialText' rows="50"
-							  cols="30"><?php echo $message; ?></textarea>
-					<input type='submit' class='save' name='save' value='Save'/>
+							  cols="30"><?php echo ($message); ?></textarea>
+					<button type='submit' class='submitButton' name='save'>Save</button>
 				</form>
 
 			<?php
@@ -57,7 +57,7 @@ class TutorialFormView extends View {
 					<input type='hidden' name='action' value='addTutorial'/>
 					<input id='title' type='text' placeholder="Title" name='title' autofocus/>
 					<textarea class='addForm' name='text' id='tutorialText' rows="50" cols="30"></textarea>
-					<input type='submit' class='save' name='save' value='Save'/>
+					<button type='submit' class='submitButton' name='save'>Save</button>
 				</form>
 
 
