@@ -42,7 +42,7 @@ class UsersView extends View {
 						Email: <?php echo($email); ?>  </br>
 						Create Time:  <?php echo($create); ?> </br>
 						Last Login:  <?php echo($login); ?> </br></div>
-					<form class='changeAdmin' name='changeAdmin' method='post' action='./index.php?page=users'>
+					<form class='changeAdmin' name='changeAdmin' method='post' action='.index.php?page=users'>
 						<input type='hidden' name='action' value='changeAdmin' />
 						<input type='hidden' name='id' value='<?php echo($id); ?>' />
 						<?php

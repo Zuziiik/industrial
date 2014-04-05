@@ -664,3 +664,20 @@ div.reComment {
 .adminStatus, .unconfirmed, .banned {
     color: orangered;
 }
+
+/*----------Profile------------*/
+
+.about {
+    margin-bottom: 1em;
+    background-color: #0c0c0c;
+    padding: 1em;
+    width: 100%;
+    -webkit-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    -moz-box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+    box-shadow: inset -1px 0px 8px 4px rgba(50, 50, 50, 0.56);
+}
+
+.email {
+    font-style: italic;
+    color: #ff0060;
+}

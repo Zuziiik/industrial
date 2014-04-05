@@ -83,7 +83,7 @@ class ProfileControl extends Control {
 					move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
 					$this->updateImage($saveto, $userId);
 				}
-				$about = sanitizeString($_POST['about']);
+				$about = sanitizeTextArea($_POST['about']);
 				$user->setAbout($about);
 				UserDAO::update($user);
 			} else {
