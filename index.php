@@ -61,22 +61,10 @@ $view->initialize();
 		<link rel='stylesheet' type='text/css' href='css/style.css' title='default'/>
 
 	</head>
-	<title>
-		<?php
-
-		$view->printTitle();
-		?>
-	</title>
+	<title><?php $view->printTitle(); ?></title>
 	<div id='content'>
-	<header>
-		<?php
-		include_once 'menu.php';
-		?>
-		<nav>
-			<?php
-			$view->printNavigation()
-			?>
-		</nav>
+	<header><?php include_once 'menu.php';?>
+		<nav><?php $view->printNavigation(); ?></nav>
 	</header>
 	<body>
 	<h1>

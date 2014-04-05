@@ -9,16 +9,17 @@ global $username;
 		<ol>
 			<?php
 			if($loggedIn) {
-				if($admin) {
-					?>
-					<div class="loggedIn">
-					<a class='modern' href='index.php?page=users'>List of Users</a>
-					<a class='modern' href='index.php?page=recipeTemplates'>Recipe Templates</a>
-				<?php
-				}
 				?>
-				<a class='modern'
-				   href='index.php?page=profile&name=<?php echo $username; ?>'>Profile</a>
+				<div class="loggedIn"> <?php
+					if($admin) {
+						?>
+						<a class='modern' href='index.php?page=users'>List of Users</a>
+						<a class='modern' href='index.php?page=recipeTemplates'>Recipe Templates</a>
+					<?php
+					}
+					?>
+					<a class='modern'
+					   href='index.php?page=profile&name=<?php echo $username; ?>'>Profile</a>
 				<a class='modern' href='index.php?page=login&action=logout'>Logout</a>
 				</div>
 			<?php

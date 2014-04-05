@@ -379,21 +379,20 @@ header #topPanelButtons {
 
 header #topPanelButtons ol {
     float: right;
-    width: 48%;
 }
 
 header #topPanelButtons div.loggedOut {
     clear: both;
     float: right;
-    width: 48%;
-    margin: 1% 0;
+    width: 100%;
+    margin: 0.4em 2em;
 }
 
 header #topPanelButtons div.loggedIn {
-    margin: 1% 0;
+    margin: 0.4em 2em;
     clear: both;
     float: right;
-    width: 97%;
+    width: 100%;
 }
 
 header .modern {
