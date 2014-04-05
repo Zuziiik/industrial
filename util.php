@@ -12,3 +12,5 @@ function sanitizeTextArea($var) {
     $var = stripslashes($var);
     return mysql_real_escape_string($var);
 }
+
+date_default_timezone_set('Europe/Prague');

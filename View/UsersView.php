@@ -1,6 +1,7 @@
 <?php
 
 include_once 'View.php';
+include_once dirname(__FILE__) . '/../Model/Database/BanDAO.php';
 
 class UsersView extends View {
 
@@ -24,21 +25,26 @@ class UsersView extends View {
 		global $loggedIn;
 		global $admin;
 		if($loggedIn && $admin) {
+			echo($this->model->banError);
 			foreach ($this->model->users as $user) {
 				$username = $user->getUsername();
 				$email = $user->getEmail();
 				$create = $user->getCreateTime();
 				$login = $user->getlastLogin();
-				$id = $user->getIdUser();
+				$id = (int)$user->getIdUser();
+				$ban = $this->checkBan($id);
 				?>
 				<div class="user">
-					<div class='userInfo'>Username: <?php echo($username); ?> </br>
+					<div class='userInfo'>Username: <?php echo($username);
+						if($ban) {
+							?> -<span class="banned"> BANNED</span> <?php
+						}?> </br>
 						Email: <?php echo($email); ?>  </br>
 						Create Time:  <?php echo($create); ?> </br>
 						Last Login:  <?php echo($login); ?> </br></div>
 					<form class='changeAdmin' name='changeAdmin' method='post' action='./index.php?page=users'>
-						<input type='hidden' name='action' value='changeAdmin'/>
-						<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+						<input type='hidden' name='action' value='changeAdmin' />
+						<input type='hidden' name='id' value='<?php echo($id); ?>' />
 						<?php
 						if($user->getAdmin()) {
 							?>
@@ -54,25 +60,31 @@ class UsersView extends View {
 						}
 						?>
 					</form>
-					</br>
 					<?php
 					if(!$user->getAdmin()) {
 						?>
 						<form class='banUser' name='banUser' method='post' action='./index.php?page=users'>
-							<input type='hidden' name='action' value='banUser'/>
-							<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+							<input type='hidden' name='action' value='banUser' />
+							<input type='hidden' name='id' value='<?php echo($id); ?>' />
 							<label for='days'>Days:</label>
-							<input type='text' id='days' name='days' value='3'/>
+							<input type='text' id='days' name='days' value='3' />
 							<button class='submitButton' type='submit' name='submit'>Ban User</button>
 						</form>
 						<?php
-						?>
-						<form class='unbanUser' name='unbanUser' method='post' action='./index.php?page=users'>
-							<input type='hidden' name='action' value='unbanUser'/>
-							<input type='hidden' name='id' value='<?php echo($id); ?>'/>
+
+						if($ban) {
+							$start = $ban->getBanStart();
+							$end = $ban->getBanEnd();
+							?>
+							<div class='ban'><?php echo($start); ?> - <?php echo($end); ?>
+							</div>
+							<form class='unbanUser' name='unbanUser' method='post' action='./index.php?page=users'>
+							<input type='hidden' name='action' value='unbanUser' />
+							<input type='hidden' name='id' value='<?php echo($id); ?>' />
 							<button class='submitButton' type='submit' name='submit'>Unban User</button>
 						</form>
-					<?php
+						<?php
+						}
 					}
 					if($user->getConfirmed()) {
 						?>
@@ -84,9 +96,10 @@ class UsersView extends View {
 						<?php
 						$id = $user->getIdUser();
 						?>
+
 						<form class='confirm' name='confirm' method='post' action='./index.php?page=users'>
-							<input type='hidden' name='action' value='confirm'/>
-							<input type='hidden' name='id' value='<?php echo $id; ?>'/>
+							<input type='hidden' name='action' value='confirm' />
+							<input type='hidden' name='id' value='<?php echo($id); ?>' />
 							<button class="submitButton" type='submit' name='confirm'>Confirm</button>
 						</form>
 					<?php
@@ -97,7 +110,7 @@ class UsersView extends View {
 			<?php
 			}
 			?>
-			<span id='bans'>Bans:</span>
+			<h2 id='bans'>All Bans:</h2>
 			<div class='bans'>
 				<?php
 				$this->printBans();
@@ -105,7 +118,6 @@ class UsersView extends View {
 			</div>
 			<?php
 			echo($this->model->error);
-			echo($this->model->msg);
 		} else {
 			echo($this->model->error);
 		}
@@ -117,22 +129,36 @@ class UsersView extends View {
 
 	private function printBans() {
 		foreach ($this->model->users as $user) {
-			foreach ($this->model->bans as $ban) {
-				$userId = $user->getIdUser();
-				$banUserId = $ban->getUserId();
-				if($userId === $banUserId) {
-					$name = $user->getUsername();
-					$start = $ban->getBanStart();
-					$end = $ban->getBanEnd();
-					?>
-					<div class='ban'>Username:  <?php echo($name); ?>
-						</br>Ban Start:  <?php echo($start); ?>
-						</br>Ban End:  <?php echo($end); ?>
-					</div>");
-				<?php
-				}
+			if($user->getAdmin()) {
+				continue;
 			}
+			$name = $user->getUsername();
+			?>
+			<div class="userBans">
+			<h3><?php echo($name); ?></h3><?php
+				foreach ($this->model->bans as $ban) {
+					$userId = $user->getIdUser();
+					$banUserId = $ban->getUserId();
+					if($userId === $banUserId) {
+						$start = $ban->getBanStart();
+						$end = $ban->getBanEnd();
+						?>
+						<div class='ban'><?php echo($start); ?> - <?php echo($end); ?></div>
+					<?php
+					}
+				}
+				?>
+			</div>
+		<?php
 		}
+	}
+
+	private function checkBan($userId) {
+		$ban = BanDAO::selectCurrentByUserId($userId);
+		if($ban->getIdBan()) {
+			return $ban;
+		}
+		return NULL;
 	}
 
 }

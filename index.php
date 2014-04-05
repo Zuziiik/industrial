@@ -75,15 +75,15 @@ $view->initialize();
 		</h1>
 		<section>
 			<div id='sectionContent'>
-				<!--    <pre>-->
-				<!--            --><?php
-				//            echo "get: ";
-				//            var_dump($_GET);
-				//            echo "</br>post: ";
-				//            var_dump($_POST);
-				//
+<!--				    <pre>-->
+<!--				            --><?php
+				//				            echo "get: ";
+				//				            var_dump($_GET);
+				//				            echo "</br>post: ";
+				//				            var_dump($_POST);
+
 				?>
-				<!--    </pre>-->
+<!--				    </pre>-->
 				<?php
 				$view->printBody();
 				?>

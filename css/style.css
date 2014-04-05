@@ -661,6 +661,6 @@ div.reComment {
     color: greenyellow;
 }
 
-.adminStatus, .unconfirmed {
+.adminStatus, .unconfirmed, .banned {
     color: orangered;
 }
