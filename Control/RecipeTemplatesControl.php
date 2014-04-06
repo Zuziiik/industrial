@@ -28,6 +28,8 @@ class RecipeTemplatesControl extends Control {
 		if(isset($_POST['deleteTemplate'])) {
 			$id = (int)sanitizeString($_POST['id']);
 			$template = RecipeTemplateDAO::selectById($id);
+			$imageName = $template->getImageName();
+			unlink("pictures/templates/".$imageName);
 			$recipes = RecipeDAO::selectByTemplateId($id);
 			if($recipes) {
 				$this->model->error = "<span class='error'>Can`t delete used template. You must delete recipes first.</span>";

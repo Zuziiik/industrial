@@ -2,6 +2,7 @@
 
 include_once 'View.php';
 
+
 class TemplateFormView extends View {
 
 	function __construct($model) {
@@ -33,27 +34,7 @@ class TemplateFormView extends View {
 		global $admin;
 		if($loggedIn && $admin) {
 			if($this->model->add && !$this->model->selectedImage) {
-				?>
-				<span class="messageTemplate">Upload template picture</span>
-				<form name='addTemplatePic' method='post' action='./index.php?page=templateForm'
-					  enctype='multipart/form-data'>
-					<input type='hidden' name='action' value='addTemplate'/>
-
-					<div class="myFileUpload btn">
-						<span>Browse...</span>
-						<input id="myUploadBtn" type="file" name='image' class="upload"/>
-					</div>
-					<input id="myUploadFile" placeholder="No File Selected" disabled="disabled"/>
-					<script type="text/javascript">
-						document.getElementById("myUploadBtn").onchange = function () {
-							document.getElementById("myUploadFile").value = this.value;
-						};
-					</script>
-					<button class="submitButton" type='submit' name='submitPicture'>Submit</button>
-				</form>
-				<?php
-
-				echo($this->model->error);
+				$this->selectImage();
 			}
 			if($this->model->loaded) {
 				$this->printTemplate();
@@ -80,45 +61,91 @@ class TemplateFormView extends View {
 		$name = $this->model->name;
 		$positions = $this->model->positions;
 		$positions = explode(' | ', $positions);
+		$size = getimagesize("./pictures/templates/" . $imageName);
+		$width = $size[0] * 2;
+		$height = $size[1] * 2;
 		?>
 		<span class="messageTemplate">Confirm positions of <?php echo($name); ?>`s Template</span>
-		<form name='confirm' method='post' action='./index.php?page=templateForm'>
-			<input type="hidden" name="name" value="<?php echo($name); ?>"/>
-			<input type="hidden" name="imageName" value="<?php echo($imageName); ?>"/>
-			<input type='hidden' name='action' value='submitPositions'/>
+
+		<div class="divImageTemplate">
+			<img class="imageTemplate" src="./pictures/templates/<?php echo($imageName); ?>"
+				 style="width: <?php echo($width); ?>px; height: <?php echo($height); ?>px;">
+			<form name='confirm' method='post' action='./index.php?page=templateForm'>
+			<input type="hidden" name="name" value="<?php echo($name); ?>" />
+			<input type="hidden" name="imageName" value="<?php echo($imageName); ?>" />
+			<input type='hidden' name='action' value='submitPositions' />
 			<?php
-			$i=0;
 			foreach ($positions as $position) {
 				if($position != '') {
+					$xy = explode(' , ', $position);
+					$x = ($xy[0] - 14) * 2;
+					$y = ($xy[1] - 14) * 2;
 					?>
-					<label><input type="checkbox" name='cords[]' value="<?php echo($position); ?>"
-								  checked/><?php echo($position); ?></label></br>
+					<input type="checkbox" name='cords[]' value="<?php echo($position); ?>"
+								  checked style="position: absolute; top:<?php echo($y); ?>px; left:<?php echo($x); ?>px; width: 50px; height: 50px;" />
 
 				<?php
 				}
-
 			}
 			?>
-			<button class="submitButton" type="submit" name="confirm">Confirm</button>
+				<button class="submitButton" type="submit" name="confirm">Confirm</button>
 		</form>
+		</div>
+		<form method='post' action='./index.php?page=templateForm'>
+			<input type='hidden' name='imageName' value='<?php echo($imageName); ?>' />
+			<input type='hidden' name='name' value='<?php echo($this->model->name); ?>' />
+			<input type='hidden' name='positions' value='<?php echo($this->model->positions); ?>' />
+			<input type='hidden' name='action' value='backFromConfirm' />
+			<button class="submitButton" type="submit" name="back" >Back</button>
+		</form>
+
 	<?php
+	}
+
+	private function selectImage() {
+		?>
+		<span class="messageTemplate">Upload template picture</span>
+		<form name='addTemplatePic' method='post' action='./index.php?page=templateForm'
+			  enctype='multipart/form-data'>
+					<input type='hidden' name='action' value='addTemplate' />
+
+					<div class="myFileUpload btn">
+						<span>Browse...</span>
+						<input id="myUploadBtn" type="file" name='image' class="upload" />
+					</div>
+					<input id="myUploadFile" placeholder="No File Selected" disabled="disabled" />
+					<script type="text/javascript">
+						document.getElementById("myUploadBtn").onchange = function () {
+							document.getElementById("myUploadFile").value = this.value;
+						};
+					</script>
+					<button class="submitButton" type='submit' name='submitPicture'>Submit</button>
+				</form>
+		<?php
+
+		echo($this->model->error);
 	}
 
 	private function printTemplate() {
 		$imageName = $this->model->imageName;
 		?>
 		<span class="messageTemplate">Select middle cords for items.</span>
-		<img id="imgId" src='./pictures/templates/<?php echo($this->model->imageName); ?>'/>
+		<img id="imgId" src='./pictures/templates/<?php echo($this->model->imageName); ?>' />
 		<form name='addTemplatePic' method='post' action='./index.php?page=templateForm'>
-			<input type='hidden' name='action' value='submitPositions'/>
-			<input type="hidden" name="imageName" value="<?php echo($imageName); ?>"/>
-			<input type="text" name="name" id="title" placeholder="Template Name"/>
-			<input type="text" size="100" maxlength="300" name="positions" id="positions"/>
+			<input type='hidden' name='action' value='submitPositions' />
+			<input type="hidden" name="imageName" value="<?php echo($imageName); ?>" />
+			<input type="text" name="name" id="title" placeholder="Template Name" value="<?php echo($this->model->name); ?>" />
+			<input type="text" size="100" maxlength="300" name="positions" id="positions" value="<?php echo($this->model->positions); ?>" />
 			<button class="submitButton" type="submit" name="submitPositions">Submit</button>
 		</form>
 		Positions:
 		<div id="coords"></div>
 
+		<form method='post' action='./index.php?page=templateForm'>
+			<input type='hidden' name='imageName' value='<?php echo($imageName); ?>' />
+			<input type='hidden' name='action' value='backFromPositions' />
+			<button class="submitButton" type="submit" name="back" >Back</button>
+		</form>
 
 		<script type="text/javascript">
 

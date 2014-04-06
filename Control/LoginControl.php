@@ -15,7 +15,6 @@ class LoginControl extends Control {
 			$username = sanitizeString($_POST['user']);
 			$pass = sanitizeString($_POST['pass']);
 			$user = UserDAO::selectByName($username);
-			var_dump($user);
 			$this->model->user = $username;
 			if($this->checkLoginValues($username, $user, $pass)) {
 				$this->loginUser($user, $pass);

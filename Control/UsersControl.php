@@ -91,7 +91,6 @@ class UsersControl extends Control {
 				$this->model->banError = "<span class='error'>User isn`t banned.</span>";
 			} else {
 				$endDate = new Datetime(date("Y-m-d H:i:s", time()));
-				var_dump($endDate);
 				$end = $endDate->format("Y-m-d H:i:s");
 				$ban->setBanEnd($end);
 				BAnDAO::update($ban);
