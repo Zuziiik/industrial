@@ -1,7 +1,6 @@
 <?php
 
 include_once 'header.php';
-include_once 'htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 
 navigate();
 
@@ -19,36 +18,57 @@ $view->initialize();
 				theme: "modern",
 				schema: "html5",
 				skin: "custom",
+				menubar: false,
 				add_unload_trigger: false,
 				relative_urls: "false",
-				style_formats: [
-					{title: 'Headers', items: [
-						{title: 'h3', block: 'h3'},
-						{title: 'h4', block: 'h4'},
-						{title: 'h5', block: 'h5'},
-						{title: 'h6', block: 'h6'}
-					]},
-
-					{title: 'Blocks', items: [
-						{title: 'p', block: 'p'},
-						{title: 'div', block: 'div'},
-						{title: 'pre', block: 'pre'}
-					]},
-
-					{title: 'Containers', items: [
-						{title: 'section', block: 'section', wrapper: true, merge_siblings: false},
-						{title: 'article', block: 'article', wrapper: true, merge_siblings: false},
-						{title: 'blockquote', block: 'blockquote', wrapper: true},
-						{title: 'hgroup', block: 'hgroup', wrapper: true},
-						{title: 'aside', block: 'aside', wrapper: true},
-						{title: 'figure', block: 'figure', wrapper: true}
-					]}
-				],
-				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages",
+				style_formats:[
+					{
+						title: "Headers",
+						items: [
+							{title: "Header 3",format: "h3"},
+							{title: "Header 4",format: "h4"},
+							{title: "Header 5",format: "h5"},
+							{title: "Header 6",format: "h6"}
+						]
+					},
+					{
+						title: "Blocks",
+						items: [
+							{title: "Paragraph",format: "p"},
+							{title: "Pre",format: "pre"}
+						]
+					},
+					{
+						title: "Font Family",
+						items: [
+							{title: 'Arial', inline: 'span', styles: { 'font-family':'arial'}},
+							{title: 'Book Antiqua', inline: 'span', styles: { 'font-family':'book antiqua'}},
+							{title: 'Comic Sans MS', inline: 'span', styles: { 'font-family':'comic sans ms,sans-serif'}},
+							{title: 'Courier New', inline: 'span', styles: { 'font-family':'courier new,courier'}},
+							{title: 'Georgia', inline: 'span', styles: { 'font-family':'georgia,palatino'}},
+							{title: 'Helvetica', inline: 'span', styles: { 'font-family':'helvetica'}},
+							{title: 'Impact', inline: 'span', styles: { 'font-family':'impact,chicago'}},
+							{title: 'Open Sans', inline: 'span', styles: { 'font-family':'Open Sans'}},
+							{title: 'Symbol', inline: 'span', styles: { 'font-family':'symbol'}},
+							{title: 'Tahoma', inline: 'span', styles: { 'font-family':'tahoma'}},
+							{title: 'Terminal', inline: 'span', styles: { 'font-family':'terminal,monaco'}},
+							{title: 'Times New Roman', inline: 'span', styles: { 'font-family':'times new roman,times'}},
+							{title: 'Verdana', inline: 'span', styles: { 'font-family':'Verdana'}}
+						]
+					},
+					{title: "Font Size", items: [
+						{title: '8pt', inline:'span', styles: { fontSize: '12px', 'font-size': '8px' } },
+						{title: '10pt', inline:'span', styles: { fontSize: '12px', 'font-size': '10px' } },
+						{title: '12pt', inline:'span', styles: { fontSize: '12px', 'font-size': '12px' } },
+						{title: '14pt', inline:'span', styles: { fontSize: '12px', 'font-size': '14px' } },
+						{title: '16pt', inline:'span', styles: { fontSize: '12px', 'font-size': '16px' } }
+					]
+					}],
+				toolbar: "undo redo | searchreplace cut copy paste | emoticons | bold italic underline strikethrough superscript subscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect charmap |  link media image jbimages  | insertdatetime preview code visualblocks",
 				plugins: [
-					"advlist autolink link image lists charmap preview hr pagebreak",
-					"searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-					"save table contextmenu directionality emoticons template paste textcolor jbimages"
+					"advlist autolink link image lists charmap preview",
+					"searchreplace wordcount visualblocks code insertdatetime media",
+					"contextmenu emoticons template paste jbimages tabfocus textcolor"
 				],
 				templates: [
 					{title: 'Article', description: 'Article with header h3', url: './tinymce/templates/test.html'}
@@ -59,6 +79,7 @@ $view->initialize();
 
 		</script>
 		<link rel='stylesheet' type='text/css' href='css/style.css' title='default'/>
+		<link rel="icon" type="image/x-icon" href="pictures/icon.ico" />
 
 	</head>
 	<title><?php $view->printTitle(); ?></title>

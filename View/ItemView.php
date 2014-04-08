@@ -256,14 +256,14 @@ class ItemView extends View {
 					  action='./index.php?page=item&item=<?php echo($itemId); ?>'>
 					<input type='hidden' name='action' value='deleteRecipe'/>
 					<input type='hidden' name='id' value='<?php echo($recipeId); ?>'/>
-					<button class="deleteButton" type='submit' name='deleteRecipe'>Delete</button>
+					<button class="submitButton" type='submit' name='deleteRecipe'>Delete</button>
 				</form>
 				<form id="editRecipe" name='editRecipe' method='post'
 					  action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
 					<input type='hidden' name='id' value='<?php echo($recipeId); ?>'/>
 					<input type='hidden' name='action' value='editRecipe'/>
 					<input type='hidden' name='templateId' value='<?php echo($templateId); ?>'/>
-					<button class="editButton" type='submit' name='editRecipe'>Edit</button>
+					<button class="submitButton" type='submit' name='editRecipe'>Edit</button>
 				</form>
 			</div>
 			</div>

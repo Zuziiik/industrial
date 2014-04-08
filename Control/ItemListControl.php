@@ -33,10 +33,10 @@ class ItemListControl extends Control {
 				$delete = (int)sanitizeString($_POST['categoryDelete']);
 				$category = CategoryDAO::selectById($delete);
 				$items = ItemDAO::selectByCategoryId($delete);
-				if($items!=NULL){
+				if($items != NULL) {
 					$this->model->fail = TRUE;
 					$this->model->error = "<span class='error'>Can't delete category with items in it.</span>";
-				}else{
+				} else {
 					CategoryDAO::delete($category);
 				}
 
@@ -47,7 +47,51 @@ class ItemListControl extends Control {
 		if(isset($_POST['DeleteItem'])) {
 			if($loggedIn && $admin) {
 				$itemDeleteId = (int)sanitizeString($_POST['itemId']);
+				$editableAreas = EditableAreaDAO::selectByTargetId($itemDeleteId);
 				$item = ItemDAO::selectById($itemDeleteId);
+				$itemName = $item->getName();
+				foreach ($editableAreas as $editableArea) {
+					EditableAreaDAO::delete($editableArea);
+				}
+				//Delete recipe
+				$recipes = RecipeDAO::selectByItemId($itemDeleteId);
+				foreach ($recipes as $recipe) {
+					$outputId = (int)$recipe->getItemId();
+					$recipeId = (int)$recipe->getIdRecipe();
+					$item = ItemDAO::selectById($outputId);
+					$outputName = $item->getName();
+					if($outputName == $itemName) {
+						RecipeItemDAO::delete($recipeId);
+						$recipe = RecipeDAO::selectById($recipeId);
+						RecipeDAO::delete($recipe);
+					}
+				}
+				//Delete Usages
+				$recipes = RecipeDAO::selectAll();
+				foreach ($recipes as $recipe) {
+					$recipesDelete = array();
+					$recipeId = (int)$recipe->getIdRecipe();
+					$tempRecipeItems = RecipeItemDAO::selectByRecipeId($recipeId);
+					foreach ($tempRecipeItems as $recipeItem) {
+						$recipeItemId = (int)$recipeItem->getItemId();
+						$push = FALSE;
+						if($recipeItemId === $itemDeleteId) {
+							$push = TRUE;
+						}
+						if($push) {
+							$recipesDelete = $recipe;
+						}
+					};
+					$outputName = $item->getName();
+					if($outputName != $itemName) {
+						foreach ($recipesDelete as $recipeDelete) {
+							$recipeDeleteId = (int)$recipeDelete->getIdRecipe();
+							RecipeItemDAO::delete($recipeDeleteId);
+							RecipeDAO::delete($recipeDelete);
+						}
+					}
+				}
+				//Delete Item
 				ItemDAO::delete($item);
 			} else {
 				$this->model->error = "<span class='error'>You're not logged in, or must be admin to add/edit.</span>";
