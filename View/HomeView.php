@@ -32,7 +32,7 @@ class HomeView extends View {
 			$message = $singleNews->getMessage();
 			$message = substr($message, 0, 500);
 			?>
-			<div class="news">
+			<div class="frame">
 				<h3><?php echo $title; ?></h3><?php
 				?>
 				<div class='newsMessage'><?php echo $message; ?><?php

@@ -43,7 +43,7 @@ class ProfileView extends View {
 			?>
 			<div class='picture'><img src='image.php?type=user&id=<?php echo($id); ?>'></div>
 			<h2>About</h2>
-			<div class='about'><?php echo($about); ?></div>
+			<div class='frame'><?php echo($about); ?></div>
 			<span class="email"><?php echo($email); ?></span>
 			<?php
 			if($username == $this->model->username) {

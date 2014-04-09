@@ -34,7 +34,7 @@ class LinksView extends View {
 			$message = $resourcePack->getMessage();
 			$id = $resourcePack->getIdEditableArea();
 			?>
-			<div class="linkDiv">
+			<div class="frame">
 				<h3><?php echo($title); ?></h3>
 				<a class="link" href='<?php echo($message); ?>'><?php echo($message); ?></a>
 				<?php
@@ -78,7 +78,7 @@ class LinksView extends View {
 			$message = $link->getMessage();
 			$id = $link->getIdEditableArea();
 			?>
-			<div class="linkDiv">
+			<div class="frame">
 				<h3><?php echo($title); ?></h3>
 				<a class="link" href='<?php echo($message); ?>'><?php echo($message); ?></a>
 				<?php

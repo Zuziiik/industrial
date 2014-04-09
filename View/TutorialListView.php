@@ -37,7 +37,7 @@ class TutorialListView extends View {
 			$message = $tutorial->getMessage();
 			$message = substr($message, 0, 300);
 			?>
-			<div class="tutorial">
+			<div class="frame">
 				<h2><?php echo($title); ?></h2>
 
 				<div class='tutorialMessage'><?php echo($message); ?>

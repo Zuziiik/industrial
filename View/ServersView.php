@@ -37,9 +37,9 @@ class ServersView extends View {
 			$message = $server->getMessage();
 			$id = (int)$server->getIdEditableArea();
 			?>
-			<div class='server'>
+			<div class='frame'>
 			<span class='title'><h2><?php echo($title); ?></h2></span>
-			<div class='message'><?php echo($message); ?>
+			<div class='frame'><?php echo($message); ?>
 				<?php
 				if($loggedIn && $admin) {
 					?>

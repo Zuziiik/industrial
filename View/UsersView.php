@@ -34,7 +34,7 @@ class UsersView extends View {
 				$id = (int)$user->getIdUser();
 				$ban = $this->checkBan($id);
 				?>
-				<div class="user">
+				<div class="frame">
 					<div class='userInfo'>Username: <?php echo($username);
 						if($ban) {
 							?> -<span class="banned"> BANNED</span> <?php

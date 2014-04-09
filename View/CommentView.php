@@ -44,16 +44,11 @@ class CommentView extends View {
 			$userId = (int)$comment->getUserId();
 			$user = UserDAO::selectById($userId);
 			$commentUsername = $user->getUsername();
-			$type = $comment->getType();
-			if($type == Comment::RE) {
-				echo("<div class='reComment'>");
-			} else {
-				echo("<div class='comment'>");
-			}
 			?>
+			<div class='frame'>
 			<h3><?php echo($title); ?></h3>
 			User: <a class="link"
-				href='./index.php?page=profile&name=<?php echo($commentUsername); ?>'><?php echo($commentUsername); ?></a> </br>
+					 href='./index.php?page=profile&name=<?php echo($commentUsername); ?>'><?php echo($commentUsername); ?></a> </br>
 			Message: <?php echo($message); ?>
 			<?php
 			if($loggedIn && $commentUsername == $username) {
@@ -98,7 +93,7 @@ class CommentView extends View {
 
 			$reComments = $comment->getComments();
 			$this->printComment($reComments);
-			echo("</div>");
+			?></div><?php
 		}
 
 	}

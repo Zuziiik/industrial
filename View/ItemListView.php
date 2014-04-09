@@ -33,7 +33,7 @@ class ItemListView extends View {
 		echo("<div id='itemList'>");
 		foreach ($this->model->categories as $category) {
 			?>
-			<div class='category'>
+			<div class='category frame'>
 			<span class='categoryName'>
 			<?php
 			$nameCategory = $category[0]->getName();
@@ -60,7 +60,7 @@ class ItemListView extends View {
 				echo("</span>");
 				foreach ($category[1] as $item) {
 					?>
-					<div class="itemContainer">
+					<div class="itemContainer frame">
 						<div class='item'>
 							<?php
 							$id = $item->getIdItem();
