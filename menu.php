@@ -36,7 +36,7 @@ global $username;
 		</ol>
 	</div>
 
-	<div class="banner"><span class='wikiName'>Industrial Craft - Wiki</span><img class="bannerImage"
+	<div class="banner"><span class='wikiName'>Industrial Craft Experimental - Wiki</span><img class="bannerImage"
 																				  src="./pictures/banner.png"></div>
 	<div id=menu class="modern embossed-link">
 		<ol>
