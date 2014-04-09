@@ -19,7 +19,7 @@ class NewsView extends View {
 
 	public function printTitle() {
 		$title = $this->model->news->getTitle();
-		echo $title;
+		echo ("Industrial Craft Experimental - Wiki - ".$title);
 	}
 
 	public function printBody() {

@@ -23,9 +23,9 @@ class ServerFormView extends View {
 
 	public function printTitle() {
 		if($this->model->edit) {
-			echo("Edit Server");
+			echo("Industrial Craft Experimental - Wiki - Edit Server");
 		} else {
-			echo("Add Server");
+			echo("Industrial Craft Experimental - Wiki - Add Server");
 		}
 	}
 

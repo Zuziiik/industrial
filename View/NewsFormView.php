@@ -25,9 +25,9 @@ class NewsFormView extends View {
 
 	public function printTitle() {
 		if($this->model->add) {
-			echo("Add News");
+			echo("Industrial Craft Experimental - Wiki - Add News");
 		} else {
-			echo("Edit News");
+			echo("Industrial Craft Experimental - Wiki - Edit News");
 		}
 	}
 

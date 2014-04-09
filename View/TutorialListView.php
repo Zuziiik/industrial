@@ -13,7 +13,7 @@ class TutorialListView extends View {
 	}
 
 	public function printTitle() {
-		echo("Tutorials");
+		echo("Industrial Craft Experimental - Wiki - Tutorials");
 	}
 
 	public function printNavigation() {

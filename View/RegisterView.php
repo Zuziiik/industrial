@@ -100,7 +100,7 @@ class RegisterView extends View {
 	}
 
 	public function printTitle() {
-		echo("Register");
+		echo("Industrial Craft Experimental - Wiki - Register");
 	}
 
 }

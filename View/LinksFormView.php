@@ -20,9 +20,9 @@ class LinksFormView extends View {
 		}
 
 		if($this->model->add) {
-			echo("Add " . $type);
+			echo("Industrial Craft Experimental - Wiki - Add " . $type);
 		} else {
-			echo("Edit " . $type);
+			echo("Industrial Craft Experimental - Wiki - Edit " . $type);
 		}
 	}
 

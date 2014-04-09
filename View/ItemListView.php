@@ -108,7 +108,7 @@ class ItemListView extends View {
 	}
 
 	public function printTitle() {
-		echo("Recipes & Resources");
+		echo("Industrial Craft Experimental - Wiki - Recipes & Resources");
 	}
 
 }

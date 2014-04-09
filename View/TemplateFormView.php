@@ -15,9 +15,9 @@ class TemplateFormView extends View {
 
 	public function printTitle() {
 		if($this->model->add) {
-			echo("Add Template");
+			echo("Industrial Craft Experimental - Wiki - Add Template");
 		} else {
-			echo("Edit Template");
+			echo("Industrial Craft Experimental - Wiki - Edit Template");
 		}
 	}
 

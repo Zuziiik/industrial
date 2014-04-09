@@ -14,7 +14,7 @@ class TutorialView extends View {
 
 	public function printTitle() {
 		$title = $this->model->tutorial->getTitle();
-		echo($title);
+		echo("Industrial Craft Experimental - Wiki - ".$title);
 	}
 
 	public function printNavigation() {

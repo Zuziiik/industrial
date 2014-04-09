@@ -13,7 +13,7 @@ class CommentFormView extends View {
 	}
 
 	public function printTitle() {
-		echo("Write comment");
+		echo("Industrial Craft Experimental - Wiki - Write comment");
 	}
 
 	public function printNavigation() {

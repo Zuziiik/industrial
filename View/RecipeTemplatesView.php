@@ -13,7 +13,7 @@ class RecipeTemplatesView extends View {
 	}
 
 	public function printTitle() {
-		echo("Recipe Templates");
+		echo("Industrial Craft Experimental - Wiki - Recipe Templates");
 	}
 
 	public function printNavigation() {

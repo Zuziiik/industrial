@@ -12,9 +12,9 @@ class TutorialFormView extends View {
 
 	public function printTitle() {
 		if($this->model->edit) {
-			echo("Edit Tutorial");
+			echo("Industrial Craft Experimental - Wiki - Edit Tutorial");
 		} else {
-			echo("Add Tutorial");
+			echo("Industrial Craft Experimental - Wiki - Add Tutorial");
 		}
 	}
 

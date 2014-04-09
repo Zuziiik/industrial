@@ -70,7 +70,7 @@ class LoginView extends View {
 	}
 
 	public function printTitle() {
-		echo("Login");
+		echo("Industrial Craft Experimental - Wiki - Login");
 	}
 
 	public function printPageHeader() {

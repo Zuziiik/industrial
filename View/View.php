@@ -26,7 +26,7 @@ abstract class View {
 					Contact: zuziiiik@gmail.com
 				</address>
 			</li>
-			<li>Last update: 28. 3. 2014, 21:00</li>
+			<li>Last update: 09. 04. 2014, 20:19</li>
 		</ul>
 
 	<?php

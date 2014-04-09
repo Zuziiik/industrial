@@ -24,7 +24,7 @@ class NotFoundView extends View {
 	}
 
 	public function printTitle() {
-		echo("404 error");
+		echo("Industrial Craft Experimental - Wiki - 404 error");
 	}
 
 	public function printPageHeader() {

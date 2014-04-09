@@ -146,13 +146,13 @@ class ItemFormView extends View {
 
 	public function printTitle() {
 		if($this->model->addItem) {
-			echo("Add item");
+			echo("Industrial Craft Experimental - Wiki - Add item");
 		} else {
 			if($this->model->addArea) {
-				echo("Add section");
+				echo("Industrial Craft Experimental - Wiki - Add section");
 			}
 			$itemName = $this->model->item->getName();
-			echo("Edit " . $itemName);
+			echo("Industrial Craft Experimental - Wiki - Edit " . $itemName);
 		}
 	}
 

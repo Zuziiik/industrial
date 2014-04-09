@@ -10,7 +10,11 @@ $view->initialize();
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<meta charset='UTF-8'/>
+		<meta charset='UTF-8' />
+		<meta name="author" content="Zuzana Vilhelmova" />
+    	<meta name="description" content="Wiki for Minecraft mode - Industrial Craft Experimental" />
+   	 	<meta name="keyword"
+		  content="minecraft, mode, industrial, experimental, wiki" />
 		<script type="text/javascript" src="./tinymce/tinymce.min.js"></script>
 		<script type="text/javascript">
 			tinymce.init({
@@ -21,49 +25,50 @@ $view->initialize();
 				menubar: false,
 				add_unload_trigger: false,
 				relative_urls: "false",
-				style_formats:[
+				style_formats: [
 					{
 						title: "Headers",
 						items: [
-							{title: "Header 3",format: "h3"},
-							{title: "Header 4",format: "h4"},
-							{title: "Header 5",format: "h5"},
-							{title: "Header 6",format: "h6"}
+							{title: "Header 3", format: "h3"},
+							{title: "Header 4", format: "h4"},
+							{title: "Header 5", format: "h5"},
+							{title: "Header 6", format: "h6"}
 						]
 					},
 					{
 						title: "Blocks",
 						items: [
-							{title: "Paragraph",format: "p"},
-							{title: "Pre",format: "pre"}
+							{title: "Paragraph", format: "p"},
+							{title: "Pre", format: "pre"}
 						]
 					},
 					{
 						title: "Font Family",
 						items: [
-							{title: 'Arial', inline: 'span', styles: { 'font-family':'arial'}},
-							{title: 'Book Antiqua', inline: 'span', styles: { 'font-family':'book antiqua'}},
-							{title: 'Comic Sans MS', inline: 'span', styles: { 'font-family':'comic sans ms,sans-serif'}},
-							{title: 'Courier New', inline: 'span', styles: { 'font-family':'courier new,courier'}},
-							{title: 'Georgia', inline: 'span', styles: { 'font-family':'georgia,palatino'}},
-							{title: 'Helvetica', inline: 'span', styles: { 'font-family':'helvetica'}},
-							{title: 'Impact', inline: 'span', styles: { 'font-family':'impact,chicago'}},
-							{title: 'Open Sans', inline: 'span', styles: { 'font-family':'Open Sans'}},
-							{title: 'Symbol', inline: 'span', styles: { 'font-family':'symbol'}},
-							{title: 'Tahoma', inline: 'span', styles: { 'font-family':'tahoma'}},
-							{title: 'Terminal', inline: 'span', styles: { 'font-family':'terminal,monaco'}},
-							{title: 'Times New Roman', inline: 'span', styles: { 'font-family':'times new roman,times'}},
-							{title: 'Verdana', inline: 'span', styles: { 'font-family':'Verdana'}}
+							{title: 'Arial', inline: 'span', styles: { 'font-family': 'arial'}},
+							{title: 'Book Antiqua', inline: 'span', styles: { 'font-family': 'book antiqua'}},
+							{title: 'Comic Sans MS', inline: 'span', styles: { 'font-family': 'comic sans ms,sans-serif'}},
+							{title: 'Courier New', inline: 'span', styles: { 'font-family': 'courier new,courier'}},
+							{title: 'Georgia', inline: 'span', styles: { 'font-family': 'georgia,palatino'}},
+							{title: 'Helvetica', inline: 'span', styles: { 'font-family': 'helvetica'}},
+							{title: 'Impact', inline: 'span', styles: { 'font-family': 'impact,chicago'}},
+							{title: 'Open Sans', inline: 'span', styles: { 'font-family': 'Open Sans'}},
+							{title: 'Symbol', inline: 'span', styles: { 'font-family': 'symbol'}},
+							{title: 'Tahoma', inline: 'span', styles: { 'font-family': 'tahoma'}},
+							{title: 'Terminal', inline: 'span', styles: { 'font-family': 'terminal,monaco'}},
+							{title: 'Times New Roman', inline: 'span', styles: { 'font-family': 'times new roman,times'}},
+							{title: 'Verdana', inline: 'span', styles: { 'font-family': 'Verdana'}}
 						]
 					},
 					{title: "Font Size", items: [
-						{title: '8pt', inline:'span', styles: { fontSize: '12px', 'font-size': '8px' } },
-						{title: '10pt', inline:'span', styles: { fontSize: '12px', 'font-size': '10px' } },
-						{title: '12pt', inline:'span', styles: { fontSize: '12px', 'font-size': '12px' } },
-						{title: '14pt', inline:'span', styles: { fontSize: '12px', 'font-size': '14px' } },
-						{title: '16pt', inline:'span', styles: { fontSize: '12px', 'font-size': '16px' } }
+						{title: '8pt', inline: 'span', styles: { fontSize: '12px', 'font-size': '8px' } },
+						{title: '10pt', inline: 'span', styles: { fontSize: '12px', 'font-size': '10px' } },
+						{title: '12pt', inline: 'span', styles: { fontSize: '12px', 'font-size': '12px' } },
+						{title: '14pt', inline: 'span', styles: { fontSize: '12px', 'font-size': '14px' } },
+						{title: '16pt', inline: 'span', styles: { fontSize: '12px', 'font-size': '16px' } }
 					]
-					}],
+					}
+				],
 				toolbar: "undo redo | searchreplace cut copy paste | emoticons | bold italic underline strikethrough superscript subscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect charmap |  link media image jbimages  | insertdatetime preview code visualblocks",
 				plugins: [
 					"advlist autolink link image lists charmap preview",
@@ -78,13 +83,13 @@ $view->initialize();
 
 
 		</script>
-		<link rel='stylesheet' type='text/css' href='css/style.css' title='default'/>
+		<link rel='stylesheet' type='text/css' href='css/style.css' title='default' />
 		<link rel="icon" type="image/x-icon" href="pictures/icon.ico" />
 
 	</head>
 	<title><?php $view->printTitle(); ?></title>
 	<div id='content'>
-	<header><?php include_once 'menu.php';?>
+	<header><?php include_once 'menu.php'; ?>
 		<nav><?php $view->printNavigation(); ?></nav>
 	</header>
 	<body>
@@ -104,7 +109,7 @@ $view->initialize();
 				//				            var_dump($_POST);
 
 				?>
-<!--				    </pre>-->
+				<!--				    </pre>-->
 				<?php
 				$view->printBody();
 				?>
@@ -115,7 +120,7 @@ $view->initialize();
 			$view->printFooter();
 			?>
 		</footer>
-		<br class='clear'/></div>
+		<br class='clear' /></div>
 	</body>
 	</html>
 <?php

@@ -13,7 +13,7 @@ class ServersView extends View {
 	}
 
 	public function printTitle() {
-		echo("Servers");
+		echo("Industrial Craft Experimental - Wiki - Servers");
 	}
 
 	public function printNavigation() {

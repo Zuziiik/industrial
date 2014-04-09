@@ -61,7 +61,7 @@ class HomeView extends View {
 	}
 
 	public function printTitle() {
-		echo("Industrial Craft - Wiki");
+		echo("Industrial Craft Experimental - Wiki");
 	}
 
 }

@@ -14,7 +14,7 @@ class UsersView extends View {
 	}
 
 	public function printTitle() {
-		echo("List Of Users");
+		echo("Industrial Craft Experimental - Wiki - List Of Users");
 	}
 
 	public function printNavigation() {

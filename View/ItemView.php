@@ -194,9 +194,9 @@ class ItemView extends View {
 	public function printTitle() {
 		$name = $this->model->item->getName();
 		if($name != '') {
-			echo($name);
+			echo("Industrial Craft Experimental - Wiki - ".$name);
 		} else {
-			echo("Add Item");
+			echo("Industrial Craft Experimental - Wiki - Add Item");
 		}
 	}
 

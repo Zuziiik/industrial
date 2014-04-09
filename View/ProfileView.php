@@ -16,9 +16,9 @@ class ProfileView extends View {
 		global $loggedIn;
 		global $username;
 		if($loggedIn && $username == $this->model->username) {
-			echo("Your Profile");
+			echo("Industrial Craft Experimental - Wiki - Your Profile");
 		} else {
-			echo($this->model->username . " Profile");
+			echo("Industrial Craft Experimental - Wiki - ".$this->model->username . " Profile");
 		}
 	}
 

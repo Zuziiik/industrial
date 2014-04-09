@@ -13,7 +13,7 @@ class LinksView extends View {
 	}
 
 	public function printTitle() {
-		echo("Links");
+		echo("Industrial Craft Experimental - Wiki - Links");
 	}
 
 	public function printNavigation() {
