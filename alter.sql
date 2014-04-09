@@ -50,9 +50,10 @@ DROP TABLE IF EXISTS `industrial`.`item` ;
 CREATE TABLE IF NOT EXISTS `industrial`.`item` (
   `id_item` INT NOT NULL AUTO_INCREMENT,
   `category_id` INT NOT NULL,
-  `name` VARCHAR(16) NOT NULL,
+  `item_name` VARCHAR(16) NOT NULL,
   `details` TEXT NULL,
   `icon` BLOB NULL,
+  `industrial` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id_item`),
   INDEX `fk_item_category_idx` (`category_id` ASC),
   UNIQUE INDEX `item_id_UNIQUE` (`id_item` ASC),
