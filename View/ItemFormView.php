@@ -73,6 +73,7 @@ class ItemFormView extends View {
 			$itemId = $this->model->item->getIdItem();
 			$itemName = $this->model->item->getName();
 			$details = $this->model->item->getDetails();
+			$industrial = $this->model->item->getIndustrial();
 			?>
 			<form name='edit' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'
 				  enctype='multipart/form-data'>
@@ -81,6 +82,18 @@ class ItemFormView extends View {
 					   value='<?php echo($itemName); ?>'/>
 				<label for='image'>Icon</label>
 				<input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32'/>
+				<?php
+				if($industrial){
+				?>
+					<input type="checkbox" name="industrial" checked />Industrial Item<br>
+					<?php
+				}else{
+					?>
+					<input type="checkbox" name="industrial" />Industrial Item<br>
+					<?php
+				}
+					?>
+				<input type="checkbox" name="industrial" value='$industrial'>Industrial Item<br>
 				<textarea class='editForm' name='details' id='details' wrap="hard" placeholder="Details" rows="4"
 						  cols="50"><?php echo($details); ?></textarea>
 				<button class='submitButton' type='submit' name='save'>Save</button>
@@ -99,6 +112,7 @@ class ItemFormView extends View {
 			<input id='title' type='text' name='name' placeholder="Name" autofocus/>
 			<label for='image'>Icon</label>
 			<input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32'/>
+			<input type="checkbox" name="industrial" checked />Industrial Item<br>
 			<input type='hidden' name='categoryName' value='<?php echo($nameCategory); ?>'/>
 			<textarea class='editForm' name='details' id='details' rows="4" cols="50">Add details.</textarea>
 			<button class='submitButton' type='submit' name='save'>Save</button>

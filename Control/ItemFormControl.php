@@ -90,9 +90,10 @@ class ItemFormControl extends Control {
 			$name = sanitizeString($_POST['name']);
 			$details = sanitizeString($_POST['details']);
 			$categoryName = sanitizeString($_POST['categoryName']);
+			$industrial = (boolean)sanitizeString($_POST['industrial']);
 			$category = CategoryDAO::selectByName($categoryName);
 			$categoryId = $category->getIdCategory();
-			ItemDAO::insert(new Item(666, $categoryId, $name, $details));
+			ItemDAO::insert(new Item(666, $categoryId, $name, $details, $industrial));
 			$item = ItemDAO::selectByName($name);
 			$itemId = $item->getIdItem();
 			if(isset($_FILES['image']['name'])) {
@@ -109,7 +110,7 @@ class ItemFormControl extends Control {
 			$name = sanitizeString($_POST['name']);
 			$details = sanitizeString($_POST['details']);
 			$itemId = (int)sanitizeString($_GET['item']);
-
+			$industrial = (boolean)sanitizeString($_POST['industrial']);
 			if(isset($_FILES['image']['name'])) {
 
 				$saveto = "$itemId.png";
@@ -117,6 +118,7 @@ class ItemFormControl extends Control {
 				$this->updateImage($saveto, $itemId);
 			}
 			$item = ItemDAO::selectById($itemId);
+			$item->setIndustrial($industrial);
 			$item->setName($name);
 			$item->setDetails($details);
 			ItemDAO::update($item);

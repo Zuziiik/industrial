@@ -98,13 +98,29 @@ class ItemListControl extends Control {
 			}
 		}
 
+
+
 		$this->loadCategories();
 		$n = count($this->categories);
 		for ($i = 0; $i < $n; $i++) {
 			$categoryId = $this->categories[$i]->getIdCategory();
 			$name = $this->categories[$i]->getName();
-			$items = ItemDAO::selectByCategoryId($categoryId);
-			$this->model->categories[$i] = array(new Category($categoryId, $name), $items);
+			if(isset($_POST['filter'])){
+				$display = sanitizeString($_POST['items']);
+				switch($display){
+					case 'Industrial':
+						$items = ItemDAO::selectByCategoryIdAndIndustrial($categoryId, TRUE);
+						$this->model->categories[$i] = array(new Category($categoryId, $name), $items);
+						break;
+					case 'Vanilla':
+						$items = ItemDAO::selectByCategoryIdAndIndustrial($categoryId, FALSE);
+						$this->model->categories[$i] = array(new Category($categoryId, $name), $items);
+						break;
+					default:
+						$items = ItemDAO::selectByCategoryId($categoryId);
+						$this->model->categories[$i] = array(new Category($categoryId, $name), $items);
+				}
+			}
 		}
 	}
 

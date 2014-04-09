@@ -22,8 +22,16 @@ class ItemListView extends View {
 		global $loggedIn;
 		echo($this->model->error);
 		if($loggedIn && $admin) {
-
 			?>
+			<form method='post' action='./index.php?page=recipes'>
+				<input type='hidden' name='action' value='filter'/>
+				<label>Filter items: <select name="items">
+						<option selected>Industrial</option>
+						<option>Vanilla</option>
+						<option>All</option>
+				</select></label>
+				<button class="submitButton" type='submit' name='filter'>Filter</button>
+			</form>
 			<form name='addCategory' method='post' action='./index.php?page=recipes'>
 				<label>Add Category<input id='title' type='text' name='categoryName'/></label>
 				<button class="submitButton" type='submit'>Add</button>
