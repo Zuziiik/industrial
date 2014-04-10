@@ -21,7 +21,7 @@ class ItemListView extends View {
 		global $admin;
 		global $loggedIn;
 		echo($this->model->error);
-		if($loggedIn && $admin) {
+		if($loggedIn){
 			?>
 			<form method='post' action='./index.php?page=recipes'>
 				<input type='hidden' name='action' value='filter'/>
@@ -32,12 +32,17 @@ class ItemListView extends View {
 				</select></label>
 				<button class="submitButton" type='submit' name='filter'>Filter</button>
 			</form>
-			<form name='addCategory' method='post' action='./index.php?page=recipes'>
+			<?php
+			if($admin) {
+				?>
+				<form name='addCategory' method='post' action='./index.php?page=recipes'>
 				<label>Add Category<input id='title' type='text' name='categoryName'/></label>
 				<button class="submitButton" type='submit'>Add</button>
 			</form>
-		<?php
+			<?php
+			}
 		}
+
 		echo("<div id='itemList'>");
 		foreach ($this->model->categories as $category) {
 			?>
