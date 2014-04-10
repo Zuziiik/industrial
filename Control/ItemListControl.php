@@ -120,6 +120,9 @@ class ItemListControl extends Control {
 						$items = ItemDAO::selectByCategoryId($categoryId);
 						$this->model->categories[$i] = array(new Category($categoryId, $name), $items);
 				}
+			}else{
+				$items = ItemDAO::selectByCategoryIdAndIndustrial($categoryId, TRUE);
+				$this->model->categories[$i] = array(new Category($categoryId, $name), $items);
 			}
 		}
 	}
