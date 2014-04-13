@@ -21,7 +21,6 @@ class ItemListView extends View {
 		global $admin;
 		global $loggedIn;
 		echo($this->model->error);
-		if($loggedIn){
 			?>
 			<form method='post' action='./index.php?page=recipes'>
 				<input type='hidden' name='action' value='filter'/>
@@ -33,14 +32,13 @@ class ItemListView extends View {
 				<button class="submitButton" type='submit' name='filter'>Filter</button>
 			</form>
 			<?php
-			if($admin) {
+			if($admin && $loggedIn) {
 				?>
 				<form name='addCategory' method='post' action='./index.php?page=recipes'>
 				<label>Add Category<input id='title' type='text' name='categoryName'/></label>
 				<button class="submitButton" type='submit'>Add</button>
 			</form>
 			<?php
-			}
 		}
 
 		echo("<div id='itemList'>");
@@ -80,7 +78,7 @@ class ItemListView extends View {
 							$name = $item->getName();
 							$details = $item->getDetails();
 							?>
-							<img class='itemIcon' src='image.php?type=item&id=<?php echo($id); ?>'>
+							<img class='itemIcon' src='image.php?type=item&id=<?php echo($id); ?>' alt="<?php echo($name); ?>'s icon">
 							<h3><a class='itemName'
 								   href='./index.php?page=item&item=<?php echo($id); ?>'><?php echo($name); ?></a></h3>
 							<div class='itemDetails'><?php echo($details); ?></div>

@@ -97,7 +97,7 @@ class ItemFormControl extends Control {
 			$item = ItemDAO::selectByName($name);
 			$itemId = $item->getIdItem();
 			if(isset($_FILES['image']['name'])) {
-				$saveto = "$itemId.png";
+				$saveto = "pictures/upload/$itemId.png";
 				move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
 				$this->updateImage($saveto, $itemId);
 			}
@@ -113,7 +113,7 @@ class ItemFormControl extends Control {
 			$industrial = (boolean)sanitizeString($_POST['industrial']);
 			if(isset($_FILES['image']['name'])) {
 
-				$saveto = "$itemId.png";
+				$saveto = "pictures/upload/$itemId.png";
 				move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
 				$this->updateImage($saveto, $itemId);
 			}
@@ -158,29 +158,29 @@ class ItemFormControl extends Control {
 	}
 
 	private function resizeImage($saveto, $src) {
-		list($w, $h) = getimagesize($saveto);
+		list($width, $height) = getimagesize($saveto);
 
 		$max = 100;
-		$tw = $w;
-		$th = $h;
+		$rs_width = $width;
+		$rs_height = $height;
 
-		if($w > $h && $max < $w) {
-			$th = $max / $w * $h;
-			$tw = $max;
-		} elseif($h > $w && $max < $h) {
-			$tw = $max / $h * $w;
-			$th = $max;
-		} elseif($max < $w) {
-			$tw = $th = $max;
+		if($width > $height && $max < $width) {
+			$rs_height = $max / $width * $height;
+			$rs_width = $max;
+		} elseif($height > $width && $max < $height) {
+			$rs_width = $max / $height * $width;
+			$rs_height = $max;
+		} elseif($max < $width) {
+			$rs_width = $th = $max;
 		}
 
-		$tmp = imagecreatetruecolor($tw, $th);
-		imagecolortransparent($tmp, imagecolorallocatealpha($tmp, 0, 0, 0, 127));
-		imagealphablending($tmp, FALSE);
-		imagesavealpha($tmp, TRUE);
-		imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
-		imageconvolution($tmp, array(array(-1, -1, -1), array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
-		imagepng($tmp, $saveto, 9);
+		$tmp = imagecreatetruecolor($rs_width, $rs_height);
+		imagealphablending($tmp, false);
+		imagesavealpha($tmp,true);
+		$transparent = imagecolorallocatealpha($tmp, 255, 255, 255, 127);
+		imagefilledrectangle($tmp, 0, 0, $rs_width, $rs_height, $transparent);
+		imagecopyresampled($tmp, $src, 0, 0, 0, 0, $rs_width, $rs_height, $width, $height);
+		imagepng($tmp, $saveto);
 		imagedestroy($tmp);
 		imagedestroy($src);
 		return $saveto;

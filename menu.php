@@ -5,30 +5,25 @@ global $confirmed;
 global $username;
 
 ?>
-	<div id="topPanelButtons">
+	<div class="topPanelButtons">
 		<ol>
 			<?php
 			if($loggedIn) {
-				?>
-				<div class="loggedIn"> <?php
 					if($admin) {
 						?>
-						<a class='modern' href='index.php?page=users'>List of Users</a>
-						<a class='modern' href='index.php?page=recipeTemplates'>Recipe Templates</a>
+						<li><a class='modern' href='index.php?page=users'>List of Users</a></li>
+						<li><a class='modern' href='index.php?page=recipeTemplates'>Recipe Templates</a></li>
 					<?php
 					}
 					?>
-					<a class='modern'
-					   href='index.php?page=profile&name=<?php echo $username; ?>'>Profile</a>
-				<a class='modern' href='index.php?page=login&action=logout'>Logout</a>
-				</div>
+					<li><a class='modern'
+					   href='index.php?page=profile&name=<?php echo $username; ?>'>Profile</a></li>
+				<li><a class='modern' href='index.php?page=login&action=logout'>Logout</a></li>
 			<?php
 			} else {
 				?>
-				<div class="loggedOut">
-					<a class='modern' href='index.php?page=login'>Login</a>
-					<a class='modern' href='index.php?page=register'>Register</a>
-				</div>
+					<li><a class='modern' href='index.php?page=login'>Login</a></li>
+					<li><a class='modern' href='index.php?page=register'>Register</a></li>
 			<?php
 			}
 
@@ -37,8 +32,8 @@ global $username;
 	</div>
 
 	<div class="banner"><span class='wikiName'>Industrial Craft Experimental - Wiki</span><img class="bannerImage"
-																				  src="./pictures/banner.png"></div>
-	<div id=menu class="modern embossed-link">
+																				  src="./pictures/banner.png" alt="banner"></div>
+	<div class="menu modern embossed-link">
 		<ol>
 			<li><a class='modern' href='index.php?page=home'>Home</a></li>
 			<li><a class='modern' href='index.php?page=recipes'>Recipes & Resources</a></li>

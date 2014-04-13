@@ -1,27 +1,28 @@
 @import url(http://fonts.googleapis.com/css?family=Simonetta|Balthazar);
 @import url(http://thecodeplayer.com/uploads/fonts/fontawesome/css/font-awesome.min.css);
 
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
 html {
-    position: relative;
-    height: 100%;
-    top: 0;
-    background-color: black;
-    /*background-image: url(./../pictures/radioactive.jpg);*/
-    background-size: 20%;
-    color: white;
-    font-family: 'Balthazar', serif;
-    font-size: 100%;
+    height: 101%;
+}
+
+.wrapper {
     width: 100%;
 }
 
 body {
-    margin-left: 20%;
-    margin-right: 20%;
-    background-color: black;
-    min-height: 100%;
+    background: #0b0b0b;
+    font-size: 100%;
+    padding-bottom: 65px;
+    color: white;
 }
 
-#content {
+.content {
     background-color: #0b0b0b;
     -webkit-box-shadow: inset -0.063em 0 0.500em 0.250em rgba(50, 50, 50, 0.56);
     -moz-box-shadow: inset -0.063em 0 0.500em 0.250em rgba(50, 50, 50, 0.56);
@@ -29,22 +30,31 @@ body {
 }
 
 #sectionContent {
-    width: 80%;
-    margin-right: 10%;
-    margin-left: 10%;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 header {
     width: 100%;
+    margin: 0;
 }
 
 section {
     position: relative;
-    width: 100%;
-    padding-bottom: 20%;
+    width: 80%;
+    margin: 1% 10%;
 }
 
-header, h1, h2, h3 {
+ol {
+    list-style: none;
+}
+
+ol > li {
+    display: inline;
+}
+
+.header, h1, h2, h3 {
     clear: both;
     font-family: 'Simonetta', cursive;
 }
@@ -65,13 +75,12 @@ h2:after {
     background: #484848;
 }
 
-h1, .banner {
+h1, .wikiName {
     font-size: 2.250em;
-    line-height: 2.500em;
-    margin: 1em 0 .6em 0;
+    line-height: 1.500em;
+    margin: 0 20%;
     font-weight: bold;
     color: #ffab00;
-    text-align: center;
     position: relative;
 
 }
@@ -90,7 +99,7 @@ h3 {
     margin: 1em 0 .6em 0;
     padding: 0 0 0 1.250em;
     font-weight: normal;
-    text-shadow: 0 -0.063em 0 rgba(0,0,0,0.4);
+    text-shadow: 0 -0.063em 0 rgba(0, 0, 0, 0.4);
     position: relative;
     font-size: 1.500em;
     line-height: 2.500em;
@@ -100,7 +109,7 @@ h4 {
     margin: 1em 0 .6em 0;
     padding: 0 0 0 1.250em;
     font-weight: normal;
-    text-shadow: 0 -0.063em 0 rgba(0,0,0,0.4);
+    text-shadow: 0 -0.063em 0 rgba(0, 0, 0, 0.4);
     position: relative;
     font-size: 1.125em;
     line-height: 1.250em;
@@ -116,9 +125,11 @@ h4 {
     margin-bottom: 1em;
     background-color: #0c0c0c;
     padding: 1em;
+    border: 1px solid #323232;
     -webkit-box-shadow: inset -0.063em 0 0.500em 0.250em rgba(50, 50, 50, 0.56);
     -moz-box-shadow: inset -0.063em 0 0.500em 0.250em rgba(50, 50, 50, 0.56);
     box-shadow: inset -0.063em 0 0.500em 0.250em rgba(50, 50, 50, 0.56);
+    behavior: url(ie-css3.htc);
 }
 
 /*-------------------Footer-------------------*/
@@ -135,12 +146,9 @@ footer ul {
     padding: 1%;
     width: 20%;
     position: relative;
+    margin-top: 1%;
+    margin-bottom: -10%;
     list-style: none;
-    margin-bottom: -2%;
-}
-
-footer li {
-
 }
 
 /*---------------Add/Edit Forms---------------*/
@@ -255,8 +263,8 @@ input[type=password]:focus {
     outline: none;
 }
 
-#topPanelButtons a:link, #menu a:link, #topPanelButtons a:visited, #menu a:visited, #topPanelButtons a:hover,
-#menu a:hover, #topPanelButtons a:active, #menu a:active {
+#topPanelButtons a:link, .menu a:link, #topPanelButtons a:visited, .menu a:visited, #topPanelButtons a:hover,
+.menu a:hover, #topPanelButtons a:active, .menu a:active {
     color: black;
 }
 
@@ -384,125 +392,102 @@ select.recipeItemSelect {
 /*-------------Banner---------------*/
 
 .banner {
-    position: relative;
-    clear: both;
     width: 100%;
 }
 
-.wikiName {
-    clear: both;
-    float: left;
-    margin-left: 10%;
-}
-
 .bannerImage {
-    clear: left;
-    float: left;
-    margin: 1% 10%;
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    margin: 0 20%;
+    height: 10%;
 }
 
 /*-------------Top Panel---------------*/
 
-header #topPanelButtons {
-    margin-top: -0.5%;
+.topPanelButtons {
+    width: 100%;
     margin-bottom: 1%;
     float: right;
-    display: inline;
-    width: 100%;
     background-image: url("../pictures/panel.jpg");
     box-shadow: inset 0 0.125em 0.125em rgba(255, 255, 255, 0.3), inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.3), 0 0.063em 0.063em rgba(255, 255, 255, 0.3);
 }
 
-header #topPanelButtons ol {
-    float: right;
-}
-
-header #topPanelButtons div.loggedOut {
+.topPanelButtons ol {
     clear: both;
+    list-style: none;
     float: right;
-    width: 100%;
-    margin: 0.4em 2em;
+    width: auto;
+    margin: 0.1em 10%;
 }
 
-header #topPanelButtons div.loggedIn {
-    margin: 0.4em 2em;
-    clear: both;
-    float: right;
-    width: 100%;
+.topPanelButtons a, .menu a {
+    font-size: 110%;
+    margin: 0.1em 0.15em;
+    padding: 0.325em 0.450em;
 }
 
-header .modern {
+.modern {
     display: inline-block;
     margin: 0.313em;
     padding: 0.5em 0.6em;
     background: #ffab00;
     border: 0.1em solid #616161;
-    /*border-radius: 0.5em;*/
-    transition: all 0.3s ease-out;
-
-    /* Font styles */
     text-decoration: none;
 }
 
-header .modern:hover {
+.modern:hover {
     background: #ff9000;
 }
 
-header .modern.embossed-link {
+.modern.embossed-link {
     box-shadow: inset 0 0.125em 0.125em rgba(255, 255, 255, 0.3), inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.3), 0 0.063em 0.063em rgba(255, 255, 255, 0.9);
 }
 
-header .modern.embossed-link:active {
+.header .modern.embossed-link:active {
     box-shadow: inset 0 0.125em 0.125em rgba(255, 255, 255, 0.3), inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.3), 0 0.063em 0.063em rgba(255, 255, 255, 0.9);
 }
 
-header .embossed-link {
+.header .embossed-link {
     box-shadow: inset 0 0.125em 0.125em rgba(255, 255, 255, 0.3), inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.3), 0 0.063em 0.063em rgba(255, 255, 255, 0.9);
 }
 
 /*-------------Menu---------------*/
 
-#menu {
+.menu {
     clear: both;
-    width: 100%;
+    width: 50%;
+
+}
+
+.menu.modern.embossed-link {
+    margin: 0 25%;
+    padding: 0.313em 0;
+    background: transparent;
     background-image: url("../pictures/panel.jpg");
 }
 
-#menu.modern.embossed-link {
-    width: 80%;
-    padding: 0.313em 0;
-    margin: 1% 10%;
-}
-
-#menu.modern.embossed-link:hover {
+.menu.modern.embossed-link:hover {
     background: url("../pictures/panel.jpg");
 
 }
 
-#menu ol {
+.menu ol {
     list-style: none;
-    width: 80%;
-    margin: 0 10%;
+    width: 90%;
+    margin: 0 5%;
+    padding: 0;
 }
 
-#menu li {
+.menu li {
     display: inline;
-}
-
-#menu a {
-    font-size: 150%;
-    margin-right: 0.3%;
-    padding: 0.325em 0.450em;
 }
 
 /*------------Navigation---------------*/
 
 nav {
     clear: both;
-    margin-top: 0.5%;
-    margin-left: 10%;
+    width: 60%;
+    padding: 0.313em 0;
+    margin: 0.3em 20%;
 }
 
 nav a {
@@ -523,7 +508,6 @@ nav a:before {
     font-size: 80%;
     display: inline-block;
     padding-right: 0.125em;
-    pointer-events: none;
 }
 
 nav a:hover:before {
@@ -551,7 +535,6 @@ nav a:hover:before {
     font-size: 80%;
     display: inline-block;
     padding-right: 0.125em;
-    pointer-events: none;
 }
 
 .more:hover:before {
@@ -560,7 +543,6 @@ nav a:hover:before {
 
 .newsMessage, .tutorialMessage {
     clear: both;
-    /*border-radius: 0.5em;*/
     width: 80%;
     margin-left: 5%;
     margin-right: 15%;
@@ -626,7 +608,6 @@ div.reComment {
 
 /*--------List of Users----------*/
 
-
 .userStatus, .confirmed {
     color: greenyellow;
 }
@@ -640,4 +621,214 @@ div.reComment {
 .email {
     font-style: italic;
     color: #ff0060;
+}
+
+@media screen and (max-width: 980px) {
+
+    body {
+        font-size: 90%;
+    }
+
+    h2, h3, h4 {
+        line-height: 1.25em;
+        margin: 0.5em 0;
+    }
+
+    .wikiName, h1 {
+        font-size: 1.7em;
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .bannerImage {
+        width: 90%;
+        margin: 0 5%;
+        height: 40%;
+    }
+
+    .modern {
+        display: inline-block;
+        margin: 0.213em;
+        padding: 0.3em 0.4em;
+        background: #ffab00;
+        border: 0.1em solid #616161;
+        text-decoration: none;
+    }
+
+    .menu a, .topPanelButtons a {
+        font-size: 100%;
+        margin: 0.3em 0.2em;
+        padding: 0.2em 0.3em;
+    }
+
+    .menu {
+        clear: both;
+        width: 85%;
+
+    }
+
+    .menu.modern.embossed-link {
+        margin: 0 7.5%;
+        padding: 0;
+        background: transparent;
+        background-image: url("../pictures/panel.jpg");
+    }
+
+    .menu.modern.embossed-link:hover {
+        background: url("../pictures/panel.jpg");
+
+    }
+
+    .menu ol {
+        margin: 0 0.5em;
+    }
+
+    footer ul {
+        width: 30%;
+        margin-bottom: -15%;
+    }
+
+    .itemContainer {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    body {
+        font-size: 70%;
+    }
+
+    h2, h3, h4 {
+        line-height: 1.25em;
+        margin: 0.5em 0;
+    }
+
+    .wikiName, h1 {
+        font-size: 0.9em;
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .bannerImage {
+        width: 90%;
+        margin: 0 5%;
+        height: 40%;
+    }
+
+    .modern {
+        display: inline-block;
+        margin: 0.113em;
+        padding: 0.2em 0.3em;
+        background: #ffab00;
+        border: 0.1em solid #616161;
+        text-decoration: none;
+    }
+
+    .menu a, .topPanelButtons a {
+        font-size: 100%;
+        margin: 0.2em 0.1em;
+        padding: 0 0.1em;
+    }
+
+    .menu {
+        clear: both;
+        width: 95%;
+
+    }
+
+    .menu.modern.embossed-link {
+        margin: 0 2.5%;
+        padding: 0;
+        background: transparent;
+        background-image: url("../pictures/panel.jpg");
+    }
+
+    .menu.modern.embossed-link:hover {
+        background: url("../pictures/panel.jpg");
+
+    }
+
+    .menu ol {
+        margin: 0 0.5em;
+    }
+
+    footer ul {
+        width: 50%;
+        margin-bottom: -25%;
+    }
+
+    .itemContainer {
+        width: 35%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 65%;
+    }
+
+    h2, h3, h4 {
+        line-height: 1.25em;
+        margin: 0.5em 0;
+    }
+
+    .wikiName, h1 {
+        font-size: 0.9em;
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .bannerImage {
+        width: 90%;
+        margin: 0 5%;
+        height: 40%;
+    }
+
+    .modern {
+        display: inline-block;
+        margin: 0.13em;
+        padding: 0.1em 0.2em;
+        background: #ffab00;
+        border: 0.1em solid #616161;
+        text-decoration: none;
+    }
+
+    .menu a, .topPanelButtons a {
+        font-size: 100%;
+        margin: 0.1em 0.2em;
+        padding: 0.1em;
+    }
+
+    .menu {
+        clear: both;
+        width: 95%;
+
+    }
+
+    .menu.modern.embossed-link {
+        margin: 0 2.5%;
+        padding: 0;
+        background: transparent;
+        background-image: url("../pictures/panel.jpg");
+    }
+
+    .menu.modern.embossed-link:hover {
+        background: url("../pictures/panel.jpg");
+
+    }
+
+    .menu ol {
+        margin: 0 0.5em;
+    }
+
+    footer ul {
+        width: 50%;
+        margin-bottom: -25%;
+    }
+
+    .itemContainer {
+        width: 35%;
+    }
 }

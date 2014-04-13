@@ -87,6 +87,8 @@ class RecipeFormView extends View {
 					?>
 					<select form="addRecipe" name="recipeItems[]" class="recipeItemSelect"
 							style="position: absolute; top:<?php echo($y); ?>px; left:<?php echo($x); ?>px; width: 50px; height: 50px;">
+
+					<option> None </option>
 						<?php
 						foreach ($items as $item) {
 							$name = $item->getName();
@@ -147,6 +149,7 @@ class RecipeFormView extends View {
 				?>
 				<select form="editRecipe" name="recipeItems[]" class="recipeItemSelect"
 						style="position: absolute; top:<?php echo($y); ?>px; left:<?php echo($x); ?>px; width: 50px; height: 50px;">
+					<option> None </option>
 					<?php
 					foreach ($allItems as $allItem) {
 

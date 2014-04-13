@@ -81,7 +81,16 @@ class ItemFormView extends View {
 				<input id='title' type='text' name='name' placeholder="Name"
 					   value='<?php echo($itemName); ?>'/>
 				<label for='image'>Icon</label>
-				<input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32'/>
+				<div class="myFileUpload btn">
+						<span>Browse...</span>
+						<input id="myUploadBtn" type="file" name='image' class="upload" />
+					</div>
+					<input id="myUploadFile" placeholder="No File Selected" disabled="disabled" />
+					<script type="text/javascript">
+						document.getElementById("myUploadBtn").onchange = function () {
+							document.getElementById("myUploadFile").value = this.value;
+						};
+					</script>
 				<?php
 				if($industrial){
 				?>
@@ -111,7 +120,16 @@ class ItemFormView extends View {
 			<input type='hidden' name='categoryId' value='addItem'/>
 			<input id='title' type='text' name='name' placeholder="Name" autofocus/>
 			<label for='image'>Icon</label>
-			<input class="custom-file-input" type='file' id='image' name='image' size='14' maxlength='32'/>
+			<div class="myFileUpload btn">
+						<span>Browse...</span>
+						<input id="myUploadBtn" type="file" name='image' class="upload" />
+					</div>
+					<input id="myUploadFile" placeholder="No File Selected" disabled="disabled" />
+					<script type="text/javascript">
+						document.getElementById("myUploadBtn").onchange = function () {
+							document.getElementById("myUploadFile").value = this.value;
+						};
+					</script>
 			<input type="checkbox" name="industrial" checked />Industrial Item<br>
 			<input type='hidden' name='categoryName' value='<?php echo($nameCategory); ?>'/>
 			<textarea class='editForm' name='details' id='details' rows="4" cols="50">Add details.</textarea>

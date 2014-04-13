@@ -13,8 +13,13 @@ $view->initialize();
 		<meta charset='UTF-8' />
 		<meta name="author" content="Zuzana Vilhelmova" />
     	<meta name="description" content="Wiki for Minecraft mode - Industrial Craft Experimental" />
-   	 	<meta name="keyword"
-		  content="minecraft, mode, industrial, experimental, wiki" />
+   	 	<meta name="keywords" content="minecraft, mode, industrial, experimental, wiki" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
 		<script type="text/javascript" src="./tinymce/tinymce.min.js"></script>
 		<script type="text/javascript">
 			tinymce.init({
@@ -85,44 +90,41 @@ $view->initialize();
 		</script>
 		<link rel='stylesheet' type='text/css' href='css/style.css' title='default' />
 		<link rel="icon" type="image/x-icon" href="pictures/icon.ico" />
-
-	</head>
 	<title><?php $view->printTitle(); ?></title>
-	<div id='content'>
-	<header><?php include_once 'menu.php'; ?>
-		<nav><?php $view->printNavigation(); ?></nav>
-	</header>
+	</head>
 	<body>
-	<h1>
-			<?php
+		<div class="wrapper">
+		<header><?php include_once 'menu.php'; ?>
+			<nav><?php $view->printNavigation(); ?></nav>
+		<h1><?php $view->printPageHeader(); ?></h1>
+		</header>
+			<section>
+				<div id='sectionContent'>
+	<!--				    <pre>-->
+	<!--				            --><?php
+					//				            echo "get: ";
+					//				            var_dump($_GET);
+					//				            echo "</br>post: ";
+					//				            var_dump($_POST);
 
-			$view->printPageHeader();
-			?>
-		</h1>
-		<section>
-			<div id='sectionContent'>
-<!--				    <pre>-->
-<!--				            --><?php
-				//				            echo "get: ";
-				//				            var_dump($_GET);
-				//				            echo "</br>post: ";
-				//				            var_dump($_POST);
+					?>
+					<!--				    </pre>-->
+					<?php
+					$view->printBody();
+					?>
+				</div>
+			</section>
 
-				?>
-				<!--				    </pre>-->
+			<footer>
 				<?php
-				$view->printBody();
+				$view->printFooter();
 				?>
-			</div>
-		</section>
-		<footer>
-			<?php
-			$view->printFooter();
-			?>
-		</footer>
-		<br class='clear' /></div>
+			</footer>
+			<br class='clear' />
+
+		</div>
 	</body>
-	</html>
+</html>
 <?php
 
 /*
