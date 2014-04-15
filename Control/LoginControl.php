@@ -20,14 +20,14 @@ class LoginControl extends Control {
 				$this->loginUser($user, $pass);
 			}
 		} else {
-			$this->model->error = "<span class='error'>&#10007; malformed form data</span>";
+			$this->model->error = "<span class='text-danger'>&#10007; malformed form data</span>";
 		}
 	}
 
 	private function loginUser($user, $pass) {
 		$hash = hash('sha256', $user->getSalt() . hash('sha256', $pass));
 		if($hash != $user->getPassword()) {
-			$this->model->passwordError = "<span class='error'>&#10007; Password invalid</span>";
+			$this->model->passwordError = "<span class='text-danger'>&#10007; Password invalid</span>";
 		} else {
 			$date = date('Y-m-d h:i:s', time());
 			$user->setLastLogin($date);
@@ -54,7 +54,7 @@ class LoginControl extends Control {
 
 	private function emptyFields($username, $pass) {
 		if($username == "" || $pass == "") {
-			$this->model->fieldsError = "<span class='error'>&#10007; Not all fields were entered</span>";
+			$this->model->fieldsError = "<span class='text-danger'>&#10007; Not all fields were entered</span>";
 			return TRUE;
 		}
 		return FALSE;
@@ -62,7 +62,7 @@ class LoginControl extends Control {
 
 	private function userExists($id) {
 		if(!$id) {
-			$this->model->usernameError = "<span class='error'>&#10007; Username invalid</span>";
+			$this->model->usernameError = "<span class='text-danger'>&#10007; Username invalid</span>";
 			return FALSE;
 		}
 		return TRUE;

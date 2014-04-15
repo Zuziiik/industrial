@@ -13,7 +13,7 @@ class RegisterControl extends Control {
 	public function initialize() {
 		global $loggedIn;
 		if($loggedIn) {
-			$this->model->error = "<span class='error'>You can`t register, because you're already logged in</span>";
+			$this->model->error = "<span class='text-danger'>You can`t register, because you're already logged in</span>";
 		} else {
 			if(isset($_POST['user']) || isset($_POST['password']) || isset($_POST['repeatPassword']) || isset($_POST['email'])) {
 				$this->model->user = sanitizeString($_POST['user']);
@@ -52,12 +52,12 @@ class RegisterControl extends Control {
 		}
 
 		if($pass1 !== $pass2) {
-			$this->model->errorPass = "<span class='error'>&#10007; Passwords don`t match.</span>";
+			$this->model->errorPass = "<span class='text-danger'>&#10007; Passwords don`t match.</span>";
 			$error = TRUE;
 		}
 
 		if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email)) {
-			$this->model->errorEmailFormat = "<span class='error'>&#10007; Invalid email format!</span><br />";
+			$this->model->errorEmailFormat = "<span class='text-danger'>&#10007; Invalid email format!</span><br />";
 			$error = TRUE;
 		}
 		return !$error;
@@ -65,7 +65,7 @@ class RegisterControl extends Control {
 
 	private function emptyFields($username, $email, $pass1, $pass2) {
 		if($username == "" || $pass1 == "" || $pass2 == "" || $email == "") {
-			$this->model->error = "<span class='error'>&#10007; Not all fields were entered</span>";
+			$this->model->error = "<span class='text-danger'>&#10007; Not all fields were entered</span>";
 			return TRUE;
 		}
 		return FALSE;
@@ -74,11 +74,11 @@ class RegisterControl extends Control {
 	private function userExists($username, $email) {
 		$error = FALSE;
 		if(UserDAO::UsernameExists($username)) {
-			$this->model->errorUser = "<span class='error'>&#10007; Username already exists.</span>";
+			$this->model->errorUser = "<span class='text-danger'>&#10007; Username already exists.</span>";
 			$error = TRUE;
 		}
 		if(UserDAO::EmailExists($email)) {
-			$this->model->errorEmail = "<span class='error'>&#10007; Email already exists.</span>";
+			$this->model->errorEmail = "<span class='text-danger'>&#10007; Email already exists.</span>";
 			$error = TRUE;
 		}
 		return $error;

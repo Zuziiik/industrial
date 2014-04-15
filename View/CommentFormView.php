@@ -18,7 +18,8 @@ class CommentFormView extends View {
 
 	public function printNavigation() {
 		$path = base64_decode($this->model->path);
-		echo($path . " | Write comment");
+        echo($path);
+        ?><li class="active">Write comment</li><?php
 	}
 
 	public function printBody() {

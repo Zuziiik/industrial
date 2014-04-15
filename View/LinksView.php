@@ -17,7 +17,7 @@ class LinksView extends View {
 	}
 
 	public function printNavigation() {
-		echo("Links");
+		?><li class="active">Links</li> <?php
 	}
 
 	public function printBody() {

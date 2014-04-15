@@ -26,10 +26,10 @@ class ProfileView extends View {
 		global $loggedIn;
 		global $username;
 		if($loggedIn && $username == $this->model->username) {
-			?> <a href='.'>Home</a> | Your Profile <?php
+			?> <li><a href='.'>Home</a></li><li class="active">Your Profile</li><?php
 		} else {
-			?> <a href='.'>Home</a> | <a href='index.php?page=users'>List Of
-				Users</a> | <?php echo($this->model->username . " Profile");
+			?> <li><a href='.'>Home</a><li><a href='index.php?page=users'>List Of
+				Users</a></li><li class="active"><?php echo($this->model->username . " Profile");?></li><?php
 		}
 	}
 

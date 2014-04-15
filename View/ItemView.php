@@ -19,7 +19,7 @@ class ItemView extends View {
 
 	public function printNavigation() {
 		$itemName = $this->model->item->getName();
-		?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  <?php echo($itemName);
+		?> <li><a href='index.php?page=recipes'>Recipes & Resources</a></li><li><?php echo($itemName);?></li><?php
 	}
 
 	public function printBody() {

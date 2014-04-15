@@ -25,16 +25,18 @@ class ItemFormView extends View {
 
 	public function printNavigation() {
 		if($this->model->addItem) {
-			?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  Add Item<?php
+			?> <li><a href='index.php?page=recipes'>Recipes & Resources</a></li><li class="active">Add Item</li><?php
 		} else {
 			$itemName = $this->model->item->getName();
 			$itemId = $this->model->item->getIdItem();
 			if($this->model->addArea) {
-				?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  <a
-					href='index.php?page=item&item=<?php echo($itemId); ?>'><?php echo($itemName); ?></a> | add Section<?php
+				?> <li><a href='index.php?page=recipes'>Recipes & Resources</a></li><li><a
+					href='index.php?page=item&item=<?php echo($itemId); ?>'><?php echo($itemName); ?></a></li>
+                <li class="active">add Section</li><?php
 			} else {
-				?> <a href='index.php?page=recipes'>Recipes & Resources</a> |  <a
-					href='index.php?page=item&item=<?php echo($itemId); ?>'><?php echo($itemName); ?></a> | edit <?php echo($itemName);
+				?> <li><a href='index.php?page=recipes'>Recipes & Resources</a></li><li><a
+					href='index.php?page=item&item=<?php echo($itemId); ?>'><?php echo($itemName); ?></a></li>
+                <li class="active">edit <?php echo($itemName);?></li><?php
 			}
 		}
 	}

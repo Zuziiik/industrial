@@ -14,12 +14,12 @@ class NewsFormView extends View {
 
 	public function printNavigation() {
 		if($this->model->add) {
-			?> <a href='.'>Home</a> | Add News <?php
+			?> <li><a href='.'>Home</a></li><li class="active">Add News</li><?php
 		} else {
 			$title = $this->model->news->getTitle();
 			$id = $this->model->news->getIdEditableArea();
-			?> <a href='.'>Home</a> | <a href='index.php?page=news&id=<?php echo($id); ?>'> News
-				- <?php echo($title); ?></a> | Edit News<?php
+			?> <li><a href='.'>Home</a></li><li><a href='index.php?page=news&id=<?php echo($id); ?>'> News
+				- <?php echo($title); ?></a></li><li class="active">Edit News</li><?php
 		}
 	}
 

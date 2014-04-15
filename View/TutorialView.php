@@ -19,7 +19,7 @@ class TutorialView extends View {
 
 	public function printNavigation() {
 		$title = $this->model->tutorial->getTitle();
-		?> <a href='index.php?page=tutorialList'>Tutorials</a> |  <?php echo($title);
+		?> <li><a href='index.php?page=tutorialList'>Tutorials</a></li><li class="active"><?php echo($title);?></li><?php
 	}
 
 	public function printBody() {
@@ -43,7 +43,7 @@ class TutorialView extends View {
 		<div class='tutorialMessage'><?php echo($message);
 			$title = $this->model->tutorial->getTitle();
 			$id = (int)$this->model->tutorial->getIdEditableArea();
-			$path = base64_encode("<a href='index.php?page=tutorialList'>Tutorials</a> | <a href='index.php?page=tutorial&id=$id'> $title</a>");
+			$path = base64_encode("<li><a href='index.php?page=tutorialList'>Tutorials</a></li><li><a href='index.php?page=tutorial&id=$id'> $title</a></li>");
 			$this->model->commentView->setPath($path);
 			$this->model->commentView->printBody();
 

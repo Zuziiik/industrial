@@ -13,7 +13,7 @@ class ItemListView extends View {
 	}
 
 	public function printNavigation() {
-		echo("Recipes & Resources");
+        ?><li class="active">Recipes & Resources</li><?php
 	}
 
 	public function printBody() {
