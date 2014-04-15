@@ -67,7 +67,7 @@ class RegisterView extends View {
 
                     <div
                         class=" col-xs-offset-5 col-sm-offset-3 col-md-offset-2 col-lg-offset-2 col-xs-5 col-sm-3 col-md-2 col-lg-2">
-                        <button type="button" class="btn btn-default glyphicon glyphicon-ok"> Submit
+                        <button type="submit" class="btn btn-default glyphicon glyphicon-ok"> Submit
                         </button>
                     </div>
                     <?php echo($this->model->errorUser); ?>

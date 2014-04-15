@@ -100,7 +100,7 @@ $view->initialize();
         <title><?php $view->printTitle(); ?></title>
     </head>
     <body>
-    <div class="wrapper">
+    <div class="container">
         <header><?php include_once 'menu.php'; ?>
             <ol class="breadcrumb"><?php $view->printNavigation(); ?></ol>
             <h1><?php $view->printPageHeader(); ?></h1>

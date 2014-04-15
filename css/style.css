@@ -11,9 +11,6 @@ html {
     height: 101%;
 }
 
-.wrapper {
-    width: 100%;
-}
 
 
 .sectionContent {
@@ -26,6 +23,20 @@ html {
 .panel-body img {
     width: 50%;
     height: 50%;
+}
+
+.bannerImage {
+    width: 50%;
+    max-height: 30%;
+    margin-left: 1%;
+}
+
+.panel {
+    margin-top: 1%;
+}
+
+.btn-group {
+    margin-top: 1em;
 }
 
 

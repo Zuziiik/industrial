@@ -29,24 +29,22 @@ class NewsView extends View {
         global $loggedIn;
         $title = $this->model->news->getTitle();
         $message = $this->model->news->getMessage();
-
-        ?>
-
-        <h2><?php echo($title); ?></h2>
-
-        <div class='newsMessage'><?php echo($message); ?>
-            <?php
-            if ($admin && $loggedIn) {
-                $id = (int)$this->model->news->getIdEditableArea();
-                ?>
-                <form class='editNews' name='editNews' method='post' action='./index.php?page=newsEdit'>
-                    <input type='hidden' name='action' value='editNews' />
-                    <input type='hidden' name='id' value='<?php echo($id); ?>' />
-                    <button class="submitButton" type='submit' name='editNews'>Edit</button>
-                </form>
-            <?php
-            }
+        if ($admin && $loggedIn) {
+            $id = (int)$this->model->news->getIdEditableArea();
             ?>
+            <form class='pull-right' name='editNews' method='post' action='./index.php?page=newsEdit'>
+                <input type='hidden' name='action' value='editNews' />
+                <input type='hidden' name='id' value='<?php echo($id); ?>' />
+                <button class="btn btn-default" type='submit' name='editNews'>Edit</button>
+            </form>
+        <?php
+        }
+        ?>
+        <h2><?php echo($title); ?></h2>
+        <div class="panel panel-default">
+            <div class='panel-body'>
+                <?php echo($message); ?>
+            </div>
         </div>
     <?php
     }

@@ -97,9 +97,9 @@ switch ($page) {
         </div>
 
 	</nav>
-
+    <div class="page-header">
 	<h1>Industrial Craft Experimental - Wiki</h1>
-<!--        <img class="bannerImage" src="./pictures/banner.png" alt="banner">-->
+    <img class="img-responsive" src="./pictures/banner1.png" alt="banner">
     </div>
     <ul class="nav nav-tabs">
 			<li <?php echo $home; ?>><a class='modern' href='index.php?page=home'>Home</a></li>

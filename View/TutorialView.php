@@ -28,10 +28,10 @@ class TutorialView extends View {
 		$id = (int)$this->model->tutorial->getIdEditableArea();
 		if($admin && $loggedIn) {
 			?>
-			<form id='editTutorial' name='edit' method='post'
+			<form class="pull-right" id='editTutorial' name='edit' method='post'
 				  action='./index.php?page=tutorialEdit&id=<?php echo($id); ?>'>
 				<input type='hidden' name='action' value='editTutorial'/>
-				<button class="submitButton" type='submit' name='editTutorial'>Edit</button>
+				<button class="btn btn-default" type='submit' name='editTutorial'>Edit</button>
 			</form>
 		<?php
 		}
@@ -40,7 +40,8 @@ class TutorialView extends View {
 
 		?>
 		<h2><?php echo($title); ?></h2>
-		<div class='tutorialMessage'><?php echo($message);
+        <div class="panel panel-default">
+		<div class='panel-body'><?php echo($message);
 			$title = $this->model->tutorial->getTitle();
 			$id = (int)$this->model->tutorial->getIdEditableArea();
 			$path = base64_encode("<li><a href='index.php?page=tutorialList'>Tutorials</a></li><li><a href='index.php?page=tutorial&id=$id'> $title</a></li>");
@@ -55,18 +56,17 @@ class TutorialView extends View {
 					<input type='hidden' name='path' value='<?php echo($path); ?>'/>
 					<input type='hidden' name='targetId' value='<?php echo($id); ?>'/>
 					<input type='hidden' name='type' value='<?php echo($type); ?>'/>
-					<button class='submitButton' type='submit' name='addComment'>Comment</button>
+					<button class='btn btn-default' type='submit' name='addComment'>Comment</button>
 				</form>
 			<?php
 			}
 			?>
 		</div>
+        </div>
 	<?php
 	}
 
 	public function printPageHeader() {
-		$title = $this->model->tutorial->getTitle();
-		echo($title);
 	}
 
 }
