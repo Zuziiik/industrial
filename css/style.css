@@ -11,14 +11,11 @@ html {
     height: 101%;
 }
 
-
-
 .sectionContent {
     width: 90%;
     margin-right: 5%;
     margin-left: 5%;
 }
-
 
 .panel-body img {
     width: 50%;
@@ -39,10 +36,17 @@ html {
     margin-top: 1em;
 }
 
+.form-control.default {
+    color: #ffffff;
+    background-color: #3a3f44;
+    border-color: #3a3f44;
+}
 
+.btn.btn-sm.btn-default.itemButton {
+    text-decoration: none;
+}
 
 @media screen and (max-width: 700px) {
-
 
 }
 
