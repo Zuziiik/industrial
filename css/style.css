@@ -17,6 +17,20 @@ html {
     margin-left: 5%;
 }
 
+.navbar {
+    background-image: url("../pictures/banner2.png");
+    background-repeat: round;
+    color: #000000;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default {
+    min-height: 35em;
+}
+
 .panel-body img {
     width: 50%;
     height: 50%;
@@ -46,10 +60,49 @@ html {
     text-decoration: none;
 }
 
-@media screen and (max-width: 700px) {
-
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
 }
 
-@media screen and (max-width: 480px) {
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
 
+
+
+@media (max-width: 767px) {
+    .navbar-default {
+        min-height: 10em;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .navbar-default {
+        min-height: 15em;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .navbar-default {
+        min-height: 25em;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .navbar-default {
+        min-height: 30em;
+    }
 }

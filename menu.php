@@ -67,7 +67,7 @@ switch ($page) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php?page=home#">Wiki</a>
+                <a class="navbar-brand" href="index.php?page=home#">Industrial Craft Experimental - Wiki</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -97,10 +97,10 @@ switch ($page) {
         </div>
 
 	</nav>
-    <div class="page-header">
-	<h1>Industrial Craft Experimental - Wiki</h1>
-    <img class="img-responsive" src="./pictures/banner1.png" alt="banner">
-    </div>
+<!--    <div class="page-header">-->
+<!--	<h1></h1>-->
+<!--    <img class="img-responsive" src="./pictures/banner1.png" alt="banner">-->
+<!--    </div>-->
     <ul class="nav nav-tabs">
 			<li <?php echo $home; ?>><a class='modern' href='index.php?page=home'>Home</a></li>
 			<li <?php echo $recipes; ?>><a class='modern' href='index.php?page=recipes'>Recipes & Resources</a></li>

@@ -5,6 +5,7 @@ class ItemFormModel {
     public $item;
     public $area;
     public $error;
+    public $linkError;
     public $addItem;
     public $addArea;
     public $categoryName;
@@ -13,6 +14,7 @@ class ItemFormModel {
         $this->area = NULL;
         $this->item = NULL;
         $this->error = '';
+        $this->linkError = '';
     }
 
 }

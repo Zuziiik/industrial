@@ -2,104 +2,122 @@
 
 class Item {
 
-	/** @var int */
-	protected $idItem;
+    /** @var int */
+    protected $idItem;
 
-	/** @var int */
-	protected $categoryId;
+    /** @var int */
+    protected $categoryId;
 
-	/** @var string */
-	protected $name;
+    /** @var string */
+    protected $name;
 
-	/** @var string */
-	protected $details;
+    /** @var string */
+    protected $details;
 
-	/** @var boolean */
-	protected $industrial;
+    /** @var boolean */
+    protected $industrial;
 
-	/**
-	 * @param int     $idItem
-	 * @param int     $categoryId
-	 * @param string  $name
-	 * @param string  $details
-	 * @param boolean $industrial
-	 */
-	function __construct($idItem, $categoryId, $name, $details, $industrial) {
-		$this->idItem = $idItem;
-		$this->categoryId = $categoryId;
-		$this->name = $name;
-		$this->details = $details;
-		$this->industrial = $industrial;
-	}
+    /** @var string */
+    protected $link;
 
-	/**
-	 * @param boolean $industrial
-	 */
-	public function setIndustrial($industrial) {
-		$this->industrial = $industrial;
-	}
+    /**
+     * @param int     $idItem
+     * @param int     $categoryId
+     * @param string  $name
+     * @param string  $details
+     * @param boolean $industrial
+     */
+    function __construct($idItem, $categoryId, $name, $details, $industrial, $link) {
+        $this->idItem = $idItem;
+        $this->categoryId = $categoryId;
+        $this->name = $name;
+        $this->details = $details;
+        $this->industrial = $industrial;
+        $this->link = $link;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getIndustrial() {
-		return $this->industrial;
-	}
+    /**
+     * @param string $link
+     */
+    public function setLink($link) {
+        $this->link = $link;
+    }
 
-	/**
-	 * @param $idItem
-	 */
-	public function setIdItem($idItem) {
-		$this->idItem = $idItem;
-	}
+    /**
+     * @return string
+     */
+    public function getLink() {
+        return $this->link;
+    }
 
-	/**
-	 * @param $categoryId
-	 */
-	public function setCategoryId($categoryId) {
-		$this->categoryId = $categoryId;
-	}
+    /**
+     * @param boolean $industrial
+     */
+    public function setIndustrial($industrial) {
+        $this->industrial = $industrial;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getIdItem() {
-		return $this->idItem;
-	}
+    /**
+     * @return boolean
+     */
+    public function getIndustrial() {
+        return $this->industrial;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getCategoryId() {
-		return $this->categoryId;
-	}
+    /**
+     * @param $idItem
+     */
+    public function setIdItem($idItem) {
+        $this->idItem = $idItem;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * @param $categoryId
+     */
+    public function setCategoryId($categoryId) {
+        $this->categoryId = $categoryId;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getDetails() {
-		return $this->details;
-	}
+    /**
+     * @return int
+     */
+    public function getIdItem() {
+        return $this->idItem;
+    }
 
-	/**
-	 * @param $name
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+    /**
+     * @return int
+     */
+    public function getCategoryId() {
+        return $this->categoryId;
+    }
 
-	/**
-	 * @param $details
-	 */
-	public function setDetails($details) {
-		$this->details = $details;
-	}
+    /**
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetails() {
+        return $this->details;
+    }
+
+    /**
+     * @param $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    /**
+     * @param $details
+     */
+    public function setDetails($details) {
+        $this->details = $details;
+    }
 
 }

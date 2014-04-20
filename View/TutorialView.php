@@ -40,8 +40,8 @@ class TutorialView extends View {
 
 		?>
 		<h2><?php echo($title); ?></h2>
-        <div class="panel panel-default">
-		<div class='panel-body'><?php echo($message);
+        <div class="well">
+		<?php echo($message);
 			$title = $this->model->tutorial->getTitle();
 			$id = (int)$this->model->tutorial->getIdEditableArea();
 			$path = base64_encode("<li><a href='index.php?page=tutorialList'>Tutorials</a></li><li><a href='index.php?page=tutorial&id=$id'> $title</a></li>");
@@ -61,7 +61,7 @@ class TutorialView extends View {
 			<?php
 			}
 			?>
-		</div>
+
         </div>
 	<?php
 	}

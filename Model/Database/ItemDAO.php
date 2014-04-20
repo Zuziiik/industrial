@@ -10,8 +10,9 @@ class ItemDAO {
         $b = $item->getName();
         $c = $item->getDetails();
 		$d = $item->getIndustrial();
-        queryMysql("INSERT INTO item (category_id, item_name, details, industrial)"
-                . "VALUES ('$a', '$b', '$c', '$d')");
+        $e = $item->getLink();
+        queryMysql("INSERT INTO item (category_id, item_name, details, industrial, link)"
+                . "VALUES ('$a', '$b', '$c', '$d', '$e')");
         $item->setIdItem(lastId());
     }
 
@@ -20,8 +21,9 @@ class ItemDAO {
         $b = $item->getName();
         $c = $item->getDetails();
 		$d = $item->getIndustrial();
+        $e = $item->getLink();
         $id = $item->getIdItem();
-        queryMysql("UPDATE item SET category_id='$a', item_name='$b', details='$c', industrial='$d'"
+        queryMysql("UPDATE item SET category_id='$a', item_name='$b', details='$c', industrial='$d', link='$e'"
                 . "WHERE id_item='$id'");
     }
 
@@ -34,8 +36,8 @@ class ItemDAO {
         if (!is_int($id)) {
             die('Argument passed isn`t instance of int.');
         }
-        $row = rowQueryMysql("SELECT id_item, category_id, item_name, details, industrial FROM item WHERE id_item='$id'");
-        $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+        $row = rowQueryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE id_item='$id'");
+        $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
         return $item;
     }
     
@@ -43,8 +45,8 @@ class ItemDAO {
         if (!is_string($name)) {
             die('Argument passed isn`t instance of string.');
         }
-        $row = rowQueryMysql("SELECT id_item, category_id, item_name, details, industrial FROM item WHERE item_name='$name'");
-        $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+        $row = rowQueryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE item_name='$name'");
+            $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
         return $item;
     }
 
@@ -52,12 +54,12 @@ class ItemDAO {
         if (!is_int($categoryId)) {
             die('Argument passed isn`t instance of int.');
         }
-        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial FROM item WHERE category_id='$categoryId'");
+        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE category_id='$categoryId'");
         $n = mysql_num_rows($result);
         $items = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+            $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
             $items[$i] = $item;
         }
         return $items;
@@ -70,24 +72,24 @@ class ItemDAO {
 		if (!is_bool($industrial)) {
 			die('Argument passed isn`t instance of boolean.');
 		}
-		$result = queryMysql("SELECT id_item, category_id, item_name, details, industrial FROM item WHERE category_id='$categoryId' AND industrial='$industrial'");
+		$result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE category_id='$categoryId' AND industrial='$industrial'");
 		$n = mysql_num_rows($result);
 		$items = array();
 		for ($i = 0; $i < $n; ++$i) {
 			$row = mysql_fetch_row($result);
-			$item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+			$item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
 			$items[$i] = $item;
 		}
 		return $items;
 	}
 
     public static function selectAll() {
-        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial FROM item");
+        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item");
         $n = mysql_num_rows($result);
         $items = array();
         for ($i = 0; $i < $n; ++$i) {
             $row = mysql_fetch_row($result);
-            $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4']);
+            $item = new Item($row['0'], $row['1'], $row['2'], $row['3'], $row['4'], $row['5']);
             $items[$i] = $item;
         }
         return $items;
@@ -97,7 +99,7 @@ class ItemDAO {
         if (!is_int($id)) {
             die('Argument passed isn`t instance of int.');
         }
-        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial FROM item WHERE id_item='$id'");
+        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE id_item='$id'");
         $n = mysql_num_rows($result);
         if($n>0){
             return TRUE;

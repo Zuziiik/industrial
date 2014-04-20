@@ -60,6 +60,7 @@ class ItemListView extends View {
                     $id = $category[0]->getIdCategory();
                     ?>
                     <caption class="col-5 col-sm-5 col-md-5 col-lg-5 active"><h3><?php echo($nameCategory); ?></h3>
+
                     </caption>
                     <tr>
                         <th class="field-label col-5 col-sm-5 col-md-5 col-lg-5 active">
@@ -75,14 +76,12 @@ class ItemListView extends View {
                             <?php
                             if ($loggedIn && $admin) {
                                 ?>
-                                <form>
-                                    <form name='deleteCategory' method='post' action='./index.php?page=recipes'>
-                                        <input type='hidden' name='categoryDelete' value='<?php echo($id); ?>' />
-                                        <button class="btn btn-default btn-sm " type='submit' name='deleteCategory'>
-                                            Delete
-                                            Category
-                                        </button>
-                                    </form>
+                                <form method='post' action='./index.php?page=recipes'>
+                                    <input type='hidden' name='categoryDelete' value='<?php echo($id); ?>' />
+                                    <button class="btn btn-default btn-sm " type='submit' name='deleteCategory'>
+                                        Delete
+                                        Category
+                                    </button>
                                 </form>
                             <?php
                             }
@@ -95,6 +94,7 @@ class ItemListView extends View {
                                 <form class="addItem" name='addItem' method='post' action='./index.php?page=edit'>
                                     <input type='hidden' name='action' value='addItem' />
                                     <input type='hidden' name='categoryName' value='<?php echo($nameCategory); ?>' />
+
                                     <button class="btn btn-default btn-sm" type='submit' name='AddItem'>Add Item
                                     </button>
                                 </form>
@@ -110,6 +110,7 @@ class ItemListView extends View {
                         $id = $item->getIdItem();
                         $name = $item->getName();
                         $details = $item->getDetails();
+                        $industrial = $item->getIndustrial();
                         ?>
                         <tr>
                             <td class="col-5 col-sm-5 col-md-5 col-lg-5 ">
@@ -117,9 +118,23 @@ class ItemListView extends View {
                                      class="img-thumbnail" style="width: 3em; height: 3em;">
                             </td>
                             <td class="col-5 col-sm-5 col-md-5 col-lg-5 ">
-                                <h4><a class='btn btn-sm btn-default itemButton'
-                                       href='./index.php?page=item&item=<?php echo($id); ?>'>
+                                <?php
+                                if ($industrial) {
+                                    ?>
+                                    <h4><a class='btn btn-sm btn-default itemButton'
+                                           href='./index.php?page=item&item=<?php echo($id); ?>'>
+                                            <?php echo($name); ?></a></h4>
+                                <?php
+                                }else{
+                                    $link = $item->getLink();
+                                    ?>
+                                    <h4><a class='btn btn-sm btn-default itemButton'
+                                             href='<?php echo($link); ?>'>
                                         <?php echo($name); ?></a></h4>
+                                    <?php
+                                }
+                                ?>
+
 
                             </td>
                             <td class="col-5 col-sm-5 col-md-5 col-lg-5 ">
