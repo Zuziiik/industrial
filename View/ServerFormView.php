@@ -41,9 +41,9 @@ class ServerFormView extends View {
                 ?>
                 <form name='addServer' method='post' action='./index.php?page=editServer'>
                     <input type='hidden' name='action' value='addServer' />
-                    <input id='title' type='text' placeholder="Title" name='title' autofocus />
+                    <label>Title<input class="form-control" type='text' name='title' autofocus /></label>
                     <textarea class='editForm' id='message' cols='30' rows='6' name='message'></textarea>
-                    <button class='submitButton' type='submit' name='save'>Save</button>
+                    <button class='btn btn-default btn-sm' type='submit' name='save'>Save</button>
                 </form>
             <?php
             }
@@ -55,11 +55,11 @@ class ServerFormView extends View {
                 <form name='editServer' method='post' action='./index.php?page=editServer'>
                     <input type='hidden' name='action' value='editServer' />
                     <input type='hidden' name='ServerId' value='<?php echo($id); ?>' />
-                    <input id='title' type='text' placeholder="Title" name='title'
-                           value=' <?php echo($title); ?>' />
+                    <label>Title<input class="form-control" type='text' name='title'
+                                       value=' <?php echo($title); ?>' /></label>
                     <textarea class='editForm' id='message' cols='30' rows='6'
                               name='message'><?php echo($message); ?></textarea>
-                    <button class='submitButton' type='submit' name='save'>Save</button>
+                    <button class='btn btn-default btn-sm' type='submit' name='save'>Save</button>
                 </form>
             <?php
             }

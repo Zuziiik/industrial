@@ -34,7 +34,7 @@ class ItemControl extends Control {
 				$this->delete();
 			} else {
 				$this->model->fail = TRUE;
-				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+				$this->model->error = "<span class='text-danger'>You don`t have permissions to do this.</span>";
 			}
 		}
 		if(isset($_POST['action']) && $_POST['action'] == 'deleteRecipe') {
@@ -42,15 +42,16 @@ class ItemControl extends Control {
 				$this->deleteRecipe();
 			} else {
 				$this->model->fail = TRUE;
-				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+				$this->model->error = "<span class='text-danger'>You don`t have permissions to do this.</span>";
 			}
 		}
 		if(isset($_POST['action']) && $_POST['action'] == 'moveUp') {
+
 			if($loggedIn && $admin) {
 				$this->move($id, "up");
 			} else {
 				$this->model->fail = TRUE;
-				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+				$this->model->error = "<span class='text-danger'>You don`t have permissions to do this.</span>";
 			}
 		}
 		if(isset($_POST['action']) && $_POST['action'] == 'moveDown') {
@@ -58,7 +59,7 @@ class ItemControl extends Control {
 				$this->move($id, "down");
 			} else {
 				$this->model->fail = TRUE;
-				$this->model->error = "<span class='error'>You don`t have permissions too do this.</span>";
+				$this->model->error = "<span class='text-danger'>You don`t have permissions to do this.</span>";
 			}
 		}
 		$this->model->item = ItemDAO::selectById($id);
@@ -109,10 +110,13 @@ class ItemControl extends Control {
 
 	private function getPosition($areas, $areaId) {
 		$i = 0;
+        var_dump($areaId);
 		foreach ($areas as $a) {
-			if($a->getIdEditableArea() == $areaId) {
+			if((int)$a->getIdEditableArea() == $areaId) {
+                var_dump((int)$a->getIdEditableArea());
 				break;
 			}
+            var_dump($i);
 			$i++;
 		}
 		return $i;

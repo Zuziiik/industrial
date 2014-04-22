@@ -25,12 +25,13 @@ class RecipeTemplatesView extends View {
     public function printBody() {
         global $loggedIn;
         global $admin;
+        ?><h2>Recipe Templates</h2><?php
         if ($loggedIn && $admin) {
             echo($this->model->error);
             ?>
-            <form name='addTemplate' method='post' action='./index.php?page=templateForm'>
+            <form name='addTemplate' class="pull-right" method='post' action='./index.php?page=templateForm'>
                 <input type='hidden' name='action' value='addTemplate' />
-                <button class="submitButton" type='submit' name='addTemplate'>Add Template</button>
+                <button class="btn btn-default" type='submit' name='addTemplate'>Add Template</button>
             </form>
 
             <?php
@@ -43,9 +44,9 @@ class RecipeTemplatesView extends View {
                     $name = $template->getName();
                     $positions = $template->getPositions();
                     $positions = explode(' | ', $positions);
-                    ?> <h2><?php echo $name; ?></h2>
+                    ?> <h3><?php echo $name; ?></h3>
 
-                    <div class="divImageTemplate" <?php echo $size[3]; ?>>
+                    <div class="divImageTemplate" <?php echo ($size[3]); ?>>
                         <img class="imageTemplate" src="./pictures/templates/<?php echo($imageName); ?>">
                         <?php
                         foreach ($positions as $position) {
@@ -65,7 +66,7 @@ class RecipeTemplatesView extends View {
                           action='./index.php?page=recipeTemplates'>
                         <input type='hidden' name='action' value='deleteTemplate' />
                         <input type='hidden' name='id' value='<?php echo($id); ?>' />
-                        <button class="submitButton" type='submit' name='deleteTemplate'>Delete</button>
+                        <button class="btn btn-default btn-sm" type='submit' name='deleteTemplate'>Delete</button>
                     </form>
                 </div>
             <?php
@@ -77,7 +78,7 @@ class RecipeTemplatesView extends View {
     }
 
     public function printPageHeader() {
-        echo("Recipe Templates");
+
     }
 
 }

@@ -54,7 +54,7 @@ class ItemDAO {
         if (!is_int($categoryId)) {
             die('Argument passed isn`t instance of int.');
         }
-        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE category_id='$categoryId'");
+        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE category_id='$categoryId'  ORDER BY item_name ASC");
         $n = mysql_num_rows($result);
         $items = array();
         for ($i = 0; $i < $n; ++$i) {
@@ -72,7 +72,7 @@ class ItemDAO {
 		if (!is_bool($industrial)) {
 			die('Argument passed isn`t instance of boolean.');
 		}
-		$result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE category_id='$categoryId' AND industrial='$industrial'");
+		$result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item WHERE category_id='$categoryId' AND industrial='$industrial' ORDER BY item_name ASC");
 		$n = mysql_num_rows($result);
 		$items = array();
 		for ($i = 0; $i < $n; ++$i) {
@@ -84,7 +84,7 @@ class ItemDAO {
 	}
 
     public static function selectAll() {
-        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item");
+        $result = queryMysql("SELECT id_item, category_id, item_name, details, industrial, link FROM item ORDER BY item_name ASC");
         $n = mysql_num_rows($result);
         $items = array();
         for ($i = 0; $i < $n; ++$i) {

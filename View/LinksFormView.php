@@ -64,12 +64,12 @@ class LinksFormView extends View {
         if ($this->model->add) {
             ?>
             <li><a href='index.php?page=links'>Links</a></li>
-            <li>Add <?php echo($type); ?></li><?php
+            <li class="active">Add <?php echo($type); ?></li><?php
         } else {
             $title = $this->model->link->getTitle();
             ?>
             <li><a href='index.php?page=links'>Links</a></li>
-            <li>Edit <?php echo($type . " - " . $title); ?></li><?php
+            <li class="active">Edit <?php echo($type . " - " . $title); ?></li><?php
 
         }
     }
@@ -77,20 +77,52 @@ class LinksFormView extends View {
     private function add() {
         if ($this->model->type == EditableArea::LINK) {
             ?>
-            <form id='addLink' name='addLink' method='post' action='./index.php?page=linksForm'>
+            <form class="form-horizontal" name='addLink' method='post' action='./index.php?page=linksForm'>
                 <input type='hidden' name='action' value='addLink' />
-                <input type='text' name='title' id="title" placeholder="title" />
-                <input type='text' name='message' id="linkMessage" placeholder="link" />
-                <button class='submitButton' type='submit' name='save'>Save</button>
+
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="title">Title</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='title' id="title"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="message">Link</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='message' id="message"></div>
+                </div>
+                <div class="form-group">
+                    <div
+                        class=" col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-3 col-lg-3">
+                        <button class="btn btn-default glyphicon glyphicon-ok" type='submit' name='save'> Save</button>
+                    </div>
+                </div>
             </form>
         <?php
         } else {
             ?>
-            <form id='addResourcePack' name='addResourcePack' method='post' action='./index.php?page=linksForm'>
+            <form class="form-horizontal" name='addResourcePack' method='post' action='./index.php?page=linksForm'>
                 <input type='hidden' name='action' value='addResourcePack' />
-                <input type='text' name='title' id="title" placeholder="title" />
-                <input type='text' name='message' id="linkMessage" placeholder="link" />
-                <button class='submitButton' type='submit' name='save'>Save</button>
+
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="title">Title</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='title' id="title"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="message">Link</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='message' id="message"></div>
+                </div>
+                <div class="form-group">
+                    <div
+                        class=" col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-3 col-lg-3">
+                        <button class="btn btn-default glyphicon glyphicon-ok" type='submit' name='save'> Save</button>
+                    </div>
+                </div>
             </form>
         <?php
         }
@@ -102,22 +134,58 @@ class LinksFormView extends View {
         $message = $this->model->link->getMessage();
         if ($this->model->type == EditableArea::LINK) {
             ?>
-            <form id='editLink' name='addLink' method='post' action='./index.php?page=linksForm'>
+            <form class="form-horizontal" name='addLink' method='post' action='./index.php?page=linksForm'>
                 <input type='hidden' name='action' value='editLink' />
-                <input type='hidden' name='LinkId' value='<?php echo $id; ?>' />
-                <input type='text' name='title' id="title" value='<?php echo $title; ?>' />
-                <input type='text' name='message' id="linkMessage" value='<?php echo $message; ?>' />
-                <button class='submitButton' type='submit' name='save'>Save</button>
+                <input type='hidden' name='LinkId' value='<?php echo($id); ?>' />
+
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="title">Title</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='title' value='<?php echo($title); ?>' id="title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="message">Link</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='message' value='<?php echo($message); ?>'
+                               id="message"></div>
+                </div>
+                <div class="form-group">
+                    <div
+                        class=" col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-3 col-lg-3">
+                        <button class="btn btn-default glyphicon glyphicon-ok" type='submit' name='save'> Save</button>
+                    </div>
+                </div>
             </form>
         <?php
         } else {
             ?>
-            <form id='editResourcePack' name='addResourcePack' method='post' action='./index.php?page=linksForm'>
+            <form class="form-horizontal" name='addResourcePack' method='post' action='./index.php?page=linksForm'>
                 <input type='hidden' name='action' value='editResourcePack' />
-                <input type='hidden' name='LinkId' value='<?php echo $id; ?>' />
-                <input type='text' name='title' id="title" value='<?php echo $title; ?>' />
-                <input type='text' name='message' id="linkMessage" value='<?php echo $message; ?>' />
-                <button class='submitButton' type='submit' name='save'>Save</button>
+                <input type='hidden' name='LinkId' value='<?php echo($id); ?>' />
+
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="title">Title</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='title' value='<?php echo($title); ?>' id="title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="message">Link</label>
+
+                    <div class="col-sm-4 col-md-3 col-lg-3">
+                        <input type="text" class="form-control" name='message' value='<?php echo($message); ?>'
+                               id="message"></div>
+                </div>
+                <div class="form-group">
+                    <div
+                        class=" col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-3 col-lg-3">
+                        <button class="btn btn-default glyphicon glyphicon-ok" type='submit' name='save'> Save</button>
+                    </div>
+                </div>
             </form>
         <?php
         }

@@ -60,24 +60,26 @@ html {
     text-decoration: none;
 }
 
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-}
 
-.fileUpload input.upload {
+.ImageIconDiv {
     position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
+    width: 2.125em;
+    height: 2.125em;
 }
 
+.divImageTemplate {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.template {
+    clear: both;
+}
+
+.btn.btn-default {
+    margin-top: 0.5em;
+}
 
 
 @media (max-width: 767px) {

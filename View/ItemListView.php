@@ -57,6 +57,9 @@ class ItemListView extends View {
 
                     <?php
                     $nameCategory = $category[0]->getName();
+                    if($nameCategory==='Fake'){
+                        continue;
+                    }
                     $id = $category[0]->getIdCategory();
                     ?>
                     <caption class="col-5 col-sm-5 col-md-5 col-lg-5 active"><h3><?php echo($nameCategory); ?></h3>

@@ -18,7 +18,7 @@ class LinksControl extends Control {
 				$this->delete();
 			} else {
 				$this->model->fail = TRUE;
-				$this->model->error = "<span class='error'>You're not logged in or you don`t have permissions to do this.</span>";
+				$this->model->error = "<span class='text-danger'>You're not logged in or you don`t have permissions to do this.</span>";
 			}
 
 		}

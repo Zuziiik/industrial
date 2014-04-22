@@ -18,8 +18,8 @@ class NotFoundView extends View {
 
 	public function printBody() {
 		?>
-		<img class="error404" src="./pictures/absolutely_nothing.png">
-		<a class="link" href="index.php?page=home">Go to Homepage.</a>
+		<img class="error404" src="./pictures/absolutely_nothing.png"></br>
+		<a class="btn btn-default btn-xs" href="index.php?page=home">Go to Homepage</a>
 	<?php
 	}
 

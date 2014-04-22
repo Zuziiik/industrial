@@ -52,8 +52,10 @@ class ItemFormView extends View {
             $this->edit();
         } else {
             if ($this->model->addArea) {
+                ?><h2>Add section</h2><?php
                 $this->addArea();
             } else {
+                ?><h2>Add item</h2><?php
                 $this->addItem();
             }
         }
@@ -67,6 +69,7 @@ class ItemFormView extends View {
             $id = $this->model->area->getIdEditableArea();
             $text = $this->model->area->getMessage();
             ?>
+            <h2>Edit <?php echo($title); ?></h2>
             <form name='editArea' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
                 <input type='hidden' name='action' value='editArea' />
                 <input id='title' type='text' placeholder="Title" name='title'
@@ -83,16 +86,17 @@ class ItemFormView extends View {
             $details = $this->model->item->getDetails();
             $industrial = $this->model->item->getIndustrial();
             ?>
+            <h2>Edit <?php echo($itemName); ?></h2>
             <form name='edit' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'
                   enctype='multipart/form-data'>
                 <input type='hidden' name='action' value='editItem' />
                 <label>Name <input id='title' class="form-control" type='text' name='name'
-                       value='<?php echo($itemName); ?>' /></label>
+                                   value='<?php echo($itemName); ?>' /></label>
                 <?php
                 if ($industrial) {
                     ?>
                     <div id='item-link' class="hidden">
-                        <label>Link <input class="form-control"v type='text' name='link' autofocus /></label>
+                        <label>Link <input class="form-control" type='text' name='link' autofocus /></label>
                     </div>
                     <label>Industrial Item <input id="item-industrial" type="checkbox" name="industrial"
                                                   checked /></label></br>
@@ -108,11 +112,7 @@ class ItemFormView extends View {
                 }
                 ?>
                 <label>Icon
-                    <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-                    <div class="fileUpload btn btn-default btn-sm">
-                        <span>Upload</span>
-                        <input id="uploadBtn" type="file" class="upload"  />
-                    </div>
+                    <input name="image" type="file" title="Search..." >
                 </label>
                 <textarea class='editForm' name='details' id='details' wrap="hard" placeholder="Details" rows="4"
                           cols="50"><?php echo($details); ?></textarea>
@@ -149,11 +149,7 @@ class ItemFormView extends View {
             </div>
             <label>Industrial Item <input id="item-industrial" type="checkbox" name="industrial" /></label></br>
             <label>Icon
-                <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-                <div class="fileUpload btn btn-default btn-sm">
-                    <span>Upload</span>
-                    <input id="uploadBtn" type="file" class="upload"  />
-                </div>
+                <input name="image" type="file" title="Search..." >
             </label>
             <textarea class='editForm' name='details' id='details' rows="4" cols="50">Add details.</textarea>
             <button class='btn btn-default btn-sm' type='submit' name='save'>Save</button>
@@ -166,13 +162,9 @@ class ItemFormView extends View {
                         $('#item-link').fadeIn('slow');
                     }
                 });
-
-                document.getElementById("uploadBtn").onchange = function () {
-                    document.getElementById("uploadFile").value = this.value;
-                };
-
             </script>
         </form>
+
     <?php
     }
 
@@ -189,15 +181,7 @@ class ItemFormView extends View {
     }
 
     public function printPageHeader() {
-        if ($this->model->addItem) {
-            echo("Add item");
-        } else {
-            if ($this->model->addArea) {
-                echo("Add section");
-            }
-            $itemName = $this->model->item->getName();
-            echo("Edit " . $itemName);
-        }
+
     }
 
     public function printTitle() {

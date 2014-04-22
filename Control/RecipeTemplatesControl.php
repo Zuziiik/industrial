@@ -20,7 +20,7 @@ class RecipeTemplatesControl extends Control {
 			}
 			$this->model->templates = RecipeTemplateDAO::selectAll();
 		} else {
-			$this->model->error = "<span class='error'>You're not logged in, or don`t have permissions for this.</span>";
+			$this->model->error = "<span class='text-danger'>You're not logged in, or don`t have permissions for this.</span>";
 		}
 	}
 
@@ -32,7 +32,7 @@ class RecipeTemplatesControl extends Control {
 			unlink("pictures/templates/".$imageName);
 			$recipes = RecipeDAO::selectByTemplateId($id);
 			if($recipes) {
-				$this->model->error = "<span class='error'>Can`t delete used template. You must delete recipes first.</span>";
+				$this->model->error = "<span class='text-danger'>Can`t delete used template. You must delete recipes first.</span>";
 			} else {
 				RecipeTemplateDAO::delete($template);
 			}

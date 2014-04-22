@@ -27,22 +27,22 @@ class ItemFormControl extends Control {
                     $this->model->area = EditableAreaDAO::selectById($areaId);
                     $this->editArea($areaId, $itemId);
                 } else {
-                    $this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+                    $this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
                 }
             }
-            if ($_POST['action'] == 'addArea') {
+            if (isset($_POST['action']) && $_POST['action'] == 'addArea') {
                 if ($admin && $loggedIn) {
                     $this->model->addArea = TRUE;
                     $this->addArea($itemId);
                 } else {
-                    $this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+                    $this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
                 }
             }
             if (isset($_POST['action']) && $_POST['action'] == 'editItem') {
                 if ($admin && $loggedIn) {
                     $this->edit();
                 } else {
-                    $this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+                    $this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
                 }
             }
         } else {
@@ -52,7 +52,7 @@ class ItemFormControl extends Control {
                     $this->model->categoryName = sanitizeString($_POST['categoryName']);
                     $this->add();
                 } else {
-                    $this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+                    $this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
                 }
             }
         }
@@ -123,7 +123,6 @@ class ItemFormControl extends Control {
                 $this->model->linkError = "<span class='text-warning'>Link is empty.</span>";
             } else {
                 if (isset($_FILES['image']['name'])) {
-
                     $saveto = "pictures/upload/$itemId.png";
                     move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
                     $this->updateImage($saveto, $itemId);

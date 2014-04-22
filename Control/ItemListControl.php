@@ -25,7 +25,7 @@ class ItemListControl extends Control {
 				$categoryName = sanitizeString($_POST['categoryName']);
 				$this->addCategory($categoryName);
 			} else {
-				$this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+				$this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
 			}
 		}
 		if(isset($_POST['deleteCategory'])) {
@@ -35,13 +35,13 @@ class ItemListControl extends Control {
 				$items = ItemDAO::selectByCategoryId($delete);
 				if($items != NULL) {
 					$this->model->fail = TRUE;
-					$this->model->error = "<span class='text-warning'>Can't delete category with items in it.</span>";
+					$this->model->error = "<span class='text-danger'>Can't delete category with items in it.</span>";
 				} else {
 					CategoryDAO::delete($category);
 				}
 
 			} else {
-				$this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+				$this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
 			}
 		}
 		if(isset($_POST['DeleteItem'])) {
@@ -94,7 +94,7 @@ class ItemListControl extends Control {
 				//Delete Item
 				ItemDAO::delete($item);
 			} else {
-				$this->model->error = "<span class='text-warning'>You're not logged in, or must be admin to add/edit.</span>";
+				$this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
 			}
 		}
 
@@ -131,7 +131,7 @@ class ItemListControl extends Control {
 		if(!CategoryDAO::exists($categoryName)) {
 			CategoryDAO::insert(new Category(666, $categoryName));
 		} else {
-			$this->model->error = "<span class='text-warning'>Category already exists.</span>";
+			$this->model->error = "<span class='text-danger'>Category already exists.</span>";
 		}
 	}
 

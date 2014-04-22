@@ -19,6 +19,9 @@ $view->initialize();
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <script type="text/javascript"
+                src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
         <![endif]-->
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +34,9 @@ $view->initialize();
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script type="text/javascript" src="./tinymce/tinymce.min.js"></script>
+
         <script type="text/javascript">
+
             tinymce.init({
                 selector: "textarea",
                 theme: "modern",
@@ -97,6 +102,7 @@ $view->initialize();
 
         </script>
         <link rel='stylesheet' type='text/css' href='css/style.css' title='default' />
+
         <link rel="icon" type="image/x-icon" href="pictures/icon.ico" />
         <title><?php $view->printTitle(); ?></title>
     </head>
@@ -135,6 +141,11 @@ $view->initialize();
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.file-input.js"></script>
+    <script>
+        $('input[type=file]').bootstrapFileInput();
+        $('.file-inputs').bootstrapFileInput();
+    </script>
     </body>
     </html>
 <?php

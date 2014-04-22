@@ -28,7 +28,7 @@ class TutorialFormControl extends Control {
                 $this->add();
             }
         } else {
-            $this->model->error = "<span class='error'>You are not logged in or you must be admin to add/edit.</span>";
+            $this->model->error = "<span class='text-danger'>You are not logged in or you must be admin to add/edit.</span>";
         }
 
     }

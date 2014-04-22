@@ -20,7 +20,7 @@ class NewsFormControl extends Control {
             $this->model->add = TRUE;
             $this->add();
 			}else{
-				$this->model->error = "<span class='error'>You're not logged in, or must be admin to add/edit.</span>";
+				$this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
 			}
         }
         if(isset($_POST['action']) && $_POST['action']=='editNews'){
@@ -30,7 +30,7 @@ class NewsFormControl extends Control {
             $this->model->news = EditableAreaDAO::selectById($id);
             $this->edit($this->model->news, $id);
 			}else{
-				$this->model->error = "<span class='error'>You're not logged in, or must be admin to add/edit.</span>";
+				$this->model->error = "<span class='text-danger'>You're not logged in, or must be admin to add/edit.</span>";
 			}
         }
     }

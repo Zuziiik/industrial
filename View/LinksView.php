@@ -30,6 +30,7 @@ class LinksView extends View {
         ?>
         <h2>Resource Packs</h2>
         <?php
+        $i = 0;
         foreach ($this->model->resourcePacks as $resourcePack) {
             $title = $resourcePack->getTitle();
             $message = $resourcePack->getMessage();
@@ -45,20 +46,20 @@ class LinksView extends View {
                     if ($admin && $loggedIn) {
                         ?>
 
-                        <form id='delete' name='delete' method='post' action='./index.php?page=links'>
+                        <form id='delete<?php echo($i); ?>' name='delete' method='post' action='./index.php?page=links'>
                             <input type='hidden' name='LinkId' value='<?php echo($id); ?>' />
 
                         </form>
-                        <form id="editResourcePack" name='editResourcePack' method='post'
+                        <form id="editResourcePack<?php echo($i); ?>" name='editResourcePack' method='post'
                               action='./index.php?page=linksForm'>
                             <input type='hidden' name='action' value='editResourcePack' />
                             <input type='hidden' name='LinkId' value='<?php echo($id); ?>' />
 
                         </form>
                         <div class="btn-group">
-                            <button form="delete" class='btn btn-sm btn-default' type='submit' name='delete'>Delete
+                            <button form="delete<?php echo($i); ?>" class='btn btn-sm btn-default' type='submit' name='delete'>Delete
                             </button>
-                            <button form="editResourcePack" class='btn btn-sm btn-default' type='submit'
+                            <button form="editResourcePack<?php echo($i); ?>" class='btn btn-sm btn-default' type='submit'
                                     name='editResourcePack'>Edit
                             </button>
                         </div>
@@ -70,6 +71,7 @@ class LinksView extends View {
                 </div>
             </div>
         <?php
+            $i++;
         }
         if ($admin && $loggedIn) {
             ?>
@@ -84,6 +86,7 @@ class LinksView extends View {
 
         <h2>Other Links</h2>
         <?php
+        $i = 0;
         foreach ($this->model->links as $link) {
             $title = $link->getTitle();
             $message = $link->getMessage();
@@ -99,20 +102,24 @@ class LinksView extends View {
                     if ($admin && $loggedIn) {
                         ?>
 
-                        <form id='deleteLink' name='delete' method='post' action='./index.php?page=links'>
+                        <form id='deleteLink<?php echo($i); ?>' name='delete' method='post'
+                              action='./index.php?page=links'>
                             <input type='hidden' name='LinkId' value='<?php echo($id); ?>' />
 
                         </form>
-                        <form id='editLink' name='editLink' method='post' action='./index.php?page=linksForm'>
+                        <form id='editLink<?php echo($i); ?>' name='editLink' method='post'
+                              action='./index.php?page=linksForm'>
                             <input type='hidden' name='action' value='editLink' />
                             <input type='hidden' name='LinkId' value='<?php echo($id); ?>' />
 
                         </form>
                         <div class="btn-group">
-                            <button form="deleteLink" class='btn btn-sm btn-default' type='submit' name='delete'>
+                            <button form="deleteLink<?php echo($i); ?>" class='btn btn-sm btn-default' type='submit'
+                                    name='delete'>
                                 Delete
                             </button>
-                            <button form="editLink" class='btn btn-sm btn-default' type='submit' name='editLink'>Edit
+                            <button form="editLink<?php echo($i); ?>" class='btn btn-sm btn-default' type='submit'
+                                    name='editLink'>Edit
                             </button>
                         </div>
                     <?php
@@ -120,7 +127,8 @@ class LinksView extends View {
                     ?>
                 </div>
             </div>
-        <?php
+            <?php
+            $i++;
         }
         if ($admin && $loggedIn) {
             ?>

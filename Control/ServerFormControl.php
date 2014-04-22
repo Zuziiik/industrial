@@ -28,7 +28,7 @@ class ServerFormControl extends Control {
 				$this->edit($this->model->server);
 			}
 		} else {
-			$this->model->error = "<span class='error'>You are not logged in or you must be admin to add/edit.</span>";
+			$this->model->error = "<span class='text-danger'>You are not logged in or you must be admin to add/edit.</span>";
 		}
 	}
 
@@ -38,8 +38,7 @@ class ServerFormControl extends Control {
 			$title = sanitizeString($_POST['title']);
 			$message = sanitizeTextArea($_POST['message']);
 			$date = date("Y-m-d H:i:s", time());
-			$weight = EditableAreaDAO::selectHighestWeight() + 1;
-			$server = new EditableArea(666, NULL, $type, $date, $title, $message, $weight);
+			$server = new EditableArea(666, NULL, $type, $date, $title, $message, NULL);
 			EditableAreaDAO::insert($server);
 			$this->model->add = FALSE;
 			echo("<script>window.location = './index.php?page=servers';</script>");

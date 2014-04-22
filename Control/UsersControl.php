@@ -32,7 +32,7 @@ class UsersControl extends Control {
 			$this->model->users = UserDAO::selectAll();
 			$this->model->bans = BanDAO::selectAll();
 		} else {
-			$this->model->error = "<span class='error'>You're not logged in, or don`t have permissions for this.</span>";
+			$this->model->error = "<span class='text-danger'>You're not logged in, or don`t have permissions for this.</span>";
 		}
 	}
 
@@ -52,7 +52,7 @@ class UsersControl extends Control {
 			$user = UserDAO::selectById($userId);
 			$name = $user->getUsername();
 			if($name == 'Kiki' || $name == $username) {
-				$this->model->error = "<span class='error'>You can`t make user from $name!!</span>";
+				$this->model->error = "<span class='text-danger'>You can`t make user from $name!!</span>";
 			} else {
 
 				if($user->getAdmin()) {
@@ -72,7 +72,7 @@ class UsersControl extends Control {
 			$ban = BanDAO::selectCurrentByUserId($userId);
 			if($ban->getIdBan()) {
 				$end = $ban->getBanEnd();
-				$this->model->banError = "<span class='error'>User is already banned till $end.</span>";
+				$this->model->banError = "<span class='text-danger'>User is already banned till $end.</span>";
 			} else {
 				$startDate = new Datetime(date("Y-m-d H:i:s", time()));
 				$start = $startDate->format("Y-m-d H:i:s");
@@ -88,7 +88,7 @@ class UsersControl extends Control {
 			$userId = (int)sanitizeString($_POST['id']);
 			$ban = BanDAO::selectCurrentByUserId($userId);
 			if(!$ban->getIdBan()) {
-				$this->model->banError = "<span class='error'>User isn`t banned.</span>";
+				$this->model->banError = "<span class='text-danger'>User isn`t banned.</span>";
 			} else {
 				$endDate = new Datetime(date("Y-m-d H:i:s", time()));
 				$end = $endDate->format("Y-m-d H:i:s");

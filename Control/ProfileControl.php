@@ -32,7 +32,7 @@ class ProfileControl extends Control {
 				}
 			}
 		} else {
-			$this->model->error = "<span class='error'>You`re not logged in.</span>";
+			$this->model->error = "<span class='text-danger'>You`re not logged in.</span>";
 		}
 	}
 
@@ -61,15 +61,15 @@ class ProfileControl extends Control {
 		$hash = hash('sha256', $user->getSalt() . hash('sha256', $oldPassword));
 		if($hash != $user->getPassword()) {
 			$pass = FALSE;
-			$this->model->OldPasswordError = "<span class='error'>Password invalid</span>";
+			$this->model->OldPasswordError = "<span class='text-danger'>Password invalid</span>";
 		}
 		if($newPassword != $repeatPassword) {
 			$pass = FALSE;
-			$this->model->PasswordsMatchError = "<span class='error'>Passwords don`t match.</span>";
+			$this->model->PasswordsMatchError = "<span class='text-danger'>Passwords don`t match.</span>";
 		}
 		if($newPassword == '' || $oldPassword == '' || $repeatPassword == '') {
 			$pass = FALSE;
-			$this->model->EmptyFieldsError = "<span class='error'>Not all fields were entered</span>";
+			$this->model->EmptyFieldsError = "<span class='text-danger'>Not all fields were entered</span>";
 		}
 		return $pass;
 	}
@@ -80,14 +80,14 @@ class ProfileControl extends Control {
 			if($username == $this->model->username) {
 				if(isset($_FILES['image']['name'])) {
 					$saveto = "pictures/upload/$userId.png";
-					move_uploaded_file($_FILES['image']['tmp_name'], "pictures/".$saveto);
+					move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
 					$this->updateImage($saveto, $userId);
 				}
 				$about = sanitizeTextArea($_POST['about']);
 				$user->setAbout($about);
 				UserDAO::update($user);
 			} else {
-				$this->model->error = "<span class='error'>You don`t have permissions to do that.</span>";
+				$this->model->error = "<span class='text-danger'>You don`t have permissions to do that.</span>";
 			}
 			$this->model->edit = FALSE;
 		}

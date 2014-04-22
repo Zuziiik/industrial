@@ -35,7 +35,7 @@ class CommentFormControl extends Control {
 					$this->model->commentId = sanitizeString($_POST['commentId']);
 					$this->reply($userId);
 				} else {
-					$this->model->error = "<span class='error'>Can`t comment. You're not confirmed by admin yet.</span>";
+					$this->model->error = "<span class='text-danger'>Can`t comment. You're not confirmed by admin yet.</span>";
 				}
 
 			}
@@ -56,11 +56,11 @@ class CommentFormControl extends Control {
 					$this->model->targetId = (int)sanitizeString($_POST['targetId']);
 					$this->comment();
 				} else {
-					$this->model->error = "<span class='error'>Can`t comment. You're not confirmed by admin yet.</span>";
+					$this->model->error = "<span class='text-danger'>Can`t comment. You're not confirmed by admin yet.</span>";
 				}
 			}
 		} else {
-			$this->model->error = "<span class='error'>You're banned or not logged in.</span>";
+			$this->model->error = "<span class='text-danger'>You're banned or not logged in.</span>";
 		}
 	}
 

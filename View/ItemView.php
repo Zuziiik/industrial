@@ -40,7 +40,8 @@ class ItemView extends View {
         }
         if ($loggedIn && $admin) {
             ?>
-            <form class="pull-right" name='editItem' method='post' action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
+            <form class="pull-right" name='editItem' method='post'
+                  action='./index.php?page=edit&item=<?php echo($itemId); ?>'>
                 <input type='hidden' name='action' value='editItem' />
                 <button class="btn btn-default" type='submit' name='editItem'>Edit</button>
             </form>
@@ -97,14 +98,16 @@ class ItemView extends View {
                     <form id="addRecipe" name='addRecipe' method='post'
                           action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
                         <input type='hidden' name='action' value='addRecipe' />
-                        <label>Select Template:<select name="templateList" class="form-control default" form="addRecipe">
-                            <?php foreach ($templates as $template) {
-                                $templateId = $template->getIdRecipeTemplate();
-                                $templateName = $template->getName();
-                                ?>
-                                <option value="<?php echo($templateId); ?>"><?php echo($templateName); ?></option> <?php
-                            } ?>
-                        </select></label>
+                        <label>Select Template:<select name="templateList" class="form-control default"
+                                                       form="addRecipe">
+                                <?php foreach ($templates as $template) {
+                                    $templateId = $template->getIdRecipeTemplate();
+                                    $templateName = $template->getName();
+                                    ?>
+                                    <option
+                                        value="<?php echo($templateId); ?>"><?php echo($templateName); ?></option> <?php
+                                } ?>
+                            </select></label>
                         <button class="btn btn-default" type='submit' name='addRecipe'>Add Recipe</button>
                     </form>
 
@@ -112,6 +115,7 @@ class ItemView extends View {
             <?php
             }
         }
+        $i = 0;
         foreach ($this->model->editArea as $area) {
             $title = $area->getTitle();
 
@@ -120,7 +124,8 @@ class ItemView extends View {
             $text = $area->getMessage();
             $date = $area->getDate();
             $this->printTextArea($text, $date);
-            $id = $area->getIdEditableArea();
+            $id = (int)$area->getIdEditableArea();
+
             if ($loggedIn && $admin) {
 
                 ?>
@@ -145,14 +150,14 @@ class ItemView extends View {
                         </button>
                     </div>
 
-                    <form id="changeWeightUp" name='changeWeight' method='post'
+                    <form id="changeWeightUp<?php echo($i); ?>" name='changeWeightUp' method='post'
                           action='./index.php?page=item&item=<?php echo($itemId); ?>'>
                         <input type='hidden' name='action' value='moveUp' />
                         <input type='hidden' name='areaId' value='<?php echo($id); ?>' />
 
                     </form>
 
-                    <form id="changeWeightDown" name='changeWeight' method='post'
+                    <form id="changeWeightDown<?php echo($i); ?>" name='changeWeightDown' method='post'
                           action='./index.php?page=item&item=<?php echo($itemId); ?>'>
                         <input type='hidden' name='action' value='moveDown' />
                         <input type='hidden' name='areaId' value='<?php echo($id); ?>' />
@@ -160,17 +165,20 @@ class ItemView extends View {
                     </form>
 
                     <div class="btn-group">
-                        <button form="changeWeightUp" type='button' name='up' class="btn btn-default btn-xs">
+                        <button form="changeWeightUp<?php echo($i); ?>" type='submit' class="btn btn-default btn-xs">
                             <span class="glyphicon glyphicon-arrow-up"> Up</span>
                         </button>
-                        <button form="changeWeightDown" type='button' name='down' class="btn btn-default btn-xs">
+                        <button form="changeWeightDown<?php echo($i); ?>" type='submit' class="btn btn-default btn-xs">
                             <span class="glyphicon glyphicon-arrow-down"> Down</span>
                         </button>
                     </div>
                 </div>
             <?php
             }
-            echo("</div>");
+            ?>
+            </div>
+            <?php
+            $i++;
         }
         if ($loggedIn && $admin) {
             ?>
@@ -230,7 +238,7 @@ class ItemView extends View {
         $positions = $template->getPositions();
         $positions = explode(' | ', $positions);
         ?>
-        <div class="divImageTemplate" <?php echo $size[3]; ?>>
+        <div class="divImageTemplate" <?php echo ($size[3]); ?>>
             <img class="imageTemplate" src="./pictures/templates/<?php echo($templateImageName); ?>">
             <?php
             foreach ($recipeItems as $recipeItem) {
@@ -241,8 +249,17 @@ class ItemView extends View {
                 $recipeItemId = (int)$recipeItem->getItemId();
                 $item = ItemDAO::selectById($recipeItemId);
                 $recipeItemName = $item->getName();
+
                 ?>
-                <a href='./index.php?page=item&item=<?php echo($recipeItemId); ?>'>
+                <a href='<?php
+                if ($recipeItemName === 'Fake') {
+                    ?>
+
+                <?php
+                } else {
+                    ?>
+               ./index.php?page=item&item=<?php echo($recipeItemId);
+                } ?>'>
                     <img class='itemIcon'
                          alt='<?php echo($recipeItemName); ?>'
                          src='image.php?type=item&id=<?php echo($recipeItemId); ?>'
@@ -273,14 +290,14 @@ class ItemView extends View {
                       action='./index.php?page=item&item=<?php echo($itemId); ?>'>
                     <input type='hidden' name='action' value='deleteRecipe' />
                     <input type='hidden' name='id' value='<?php echo($recipeId); ?>' />
-                    <button class="submitButton" type='submit' name='deleteRecipe'>Delete</button>
+                    <button class="btn btn-default" type='submit' name='deleteRecipe'>Delete</button>
                 </form>
                 <form id="editRecipe" name='editRecipe' method='post'
                       action='./index.php?page=recipe&item=<?php echo($itemId); ?>'>
                     <input type='hidden' name='id' value='<?php echo($recipeId); ?>' />
                     <input type='hidden' name='action' value='editRecipe' />
                     <input type='hidden' name='templateId' value='<?php echo($templateId); ?>' />
-                    <button class="submitButton" type='submit' name='editRecipe'>Edit</button>
+                    <button class="btn btn-default" type='submit' name='editRecipe'>Edit</button>
                 </form>
             </div>
             </div>

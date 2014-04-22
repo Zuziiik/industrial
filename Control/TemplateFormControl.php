@@ -36,7 +36,7 @@ class TemplateFormControl extends Control {
 			}
 
 		} else {
-			$this->model->error = "<span class='error'>You're not logged in, or don`t have permissions for this.</span>";
+			$this->model->error = "<span class='text-danger'>You're not logged in, or don`t have permissions for this.</span>";
 		}
 	}
 
@@ -78,12 +78,12 @@ class TemplateFormControl extends Control {
 						$this->model->loaded = TRUE;
 					}
 				} else {
-					$this->model->error = "<span class='error'>File's invalid.</span>";
+					$this->model->error = "<span class='text-danger'>File's invalid.</span>";
 				}
 
 			} else {
 				$this->model->selectedImage = FALSE;
-				$this->model->error = "<span class='error'>No image selected.</span>";
+				$this->model->error = "<span class='text-danger'>No image selected.</span>";
 			}
 		}
 	}

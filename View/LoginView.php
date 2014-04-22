@@ -28,9 +28,9 @@ class LoginView extends View {
             ?>
             <form class="form-horizontal" role="form" name='login' method='post' action='./index.php?page=login'>
                 <div class="form-group">
-                    <label class="col-xs-5 col-sm-3 col-md-2 col-lg-2 control-label" for="username">Username</label>
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="username">Username</label>
 
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2">
+                    <div class="col-sm-4 col-md-3 col-lg-3">
                         <div class="input-group">
                             <span class="input-group-addon glyphicon glyphicon-user"></span>
                             <input type="text" class="form-control" name='user' id="username"
@@ -40,9 +40,9 @@ class LoginView extends View {
                     <?php echo($this->model->usernameError); ?>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-5 col-sm-3 col-md-2 col-lg-2 control-label" for="pass">Password</label>
+                    <label class="col-sm-4 col-md-3 col-lg-3 control-label" for="pass">Password</label>
 
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2">
+                    <div class="col-sm-4 col-md-3 col-lg-3">
                         <input type="password" class="form-control" name='pass' id="pass"></div>
                     <?php echo($this->model->passwordError); ?>
                 </div>
@@ -50,7 +50,7 @@ class LoginView extends View {
                     <input type='hidden' name='action' value='login' />
 
                     <div
-                        class=" col-xs-offset-5 col-sm-offset-3 col-md-offset-2 col-lg-offset-2 col-xs-5 col-sm-3 col-md-2 col-lg-2">
+                        class=" col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-4 col-md-3 col-lg-3">
                         <button class="btn btn-default glyphicon glyphicon-ok" type='submit' name='submit'> Submit</button>
                     </div>
                     <?php echo($this->model->fieldsError); ?>
